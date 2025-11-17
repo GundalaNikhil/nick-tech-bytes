@@ -16,7 +16,7 @@ export default function NickTechBytes() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-900 via-black to-gray-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
       <style jsx>{`
         @keyframes slideDown {
           from {
