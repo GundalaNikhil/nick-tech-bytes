@@ -12,6 +12,7 @@ export type Answer = {
   code?: string;
   language?: string;
   note?: string;
+  examples?: string[];
 };
 
 export type Question = {
