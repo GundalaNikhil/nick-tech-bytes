@@ -2,6 +2,7 @@ import type {
   InterviewQuestionsMap,
   InterviewResourcesMap,
 } from "../interviewTypes";
+import { java8Sections } from "./java8";
 
 export const javaQuestions: InterviewQuestionsMap["Java"] = {
   icon: "☕",
@@ -86,6 +87,7 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
         },
       ],
     },
+    ...java8Sections,
   ],
 };
 
