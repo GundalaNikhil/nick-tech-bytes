@@ -3,9 +3,11 @@ import type { Section } from "../interviewTypes";
 export const java8Sections: Section[] = [
   {
     title: "Lambda Expressions",
+    icon: "⚡",
     questions: [
       {
         question: "What are Lambda Expressions in Java 8?",
+        difficulty: "beginner",
         answer: {
           text: "Lambda expressions are anonymous functions that provide a clear and concise way to represent a method interface using an expression. They enable functional programming in Java.",
           points: [
@@ -32,6 +34,7 @@ Comparator<Integer> comparator = (a, b) -> a.compareTo(b);`,
       },
       {
         question: "What is a Functional Interface?",
+        difficulty: "beginner",
         answer: {
           text: "A functional interface is an interface that contains exactly one abstract method. It can have multiple default or static methods.",
           points: [
@@ -60,6 +63,7 @@ func.myMethod();`,
       },
       {
         question: "Explain the different types of Lambda Expressions",
+        difficulty: "intermediate",
         answer: {
           points: [
             "No parameters: () -> expression",
@@ -92,9 +96,11 @@ BiFunction<Integer, Integer, Integer> multiply = (a, b) -> {
   },
   {
     title: "Stream API",
+    icon: "🌊",
     questions: [
       {
         question: "What is the Stream API in Java 8?",
+        difficulty: "beginner",
         answer: {
           text: "Stream API is used to process collections of objects. It provides a functional approach to processing collections of objects with various operations like filter, map, reduce, etc.",
           points: [
@@ -117,6 +123,7 @@ System.out.println("Sum of even numbers: " + sum); // Output: 30`,
       },
       {
         question: "What are intermediate and terminal operations in Stream?",
+        difficulty: "intermediate",
         answer: {
           text: "Intermediate operations return a new stream and are lazy (not executed until a terminal operation is called). Terminal operations produce a result or side-effect and mark the stream as consumed.",
           points: [
@@ -141,6 +148,7 @@ System.out.println(result); // [ALICE, CHARLIE, DAVID]`,
       },
       {
         question: "Explain the difference between map() and flatMap()",
+        difficulty: "intermediate",
         answer: {
           text: "map() transforms each element into another object, while flatMap() transforms each element into a stream and then flattens all streams into a single stream.",
           points: [
@@ -172,6 +180,7 @@ System.out.println(flatList); // [1, 2, 3, 4, 5, 6, 7, 8, 9]`,
       },
       {
         question: "What is the reduce() operation in Stream?",
+        difficulty: "advanced",
         answer: {
           text: "reduce() is a terminal operation that combines all elements of a stream into a single result. It performs a reduction on the elements using an associative accumulation function.",
           points: [
@@ -209,9 +218,11 @@ System.out.println(sentence.trim()); // "Hello World"`,
   },
   {
     title: "Optional Class",
+    icon: "🔒",
     questions: [
       {
         question: "What is Optional in Java 8 and why is it used?",
+        difficulty: "beginner",
         answer: {
           text: "Optional is a container object used to represent the presence or absence of a value. It helps avoid NullPointerException and makes the code more readable and explicit about nullable values.",
           points: [
@@ -244,6 +255,7 @@ String result3 = value.orElseThrow(() -> new RuntimeException("Value not found")
       },
       {
         question: "Explain the difference between orElse() and orElseGet()",
+        difficulty: "intermediate",
         answer: {
           text: "Both methods provide a default value when Optional is empty, but orElse() always evaluates its argument while orElseGet() only evaluates when Optional is empty.",
           points: [
@@ -275,9 +287,11 @@ private static String createDefaultValue() {
   },
   {
     title: "Method References",
+    icon: "🔗",
     questions: [
       {
         question: "What are Method References in Java 8?",
+        difficulty: "intermediate",
         answer: {
           text: "Method references are a shorthand notation of a lambda expression to call a method. They make the code more readable and concise when a lambda expression only calls an existing method.",
           points: [
@@ -308,6 +322,7 @@ Supplier<List<String>> listSupplier = ArrayList::new;`,
       },
       {
         question: "Explain the different types of Method References",
+        difficulty: "advanced",
         answer: {
           points: [
             "Static Method Reference: ClassName::staticMethod",
@@ -343,9 +358,11 @@ List<Person> persons = names.stream()
   },
   {
     title: "Default and Static Methods in Interfaces",
+    icon: "⚙️",
     questions: [
       {
         question: "What are default methods in interfaces?",
+        difficulty: "intermediate",
         answer: {
           text: "Default methods allow you to add new methods to interfaces without breaking existing implementations. They provide a default implementation that can be overridden by implementing classes.",
           points: [
@@ -386,6 +403,7 @@ class Car implements Vehicle {
       },
       {
         question: "What are static methods in interfaces?",
+        difficulty: "intermediate",
         answer: {
           text: "Static methods in interfaces are utility methods that belong to the interface itself, not to instances. They cannot be overridden by implementing classes.",
           points: [
@@ -425,6 +443,7 @@ int result = calc.calculate(10, 20);`,
       },
       {
         question: "How does Java resolve diamond problem with default methods?",
+        difficulty: "advanced",
         answer: {
           text: "When a class implements multiple interfaces with the same default method, Java requires the class to explicitly override the method to resolve the ambiguity.",
           points: [
@@ -470,9 +489,11 @@ obj.print();
   },
   {
     title: "Date and Time API",
+    icon: "📅",
     questions: [
       {
         question: "What improvements does Java 8 Date and Time API provide?",
+        difficulty: "beginner",
         answer: {
           text: "Java 8 introduced a new Date and Time API (java.time package) to overcome the drawbacks of the old java.util.Date and java.util.Calendar classes.",
           points: [
@@ -507,6 +528,7 @@ LocalDate parsedDate = LocalDate.parse("15-01-2024", formatter);`,
       {
         question:
           "Explain the difference between LocalDateTime, ZonedDateTime, and Instant",
+        difficulty: "intermediate",
         answer: {
           points: [
             "LocalDateTime: Date and time without timezone information. Best for birthdays, appointments",
@@ -544,9 +566,11 @@ System.out.println(period.getMonths()); // 11`,
   },
   {
     title: "Collectors and Grouping",
+    icon: "📦",
     questions: [
       {
         question: "What is the Collectors utility class in Java 8?",
+        difficulty: "intermediate",
         answer: {
           text: "Collectors is a utility class that provides reduction operations like accumulating elements into collections, summarizing elements, grouping, partitioning, etc.",
           points: [
@@ -584,6 +608,7 @@ System.out.println("Average length: " + stats.getAverage());`,
       },
       {
         question: "Explain groupingBy() and partitioningBy() collectors",
+        difficulty: "advanced",
         answer: {
           text: "groupingBy() groups elements based on a classifier function, while partitioningBy() is a special case that partitions elements into two groups based on a predicate.",
           points: [

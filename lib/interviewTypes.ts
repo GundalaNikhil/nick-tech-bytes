@@ -6,6 +6,8 @@ export type TopicKey =
   | "LLD"
   | "Docker";
 
+export type DifficultyLevel = "beginner" | "intermediate" | "advanced";
+
 export type Answer = {
   text?: string;
   points?: string[];
@@ -18,10 +20,12 @@ export type Answer = {
 export type Question = {
   question: string;
   answer: Answer;
+  difficulty?: DifficultyLevel;
 };
 
 export type Section = {
   title: string;
+  icon?: string;
   questions: Question[];
 };
 
