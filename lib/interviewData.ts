@@ -12,6 +12,7 @@ import { springBootQuestions, springBootResources } from "./topics/springBoot";
 
 export type {
   Answer,
+  DifficultyLevel,
   InterviewQuestionsMap,
   InterviewResourcesMap,
   Question,

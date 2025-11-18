@@ -2,15 +2,18 @@ import type {
   InterviewQuestionsMap,
   InterviewResourcesMap,
 } from "../interviewTypes";
+import { java8Sections } from "./java8";
 
 export const javaQuestions: InterviewQuestionsMap["Java"] = {
   icon: "☕",
   sections: [
     {
       title: "JVM Architecture & Memory Management",
+      icon: "🏗️",
       questions: [
         {
           question: "Explain the JVM Architecture",
+          difficulty: "intermediate",
           answer: {
             text: "The Java Virtual Machine (JVM) is an abstract machine that provides a runtime environment for Java bytecode to be executed.",
             points: [
@@ -22,6 +25,7 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
         },
         {
           question: "Describe the different memory areas in the JVM",
+          difficulty: "intermediate",
           answer: {
             points: [
               "Heap: Stores all objects, arrays, and instance variables. Shared among threads and managed by GC",
@@ -34,6 +38,7 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
         },
         {
           question: "What is the role of the Garbage Collector (GC)?",
+          difficulty: "beginner",
           answer: {
             text: "The GC automatically manages Heap memory by tracking all objects and removing those no longer referenced, preventing memory leaks.",
             points: [
@@ -47,9 +52,11 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
     },
     {
       title: "Object-Oriented Programming",
+      icon: "🎯",
       questions: [
         {
           question: "What are the four main pillars of OOP?",
+          difficulty: "beginner",
           answer: {
             points: [
               "Encapsulation: Bundling data and methods into a single unit, restricting direct access",
@@ -62,6 +69,7 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
         {
           question:
             "Explain the difference between interface and abstract class",
+          difficulty: "intermediate",
           answer: {
             text: "Interface: Defines a contract with implicitly public and abstract methods. A class can implement multiple interfaces. Used for 100% abstraction.\n\nAbstract Class: Can have both abstract and concrete methods. A class can only extend one abstract class. Provides common base implementation for subclasses.",
           },
@@ -70,15 +78,18 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
     },
     {
       title: "Collections Framework",
+      icon: "📚",
       questions: [
         {
           question: "Differentiate between ArrayList and LinkedList",
+          difficulty: "beginner",
           answer: {
             text: "ArrayList: Uses dynamic array, better for random access with O(1) time complexity. Insertion/deletion in middle is slow (O(n)).\n\nLinkedList: Uses doubly linked list, better for frequent insertions/deletions at beginning or end (O(1)). Random access is slow (O(n)).",
           },
         },
         {
           question: "What is the difference between HashMap and Hashtable?",
+          difficulty: "intermediate",
           answer: {
             text: "HashMap: Non-synchronized (not thread-safe), allows one null key and multiple null values, generally faster.\n\nHashtable: Synchronized (thread-safe), doesn't allow null keys or values, slower due to synchronization overhead.",
             note: "Hashtable is legacy; ConcurrentHashMap is the modern alternative for concurrent scenarios.",
@@ -86,6 +97,7 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
         },
       ],
     },
+    ...java8Sections,
   ],
 };
 
