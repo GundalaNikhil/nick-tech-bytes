@@ -208,8 +208,20 @@ export default function Hero({ onExploreMore }: HeroProps) {
                     scale: 1.05,
                     boxShadow: "0 0 25px rgba(6, 182, 212, 0.5)",
                   }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-lg overflow-hidden"
+                  whileTap={{ scale: 0.85 }}
+                  animate={{
+                    scale: [1, 1.05, 0.95, 1.02, 0.98, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                    ease: "easeInOut",
+                  }}
+                  className="group relative w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg overflow-hidden"
+                  style={{
+                    transformOrigin: "center",
+                  }}
                 >
                   <span className="relative z-10 flex items-center justify-center gap-3">
                     Explore More
