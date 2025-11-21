@@ -77,7 +77,7 @@ export default function RubiksCube() {
         className="relative w-full h-full rounded-md overflow-hidden"
         style={{
           boxShadow:
-            "0 2px 8px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.4)",
+            "0 1px 3px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,255,0.2)",
         }}
       >
         {/* Base polished chrome silver - Silver Surfer style */}
@@ -95,13 +95,13 @@ export default function RubiksCube() {
           style={{
             background: `
             linear-gradient(180deg, 
-              rgba(255,255,255,0.75) 0%,
-              rgba(240,240,240,0.4) 15%,
-              rgba(200,200,200,0.25) 35%,
-              rgba(160,160,160,0.2) 50%,
-              rgba(120,120,120,0.3) 70%,
-              rgba(80,80,80,0.45) 90%,
-              rgba(50,50,50,0.55) 100%
+              rgba(255,255,255,0.4) 0%,
+              rgba(240,240,240,0.25) 15%,
+              rgba(200,200,200,0.15) 35%,
+              rgba(160,160,160,0.12) 50%,
+              rgba(120,120,120,0.18) 70%,
+              rgba(80,80,80,0.25) 90%,
+              rgba(50,50,50,0.3) 100%
             )
           `,
           }}
@@ -112,8 +112,8 @@ export default function RubiksCube() {
           className="absolute inset-0"
           style={{
             background: `
-            radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.85) 0%, rgba(245,245,245,0.4) 25%, transparent 50%),
-            radial-gradient(ellipse at 65% 60%, rgba(220,220,225,0.5) 0%, transparent 35%)
+            radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.5) 0%, rgba(245,245,245,0.25) 25%, transparent 50%),
+            radial-gradient(ellipse at 65% 60%, rgba(220,220,225,0.3) 0%, transparent 35%)
           `,
           }}
         ></div>
@@ -124,12 +124,12 @@ export default function RubiksCube() {
           style={{
             background: `
             linear-gradient(130deg, 
-              rgba(255,255,255,0.65) 0%, 
-              rgba(255,255,255,0.3) 20%,
+              rgba(255,255,255,0.35) 0%, 
+              rgba(255,255,255,0.15) 20%,
               transparent 35%,
               transparent 65%,
-              rgba(0,0,0,0.35) 80%,
-              rgba(0,0,0,0.55) 100%
+              rgba(0,0,0,0.2) 80%,
+              rgba(0,0,0,0.3) 100%
             )
           `,
           }}
@@ -155,7 +155,7 @@ export default function RubiksCube() {
           className="absolute top-0 left-0 right-0 h-[15%]"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.35) 60%, transparent 100%)",
+              "linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.18) 60%, transparent 100%)",
             borderTopLeftRadius: "0.375rem",
             borderTopRightRadius: "0.375rem",
           }}
@@ -166,7 +166,7 @@ export default function RubiksCube() {
           className="absolute top-0 left-0 bottom-0 w-[15%]"
           style={{
             background:
-              "linear-gradient(to right, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 60%, transparent 100%)",
+              "linear-gradient(to right, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.12) 60%, transparent 100%)",
             borderTopLeftRadius: "0.375rem",
             borderBottomLeftRadius: "0.375rem",
           }}
@@ -186,31 +186,31 @@ export default function RubiksCube() {
           className="absolute inset-0 rounded-md"
           style={{
             boxShadow:
-              "inset 0 0 8px rgba(255,255,255,0.3), inset 2px 2px 6px rgba(0,0,0,0.4), inset -1px -1px 4px rgba(255,255,255,0.2)",
+              "inset 0 0 4px rgba(255,255,255,0.15), inset 1px 1px 3px rgba(0,0,0,0.2), inset -1px -1px 2px rgba(255,255,255,0.1)",
           }}
         ></div>
 
         {/* Main bright specular highlight */}
         <div
-          className="absolute w-5 h-5 rounded-full"
+          className="absolute w-4 h-4 rounded-full"
           style={{
             top: "22%",
             left: "30%",
             background:
-              "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0.75) 30%, rgba(255,255,255,0.3) 60%, transparent 80%)",
-            filter: "blur(2.5px)",
+              "radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.4) 30%, rgba(255,255,255,0.15) 60%, transparent 80%)",
+            filter: "blur(2px)",
           }}
         ></div>
 
         {/* Secondary chrome highlight */}
         <div
-          className="absolute w-3 h-3 rounded-full"
+          className="absolute w-2 h-2 rounded-full"
           style={{
             top: "55%",
             left: "65%",
             background:
-              "radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.35) 50%, transparent 80%)",
-            filter: "blur(1.5px)",
+              "radial-gradient(circle, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.2) 50%, transparent 80%)",
+            filter: "blur(1px)",
           }}
         ></div>
       </div>
