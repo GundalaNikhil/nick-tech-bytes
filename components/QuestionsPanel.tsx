@@ -1,34 +1,34 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import {
+  Award,
+  Box,
+  Check,
+  CheckCircle2,
+  Cloud,
+  Code2,
+  Copy,
+  Database,
+  Filter,
+  Layers,
+  Library,
+  Lightbulb,
+  MessageSquare,
+  Rocket,
+  Search,
+  Settings,
+  Sparkles,
+  Target,
+  TrendingUp,
+  X,
+  Zap,
+} from "lucide-react";
+import React, { useMemo, useState } from "react";
 import type {
+  DifficultyLevel,
   InterviewQuestionsMap,
   TopicKey,
-  DifficultyLevel,
 } from "../lib/interviewTypes";
-import {
-  Search,
-  Filter,
-  Sparkles,
-  TrendingUp,
-  Award,
-  MessageSquare,
-  CheckCircle2,
-  Code2,
-  Lightbulb,
-  Copy,
-  Check,
-  Database,
-  Box,
-  Layers,
-  Zap,
-  Target,
-  Rocket,
-  Settings,
-  Cloud,
-  Library,
-  X,
-} from "lucide-react";
 
 interface QuestionsPanelProps {
   topicKey: TopicKey;
@@ -153,6 +153,49 @@ const QuestionsPanel: React.FC<QuestionsPanelProps> = ({
 
     return (
       <div className="space-y-4">
+        {/* Memory Technique - Pink/Rose */}
+        {answer.memoryTechnique && (
+          <div className="bg-rose-500/10 border border-rose-500/30 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-lg">🧠</span>
+              <span className="text-xs font-semibold text-rose-400 uppercase tracking-wide">
+                Memory Technique
+              </span>
+            </div>
+            <p className="text-rose-200/90 leading-relaxed font-medium">
+              {answer.memoryTechnique}
+            </p>
+          </div>
+        )}
+
+        {/* Simple Explanation - Yellow/Gold */}
+        {answer.simpleExplanation && (
+          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-lg">🌟</span>
+              <span className="text-xs font-semibold text-yellow-400 uppercase tracking-wide">
+                In Simple Terms
+              </span>
+            </div>
+            <p className="text-yellow-200/90 leading-relaxed">
+              {answer.simpleExplanation}
+            </p>
+          </div>
+        )}
+
+        {/* Visual HTML */}
+        {answer.visualHtml && (
+          <div className="bg-slate-900/50 border border-slate-700/50 rounded-lg p-4 overflow-x-auto">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-lg">📊</span>
+              <span className="text-xs font-semibold text-cyan-400 uppercase tracking-wide">
+                Visual Guide
+              </span>
+            </div>
+            <div dangerouslySetInnerHTML={{ __html: answer.visualHtml }} />
+          </div>
+        )}
+
         {/* Answer Text - Emerald */}
         {answer.text && (
           <div className="bg-slate-800/30 border border-slate-700/50 rounded-lg p-4">

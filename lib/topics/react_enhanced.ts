@@ -21,8 +21,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Significantly improves performance by minimizing direct DOM manipulation",
               "The comparison process is called Reconciliation",
             ],
-            memoryTechnique: "Think: VDR - Virtual DOM → Diffing → Real DOM (Virtual Detective Reviews changes)",
-            simpleExplanation: "Imagine you're editing a draft document (Virtual DOM) before printing the final version (Real DOM). Instead of reprinting the entire document every time you make a change, you only print the pages that were modified. React does the same - it checks what changed in the draft and only updates those specific parts in the browser.",
+            memoryTechnique:
+              "Think: VDR - Virtual DOM → Diffing → Real DOM (Virtual Detective Reviews changes)",
+            simpleExplanation:
+              "Imagine you're editing a draft document (Virtual DOM) before printing the final version (Real DOM). Instead of reprinting the entire document every time you make a change, you only print the pages that were modified. React does the same - it checks what changed in the draft and only updates those specific parts in the browser.",
             visualHtml: `<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; margin: 1.5rem 0;">
   <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
     <div style="background: rgba(59, 130, 246, 0.1); border: 2px solid #3b82f6; border-radius: 8px; padding: 1.5rem; text-align: center;">
@@ -58,8 +60,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Transpiled to React.createElement() by tools like Babel",
             ],
             code: `const element = <h1>Hello, World!</h1>;\n// Transpiles to:\nconst element = React.createElement('h1', null, 'Hello, World!');`,
-            memoryTechnique: "JSX = JavaScript + XML (J+S+X). Think: JavaScript with Sugar-coated XML",
-            simpleExplanation: "JSX is like writing a recipe in plain language instead of technical chef jargon. Instead of saying 'React.createElement with these specific parameters...', you just write '<h1>Hello</h1>' which is much easier to read and understand, like saying 'add 2 cups of flour' instead of 'introduce 473ml of wheat-based powder'.",
+            memoryTechnique:
+              "JSX = JavaScript + XML (J+S+X). Think: JavaScript with Sugar-coated XML",
+            simpleExplanation:
+              "JSX is like writing a recipe in plain language instead of technical chef jargon. Instead of saying 'React.createElement with these specific parameters...', you just write '<h1>Hello</h1>' which is much easier to read and understand, like saying 'add 2 cups of flour' instead of 'introduce 473ml of wheat-based powder'.",
           },
         },
         {
@@ -67,8 +71,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
           difficulty: "beginner",
           answer: {
             text: "Functional Components: Simple JavaScript functions that accept props and return JSX. Can manage state using Hooks. Generally preferred for simplicity and performance.\n\nClass Components: ES6 classes extending React.Component. Manage state using this.state and lifecycle methods like componentDidMount. More verbose but were necessary before Hooks.",
-            memoryTechnique: "F=Fast & Fresh (Functional), C=Classic & Complex (Class)",
-            simpleExplanation: "Functional components are like modern electric cars - simple, efficient, and eco-friendly. Class components are like traditional gas cars - they work great but have more parts (like lifecycle methods) and are more complex to maintain. Both get you to your destination, but one is sleeker and easier to handle.",
+            memoryTechnique:
+              "F=Fast & Fresh (Functional), C=Classic & Complex (Class)",
+            simpleExplanation:
+              "Functional components are like modern electric cars - simple, efficient, and eco-friendly. Class components are like traditional gas cars - they work great but have more parts (like lifecycle methods) and are more complex to maintain. Both get you to your destination, but one is sleeker and easier to handle.",
             visualHtml: `<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; margin: 1.5rem 0;">
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
     <div style="background: rgba(34, 197, 94, 0.1); border: 2px solid #22c55e; border-radius: 8px; padding: 1.5rem;">
@@ -112,8 +118,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Improves perceived performance for complex UIs",
               "Foundation for features like Suspense and Concurrent Mode",
             ],
-            memoryTechnique: "FIBER = Flexible, Incremental, Better, Efficient Rendering",
-            simpleExplanation: "Think of React Fiber like a chef who can pause preparing one dish to handle an urgent order, then resume the first dish later. Before Fiber, React was like a chef who had to finish one entire dish before starting another - no interruptions allowed. Fiber allows React to prioritize urgent updates (like user clicks) while pausing less important work.",
+            memoryTechnique:
+              "FIBER = Flexible, Incremental, Better, Efficient Rendering",
+            simpleExplanation:
+              "Think of React Fiber like a chef who can pause preparing one dish to handle an urgent order, then resume the first dish later. Before Fiber, React was like a chef who had to finish one entire dish before starting another - no interruptions allowed. Fiber allows React to prioritize urgent updates (like user clicks) while pausing less important work.",
           },
         },
       ],
@@ -127,8 +135,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
           difficulty: "beginner",
           answer: {
             text: "Props: Read-only inputs passed from parent to child component. Immutable and allow component communication.\n\nState: Mutable data structure that holds component-specific data and can change over time. Managed within the component using useState or this.state.",
-            memoryTechnique: "Props = Permanent (read-only), State = Changeable. Think: P for Passed down, S for Self-managed",
-            simpleExplanation: "Props are like birthday gifts - someone gives them to you (parent), you can't change them, and you just use them as they are. State is like your closet - you own it, you can add or remove clothes whenever you want, and it belongs specifically to you. Your sibling's closet (state) is completely separate from yours.",
+            memoryTechnique:
+              "Props = Permanent (read-only), State = Changeable. Think: P for Passed down, S for Self-managed",
+            simpleExplanation:
+              "Props are like birthday gifts - someone gives them to you (parent), you can't change them, and you just use them as they are. State is like your closet - you own it, you can add or remove clothes whenever you want, and it belongs specifically to you. Your sibling's closet (state) is completely separate from yours.",
             visualHtml: `<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; margin: 1.5rem 0;">
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
     <div style="background: rgba(59, 130, 246, 0.1); border: 2px solid #3b82f6; border-radius: 8px; padding: 1.5rem;">
@@ -170,8 +180,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "No array: Runs after every render",
             ],
             code: `useEffect(() => {\n  // Side effect code here\n  fetchData();\n  \n  return () => {\n    // Cleanup function\n    cleanup();\n  };\n}, [dependency]); // Dependency array`,
-            memoryTechnique: "USE = Used for Side Effects. Think: Empty[], Every time (no array), or Exact dependencies [deps]",
-            simpleExplanation: "useEffect is like setting up automatic tasks. Imagine you have a smart home: [] = 'do this once when I move in', [dependency] = 'do this when the temperature changes', no array = 'do this every single time anything happens'. The cleanup function is like 'when I leave the room, turn off the lights'.",
+            memoryTechnique:
+              "USE = Used for Side Effects. Think: Empty[], Every time (no array), or Exact dependencies [deps]",
+            simpleExplanation:
+              "useEffect is like setting up automatic tasks. Imagine you have a smart home: [] = 'do this once when I move in', [dependency] = 'do this when the temperature changes', no array = 'do this every single time anything happens'. The cleanup function is like 'when I leave the room, turn off the lights'.",
             visualHtml: `<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; margin: 1.5rem 0;">
   <div style="text-align: center; margin-bottom: 1.5rem;">
     <div style="color: #60a5fa; font-weight: bold; font-size: 1.25rem;">useEffect Dependency Patterns</div>
@@ -208,8 +220,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "State updates are asynchronous",
             ],
             code: `const [count, setCount] = useState(0);\n\n// Update state\nsetCount(count + 1);\n\n// Functional update (recommended for computed values)\nsetCount(prevCount => prevCount + 1);`,
-            memoryTechnique: "useState: U-S-E = Update, State, Easy. Array destructuring: [value, setValue]",
-            simpleExplanation: "useState is like a sticky note on your fridge. The first part (count) is what's currently written on the note. The second part (setCount) is the pen you use to change what's written. When you change it, React replaces the old note with a new one showing the updated value.",
+            memoryTechnique:
+              "useState: U-S-E = Update, State, Easy. Array destructuring: [value, setValue]",
+            simpleExplanation:
+              "useState is like a sticky note on your fridge. The first part (count) is what's currently written on the note. The second part (setCount) is the pen you use to change what's written. When you change it, React replaces the old note with a new one showing the updated value.",
           },
         },
         {
@@ -224,8 +238,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Should be used for truly global data, not all state",
             ],
             code: `const ThemeContext = React.createContext('light');\n\nfunction App() {\n  return (\n    <ThemeContext.Provider value="dark">\n      <ChildComponent />\n    </ThemeContext.Provider>\n  );\n}\n\nfunction ChildComponent() {\n  const theme = useContext(ThemeContext);\n  return <div className={theme}>Content</div>;\n}`,
-            memoryTechnique: "Context = Container for Shared Data. Think: Broadcasting station (Provider) → Radio (Consumer)",
-            simpleExplanation: "useContext is like a TV broadcast. Instead of physically passing a message person-to-person through a chain (prop drilling), you broadcast it (Provider), and anyone with a TV (useContext) can tune in and receive it directly, no matter how far away they are.",
+            memoryTechnique:
+              "Context = Container for Shared Data. Think: Broadcasting station (Provider) → Radio (Consumer)",
+            simpleExplanation:
+              "useContext is like a TV broadcast. Instead of physically passing a message person-to-person through a chain (prop drilling), you broadcast it (Provider), and anyone with a TV (useContext) can tune in and receive it directly, no matter how far away they are.",
           },
         },
       ],
@@ -246,8 +262,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Easier to test state transitions",
             ],
             code: `const [state, dispatch] = useReducer(reducer, initialState);\n\nfunction reducer(state, action) {\n  switch (action.type) {\n    case 'increment':\n      return { count: state.count + 1 };\n    case 'decrement':\n      return { count: state.count - 1 };\n    default:\n      return state;\n  }\n}\n\n// Usage\ndispatch({ type: 'increment' });`,
-            memoryTechnique: "useReducer = USE when state is COMPLEX, REDUCED to actions. Think: State + Action → New State",
-            simpleExplanation: "useState is like ordering from a simple menu (just pick one item). useReducer is like a restaurant with a complex order system - you send a ticket (dispatch) to the kitchen (reducer) describing what you want (action type), and the kitchen decides how to prepare your meal (new state) based on your order and their rules.",
+            memoryTechnique:
+              "useReducer = USE when state is COMPLEX, REDUCED to actions. Think: State + Action → New State",
+            simpleExplanation:
+              "useState is like ordering from a simple menu (just pick one item). useReducer is like a restaurant with a complex order system - you send a ticket (dispatch) to the kitchen (reducer) describing what you want (action type), and the kitchen decides how to prepare your meal (new state) based on your order and their rules.",
             visualHtml: `<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; margin: 1.5rem 0;">
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
     <div style="background: rgba(34, 197, 94, 0.1); border: 2px solid #22c55e; border-radius: 8px; padding: 1.5rem;">
@@ -284,8 +302,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Don't use for simple operations (overhead not worth it)",
             ],
             code: `const expensiveValue = useMemo(() => {\n  return computeExpensiveValue(a, b);\n}, [a, b]); // Only recalculates if a or b change\n\n// Without useMemo: Recalculates on every render\nconst expensiveValue = computeExpensiveValue(a, b);`,
-            memoryTechnique: "useMemo = MEMO-rize expensive calculations. Think: Cache & Reuse",
-            simpleExplanation: "useMemo is like doing meal prep on Sunday. Instead of cooking the same complicated dish every single day (expensive calculation on every render), you cook it once and reheat it throughout the week. You only cook again when ingredients change (dependencies update).",
+            memoryTechnique:
+              "useMemo = MEMO-rize expensive calculations. Think: Cache & Reuse",
+            simpleExplanation:
+              "useMemo is like doing meal prep on Sunday. Instead of cooking the same complicated dish every single day (expensive calculation on every render), you cook it once and reheat it throughout the week. You only cook again when ingredients change (dependencies update).",
           },
         },
         {
@@ -300,8 +320,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Dependencies determine when callback is recreated",
             ],
             code: `const memoizedCallback = useCallback(\n  () => {\n    doSomething(a, b);\n  },\n  [a, b]\n);\n\n// Equivalent to:\nconst memoizedValue = useMemo(\n  () => () => doSomething(a, b),\n  [a, b]\n);`,
-            memoryTechnique: "useCallback = Callback memoization, useMemo = Value memoization. Both CACHE things!",
-            simpleExplanation: "useMemo saves the result of cooking (the actual meal). useCallback saves the recipe itself. If you have the same recipe (callback), you don't need to print a new copy every time - just keep using the same one until the ingredients (dependencies) change.",
+            memoryTechnique:
+              "useCallback = Callback memoization, useMemo = Value memoization. Both CACHE things!",
+            simpleExplanation:
+              "useMemo saves the result of cooking (the actual meal). useCallback saves the recipe itself. If you have the same recipe (callback), you don't need to print a new copy every time - just keep using the same one until the ingredients (dependencies) change.",
             visualHtml: `<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; margin: 1.5rem 0;">
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
     <div style="background: rgba(59, 130, 246, 0.1); border: 2px solid #3b82f6; border-radius: 8px; padding: 1.5rem;">
@@ -344,8 +366,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Changes to .current don't trigger component updates",
             ],
             code: `const inputRef = useRef(null);\n\nfunction focusInput() {\n  inputRef.current.focus();\n}\n\nreturn <input ref={inputRef} />;\n\n// Storing previous value\nconst prevCountRef = useRef();\nuseEffect(() => {\n  prevCountRef.current = count;\n});`,
-            memoryTechnique: "useRef = REFerence that persists. Think: Sticky note that doesn't trigger re-renders",
-            simpleExplanation: "useRef is like a secret pocket in your jacket. You can put things in it, take things out, and change what's inside without anyone noticing (no re-render). It's perfect for keeping track of things privately or grabbing physical objects (DOM elements) directly.",
+            memoryTechnique:
+              "useRef = REFerence that persists. Think: Sticky note that doesn't trigger re-renders",
+            simpleExplanation:
+              "useRef is like a secret pocket in your jacket. You can put things in it, take things out, and change what's inside without anyone noticing (no re-render). It's perfect for keeping track of things privately or grabbing physical objects (DOM elements) directly.",
           },
         },
       ],
@@ -366,8 +390,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Use for expensive components with same props",
             ],
             code: `const MyComponent = React.memo(({ data }) => {\n  return <div>{data}</div>;\n});\n\n// Custom comparison\nconst MyComponent = React.memo(\n  ({ data }) => <div>{data}</div>,\n  (prevProps, nextProps) => {\n    return prevProps.data === nextProps.data;\n  }\n);`,
-            memoryTechnique: "React.memo = MEMOrize component renders. Think: Skip re-render if props unchanged",
-            simpleExplanation: "React.memo is like a bouncer at a club checking IDs. If your ID (props) hasn't changed since last time, the bouncer says 'You already came in, no need to go through the line again' (skip re-render). Only new IDs (changed props) have to go through the entry process.",
+            memoryTechnique:
+              "React.memo = MEMOrize component renders. Think: Skip re-render if props unchanged",
+            simpleExplanation:
+              "React.memo is like a bouncer at a club checking IDs. If your ID (props) hasn't changed since last time, the bouncer says 'You already came in, no need to go through the line again' (skip re-render). Only new IDs (changed props) have to go through the entry process.",
           },
         },
         {
@@ -382,8 +408,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "React.lazy for dynamic imports",
             ],
             code: `const OtherComponent = React.lazy(() => import('./OtherComponent'));\n\nfunction MyComponent() {\n  return (\n    <Suspense fallback={<div>Loading...</div>}>\n      <OtherComponent />\n    </Suspense>\n  );\n}`,
-            memoryTechnique: "Lazy = Load As You need, Zig-zag through app. Suspense = Suspend until ready",
-            simpleExplanation: "Code splitting is like ordering food only when you're hungry, instead of buying an entire week's worth of groceries upfront. React.lazy says 'I'll order this dish (component) when I need it', and Suspense is the 'Please wait' sign while your food is being prepared.",
+            memoryTechnique:
+              "Lazy = Load As You need, Zig-zag through app. Suspense = Suspend until ready",
+            simpleExplanation:
+              "Code splitting is like ordering food only when you're hungry, instead of buying an entire week's worth of groceries upfront. React.lazy says 'I'll order this dish (component) when I need it', and Suspense is the 'Please wait' sign while your food is being prepared.",
           },
         },
         {
@@ -399,8 +427,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Component composition and state colocation",
               "Avoid inline function definitions in render",
             ],
-            memoryTechnique: "PPCKC = PureComponent, Props comparison, useCallback, Keys, Composition",
-            simpleExplanation: "Preventing re-renders is like being a smart shopper. Don't buy new clothes (re-render) if the ones you have (current render) are still perfectly fine. Check what changed before making a purchase (React.memo checks props), keep shopping lists organized (proper keys), and don't browse every store every time (component composition).",
+            memoryTechnique:
+              "PPCKC = PureComponent, Props comparison, useCallback, Keys, Composition",
+            simpleExplanation:
+              "Preventing re-renders is like being a smart shopper. Don't buy new clothes (re-render) if the ones you have (current render) are still perfectly fine. Check what changed before making a purchase (React.memo checks props), keep shopping lists organized (proper keys), and don't browse every store every time (component composition).",
           },
         },
       ],
@@ -421,8 +451,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Largely replaced by Hooks in modern React",
             ],
             code: `function withAuth(Component) {\n  return function AuthenticatedComponent(props) {\n    const { isAuthenticated } = useAuth();\n    \n    if (!isAuthenticated) {\n      return <Redirect to="/login" />;\n    }\n    \n    return <Component {...props} />;\n  };\n}\n\nconst ProtectedPage = withAuth(Dashboard);`,
-            memoryTechnique: "HOC = Higher Order, Component wrapper. Think: Gift wrapping a present (component) with extra features",
-            simpleExplanation: "An HOC is like adding toppings to ice cream. You start with vanilla ice cream (basic component), and the HOC adds chocolate sauce, sprinkles, and a cherry (enhanced props/behavior). The ice cream is still ice cream, just better.",
+            memoryTechnique:
+              "HOC = Higher Order, Component wrapper. Think: Gift wrapping a present (component) with extra features",
+            simpleExplanation:
+              "An HOC is like adding toppings to ice cream. You start with vanilla ice cream (basic component), and the HOC adds chocolate sauce, sprinkles, and a cherry (enhanced props/behavior). The ice cream is still ice cream, just better.",
           },
         },
         {
@@ -437,8 +469,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "Can lead to callback hell if overused",
             ],
             code: `function Mouse({ render }) {\n  const [position, setPosition] = useState({ x: 0, y: 0 });\n  \n  useEffect(() => {\n    const handleMove = (e) => {\n      setPosition({ x: e.clientX, y: e.clientY });\n    };\n    window.addEventListener('mousemove', handleMove);\n    return () => window.removeEventListener('mousemove', handleMove);\n  }, []);\n  \n  return render(position);\n}\n\n<Mouse render={({ x, y }) => (\n  <div>Mouse at {x}, {y}</div>\n)} />`,
-            memoryTechnique: "Render Props = Render function Passed as prop. Think: Delegate rendering to caller",
-            simpleExplanation: "Render Props is like hiring a personal chef who asks you 'How do you want me to plate this dish?' You provide the plating instructions (render function), and the chef handles the cooking (shared logic). Same chef, different plating styles for different customers.",
+            memoryTechnique:
+              "Render Props = Render function Passed as prop. Think: Delegate rendering to caller",
+            simpleExplanation:
+              "Render Props is like hiring a personal chef who asks you 'How do you want me to plate this dish?' You provide the plating instructions (render function), and the chef handles the cooking (shared logic). Same chef, different plating styles for different customers.",
           },
         },
         {
@@ -454,8 +488,10 @@ export const reactQuestions: InterviewQuestionsMap["ReactJS"] = {
               "All consumers re-render when value changes",
             ],
             code: `const ThemeContext = React.createContext('light');\n\nfunction App() {\n  const [theme, setTheme] = useState('dark');\n  \n  return (\n    <ThemeContext.Provider value={{ theme, setTheme }}>\n      <Toolbar />\n    </ThemeContext.Provider>\n  );\n}\n\nfunction ThemedButton() {\n  const { theme } = useContext(ThemeContext);\n  return <button className={theme}>Click</button>;\n}`,
-            memoryTechnique: "Context = Central broadcasting station. Provider = Broadcaster, Consumer = Radio receiver",
-            simpleExplanation: "Context is like a company-wide announcement system. Instead of playing telephone (prop drilling) where messages get passed person to person, you broadcast once (Provider) and everyone who needs to know (Consumers) can hear it directly through their speakers (useContext).",
+            memoryTechnique:
+              "Context = Central broadcasting station. Provider = Broadcaster, Consumer = Radio receiver",
+            simpleExplanation:
+              "Context is like a company-wide announcement system. Instead of playing telephone (prop drilling) where messages get passed person to person, you broadcast once (Provider) and everyone who needs to know (Consumers) can hear it directly through their speakers (useContext).",
           },
         },
       ],
