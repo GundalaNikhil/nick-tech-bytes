@@ -30,6 +30,10 @@ Runnable r2 = () -> System.out.println("Hello World");
 // Lambda with parameters
 Comparator<Integer> comparator = (a, b) -> a.compareTo(b);`,
           language: "java",
+          memoryTechnique:
+            "Lambda = Less And More Brief, Descriptive Action. Think: Arrow (→) points to what you want to do",
+          simpleExplanation:
+            "Lambda expressions are like giving someone quick verbal instructions instead of writing a detailed manual. Instead of writing 'Create a new Runnable class, override run method, write the code' (traditional), you just say 'Do this!' (lambda). It's the same action, just way shorter.",
         },
       },
       {
@@ -59,6 +63,10 @@ public interface MyFunctionalInterface {
 MyFunctionalInterface func = () -> System.out.println("Executing myMethod");
 func.myMethod();`,
           language: "java",
+          memoryTechnique:
+            "Functional Interface = ONE abstract method only. Think: F-ONE (F-unctional = ONE method)",
+          simpleExplanation:
+            "A functional interface is like a vending machine with ONE button. You can have decorations (default methods) and instructions (static methods), but only ONE main button (abstract method) that does the actual work. Lambda expressions are like pressing that button.",
         },
       },
       {
@@ -119,6 +127,10 @@ int sum = numbers.stream()
 
 System.out.println("Sum of even numbers: " + sum); // Output: 30`,
           language: "java",
+          memoryTechnique:
+            "Stream = Source → Intermediate → Terminal. Think: SIT (like sitting in a pipeline)",
+          simpleExplanation:
+            "Stream API is like a factory assembly line for data. Items (data) come in from a source (collection), pass through various stations (filter, map), and finally produce a result (sum, collect). The original items aren't changed - you're just processing copies through the line.",
         },
       },
       {
@@ -157,6 +169,10 @@ System.out.println(result); // [ALICE, CHARLIE, DAVID]`,
             "Use map() when each element maps to exactly one element",
             "Use flatMap() when each element can map to multiple elements or when dealing with nested structures",
           ],
+          memoryTechnique:
+            "map = M-A-P = 1:1 Mapping, flatMap = F-L-A-T = Flatten Lists After Transformation",
+          simpleExplanation:
+            "map() is like translating words (one word becomes one translated word). flatMap() is like unpacking boxes - each box contains multiple items, and you flatten all items into one pile. If you have [[1,2],[3,4]], flatMap gives you [1,2,3,4].",
           code: `// map() example
 List<String> words = Arrays.asList("hello", "world");
 List<Integer> lengths = words.stream()
@@ -189,6 +205,10 @@ System.out.println(flatList); // [1, 2, 3, 4, 5, 6, 7, 8, 9]`,
             "Useful for sum, product, min, max, concatenation operations",
             "Can perform parallel reductions efficiently",
           ],
+          memoryTechnique:
+            "reduce = Repeatedly Executing Delivery Until Complete Everywhere. Think: 'Combining all into ONE'",
+          simpleExplanation:
+            "reduce() is like a snowball rolling down a hill - it starts small (identity value) and keeps accumulating snow (elements) using the same process (accumulation function) until it becomes one big snowball (final result). Examples: adding all numbers, finding the maximum, or concatenating strings.",
           code: `List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
 
 // Sum using reduce
@@ -251,6 +271,10 @@ String result2 = nullable.orElseGet(() -> "Computed Default");
 // Throwing exception if absent
 String result3 = value.orElseThrow(() -> new RuntimeException("Value not found"));`,
           language: "java",
+          memoryTechnique:
+            "Optional = Or Provide This Instead Of Null And Loss. Think: A gift box that might be empty",
+          simpleExplanation:
+            "Optional is like Schrödinger's cat box - you don't know if there's something inside until you check. Instead of potentially getting 'null' (empty hand) which crashes your program, you get a box (Optional) that safely tells you if it's empty or has a value. You can also say 'if empty, give me this default gift instead'.",
         },
       },
       {
@@ -281,6 +305,10 @@ private static String createDefaultValue() {
     return "Default";
 }`,
           language: "java",
+          memoryTechnique:
+            "orElse = Always Evaluates, orElseGet = Gets only when Empty. Think: 'Else Eager, ElseGet Lazy'",
+          simpleExplanation:
+            "orElse() is like making a backup sandwich even if you already have lunch (wasteful). orElseGet() is like only making a backup sandwich if you forgot your lunch (smart and efficient). If making the backup is expensive (cooking a steak), use orElseGet()!",
         },
       },
     ],

@@ -21,8 +21,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "Runtime Data Areas: Method Area, Heap, Stack, PC Registers, and Native Method Stacks",
               "Execution Engine: Executes bytecode using Interpreter, JIT Compiler, and Garbage Collector",
             ],
-            memoryTechnique: "Remember: **CRE** - **C**lass Loader, **R**untime Data Areas, **E**xecution Engine",
-            simpleExplanation: "Think of JVM as a **translator at a conference**. The translator (JVM) takes your speech (Java code) and converts it into a language everyone understands (machine code), using a script (bytecode) to remember what to say next.",
+            memoryTechnique:
+              "Remember: **CRE** - **C**lass Loader, **R**untime Data Areas, **E**xecution Engine",
+            simpleExplanation:
+              "Think of JVM as a **translator at a conference**. The translator (JVM) takes your speech (Java code) and converts it into a language everyone understands (machine code), using a script (bytecode) to remember what to say next.",
             visualHtml: `<div style="background: linear-gradient(135deg, #1e3a8a 0%, #1e293b 100%); padding: 2rem; border-radius: 12px; border: 1px solid #3b82f6; margin: 1.5rem 0;">
   <div style="display: flex; flex-direction: column; gap: 1.5rem;">
     <div style="background: #1e293b; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #60a5fa;">
@@ -54,8 +56,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "**PC Registers**: Stores the address of the current JVM instruction for each thread",
               "**Native Method Stacks**: Stores information about native methods (non-Java code)",
             ],
-            memoryTechnique: "**HMSPC** = **H**eap **M**ethod **S**tack **P**C **C**(Native) - \"**H**oney **M**akes **S**weet **P**an**C**akes\"",
-            simpleExplanation: "Think of JVM memory like a **restaurant kitchen**: **Heap** is the main dining area (shared space), **Stack** is each chef's personal workstation (private), **Method Area** is the recipe book (shared instructions), **PC Register** is the order ticket (current task), and **Native Stack** is the delivery area (external orders).",
+            memoryTechnique:
+              '**HMSPC** = **H**eap **M**ethod **S**tack **P**C **C**(Native) - "**H**oney **M**akes **S**weet **P**an**C**akes"',
+            simpleExplanation:
+              "Think of JVM memory like a **restaurant kitchen**: **Heap** is the main dining area (shared space), **Stack** is each chef's personal workstation (private), **Method Area** is the recipe book (shared instructions), **PC Register** is the order ticket (current task), and **Native Stack** is the delivery area (external orders).",
             visualHtml: `<div style="background: #0f172a; padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 1.5rem 0;">
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
     <div style="background: linear-gradient(135deg, #dc2626 20%, #991b1b); padding: 1.5rem; border-radius: 8px; text-align: center;">
@@ -97,8 +101,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "Simplifies memory management for developers",
               "Common algorithms: Serial, Parallel, CMS, G1, ZGC",
             ],
-            memoryTechnique: "GC = **G**arbage **C**leaner = Your code's **automatic janitor** 🧹",
-            simpleExplanation: "GC is like a **self-cleaning oven**. You cook (create objects), and when you're done, the oven automatically cleans up the mess (unused objects) without you having to scrub it manually. You just keep cooking!",
+            memoryTechnique:
+              "GC = **G**arbage **C**leaner = Your code's **automatic janitor** 🧹",
+            simpleExplanation:
+              "GC is like a **self-cleaning oven**. You cook (create objects), and when you're done, the oven automatically cleans up the mess (unused objects) without you having to scrub it manually. You just keep cooking!",
           },
         },
         {
@@ -112,8 +118,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "**Stack**: Throws StackOverflowError when full",
               "**Heap**: Throws OutOfMemoryError when full",
             ],
-            memoryTechnique: "**STACK** = **S**mall **T**emporary **A**uto-managed **C**lean **K**eeper vs **HEAP** = **H**uge **E**veryone **A**ccesses **P**ermanent-ish",
-            simpleExplanation: "**Stack** is like your **desk drawer** - small, organized, quick access, only you use it. **Heap** is like a **warehouse** - huge, shared by everyone, takes longer to find things, needs someone to clean it up (GC).",
+            memoryTechnique:
+              "**STACK** = **S**mall **T**emporary **A**uto-managed **C**lean **K**eeper vs **HEAP** = **H**uge **E**veryone **A**ccesses **P**ermanent-ish",
+            simpleExplanation:
+              "**Stack** is like your **desk drawer** - small, organized, quick access, only you use it. **Heap** is like a **warehouse** - huge, shared by everyone, takes longer to find things, needs someone to clean it up (GC).",
             visualHtml: `<div style="background: #1e293b; padding: 2rem; border-radius: 12px; margin: 1.5rem 0; border: 1px solid #334155;">
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
     <div style="background: linear-gradient(180deg, #1e40af 0%, #1e293b 100%); padding: 1.5rem; border-radius: 8px; border: 2px solid #3b82f6;">
@@ -152,8 +160,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "**Extension ClassLoader**: Loads classes from extension directories (jre/lib/ext)",
               "**Application ClassLoader**: Loads classes from application classpath",
             ],
-            memoryTechnique: "**BEA** = **B**ootstrap **E**xtension **A**pplication - \"**B**e **E**xtra **A**lert!\"",
-            simpleExplanation: "ClassLoaders are like **security checkpoints at an airport**. **Bootstrap** (TSA Pre-check) - trusted, fast track. **Extension** (regular security) - standard check. **Application** (customs) - checks your personal baggage. Each level has different trust and speed!",
+            memoryTechnique:
+              '**BEA** = **B**ootstrap **E**xtension **A**pplication - "**B**e **E**xtra **A**lert!"',
+            simpleExplanation:
+              "ClassLoaders are like **security checkpoints at an airport**. **Bootstrap** (TSA Pre-check) - trusted, fast track. **Extension** (regular security) - standard check. **Application** (customs) - checks your personal baggage. Each level has different trust and speed!",
           },
         },
       ],
@@ -172,8 +182,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "**Inheritance**: One class acquires properties and behaviors from another, promoting code reusability",
               "**Polymorphism**: Objects taking many forms through Method Overloading (compile-time) and Overriding (runtime)",
             ],
-            memoryTechnique: "**APIE** = **A**bstraction **P**olymorphism **I**nheritance **E**ncapsulation - \"A **PIE** is better when all ingredients are together!\" 🥧",
-            simpleExplanation: "Think of a **car**: **Encapsulation** = all parts sealed in the body, **Abstraction** = you just press gas/brake (don't need to know engine details), **Inheritance** = electric cars inherit from regular cars, **Polymorphism** = same steering wheel works differently in different cars!",
+            memoryTechnique:
+              '**APIE** = **A**bstraction **P**olymorphism **I**nheritance **E**ncapsulation - "A **PIE** is better when all ingredients are together!" 🥧',
+            simpleExplanation:
+              "Think of a **car**: **Encapsulation** = all parts sealed in the body, **Abstraction** = you just press gas/brake (don't need to know engine details), **Inheritance** = electric cars inherit from regular cars, **Polymorphism** = same steering wheel works differently in different cars!",
             visualHtml: `<div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 1.5rem 0;">
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
     <div style="background: #1e293b; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
@@ -224,8 +236,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "Interface: All methods public by default (Java 8+ allows default methods)",
               "Abstract Class: Can have any access modifier",
             ],
-            memoryTechnique: "**Interface** = **I** can **INTERACT** with **MANY**, **Abstract** = **A** parent **ALONE** (single inheritance)",
-            simpleExplanation: "**Interface** is like a **contract** - \"I promise to do these things\" (e.g., all birds must fly, but they fly differently). **Abstract Class** is like a **family recipe** with some steps written down and some you figure out yourself (e.g., \"Make pasta\" is defined, but \"Add your sauce\" is abstract).",
+            memoryTechnique:
+              "**Interface** = **I** can **INTERACT** with **MANY**, **Abstract** = **A** parent **ALONE** (single inheritance)",
+            simpleExplanation:
+              '**Interface** is like a **contract** - "I promise to do these things" (e.g., all birds must fly, but they fly differently). **Abstract Class** is like a **family recipe** with some steps written down and some you figure out yourself (e.g., "Make pasta" is defined, but "Add your sauce" is abstract).',
             visualHtml: `<div style="background: #0f172a; padding: 2rem; border-radius: 12px; margin: 1.5rem 0; border: 1px solid #334155;">
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
     <div style="background: linear-gradient(180deg, #6366f1 0%, #1e293b 100%); padding: 1.5rem; border-radius: 8px; border: 2px solid #818cf8;">
@@ -267,8 +281,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "Overloading: Return type can be different",
               "Overriding: Return type must be same or covariant",
             ],
-            memoryTechnique: "**LOAD**ing = **L**ocal **O**perations **A**llow **D**ifferent parameters (Overloading in same class). **RIDE**ing = **R**eplace **I**mplementation **D**uring **E**xecution (Overriding in child class)",
-            simpleExplanation: "**Overloading** = Having multiple **tools with the same name** but for different jobs (hammer for nails, hammer for tent pegs). **Overriding** = Your **teenager learns to drive** - they replace your driving style with their own version when they get the car!",
+            memoryTechnique:
+              "**LOAD**ing = **L**ocal **O**perations **A**llow **D**ifferent parameters (Overloading in same class). **RIDE**ing = **R**eplace **I**mplementation **D**uring **E**xecution (Overriding in child class)",
+            simpleExplanation:
+              "**Overloading** = Having multiple **tools with the same name** but for different jobs (hammer for nails, hammer for tent pegs). **Overriding** = Your **teenager learns to drive** - they replace your driving style with their own version when they get the car!",
           },
         },
       ],
@@ -288,8 +304,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "ArrayList: Better memory locality (cache-friendly)",
               "LinkedList: More memory overhead (stores node references)",
             ],
-            memoryTechnique: "**Array** = **A**ccess **R**eally **R**apidly **A**nywhere **Y**ou want. **Linked** = **L**ightning **I**nserts **N**o **K**eep **E**lements **D**ensely",
-            simpleExplanation: "**ArrayList** is like a **row of houses** - easy to find house #42, but hard to squeeze a new house in the middle. **LinkedList** is like a **train** - easy to add/remove cars, but you have to walk through all cars to reach the end.",
+            memoryTechnique:
+              "**Array** = **A**ccess **R**eally **R**apidly **A**nywhere **Y**ou want. **Linked** = **L**ightning **I**nserts **N**o **K**eep **E**lements **D**ensely",
+            simpleExplanation:
+              "**ArrayList** is like a **row of houses** - easy to find house #42, but hard to squeeze a new house in the middle. **LinkedList** is like a **train** - easy to add/remove cars, but you have to walk through all cars to reach the end.",
             visualHtml: `<div style="background: #1e293b; padding: 2rem; border-radius: 12px; margin: 1.5rem 0; border: 1px solid #334155;">
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
     <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 1.5rem; border-radius: 8px; border: 2px solid #10b981;">
@@ -330,8 +348,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "Hashtable: Inherits from Dictionary (obsolete)",
             ],
             note: "Hashtable is legacy; ConcurrentHashMap is the modern alternative for concurrent scenarios.",
-            memoryTechnique: "**HashMap** = **H**appy **A**llows **S**peed **H**as nulls **M**odern **A**pproach **P**references. **Hashtable** = **H**eavy **A**ncient **S**ynchronized **H**ates nulls **T**hread-safe **A**lways **B**locks **L**egacy **E**ra",
-            simpleExplanation: "**HashMap** is like a **self-service restaurant** - fast, no lines, but can get messy if multiple people grab the same dish. **Hashtable** is like a **waiter-served restaurant** - slower, orderly, but everyone waits their turn. **ConcurrentHashMap** is like **multiple self-service stations** - fast AND organized!",
+            memoryTechnique:
+              "**HashMap** = **H**appy **A**llows **S**peed **H**as nulls **M**odern **A**pproach **P**references. **Hashtable** = **H**eavy **A**ncient **S**ynchronized **H**ates nulls **T**hread-safe **A**lways **B**locks **L**egacy **E**ra",
+            simpleExplanation:
+              "**HashMap** is like a **self-service restaurant** - fast, no lines, but can get messy if multiple people grab the same dish. **Hashtable** is like a **waiter-served restaurant** - slower, orderly, but everyone waits their turn. **ConcurrentHashMap** is like **multiple self-service stations** - fast AND organized!",
           },
         },
         {
@@ -344,8 +364,10 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
               "**LinkedHashSet**: Maintains insertion order, O(1) operations, uses LinkedHashMap",
               "**TreeSet**: Sorted order (natural/comparator), O(log n) operations, uses Red-Black Tree",
             ],
-            memoryTechnique: "**Hash** = **H**urry **A**nywhere **S**crambled **H**eap. **LinkedHash** = **L**ine **I**n **N**ice **K**eeping **E**ntry **D**irection. **Tree** = **T**idy **R**ows **E**verything **E**levated (sorted)",
-            simpleExplanation: "**HashSet** = Random **parking lot** (park anywhere). **LinkedHashSet** = **Queue** (first come, first position remembered). **TreeSet** = **Library shelf** (books sorted alphabetically).",
+            memoryTechnique:
+              "**Hash** = **H**urry **A**nywhere **S**crambled **H**eap. **LinkedHash** = **L**ine **I**n **N**ice **K**eeping **E**ntry **D**irection. **Tree** = **T**idy **R**ows **E**verything **E**levated (sorted)",
+            simpleExplanation:
+              "**HashSet** = Random **parking lot** (park anywhere). **LinkedHashSet** = **Queue** (first come, first position remembered). **TreeSet** = **Library shelf** (books sorted alphabetically).",
             visualHtml: `<div style="background: #0f172a; padding: 2rem; border-radius: 12px; margin: 1.5rem 0; border: 1px solid #334155;">
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
     <div style="background: #1e293b; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3b82f6;">
@@ -380,6 +402,231 @@ export const javaQuestions: InterviewQuestionsMap["Java"] = {
     </div>
   </div>
 </div>`,
+          },
+        },
+        {
+          question: "What is ConcurrentHashMap and how does it work?",
+          difficulty: "advanced",
+          answer: {
+            text: "ConcurrentHashMap is a thread-safe variant of HashMap that allows concurrent access without locking the entire map.",
+            points: [
+              "Uses lock striping (segment-based locking in Java 7, node-based in Java 8+)",
+              "Multiple threads can read/write different segments simultaneously",
+              "Better performance than Hashtable and Collections.synchronizedMap",
+              "Does not allow null keys or values",
+            ],
+            code: `ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+
+// Thread-safe operations
+map.put("key", 1);
+map.putIfAbsent("key", 2); // Won't replace
+map.computeIfAbsent("newKey", k -> expensiveComputation());
+
+// Atomic operations
+map.compute("key", (k, v) -> v == null ? 1 : v + 1);
+map.merge("key", 1, Integer::sum);`,
+            language: "java",
+            memoryTechnique:
+              "ConcurrentHashMap = Concurrent Zones. Think: Multiple checkout lanes in supermarket",
+            simpleExplanation:
+              "ConcurrentHashMap is like a parking garage with multiple entrances. Cars (threads) can enter different sections simultaneously without waiting for others to finish parking. Hashtable is like a single-lane bridge - only one car at a time!",
+          },
+        },
+        {
+          question:
+            "What is the difference between fail-fast and fail-safe iterators?",
+          difficulty: "intermediate",
+          answer: {
+            text: "Fail-fast iterators throw ConcurrentModificationException if collection is modified during iteration. Fail-safe iterators work on a copy and don't throw exceptions.",
+            points: [
+              "**Fail-fast**: ArrayList, HashMap, HashSet - throw ConcurrentModificationException",
+              "**Fail-safe**: CopyOnWriteArrayList, ConcurrentHashMap - work on clone/snapshot",
+              "Fail-fast: Better performance, detects bugs early",
+              "Fail-safe: Thread-safe but may show stale data",
+            ],
+            code: `// Fail-fast example
+List<String> list = new ArrayList<>(Arrays.asList("A", "B", "C"));
+for (String s : list) {
+    list.remove(s); // ConcurrentModificationException!
+}
+
+// Fail-safe example
+List<String> safelist = new CopyOnWriteArrayList<>(Arrays.asList("A", "B", "C"));
+for (String s : safelist) {
+    safelist.remove(s); // No exception, works fine
+}`,
+            language: "java",
+            memoryTechnique:
+              "Fail-fast = Fails FAST with exception. Fail-safe = SAFE, no exception. Think: Fast crash vs Safe continue",
+            simpleExplanation:
+              "Fail-fast is like a smoke alarm that goes off immediately when detecting smoke (modification during iteration). Fail-safe is like reading a printed newspaper - even if the website updates, your paper doesn't change (working on snapshot).",
+          },
+        },
+      ],
+    },
+    {
+      title: "Multithreading & Concurrency",
+      icon: "⚙️",
+      questions: [
+        {
+          question: "What is the difference between Thread and Runnable?",
+          difficulty: "beginner",
+          answer: {
+            text: "Thread is a class, Runnable is an interface. Implementing Runnable is preferred as it allows extending other classes and better separation of concerns.",
+            points: [
+              "Thread: Extends Thread class, override run() method",
+              "Runnable: Implement Runnable interface, pass to Thread constructor",
+              "Runnable: More flexible, allows extending other classes",
+              "Runnable: Better OOP design, separates task from execution",
+            ],
+            code: `// Using Thread class
+class MyThread extends Thread {
+    public void run() {
+        System.out.println("Thread running");
+    }
+}
+MyThread t = new MyThread();
+t.start();
+
+// Using Runnable (preferred)
+class MyTask implements Runnable {
+    public void run() {
+        System.out.println("Task running");
+    }
+}
+Thread t = new Thread(new MyTask());
+t.start();
+
+// Lambda (Java 8+)
+Thread t = new Thread(() -> System.out.println("Lambda task"));
+t.start();`,
+            language: "java",
+            memoryTechnique:
+              "Runnable = Reusable Task. Thread = Execution vehicle. Think: Task vs Worker",
+            simpleExplanation:
+              "Thread is like a delivery truck with a built-in package. Runnable is like having a separate package that you can put in any vehicle. You can reuse the package (task) with different trucks (threads) or even other vehicles (executors)!",
+          },
+        },
+        {
+          question: "Explain synchronized keyword and its types",
+          difficulty: "intermediate",
+          answer: {
+            text: "synchronized ensures that only one thread can execute a block of code at a time, preventing race conditions.",
+            points: [
+              "Synchronized method: Locks the entire object (instance method) or class (static method)",
+              "Synchronized block: Locks specific object, more granular control",
+              "Intrinsic lock (monitor lock): Every object has one",
+              "Causes performance overhead, use wisely",
+            ],
+            code: `public class Counter {
+    private int count = 0;
+    
+    // Synchronized method - locks entire object
+    public synchronized void increment() {
+        count++;
+    }
+    
+    // Synchronized block - locks specific object
+    public void decrement() {
+        synchronized(this) {
+            count--;
+        }
+    }
+    
+    // Static synchronized - locks class object
+    public static synchronized void staticMethod() {
+        // class-level lock
+    }
+}`,
+            language: "java",
+            memoryTechnique:
+              "Synchronized = Single Entry. Think: One person in bathroom at a time",
+            simpleExplanation:
+              "synchronized is like a bathroom lock. Only one person (thread) can use it at a time. Others wait outside. Method sync locks the whole house (object), block sync locks just the bathroom (specific section).",
+          },
+        },
+        {
+          question: "What is volatile keyword in Java?",
+          difficulty: "advanced",
+          answer: {
+            text: "volatile ensures that changes to a variable are visible to all threads immediately. It prevents caching of variables in thread's local memory.",
+            points: [
+              "Guarantees visibility across threads",
+              "Reads/writes go directly to main memory",
+              "Does NOT guarantee atomicity (use AtomicInteger for that)",
+              "Prevents instruction reordering around volatile variables",
+            ],
+            code: `public class TaskRunner {
+    private volatile boolean running = true;
+    
+    public void start() {
+        new Thread(() -> {
+            while (running) {
+                // Do work
+            }
+            System.out.println("Stopped");
+        }).start();
+    }
+    
+    public void stop() {
+        running = false; // Immediately visible to other thread
+    }
+}`,
+            language: "java",
+            memoryTechnique:
+              "Volatile = Visible Instantly Everywhere. Think: Announcement on loudspeaker",
+            simpleExplanation:
+              "volatile is like writing on a whiteboard (main memory) instead of your personal notepad (thread cache). Everyone sees the update immediately. Without volatile, each person might keep using their old notepad copy!",
+          },
+        },
+        {
+          question: "What is deadlock and how to prevent it?",
+          difficulty: "advanced",
+          answer: {
+            text: "Deadlock occurs when two or more threads are blocked forever, each waiting for the other to release a resource.",
+            points: [
+              "Four conditions: Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait",
+              "Prevention: Lock ordering, timeouts, avoid nested locks",
+              "Detection: Thread dumps, monitoring tools",
+              "Use java.util.concurrent utilities over raw synchronization",
+            ],
+            code: `// Deadlock example
+public class DeadlockExample {
+    private final Object lock1 = new Object();
+    private final Object lock2 = new Object();
+    
+    // Thread 1: locks lock1 then lock2
+    public void method1() {
+        synchronized(lock1) {
+            synchronized(lock2) {
+                // work
+            }
+        }
+    }
+    
+    // Thread 2: locks lock2 then lock1 - DEADLOCK!
+    public void method2() {
+        synchronized(lock2) {
+            synchronized(lock1) {
+                // work
+            }
+        }
+    }
+}
+
+// Solution: Always acquire locks in same order
+public void fixedMethod2() {
+    synchronized(lock1) { // Same order as method1
+        synchronized(lock2) {
+            // work
+        }
+    }
+}`,
+            language: "java",
+            memoryTechnique:
+              "Deadlock = MHNC: Mutual exclusion, Hold & wait, No preemption, Circular wait",
+            simpleExplanation:
+              "Deadlock is like two people trying to pass through a narrow doorway, each waiting for the other to move first. Prevention: agree on who goes first (lock ordering), set a timer to give up (timeout), or use a wider door (better synchronization primitives)!",
           },
         },
       ],
