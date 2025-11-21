@@ -429,8 +429,19 @@ end
       </div>
     </div>
   </div>
-  <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #334155; color: #64748b; font-size: 0.875rem; text-align: center;">
-    Arrows indicate inheritance, composition, and dependency relationships
+  <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #334155; display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
+    <div style="display: flex; align-items: center; gap: 0.5rem; color: #94a3b8; font-size: 0.875rem;">
+      <span style="color: #60a5fa;">━━━▶</span>
+      <span>Dependency</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; color: #94a3b8; font-size: 0.875rem;">
+      <span style="color: #34d399;">◆━━━</span>
+      <span>Composition</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.5rem; color: #94a3b8; font-size: 0.875rem;">
+      <span style="color: #a78bfa;">△━━━</span>
+      <span>Inheritance</span>
+    </div>
   </div>
 </div>
 ```java

@@ -76,10 +76,13 @@ export default async function HLDTopicPage({
   // Parse content into sections
   const sections = content.split(/\n## /);
   const overview = sections[0];
-  const otherSections = sections.slice(1).map((section) => {
-    const [title, ...rest] = section.split("\n");
-    return { title: title.trim(), content: rest.join("\n") };
-  });
+  const otherSections = sections
+    .slice(1)
+    .map((section) => {
+      const [title, ...rest] = section.split("\n");
+      return { title: title.trim(), content: rest.join("\n") };
+    })
+    .filter((section) => section.title.toLowerCase() !== "overview");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black">
@@ -205,12 +208,6 @@ export default async function HLDTopicPage({
             </div>
           </article>
         </div>
-
-        {/* Architecture Diagram Placeholder */}
-        <ImagePlaceholder
-          title="System Architecture Diagram"
-          description="Visual representation of the high-level system architecture and component interactions"
-        />
 
         {/* Collapsible Sections */}
         <div className="space-y-6">
