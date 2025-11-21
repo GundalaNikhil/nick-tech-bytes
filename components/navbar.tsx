@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import gsap from "gsap";
 import type { InterviewResourcesMap, TopicKey } from "@/lib/interviewData";
+import { AnimatePresence, motion } from "framer-motion";
+import gsap from "gsap";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 type NavbarProps = {
   topicsList: TopicKey[];
@@ -169,13 +169,15 @@ export default function Navbar({
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/50">
-                <span className="text-2xl font-bold text-white">N</span>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/50">
+                <span className="text-xl sm:text-2xl font-bold text-white">
+                  N
+                </span>
               </div>
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 opacity-30 blur-md"
+                className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-br from-cyan-500 via-blue-500 to-purple-600 opacity-30 blur-md"
               />
             </motion.div>
 
@@ -185,7 +187,7 @@ export default function Navbar({
               onClick={handleTitleClick}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="title-hover text-2xl sm:text-3xl font-black tracking-tight cursor-pointer select-none"
+              className="title-hover text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl font-black tracking-tight cursor-pointer select-none"
             >
               NICK TECH BYTES
             </motion.h1>
@@ -207,7 +209,7 @@ export default function Navbar({
               <motion.button
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="nav-link group px-5 py-2.5 rounded-xl text-sm font-semibold text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2 hover:bg-gray-800/50"
+                className="nav-link group px-3 lg:px-5 py-2.5 rounded-xl text-xs lg:text-sm font-semibold text-gray-300 hover:text-white transition-all duration-300 flex items-center gap-2 hover:bg-gray-800/50"
               >
                 <span className="relative">Interview Prep</span>
                 <motion.svg
@@ -288,7 +290,7 @@ export default function Navbar({
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/system-design"
-                className="nav-link px-5 py-2.5 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all duration-300"
+                className="nav-link px-3 lg:px-5 py-2.5 rounded-xl text-xs lg:text-sm font-semibold text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all duration-300"
               >
                 System Design
               </Link>
@@ -298,7 +300,7 @@ export default function Navbar({
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/blog"
-                className="nav-link px-5 py-2.5 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all duration-300"
+                className="nav-link px-3 lg:px-5 py-2.5 rounded-xl text-xs lg:text-sm font-semibold text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all duration-300"
               >
                 Blog
               </Link>
@@ -308,7 +310,7 @@ export default function Navbar({
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/about"
-                className="nav-link px-5 py-2.5 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all duration-300"
+                className="nav-link px-3 lg:px-5 py-2.5 rounded-xl text-xs lg:text-sm font-semibold text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all duration-300 whitespace-nowrap"
               >
                 About Us
               </Link>
@@ -319,7 +321,7 @@ export default function Navbar({
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               href="#"
-              className="relative ml-3 px-6 py-2.5 rounded-xl text-sm font-bold text-white overflow-hidden group"
+              className="relative ml-2 lg:ml-3 px-4 lg:px-6 py-2.5 rounded-xl text-xs lg:text-sm font-bold text-white overflow-hidden group"
             >
               <motion.div
                 animate={{
@@ -391,8 +393,21 @@ export default function Navbar({
               className="md:hidden pb-6 pt-2 space-y-3 overflow-hidden"
             >
               <details className="group">
-                <summary className="text-gray-300 hover:text-white hover:bg-gray-800/50 px-4 py-3 rounded-xl text-sm font-semibold cursor-pointer list-none transition-all">
-                  Interview Prep ▾
+                <summary className="text-gray-300 hover:text-white hover:bg-gray-800/50 px-4 py-3 rounded-xl text-sm font-semibold cursor-pointer list-none transition-all flex items-center justify-between">
+                  <span>Interview Prep</span>
+                  <svg
+                    className="w-4 h-4 transition-transform group-open:rotate-180"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </summary>
                 <div className="mt-2 ml-2 space-y-1 pl-4 border-l-2 border-cyan-500/30">
                   {topicsList.map((topic) => (
@@ -412,8 +427,17 @@ export default function Navbar({
               </details>
 
               <Link
+                href="/system-design"
+                className="block text-gray-300 hover:text-white hover:bg-gray-800/50 px-4 py-3 rounded-xl text-sm font-semibold transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                System Design
+              </Link>
+
+              <Link
                 href="/blog"
                 className="block text-gray-300 hover:text-white hover:bg-gray-800/50 px-4 py-3 rounded-xl text-sm font-semibold transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 Blog
               </Link>
@@ -421,16 +445,18 @@ export default function Navbar({
               <Link
                 href="/about"
                 className="block text-gray-300 hover:text-white hover:bg-gray-800/50 px-4 py-3 rounded-xl text-sm font-semibold transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 About Us
               </Link>
 
-              <a
+              <motion.a
+                whileTap={{ scale: 0.95 }}
                 href="#"
                 className="block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-3 rounded-xl text-sm font-bold text-center shadow-lg"
               >
                 Sign In
-              </a>
+              </motion.a>
             </motion.div>
           )}
         </AnimatePresence>

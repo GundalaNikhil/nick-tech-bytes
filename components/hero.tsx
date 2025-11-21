@@ -209,9 +209,68 @@ export default function Hero({ onExploreMore }: HeroProps) {
                     boxShadow: "0 0 25px rgba(6, 182, 212, 0.5)",
                   }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-lg"
+                  className="group relative w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-lg overflow-hidden"
                 >
-                  Explore More
+                  <span className="relative z-10 flex items-center justify-center gap-3">
+                    Explore More
+                    <span className="flex items-center gap-1">
+                      <motion.span
+                        animate={{
+                          x: [0, 4, 0],
+                          opacity: [0.3, 1, 0.3],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                        className="text-white/60"
+                      >
+                        ›
+                      </motion.span>
+                      <motion.span
+                        animate={{
+                          x: [0, 4, 0],
+                          opacity: [0.5, 1, 0.5],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.2,
+                        }}
+                        className="text-white/80"
+                      >
+                        ››
+                      </motion.span>
+                      <motion.span
+                        animate={{
+                          x: [0, 4, 0],
+                          opacity: [0.7, 1, 0.7],
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: 0.4,
+                        }}
+                        className="text-white"
+                      >
+                        ›››
+                      </motion.span>
+                    </span>
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    animate={{
+                      x: ["-100%", "100%"],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
                 </motion.button>
               </motion.div>
 
