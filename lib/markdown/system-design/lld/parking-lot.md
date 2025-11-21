@@ -63,6 +63,7 @@ Design a parking lot system that can accommodate different types of vehicles (mo
     Arrows indicate inheritance, composition, and dependency relationships
   </div>
 </div>
+
 ## Design Patterns Used
 
 1. **Singleton Pattern**: ParkingLot instance

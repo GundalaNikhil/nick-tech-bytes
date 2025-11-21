@@ -98,6 +98,7 @@ Design a scalable ride-sharing platform that connects riders with nearby drivers
     </div>
   </div>
 </div>
+
 ### Components
 
 1. **User Service**

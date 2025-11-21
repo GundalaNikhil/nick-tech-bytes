@@ -66,33 +66,6 @@ Design a library management system that handles book inventory, member managemen
     Arrows indicate inheritance, composition, and dependency relationships
   </div>
 </div>
-```
-┌─────────────────┐
-│     Library     │
-│─────────────────│
-│ - catalog       │
-│ - members       │
-│ - issuedBooks   │
-│─────────────────│
-│ + addBook()     │
-│ + issueBook()   │
-│ + returnBook()  │
-└─────────────────┘
-         △
-         │
-         ├────────────────────┐
-         │                    │
-┌────────────────┐   ┌────────────────┐
-│      Book      │   │     Member     │
-│────────────────│   │────────────────│
-│ - ISBN         │   │ - memberId     │
-│ - title        │   │ - name         │
-│ - author       │   │ - email        │
-│ - status       │   │ - phone        │
-│────────────────│   │────────────────│
-│ + isAvailable()│   │ + canBorrow()  │
-└────────────────┘   └────────────────┘
-```
 
 ## Implementation
 

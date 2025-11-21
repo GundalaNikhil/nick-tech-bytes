@@ -95,6 +95,7 @@ Design a scalable e-commerce platform like Amazon, Flipkart, or Shopify that han
     </div>
   </div>
 </div>
+
 ### Microservices
 
 1. **User Service**

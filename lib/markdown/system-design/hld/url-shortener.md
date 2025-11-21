@@ -87,6 +87,7 @@ Design a URL shortening service like bit.ly or TinyURL that converts long URLs i
     </div>
   </div>
 </div>
+
 ### Components
 
 1. **API Gateway**

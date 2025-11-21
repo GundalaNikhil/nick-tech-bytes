@@ -96,6 +96,7 @@ Design a scalable video streaming platform capable of serving millions of concur
     </div>
   </div>
 </div>
+
 ### Components
 
 1. **Video Upload Service**

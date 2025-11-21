@@ -111,50 +111,8 @@ Design a real-time chat application similar to WhatsApp, Slack, or Discord that 
     </div>
   </div>
 </div>
-### Components
 
-```
-┌─────────────┐
-│   Client    │
-│  (Mobile/   │
-│   Web App)  │
-└──────┬──────┘
-       │
-       ├─ HTTP/HTTPS (REST API)
-       ├─ WebSocket/WSS (Real-time)
-       │
-┌──────▼──────────────────────┐
-│   API Gateway / LB          │
-│   - Rate Limiting           │
-│   - Authentication          │
-└──────┬──────────────────────┘
-       │
-┌──────▼──────────────────────┐
-│   WebSocket Servers         │
-│   - Connection Management   │
-│   - Presence Service        │
-└──────┬──────────────────────┘
-       │
-┌──────▼──────────────────────┐
-│   Application Servers       │
-│   - Message Service         │
-│   - User Service            │
-│   - Group Service           │
-└──────┬──────────────────────┘
-       │
-       ├─────────────┬─────────────┬──────────────┐
-       │             │             │              │
-┌──────▼──────┐ ┌───▼────┐ ┌─────▼─────┐ ┌──────▼──────┐
-│  Message DB │ │ User DB│ │  Cache    │ │  File Store │
-│ (Cassandra) │ │(Postgres│ │  (Redis)  │ │    (S3)     │
-└─────────────┘ └────────┘ └───────────┘ └─────────────┘
-       │
-┌──────▼──────────────────────┐
-│   Message Queue (Kafka)     │
-│   - Message delivery        │
-│   - Async processing        │
-└─────────────────────────────┘
-```
+### Components
 
 ## Database Design
 

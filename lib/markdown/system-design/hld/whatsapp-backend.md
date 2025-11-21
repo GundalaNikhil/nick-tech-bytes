@@ -98,6 +98,7 @@ Design a scalable real-time messaging system similar to WhatsApp that supports b
     </div>
   </div>
 </div>
+
 ### Components
 
 1. **Gateway Service**
