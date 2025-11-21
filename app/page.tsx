@@ -5,6 +5,7 @@ import Hero from "@/components/hero";
 import ResourcesGrid from "@/components/ResourcesGrid";
 import AdditionalResources from "@/components/AdditionalResources";
 import Footer from "@/components/footer";
+import { HomeSystemDesignBanner } from "@/components/system-design/HomeSystemDesignBanner";
 import {
   interviewQuestions,
   interviewResources,
@@ -36,6 +37,8 @@ export default function NickTechBytes() {
       <Navbar topicsList={topicsList} interviewResources={interviewResources} />
 
       <Hero onExploreMore={() => router.push("/explore")} />
+
+      <HomeSystemDesignBanner />
 
       <ResourcesGrid
         topicsList={topicsList}
