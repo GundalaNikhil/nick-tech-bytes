@@ -1,7 +1,7 @@
-import { SystemDesignCard } from '@/components/system-design/SystemDesignCard';
-import { hldTopics, lldTopics } from '@/lib/topics/systemDesignTopics';
-import { ArrowLeft, Layers, Code2 } from 'lucide-react';
-import Link from 'next/link';
+import { SystemDesignCard } from "@/components/system-design/SystemDesignCard";
+import { hldTopics, lldTopics } from "@/lib/topics/systemDesignTopics";
+import { ArrowLeft, Layers, Code2 } from "lucide-react";
+import Link from "next/link";
 
 export default function SystemDesignPage() {
   return (
@@ -34,11 +34,15 @@ export default function SystemDesignPage() {
           {/* Stats Bar */}
           <div className="flex items-center gap-6 mt-6">
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-gray-700">
-              <span className="text-2xl font-bold text-emerald-400">{hldTopics.length}</span>
+              <span className="text-2xl font-bold text-emerald-400">
+                {hldTopics.length}
+              </span>
               <span className="text-sm text-gray-400">HLD Topics</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-gray-700">
-              <span className="text-2xl font-bold text-cyan-400">{lldTopics.length}</span>
+              <span className="text-2xl font-bold text-cyan-400">
+                {lldTopics.length}
+              </span>
               <span className="text-sm text-gray-400">LLD Topics</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-gray-700">
@@ -62,7 +66,8 @@ export default function SystemDesignPage() {
                 High-Level Design (HLD)
               </h2>
               <p className="mt-2 text-gray-400">
-                Design scalable distributed systems and architect complex applications
+                Design scalable distributed systems and architect complex
+                applications
               </p>
             </div>
           </div>
@@ -84,7 +89,8 @@ export default function SystemDesignPage() {
                 Low-Level Design (LLD)
               </h2>
               <p className="mt-2 text-gray-400">
-                Master object-oriented design patterns and build robust software components
+                Master object-oriented design patterns and build robust software
+                components
               </p>
             </div>
           </div>

@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { ArrowRight, Target, Rocket, TrendingUp } from 'lucide-react';
+import Link from "next/link";
+import { ArrowRight, Target, Rocket, TrendingUp } from "lucide-react";
 
 export function HomeSystemDesignBanner() {
   return (
@@ -28,24 +28,34 @@ export function HomeSystemDesignBanner() {
             {/* Heading */}
             <div className="space-y-4">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="text-white">Targeting</span>{' '}
+                <span className="text-white">Targeting</span>{" "}
                 <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
                   Product-Based
-                </span>{' '}
+                </span>{" "}
                 <span className="text-white">Companies?</span>
               </h2>
-              
+
               <p className="text-xl text-gray-400 max-w-xl">
-                Feeling stuck in service companies? Ready to make the leap to top-tier tech giants?
+                Feeling stuck in service companies? Ready to make the leap to
+                top-tier tech giants?
               </p>
             </div>
 
             {/* Features */}
             <div className="space-y-3">
               {[
-                { icon: Rocket, text: 'Master System Design for FAANG interviews' },
-                { icon: TrendingUp, text: 'Learn from real-world architectures' },
-                { icon: Target, text: 'Land your dream role at product companies' },
+                {
+                  icon: Rocket,
+                  text: "Master System Design for FAANG interviews",
+                },
+                {
+                  icon: TrendingUp,
+                  text: "Learn from real-world architectures",
+                },
+                {
+                  icon: Target,
+                  text: "Land your dream role at product companies",
+                },
               ].map((feature, idx) => (
                 <div key={idx} className="flex items-center gap-3 group">
                   <div className="flex-shrink-0 p-2 rounded-lg bg-emerald-500/10 group-hover:bg-emerald-500/20 transition-colors">
@@ -96,10 +106,14 @@ export function HomeSystemDesignBanner() {
                 <div className="space-y-6">
                   {/* Header */}
                   <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-white">System Design</h3>
+                    <h3 className="text-xl font-bold text-white">
+                      System Design
+                    </h3>
                     <div className="flex items-center gap-1">
                       {[...Array(5)].map((_, i) => (
-                        <span key={i} className="text-yellow-400">★</span>
+                        <span key={i} className="text-yellow-400">
+                          ★
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -107,21 +121,39 @@ export function HomeSystemDesignBanner() {
                   {/* Topics Preview */}
                   <div className="space-y-3">
                     {[
-                      { title: 'URL Shortener', level: 'Intermediate', color: 'yellow' },
-                      { title: 'Chat Application', level: 'Intermediate', color: 'yellow' },
-                      { title: 'Video Streaming', level: 'Advanced', color: 'red' },
-                      { title: 'LRU Cache', level: 'Intermediate', color: 'yellow' },
+                      {
+                        title: "URL Shortener",
+                        level: "Intermediate",
+                        color: "yellow",
+                      },
+                      {
+                        title: "Chat Application",
+                        level: "Intermediate",
+                        color: "yellow",
+                      },
+                      {
+                        title: "Video Streaming",
+                        level: "Advanced",
+                        color: "red",
+                      },
+                      {
+                        title: "LRU Cache",
+                        level: "Intermediate",
+                        color: "yellow",
+                      },
                     ].map((topic, idx) => (
                       <div
                         key={idx}
                         className="flex items-center justify-between p-3 rounded-lg bg-gray-800/50 border border-gray-700/50 hover:border-emerald-500/50 transition-colors"
                       >
                         <span className="text-gray-300">{topic.title}</span>
-                        <span className={`text-xs px-2 py-1 rounded-full ${
-                          topic.color === 'yellow' 
-                            ? 'bg-yellow-500/10 text-yellow-400' 
-                            : 'bg-red-500/10 text-red-400'
-                        }`}>
+                        <span
+                          className={`text-xs px-2 py-1 rounded-full ${
+                            topic.color === "yellow"
+                              ? "bg-yellow-500/10 text-yellow-400"
+                              : "bg-red-500/10 text-red-400"
+                          }`}
+                        >
                           {topic.level}
                         </span>
                       </div>

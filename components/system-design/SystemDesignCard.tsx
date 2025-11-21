@@ -1,21 +1,36 @@
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced';
+export type DifficultyLevel = "beginner" | "intermediate" | "advanced";
 
 interface SystemDesignCardProps {
   title: string;
-  category: 'High-Level Design' | 'Low-Level Design';
+  category: "High-Level Design" | "Low-Level Design";
   difficulty: DifficultyLevel;
   companies: string[];
   rating: number;
   slug: string;
 }
 
-const difficultyConfig: Record<DifficultyLevel, { emoji: string; label: string; color: string }> = {
-  beginner: { emoji: '🌱', label: 'Beginner', color: 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/30' },
-  intermediate: { emoji: '⚡', label: 'Intermediate', color: 'text-yellow-400 bg-yellow-500/10 border border-yellow-500/30' },
-  advanced: { emoji: '🔥', label: 'Advanced', color: 'text-red-400 bg-red-500/10 border border-red-500/30' },
+const difficultyConfig: Record<
+  DifficultyLevel,
+  { emoji: string; label: string; color: string }
+> = {
+  beginner: {
+    emoji: "🌱",
+    label: "Beginner",
+    color: "text-emerald-400 bg-emerald-500/10 border border-emerald-500/30",
+  },
+  intermediate: {
+    emoji: "⚡",
+    label: "Intermediate",
+    color: "text-yellow-400 bg-yellow-500/10 border border-yellow-500/30",
+  },
+  advanced: {
+    emoji: "🔥",
+    label: "Advanced",
+    color: "text-red-400 bg-red-500/10 border border-red-500/30",
+  },
 };
 
 export function SystemDesignCard({
@@ -29,11 +44,14 @@ export function SystemDesignCard({
   const difficultyInfo = difficultyConfig[difficulty];
   const displayCompanies = companies.slice(0, 2);
   const hasMoreCompanies = companies.length > 2;
-  
-  const basePath = category === 'High-Level Design' ? '/system-design/hld' : '/system-design/lld';
+
+  const basePath =
+    category === "High-Level Design"
+      ? "/system-design/hld"
+      : "/system-design/lld";
 
   return (
-    <Link 
+    <Link
       href={`${basePath}/${slug}`}
       className="group relative flex flex-col gap-4 rounded-xl border border-gray-800 bg-gray-900/50 p-6 transition-all hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 backdrop-blur-sm"
     >
@@ -54,14 +72,16 @@ export function SystemDesignCard({
             <span
               key={i}
               className={`text-sm ${
-                i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-700'
+                i < Math.floor(rating) ? "text-yellow-400" : "text-gray-700"
               }`}
             >
               ★
             </span>
           ))}
         </div>
-        <span className="text-sm font-medium text-gray-400">{rating.toFixed(1)}</span>
+        <span className="text-sm font-medium text-gray-400">
+          {rating.toFixed(1)}
+        </span>
       </div>
 
       {/* Difficulty Badge */}
