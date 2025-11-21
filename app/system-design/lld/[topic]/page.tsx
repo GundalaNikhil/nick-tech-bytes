@@ -26,8 +26,8 @@ const customSchema = {
   ...defaultSchema,
   attributes: {
     ...defaultSchema.attributes,
-    div: [...(defaultSchema.attributes?.div || []), 'style'],
-    span: [...(defaultSchema.attributes?.span || []), 'style'],
+    div: [...(defaultSchema.attributes?.div || []), "style"],
+    span: [...(defaultSchema.attributes?.span || []), "style"],
   },
 };
 
