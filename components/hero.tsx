@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
+import { useEffect, useRef } from "react";
+import RubiksCube from "./RubiksCube";
 
 type HeroProps = {
   onExploreMore: () => void;
@@ -161,48 +162,128 @@ export default function Hero({ onExploreMore }: HeroProps) {
             />
           </div>
 
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-white"
-            style={{ fontFamily: "'Inter', -apple-system, sans-serif" }}
-          >
-            Master Your{" "}
-            <span className="bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
-              Technical Interviews
-            </span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.6, duration: 0.6 }}
-            className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed px-4"
-            style={{ fontFamily: "'Inter', -apple-system, sans-serif" }}
-          >
-            Comprehensive Q&A with code examples, detailed explanations, and
-            best practices for Java, Spring Boot, ReactJS, System Design, and
-            Docker.
-          </motion.p>
-
+          {/* Two Column Layout - Master Your Technical Interviews */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4, duration: 0.8 }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto pt-16"
           >
-            <motion.button
-              onClick={onExploreMore}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 25px rgba(6, 182, 212, 0.5)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-lg"
+            {/* Left Column - Content */}
+            <div className="space-y-6 text-left px-4 lg:px-8">
+              <motion.h2
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.6, duration: 0.6 }}
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
+                style={{ fontFamily: "'Inter', -apple-system, sans-serif" }}
+              >
+                Master Your{" "}
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+                  Technical Interviews
+                </span>
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.8, duration: 0.6 }}
+                className="text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed"
+                style={{ fontFamily: "'Inter', -apple-system, sans-serif" }}
+              >
+                Comprehensive Q&A with code examples, detailed explanations, and
+                best practices for Java, Spring Boot, ReactJS, System Design,
+                and Docker.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 2.0, duration: 0.6 }}
+                className="flex flex-col sm:flex-row items-start gap-4 pt-4"
+              >
+                <motion.button
+                  onClick={onExploreMore}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 0 25px rgba(6, 182, 212, 0.5)",
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 shadow-lg"
+                >
+                  Explore More
+                </motion.button>
+              </motion.div>
+
+              {/* Feature Highlights */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.2, duration: 0.6 }}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8"
+              >
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                    <span className="text-white">✓</span>
+                  </div>
+                  <div>
+                    <div className="text-white font-semibold">
+                      Real Questions
+                    </div>
+                    <div className="text-gray-400 text-sm">
+                      From actual interviews
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <span className="text-white">✓</span>
+                  </div>
+                  <div>
+                    <div className="text-white font-semibold">
+                      Code Examples
+                    </div>
+                    <div className="text-gray-400 text-sm">
+                      Production-ready snippets
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                    <span className="text-white">✓</span>
+                  </div>
+                  <div>
+                    <div className="text-white font-semibold">
+                      Best Practices
+                    </div>
+                    <div className="text-gray-400 text-sm">
+                      Industry standards
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-red-600 flex items-center justify-center">
+                    <span className="text-white">✓</span>
+                  </div>
+                  <div>
+                    <div className="text-white font-semibold">Free Access</div>
+                    <div className="text-gray-400 text-sm">
+                      100% free forever
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Rubik's Cube */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.8, duration: 0.8 }}
+              className="flex items-center justify-center min-h-[500px] lg:min-h-[600px]"
             >
-              Explore More
-            </motion.button>
+              <RubiksCube />
+            </motion.div>
           </motion.div>
 
           {/* Stats Cards */}
