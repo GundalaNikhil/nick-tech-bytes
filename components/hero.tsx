@@ -80,17 +80,17 @@ export default function Hero({ onExploreMore }: HeroProps) {
   return (
     <section
       ref={heroRef}
-      className="relative py-16 sm:py-24 lg:py-32 overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-32 overflow-visible"
     >
       {/* Animated Background Blobs */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden -z-10">
         <div className="blob-1 absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
         <div className="blob-2 absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
       </div>
 
       <motion.div
         style={{ y, opacity }}
-        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10"
       >
         <div className="text-center space-y-8">
           {/* Main Title with Split Animation */}
@@ -167,7 +167,7 @@ export default function Hero({ onExploreMore }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4, duration: 0.8 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto pt-16"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto pt-8"
           >
             {/* Left Column - Content */}
             <div className="space-y-6 text-left px-4 lg:px-8">
@@ -287,8 +287,12 @@ export default function Hero({ onExploreMore }: HeroProps) {
           </motion.div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-16 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-16 pb-8 max-w-3xl mx-auto relative z-50">
             <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               whileHover={{ scale: 1.05, y: -5 }}
               className="stat-card bg-gray-800/40 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-cyan-500/50 transition-all duration-300"
             >
@@ -304,6 +308,10 @@ export default function Hero({ onExploreMore }: HeroProps) {
             </motion.div>
 
             <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
               whileHover={{ scale: 1.05, y: -5 }}
               className="stat-card bg-gray-800/40 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300"
             >
@@ -319,6 +327,10 @@ export default function Hero({ onExploreMore }: HeroProps) {
             </motion.div>
 
             <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
               whileHover={{ scale: 1.05, y: -5 }}
               className="stat-card bg-gray-800/40 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300"
             >
