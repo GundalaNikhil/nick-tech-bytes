@@ -284,6 +284,16 @@ export default function Navbar({
               </AnimatePresence>
             </div>
 
+            {/* System Design Link */}
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href="/system-design"
+                className="nav-link px-5 py-2.5 rounded-xl text-sm font-semibold text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all duration-300"
+              >
+                System Design
+              </Link>
+            </motion.div>
+
             {/* Blog Link */}
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
               <Link
