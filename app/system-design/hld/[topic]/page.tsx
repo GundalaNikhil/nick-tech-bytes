@@ -11,6 +11,8 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
 
 export async function generateStaticParams() {
   return hldTopics.map((topic) => ({
@@ -236,6 +238,7 @@ export default async function HLDTopicPage({
               >
                 <div className="text-gray-100 [&_*]:text-gray-100">
                   <ReactMarkdown
+                    rehypePlugins={[rehypeRaw, rehypeSanitize]}
                     components={{
                       code({
                         node,

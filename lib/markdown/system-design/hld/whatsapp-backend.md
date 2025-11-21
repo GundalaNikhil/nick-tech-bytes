@@ -53,6 +53,51 @@ Design a scalable real-time messaging system similar to WhatsApp that supports b
 
 ## High-Level Design
 
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af; text-align: center;">
+      <div style="color: #60a5fa; font-weight: bold; margin-bottom: 0.5rem;">Client Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Web/Mobile Apps</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669; text-align: center;">
+      <div style="color: #34d399; font-weight: bold; margin-bottom: 0.5rem;">Load Balancer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Traffic Distribution</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed; text-align: center;">
+      <div style="color: #a78bfa; font-weight: bold; margin-bottom: 0.5rem;">API Gateway</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Request Routing</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #dc2626; text-align: center;">
+      <div style="color: #f87171; font-weight: bold; margin-bottom: 0.5rem;">Microservices</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Business Logic</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #d97706; text-align: center;">
+      <div style="color: #fbbf24; font-weight: bold; margin-bottom: 0.5rem;">Cache Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Redis/Memcached</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #0891b2; text-align: center;">
+      <div style="color: #22d3ee; font-weight: bold; margin-bottom: 0.5rem;">Message Queue</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Kafka/RabbitMQ</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #16a34a; text-align: center;">
+      <div style="color: #4ade80; font-weight: bold; margin-bottom: 0.5rem;">Primary Database</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">PostgreSQL/MySQL</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #8b5cf6; text-align: center;">
+      <div style="color: #c084fc; font-weight: bold; margin-bottom: 0.5rem;">Replica Databases</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Read Replicas</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #ec4899; text-align: center;">
+      <div style="color: #f9a8d4; font-weight: bold; margin-bottom: 0.5rem;">Object Storage</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">S3/CDN</div>
+    </div>
+  </div>
+</div>
 ### Components
 
 1. **Gateway Service**
@@ -511,6 +556,47 @@ Response: {
 | Storage    | Distributed  | Availability vs consistency      |
 | Media      | CDN          | Cost vs performance              |
 | Calls      | P2P WebRTC   | Quality vs infrastructure cost   |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls to Avoid
+
+- **Forgetting offline delivery**: Messages must be queued when recipient is offline and delivered on reconnection
+- **Ignoring double-tick/blue-tick logic**: Need separate ACKs for sent, delivered, read - each requiring different tracking
+- **Underestimating group chat complexity**: Sending to 256 members isn't just 256 1:1 messages - need fan-out optimization
+- **Not considering multi-device sync**: Users have phone + web + desktop all needing same messages in real-time
+
+### Advanced Considerations
+
+- **Connection management at scale**: 2B+ persistent WebSocket connections requires specialized load balancers and sticky sessions
+- **Message ordering guarantees**: Use vector clocks or timestamp + sequence number to maintain order across distributed systems
+- **Efficient storage**: Cassandra with TTL for old messages, Redis for recent hot messages
+- **Backpressure handling**: When receiver is slow, need to buffer messages without OOM - disk-backed queues
+- **Presence scalability**: "Last seen" updates from 2B users create massive write load - batch and throttle
+
+### Creative Solutions
+
+- **Hybrid push model**: Use FCM/APNS for offline users, WebSocket for online users (saves battery)
+- **Smart media compression**: Compress images/videos client-side before upload (WhatsApp uses custom codecs)
+- **Predictive pre-loading**: Pre-fetch media from frequent contacts when user opens app
+- **Delivery receipt batching**: Batch read receipts per conversation instead of per-message (reduces network calls)
+- **Regional message routing**: Route messages through regional data centers to reduce latency
+
+### Trade-off Discussions
+
+- **E2E Encryption**: Maximum privacy but cannot do server-side search, cloud backup is tricky, multi-device sync complex
+- **WebSocket vs Long Polling**: WebSocket is efficient but complex (firewall issues, reconnection logic) vs Long Polling simpler but higher latency
+- **Store messages forever vs TTL**: Storage cost vs user expectation (WhatsApp doesn't store messages long-term)
+- **Group size limits**: Larger groups (>256) increase fanout cost and coordination complexity
+
+### Edge Cases to Mention
+
+- **Message delivered but sender offline**: Sender won't see double-tick until they reconnect (Answer: Store delivery status in DB)
+- **Clock skew between devices**: Different device times cause message ordering issues (Answer: Use server timestamp as source of truth)
+- **User blocks mid-delivery**: Message queued but user blocks sender before receiving (Answer: Drop message, don't deliver)
+- **Simultaneous edits in groups**: Two admins remove same member simultaneously (Answer: Last-write-wins with timestamp)
+- **Network partition**: User appears online in one region but offline in another (Answer: Eventually consistent presence with gossip protocol)
+- **Message replay attacks**: E2E encrypted but attacker resends old message (Answer: Use message sequence numbers and session keys)
 
 ## Advanced Features
 

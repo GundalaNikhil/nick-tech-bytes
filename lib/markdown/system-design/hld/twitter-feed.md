@@ -52,6 +52,51 @@ Design a scalable social media feed system similar to Twitter that handles milli
 
 ## High-Level Design
 
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af; text-align: center;">
+      <div style="color: #60a5fa; font-weight: bold; margin-bottom: 0.5rem;">Client Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Web/Mobile Apps</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669; text-align: center;">
+      <div style="color: #34d399; font-weight: bold; margin-bottom: 0.5rem;">Load Balancer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Traffic Distribution</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed; text-align: center;">
+      <div style="color: #a78bfa; font-weight: bold; margin-bottom: 0.5rem;">API Gateway</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Request Routing</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #dc2626; text-align: center;">
+      <div style="color: #f87171; font-weight: bold; margin-bottom: 0.5rem;">Microservices</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Business Logic</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #d97706; text-align: center;">
+      <div style="color: #fbbf24; font-weight: bold; margin-bottom: 0.5rem;">Cache Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Redis/Memcached</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #0891b2; text-align: center;">
+      <div style="color: #22d3ee; font-weight: bold; margin-bottom: 0.5rem;">Message Queue</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Kafka/RabbitMQ</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #16a34a; text-align: center;">
+      <div style="color: #4ade80; font-weight: bold; margin-bottom: 0.5rem;">Primary Database</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">PostgreSQL/MySQL</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #8b5cf6; text-align: center;">
+      <div style="color: #c084fc; font-weight: bold; margin-bottom: 0.5rem;">Replica Databases</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Read Replicas</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #ec4899; text-align: center;">
+      <div style="color: #f9a8d4; font-weight: bold; margin-bottom: 0.5rem;">Object Storage</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">S3/CDN</div>
+    </div>
+  </div>
+</div>
 ### Components
 
 1. **Tweet Service**
@@ -499,6 +544,46 @@ Response: {
 | Storage     | Denormalized   | Storage vs query speed      |
 | Caching     | Aggressive     | Memory cost vs speed        |
 | Search      | Elasticsearch  | Cost vs functionality       |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls to Avoid
+
+- **Pure fan-out on write**: Don't fanout celebrity tweets to 100M followers synchronously - system will collapse
+- **Underestimating hot spot users**: Celebrities create data skew - need special handling
+- **Ignoring timeline ordering**: Timelines must be sorted by time - simple append-only lists won't work with deletions
+- **Forgetting about retweets**: Retweets amplify load significantly - need to deduplicate in timelines
+
+### Advanced Considerations
+
+- **Hybrid fan-out strategy**: Fan-out on write for normal users (<1M followers), fan-out on read for celebrities
+- **Timeline pagination cursor**: Use (timestamp, tweetId) composite cursor to handle concurrent updates
+- **Bloom filters for likes**: Avoid DB hits to check if user liked a tweet - use probabilistic data structure
+- **Rate limiting strategies**: Per-user (prevent spam), per-IP (prevent DDoS), per-API-key (fair quotas)
+- **Trending topics algorithm**: Count hashtag mentions in sliding time window with exponential decay
+
+### Creative Solutions
+
+- **Pre-compute celebrity timelines**: Cache full timeline for top 1000 users since everyone reads them
+- **Lazy timeline generation**: Don't generate timeline until user actually opens app (saves compute for inactive users)
+- **Smart caching eviction**: Keep timelines of users who login daily in cache, evict inactive users
+- **Notification batching**: Batch "1000 people liked your tweet" instead of 1000 individual notifications
+- **Content-based sharding**: Shard by hashtag for trending topics analysis, by user for normal timelines
+
+### Trade-off Discussions
+
+- **Fan-out on write vs read**: Write complexity & storage vs Read latency & compute
+- **Push vs Pull notifications**: Battery/bandwidth vs Latency
+- **SQL vs NoSQL**: Complex queries & transactions vs Horizontal scaling & availability
+- **Eventually consistent counts**: Show "999+ likes" immediately vs wait for accurate count (eventual consistency)
+
+### Edge Cases to Mention
+
+- **Deleted tweet propagation**: User deletes tweet but it's cached in millions of timelines (Answer: Lazy deletion + TTL)
+- **Celebrity unfollows**: Elon Musk unfollows - need to remove his tweets from follower's timelines (Answer: Async background job)
+- **Timeline inconsistency**: User follows someone but their tweets don't show immediately (Answer: Eventually consistent is OK)
+- **Thundering herd**: Celebrity tweets and 100M followers request timeline simultaneously (Answer: Request coalescing + CDN)
+- **Zombie accounts**: Millions of bot accounts inflating metrics (Answer: ML-based bot detection + rate limiting)
 
 ## Advanced Features
 

@@ -38,6 +38,47 @@ Most Recently Used (MRU) -----> Head
 Least Recently Used (LRU) -----> Tail
 ```
 
+## Class Diagram
+
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af;">
+      <div style="color: #60a5fa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #1e40af;">Main Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ properties</div>
+        <div style="margin-bottom: 0.5rem;">+ attributes</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ methods()</div>
+        <div style="margin-bottom: 0.5rem;">+ operations()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669;">
+      <div style="color: #34d399; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #059669;">Helper Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ fields</div>
+        <div style="margin-bottom: 0.5rem;">+ data</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ helpers()</div>
+        <div style="margin-bottom: 0.5rem;">+ utilities()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed;">
+      <div style="color: #a78bfa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #7c3aed;">Interface</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem; font-style: italic;">«interface»</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ abstract methods()</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #334155; color: #64748b; font-size: 0.875rem; text-align: center;">
+    Arrows indicate inheritance, composition, and dependency relationships
+  </div>
+</div>
 ## Implementation
 
 ### Node Class
@@ -428,6 +469,50 @@ public class LRUCacheTest {
 | Performance | Slightly faster                  | Slightly slower        |
 | Code        | More code                        | Concise                |
 | Learning    | Better for interviews            | Production-ready       |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls
+
+- **Forgetting to remove from HashMap**: When evicting tail, must also remove from HashMap (memory leak)
+- **Not updating on get()**: LRU requires moving accessed node to head, not just on put()
+- **Thread safety**: Plain HashMap + LinkedList not thread-safe - need synchronization
+- **Dummy nodes complexity**: Forgetting dummy head/tail leads to null checks everywhere
+
+### Why This Data Structure?
+
+- **HashMap**: O(1) key lookup - can't use just doubly linked list (O(n) search)
+- **Doubly Linked List**: O(1) add/remove - can't use HashMap alone (no eviction order)
+- **Combination**: Best of both worlds - O(1) get, O(1) put, O(1) eviction
+
+### Advanced Considerations
+
+- **TTL support**: Add timestamp to nodes, background thread for expiry
+- **Size-based eviction**: Track memory size, not just count (for variable-size objects)
+- **Write-through vs Write-back**: Update DB immediately vs Batch updates for performance
+- **Cache stampede**: Multiple threads miss cache, all hit DB - use locks or probabilistic early expiration
+
+### Creative Solutions
+
+- **2Q Algorithm**: Two queues (recent + frequent) to avoid one-time access pollution
+- **Adaptive Replacement Cache (ARC)**: Balance between recency and frequency dynamically
+- **Segmented LRU**: Hot/warm/cold segments to reduce lock contention
+- **Probabilistic eviction**: Randomly sample K items, evict LRU among them (simpler than global LRU)
+
+### Trade-off Discussions
+
+- **LRU vs LFU**: Recency (temporal locality) vs Frequency (popular items) - LRU simpler, LFU better for skewed access
+- **Eviction on put() vs background**: Immediate (blocking) vs Async (complexity + memory overhead)
+- **Synchronization granularity**: Entire cache (simple, contention) vs Per-bucket locks (complex, higher throughput)
+
+### Edge Cases to Mention
+
+- **Capacity = 0**: Should throw exception or handle gracefully?
+- **Negative capacity**: Input validation needed
+- **put() same key twice**: Update value and move to head (don't create duplicate)
+- **get() non-existent key**: Return null (documented behavior)
+- **Concurrent put() of same key**: Last write wins with proper locking
+- **Eviction during iteration**: ConcurrentModificationException if not using thread-safe iterator
 
 ## Follow-up Questions
 

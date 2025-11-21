@@ -50,6 +50,51 @@ Design a scalable e-commerce platform like Amazon, Flipkart, or Shopify that han
 
 ## High-Level Architecture
 
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af; text-align: center;">
+      <div style="color: #60a5fa; font-weight: bold; margin-bottom: 0.5rem;">Client Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Web/Mobile Apps</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669; text-align: center;">
+      <div style="color: #34d399; font-weight: bold; margin-bottom: 0.5rem;">Load Balancer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Traffic Distribution</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed; text-align: center;">
+      <div style="color: #a78bfa; font-weight: bold; margin-bottom: 0.5rem;">API Gateway</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Request Routing</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #dc2626; text-align: center;">
+      <div style="color: #f87171; font-weight: bold; margin-bottom: 0.5rem;">Microservices</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Business Logic</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #d97706; text-align: center;">
+      <div style="color: #fbbf24; font-weight: bold; margin-bottom: 0.5rem;">Cache Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Redis/Memcached</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #0891b2; text-align: center;">
+      <div style="color: #22d3ee; font-weight: bold; margin-bottom: 0.5rem;">Message Queue</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Kafka/RabbitMQ</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #16a34a; text-align: center;">
+      <div style="color: #4ade80; font-weight: bold; margin-bottom: 0.5rem;">Primary Database</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">PostgreSQL/MySQL</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #8b5cf6; text-align: center;">
+      <div style="color: #c084fc; font-weight: bold; margin-bottom: 0.5rem;">Replica Databases</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Read Replicas</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #ec4899; text-align: center;">
+      <div style="color: #f9a8d4; font-weight: bold; margin-bottom: 0.5rem;">Object Storage</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">S3/CDN</div>
+    </div>
+  </div>
+</div>
 ### Microservices
 
 1. **User Service**
@@ -421,6 +466,46 @@ if (processedRequests.has(idempotencyKey)) {
 | Database    | SQL for transactions | Complex sharding vs. NoSQL simplicity      |
 | Search      | Elasticsearch        | Additional infrastructure cost             |
 | Payment     | Third-party gateway  | Transaction fees vs. PCI compliance burden |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls to Avoid
+
+- **Inventory race conditions**: Multiple users buying last item - must use distributed locks or optimistic locking
+- **Ignoring flash sales**: Regular architecture collapses under 1M concurrent users - need queue system
+- **Underestimating cart abandonment**: 70% of carts abandoned - need recovery strategies
+- **Forgetting idempotency**: Network retries can cause duplicate orders - use idempotency keys
+
+### Advanced Considerations
+
+- **Two-phase commit for orders**: Reserve inventory → Process payment → Confirm order (compensating transactions if failed)
+- **SAGA pattern**: Distributed transactions across microservices with rollback handlers
+- **Circuit breakers**: Payment gateway down shouldn't crash entire system
+- **Product catalog denormalization**: Duplicate product data in order records to preserve historical pricing
+- **Sharding strategy**: Shard orders by user_id, products by category, inventory by warehouse
+
+### Creative Solutions
+
+- **Virtual inventory pooling**: Show "only 3 left!" to create urgency even with 1000 in stock
+- **Predictive pre-allocation**: ML predicts flash sale demand, pre-allocates inventory to regions
+- **Tiered checkout**: VIP users get priority queue during high load
+- **Lazy price calculation**: Cache common cart combinations, recalculate only on checkout
+- **Blockchain for supply chain**: Immutable provenance tracking from manufacturer to customer
+
+### Trade-off Discussions
+
+- **Strong vs Eventual consistency**: Inventory (strong) vs Product reviews (eventual)
+- **Microservices complexity**: Independent scaling vs Network overhead and distributed tracing challenges
+- **Read replicas**: Faster reads vs Replication lag and increased infrastructure cost
+- **Sync vs Async**: Order confirmation (sync) vs Email/SMS notifications (async via Kafka)
+
+### Edge Cases to Mention
+
+- **Simultaneous checkout**: Two users checkout same last item (Answer: Pessimistic locking with TTL)
+- **Payment success but order failed**: Charge went through but DB write failed (Answer: Idempotent retries + reconciliation job)
+- **Price changes during checkout**: User adds item at $100, price increases to $120 before payment (Answer: Lock price in cart with TTL)
+- **Multi-currency edge cases**: Currency conversion rate changes mid-transaction (Answer: Lock exchange rate at cart creation)
+- **Coupon stacking exploits**: Apply same coupon multiple times (Answer: One-time-use tokens with distributed cache)
 
 ## Follow-up Questions
 

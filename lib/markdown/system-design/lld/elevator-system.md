@@ -36,6 +36,45 @@ Design an elevator control system for a multi-floor building that efficiently ha
 
 ## Class Diagram
 
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af;">
+      <div style="color: #60a5fa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #1e40af;">Main Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ properties</div>
+        <div style="margin-bottom: 0.5rem;">+ attributes</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ methods()</div>
+        <div style="margin-bottom: 0.5rem;">+ operations()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669;">
+      <div style="color: #34d399; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #059669;">Helper Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ fields</div>
+        <div style="margin-bottom: 0.5rem;">+ data</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ helpers()</div>
+        <div style="margin-bottom: 0.5rem;">+ utilities()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed;">
+      <div style="color: #a78bfa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #7c3aed;">Interface</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem; font-style: italic;">«interface»</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ abstract methods()</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #334155; color: #64748b; font-size: 0.875rem; text-align: center;">
+    Arrows indicate inheritance, composition, and dependency relationships
+  </div>
+</div>
 ### Core Enums
 
 ```java
@@ -557,6 +596,54 @@ public void testMultipleRequests() {
 | Data Structure | Priority Queues         | Efficient floor selection vs. memory |
 | Threading      | One thread per elevator | Realistic simulation vs. overhead    |
 | State          | Enum-based              | Type safety vs. flexibility          |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls
+
+- **Not considering direction**: Elevator going up shouldn't pick down requests (violates user expectations)
+- **Starvation problem**: Upper floors never serviced if ground floor keeps requesting
+- **Concurrent modification**: Multiple threads modifying request queue without synchronization
+- **Not handling emergency stop**: Fire alarm should immediately change behavior
+
+### Design Pattern Recognition
+
+- **Strategy Pattern**: Different scheduling algorithms (Nearest Car, SCAN, LOOK, Zoning)
+- **State Pattern**: Elevator states (IDLE, MOVING_UP, MOVING_DOWN, DOOR_OPEN, MAINTENANCE)
+- **Singleton Pattern**: Single controller coordinating all elevators
+- **Observer Pattern**: Notify display panels when elevator arrives
+
+### Advanced Considerations
+
+- **Starvation prevention**: Aging algorithm - increase priority of long-waiting requests
+- **Energy optimization**: Park idle elevators at predicted high-demand floors (ML-based)
+- **Zone-based dispatch**: High-rise buildings split into zones to reduce travel time
+- **Double-deck elevators**: Two cabins stacked - serve even/odd floors simultaneously
+- **Destination dispatch**: User enters destination floor at lobby (not in cabin) for optimal grouping
+
+### Creative Solutions
+
+- **Predictive dispatching**: During morning rush, pre-position elevators at ground floor
+- **Express elevators**: Non-stop to top floors during peak hours
+- **AI-based learning**: Learn building traffic patterns and adapt scheduling
+- **Priority lanes**: VIP floors get faster service
+- **Group dispatch optimization**: Assign multiple requests to single elevator based on direction
+
+### Trade-off Discussions
+
+- **FCFS vs Optimization**: Fair but inefficient vs Optimal but complex
+- **Centralized vs Decentralized**: Single controller (easier coordination) vs Each elevator independent (fault tolerant)
+- **Real-time vs Batch**: Immediate response vs Group requests for efficiency
+- **Simple vs Smart**: Nearest car (simple, good enough) vs Machine learning (complex, optimal)
+
+### Edge Cases to Mention
+
+- **All elevators on same floor**: How to distribute next request? (Answer: Round-robin or load balancing)
+- **Request from current floor**: Should doors reopen if recently closed? (Answer: Timeout threshold)
+- **Opposite direction request**: Elevator at floor 5 going up, user at 5 wants down (Answer: Skip, serve on return)
+- **Emergency override**: Fire alarm triggers - all elevators to ground floor (Answer: Clear queue, priority mode)
+- **Maximum weight exceeded**: Doors keep reopening (Answer: Force people to exit, audio warning)
+- **Maintenance mode during peak**: One elevator down during rush hour (Answer: Redistribute load, notify users)
 
 ## Follow-up Questions
 

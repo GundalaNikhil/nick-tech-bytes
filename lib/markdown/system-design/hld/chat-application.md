@@ -66,6 +66,51 @@ Design a real-time chat application similar to WhatsApp, Slack, or Discord that 
 
 ## High-Level Architecture
 
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af; text-align: center;">
+      <div style="color: #60a5fa; font-weight: bold; margin-bottom: 0.5rem;">Client Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Web/Mobile Apps</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669; text-align: center;">
+      <div style="color: #34d399; font-weight: bold; margin-bottom: 0.5rem;">Load Balancer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Traffic Distribution</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed; text-align: center;">
+      <div style="color: #a78bfa; font-weight: bold; margin-bottom: 0.5rem;">API Gateway</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Request Routing</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #dc2626; text-align: center;">
+      <div style="color: #f87171; font-weight: bold; margin-bottom: 0.5rem;">Microservices</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Business Logic</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #d97706; text-align: center;">
+      <div style="color: #fbbf24; font-weight: bold; margin-bottom: 0.5rem;">Cache Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Redis/Memcached</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #0891b2; text-align: center;">
+      <div style="color: #22d3ee; font-weight: bold; margin-bottom: 0.5rem;">Message Queue</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Kafka/RabbitMQ</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #16a34a; text-align: center;">
+      <div style="color: #4ade80; font-weight: bold; margin-bottom: 0.5rem;">Primary Database</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">PostgreSQL/MySQL</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #8b5cf6; text-align: center;">
+      <div style="color: #c084fc; font-weight: bold; margin-bottom: 0.5rem;">Replica Databases</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Read Replicas</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #ec4899; text-align: center;">
+      <div style="color: #f9a8d4; font-weight: bold; margin-bottom: 0.5rem;">Object Storage</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">S3/CDN</div>
+    </div>
+  </div>
+</div>
 ### Components
 
 ```
@@ -561,6 +606,46 @@ GET    /api/media/:mediaId
 | Delivery   | Push notifications     | Battery drain vs. instant delivery                  |
 | Encryption | End-to-end             | Server can't read messages vs. features like search |
 | Group Chat | Fan-out on write       | Write amplification vs. read performance            |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls
+
+- **Not handling reconnection properly**: Network drops are common - need exponential backoff and message queue
+- **Forgetting group chat optimization**: Don't send N individual messages for N-member group - batch and fanout
+- **Ignoring typing indicators**: Seems trivial but creates massive traffic at scale
+- **Message ordering issues**: Network delays can deliver messages out-of-order - use sequence numbers
+
+### Advanced Considerations
+
+- **Connection pooling per server**: Limit to ~100K connections per server, horizontal scale for more
+- **Message deduplication**: Network retries cause duplicates - use message IDs with idempotent processing
+- **Backpressure handling**: Slow client shouldn't block server - use bounded buffers with circuit breakers
+- **Multi-device sync**: Same account on phone + web + desktop needs consistent message state
+- **Efficient storage with TTL**: Delete old messages to save space (Cassandra TTL)
+
+### Creative Solutions
+
+- **Adaptive push strategy**: Active users get WebSocket, inactive get push notifications (saves battery)
+- **Message compression**: Compress message batches before sending (especially for media)
+- **Lazy loading chat history**: Load recent 50 messages, paginate older on scroll
+- **Smart presence throttling**: Update "last seen" every 30s instead of real-time (reduces writes 60x)
+- **Regional routing**: Route messages through geographically closest data centers
+
+### Trade-off Discussions
+
+- **E2E encryption**: Privacy vs Searchability and server-side features
+- **WebSocket vs SSE vs Long Polling**: Bidirectional + efficiency vs Simplicity vs Wide compatibility
+- **Message retention**: Forever (user expectation) vs Time-based deletion (cost savings)
+- **Typing indicators**: Real-time UX vs Network overhead and battery drain
+
+### Edge Cases
+
+- **Message sent but no ACK**: Sender doesn't know if delivered (Answer: Retry with idempotency key)
+- **User deletes account**: What happens to their messages in group chats? (Answer: Keep messages, anonymize sender)
+- **Clock skew**: Sender clock ahead of server (Answer: Use server timestamp as source of truth)
+- **Simultaneous message in group**: Race condition in ordering (Answer: Lamport timestamps or vector clocks)
+- **Connection hijacking**: Attacker steals session token (Answer: Periodic token rotation, device fingerprinting)
 
 ## Follow-up Questions
 

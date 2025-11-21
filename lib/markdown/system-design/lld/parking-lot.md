@@ -23,14 +23,52 @@ Design a parking lot system that can accommodate different types of vehicles (mo
 3. Follow SOLID principles
 4. Low latency for spot allocation
 
+## Class Diagram
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af;">
+      <div style="color: #60a5fa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #1e40af;">Main Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ properties</div>
+        <div style="margin-bottom: 0.5rem;">+ attributes</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ methods()</div>
+        <div style="margin-bottom: 0.5rem;">+ operations()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669;">
+      <div style="color: #34d399; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #059669;">Helper Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ fields</div>
+        <div style="margin-bottom: 0.5rem;">+ data</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ helpers()</div>
+        <div style="margin-bottom: 0.5rem;">+ utilities()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed;">
+      <div style="color: #a78bfa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #7c3aed;">Interface</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem; font-style: italic;">«interface»</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ abstract methods()</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #334155; color: #64748b; font-size: 0.875rem; text-align: center;">
+    Arrows indicate inheritance, composition, and dependency relationships
+  </div>
+</div>
 ## Design Patterns Used
 
 1. **Singleton Pattern**: ParkingLot instance
 2. **Factory Pattern**: Vehicle and ParkingSpot creation
 3. **Strategy Pattern**: Parking fee calculation
 4. **Observer Pattern**: Update availability displays
-
-## Class Diagram
 
 ### Core Classes
 
@@ -463,6 +501,55 @@ public class ParkingLotDemo {
 | Synchronized methods     | Thread-safe            | Performance bottleneck under high load |
 | In-memory tickets        | Fast access            | Lost on restart (needs persistence)    |
 | Spot allocation strategy | Optimal space usage    | May not always find best spot          |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls
+
+- **Not handling concurrent access**: Multiple gates trying to assign same spot - must use synchronization or locks
+- **Forgetting vehicle size compatibility**: Truck can't fit in compact spot - need validation
+- **Hardcoding spot allocation**: Should be strategy pattern for different algorithms (nearest, cheapest, etc.)
+- **Not considering scalability**: Single lock on parking lot won't scale - need per-floor or per-spot locking
+
+### Design Pattern Recognition
+
+- **Singleton**: ParkingLot instance (one per physical location)
+- **Factory Pattern**: Create different vehicle types
+- **Strategy Pattern**: Different fee calculation strategies (hourly, daily, flat rate)
+- **Observer Pattern**: Notify display boards when availability changes
+- **State Pattern**: Vehicle spot status (Available → Reserved → Occupied)
+
+### Advanced Considerations
+
+- **Fine-grained locking**: Lock per floor instead of entire parking lot (reduces contention)
+- **Optimistic locking**: Use version numbers for spot assignment to handle race conditions
+- **Spot reservation expiry**: Reserved spots should auto-release if vehicle doesn't arrive in 15 min
+- **Dynamic pricing**: Charge more for spots closer to entrance or during peak hours
+- **Handicapped spots compliance**: Legal requirement to reserve certain percentage
+
+### Creative Solutions
+
+- **Smart parking guidance**: Use sensors and LED indicators to guide drivers to available spots
+- **Predictive availability**: ML to predict when spots will free up based on historical data
+- **Valet mode**: Allow valet parking where staff can park tighter/stack vehicles
+- **EV charging integration**: Reserve spots with charging stations for electric vehicles
+- **Multi-entrance optimization**: Route vehicles to floor with most availability
+
+### Trade-off Discussions
+
+- **HashMap vs Database**: In-memory (fast, volatile) vs Persistent storage (slower, durable)
+- **Synchronized vs Lock**: Method-level sync (simple) vs ReentrantLock (fine control)
+- **First-available vs Optimal**: Quick allocation vs Best spot near entrance (more compute)
+- **Pre-allocation vs On-demand**: Reserve spots vs Allocate when vehicle enters
+
+### Edge Cases to Mention
+
+- **Spot released but ticket exists**: Payment processed but spot was reassigned due to bug (Answer: Transaction log for reconciliation)
+- **Vehicle parked in wrong spot type**: Motorcycle in large spot - waste of space (Answer: Policy decision + pricing penalty)
+- **Ticket lost by customer**: Can't identify which spot (Answer: License plate lookup + ID verification)
+- **Multiple entrances simultaneously**: Same spot assigned to two vehicles (Answer: Distributed lock with TTL)
+- **Payment failure but gate opened**: Vehicle exits without paying (Answer: License plate capture + billing later)
+- **Fire evacuation**: All gates must open immediately (Answer: Emergency override mode)
 
 ## Follow-up Enhancements
 

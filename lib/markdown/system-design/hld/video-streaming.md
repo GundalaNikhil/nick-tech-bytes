@@ -51,6 +51,51 @@ Design a scalable video streaming platform capable of serving millions of concur
 
 ## High-Level Design
 
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af; text-align: center;">
+      <div style="color: #60a5fa; font-weight: bold; margin-bottom: 0.5rem;">Client Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Web/Mobile Apps</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669; text-align: center;">
+      <div style="color: #34d399; font-weight: bold; margin-bottom: 0.5rem;">Load Balancer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Traffic Distribution</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed; text-align: center;">
+      <div style="color: #a78bfa; font-weight: bold; margin-bottom: 0.5rem;">API Gateway</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Request Routing</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #dc2626; text-align: center;">
+      <div style="color: #f87171; font-weight: bold; margin-bottom: 0.5rem;">Microservices</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Business Logic</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #d97706; text-align: center;">
+      <div style="color: #fbbf24; font-weight: bold; margin-bottom: 0.5rem;">Cache Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Redis/Memcached</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #0891b2; text-align: center;">
+      <div style="color: #22d3ee; font-weight: bold; margin-bottom: 0.5rem;">Message Queue</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Kafka/RabbitMQ</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #16a34a; text-align: center;">
+      <div style="color: #4ade80; font-weight: bold; margin-bottom: 0.5rem;">Primary Database</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">PostgreSQL/MySQL</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #8b5cf6; text-align: center;">
+      <div style="color: #c084fc; font-weight: bold; margin-bottom: 0.5rem;">Replica Databases</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Read Replicas</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #ec4899; text-align: center;">
+      <div style="color: #f9a8d4; font-weight: bold; margin-bottom: 0.5rem;">Object Storage</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">S3/CDN</div>
+    </div>
+  </div>
+</div>
 ### Components
 
 1. **Video Upload Service**
@@ -358,6 +403,41 @@ Response: {
 | CDN         | Push vs Pull       | Control vs simplicity        |
 | Processing  | Real-time vs Batch | Speed vs cost                |
 | Database    | NoSQL              | Scalability vs consistency   |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls to Avoid
+
+- **Don't ignore the upload pipeline**: Many candidates focus only on playback, but upload optimization (chunked uploads, resumable uploads) is equally critical
+- **Underestimating storage costs**: Storing multiple quality versions of billions of videos requires petabytes of storage - discuss cost optimization strategies
+- **Forgetting about copyright**: Content ID and DRM are crucial for production systems but often overlooked
+
+### Advanced Considerations
+
+- **Global latency**: Discuss edge caching strategies and how to serve users <100ms away from content
+- **Adaptive bitrate streaming**: Explain HLS/DASH and how they dynamically adjust quality based on network conditions
+- **Live streaming complexity**: Live has different requirements (low latency, real-time transcoding, chat sync)
+- **Monetization**: Ad insertion (VAST/VPAID), premium subscriptions, pay-per-view
+
+### Creative Solutions
+
+- **Predictive pre-caching**: Use ML to predict what users will watch next and pre-position content in CDN edge nodes
+- **Peer-to-peer assistance**: For viral videos, use WebRTC to offload some CDN traffic via peer-assisted delivery
+- **Smart thumbnail generation**: Use AI to detect engaging moments in videos for thumbnails (faces, action scenes)
+- **Regional content popularity**: Don't replicate rarely-watched content globally - use demand-driven replication
+
+### Trade-off Discussions
+
+- **Consistency vs Availability**: Video metadata (views, likes) can be eventually consistent, but payment transactions must be strongly consistent
+- **Push vs Pull CDN**: Push gives you control but requires managing cache invalidation; Pull is simpler but slower for first viewer
+- **Real-time vs Batch**: Live transcoding costs 10x more but batch processing can take hours - discuss hybrid approaches
+
+### Edge Cases to Mention
+
+- **Simultaneous viral traffic**: What if 100M users request same video at once? (Answer: CDN distribution, origin shield, rate limiting)
+- **Copyright strikes during upload**: How to prevent pirated content? (Answer: Content fingerprinting, automated scanning)
+- **Network switches during playback**: User moves from WiFi to cellular - how to maintain smooth playback? (Answer: Adaptive bitrate + buffer strategy)
+- **Storage failures**: What if a datacenter storing original videos goes down? (Answer: Multi-region replication, erasure coding)
 
 ## Advanced Features
 

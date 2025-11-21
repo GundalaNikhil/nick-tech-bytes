@@ -394,6 +394,45 @@ end
 
 ## Class Design
 
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af;">
+      <div style="color: #60a5fa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #1e40af;">Main Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ properties</div>
+        <div style="margin-bottom: 0.5rem;">+ attributes</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ methods()</div>
+        <div style="margin-bottom: 0.5rem;">+ operations()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669;">
+      <div style="color: #34d399; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #059669;">Helper Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ fields</div>
+        <div style="margin-bottom: 0.5rem;">+ data</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ helpers()</div>
+        <div style="margin-bottom: 0.5rem;">+ utilities()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed;">
+      <div style="color: #a78bfa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #7c3aed;">Interface</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem; font-style: italic;">«interface»</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ abstract methods()</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #334155; color: #64748b; font-size: 0.875rem; text-align: center;">
+    Arrows indicate inheritance, composition, and dependency relationships
+  </div>
+</div>
 ```java
 // Main interface
 public interface RateLimiter {
@@ -582,6 +621,47 @@ public void testFixedWindow_handlesWindowBoundary() {
 | Fixed Window           | Low       | Very Low | No            | Low        |
 | Sliding Window Log     | Excellent | High     | No            | High       |
 | Sliding Window Counter | Good      | Low      | No            | Medium     |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls
+
+- **Fixed window boundary issue**: Users can do 2x limit by splitting requests across window boundary
+- **Not handling distributed systems**: Single-server doesn't work for load-balanced systems (use Redis)
+- **Memory leaks**: Not cleaning up old entries in sliding window log
+- **Race conditions**: Multiple threads checking/updating counter simultaneously
+
+### Algorithm Selection
+
+- **Token Bucket**: Burst traffic (API with occasional spikes) - **Most popular**
+- **Leaky Bucket**: Steady output (video streaming, message queues)
+- **Fixed Window**: Simplest but inaccurate (non-critical use cases)
+- **Sliding Window Counter**: Good balance (accurate + low memory)
+- **Sliding Log**: Most accurate but memory intensive (financial transactions)
+
+### Advanced Considerations
+
+- **Distributed limiting**: Redis with atomic INCR + EXPIRE
+- **Multi-level**: Global + per-user + per-IP
+- **Adaptive**: Adjust limits based on system load
+- **Quota vs Rate**: Daily limit vs requests/second
+- **Hierarchical**: Organization → Team → User cascading limits
+
+### Creative Solutions
+
+- **Tiered**: Free (100/hr) vs Paid (10K/hr)
+- **Cost-based**: GET = 1 cost, complex POST = 10 cost
+- **Time-varying**: Higher limits off-peak
+- **Token carry-forward**: Unused tokens from last window carry over
+- **Priority queue**: Premium requests bypass limit
+
+### Edge Cases
+
+- **Clock skew**: Use Redis TIME for consistent timestamp
+- **Thundering herd**: Limit resets at midnight - jittered reset times
+- **Anonymous users**: Rate limit by IP with higher threshold
+- **Shared IP/NAT**: Office with 100 users - combine IP + User-Agent
+- **Request bursts**: Token bucket with max burst size
 
 ## Follow-up Questions
 

@@ -42,6 +42,51 @@ Design a URL shortening service like bit.ly or TinyURL that converts long URLs i
 
 ## High-Level Design
 
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af; text-align: center;">
+      <div style="color: #60a5fa; font-weight: bold; margin-bottom: 0.5rem;">Client Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Web/Mobile Apps</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669; text-align: center;">
+      <div style="color: #34d399; font-weight: bold; margin-bottom: 0.5rem;">Load Balancer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Traffic Distribution</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed; text-align: center;">
+      <div style="color: #a78bfa; font-weight: bold; margin-bottom: 0.5rem;">API Gateway</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Request Routing</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #dc2626; text-align: center;">
+      <div style="color: #f87171; font-weight: bold; margin-bottom: 0.5rem;">Microservices</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Business Logic</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #d97706; text-align: center;">
+      <div style="color: #fbbf24; font-weight: bold; margin-bottom: 0.5rem;">Cache Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Redis/Memcached</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #0891b2; text-align: center;">
+      <div style="color: #22d3ee; font-weight: bold; margin-bottom: 0.5rem;">Message Queue</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Kafka/RabbitMQ</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #16a34a; text-align: center;">
+      <div style="color: #4ade80; font-weight: bold; margin-bottom: 0.5rem;">Primary Database</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">PostgreSQL/MySQL</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #8b5cf6; text-align: center;">
+      <div style="color: #c084fc; font-weight: bold; margin-bottom: 0.5rem;">Replica Databases</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Read Replicas</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #ec4899; text-align: center;">
+      <div style="color: #f9a8d4; font-weight: bold; margin-bottom: 0.5rem;">Object Storage</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">S3/CDN</div>
+    </div>
+  </div>
+</div>
 ### Components
 
 1. **API Gateway**
@@ -215,6 +260,46 @@ Response: {
 | Database      | NoSQL        | Better write performance, eventual consistency |
 | URL Length    | 7 characters | 62^7 = 3.5 trillion combinations               |
 | Caching       | Redis        | Memory cost vs. performance gain               |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls to Avoid
+
+- **Hash collisions**: MD5/SHA hashing can collide - need collision detection and retry logic
+- **Sequential IDs leaking info**: Auto-increment exposes creation order and volume - use random-looking IDs
+- **Not separating read/write paths**: 100:1 read ratio needs dedicated redirect servers
+- **Ignoring hot URLs**: Viral links create hotspots - need aggressive caching
+
+### Advanced Considerations
+
+- **Base62 encoding**: Use [a-zA-Z0-9] for short, URL-safe IDs without special characters
+- **Snowflake ID generation**: Distributed ID generation without coordination (timestamp + machine ID + sequence)
+- **Bloom filters**: Check if URL exists before DB lookup (space-efficient probabilistic)
+- **Geographical routing**: Redirect through nearest data center for <50ms latency
+- **Custom short URLs**: Allow users to choose vanity URLs (e.g., bit.ly/mycompany) - need uniqueness check
+
+### Creative Solutions
+
+- **Pre-generate ID pools**: Each server gets batch of 10K IDs from counter service, no coordination needed per request
+- **Tiered caching**: CDN edge cache (hot) → Redis (warm) → DB (cold)
+- **Async analytics**: Don't block redirect for click tracking - use Kafka queue for analytics
+- **Smart TTL**: Expire inactive URLs after 2 years to reclaim short codes
+- **QR code generation**: Auto-generate QR codes for short URLs (common use case)
+
+### Trade-off Discussions
+
+- **Hash vs Counter**: Hash (stateless, parallel) vs Counter (sequential, needs coordination)
+- **301 vs 302 redirect**: 301 (permanent, cached by browser) vs 302 (temporary, fresh stats)
+- **SQL vs NoSQL**: SQL (ACID, joins for analytics) vs NoSQL (write throughput, horizontal scaling)
+- **Centralized vs Distributed**: Central ID server (simple, single point of failure) vs Distributed (complex, highly available)
+
+### Edge Cases to Mention
+
+- **Malicious URLs**: Phishing/malware links - need URL scanning and blacklist
+- **Rate limiting per user**: Prevent spam bots from exhausting URL space
+- **Case sensitivity**: Is 'Abc123' same as 'abc123'? (Answer: Treat as case-sensitive for max combinations)
+- **Reserved keywords**: Block offensive/reserved words (e.g., 'admin', 'api', profanity)
+- **Delete and recreate**: User deletes then recreates - should get same short URL or new? (Answer: New to avoid confusion)
 
 ## Follow-up Questions
 

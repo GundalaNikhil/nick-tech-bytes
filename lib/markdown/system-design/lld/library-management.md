@@ -28,6 +28,44 @@ Design a library management system that handles book inventory, member managemen
 
 ## Class Diagram
 
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af;">
+      <div style="color: #60a5fa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #1e40af;">Main Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ properties</div>
+        <div style="margin-bottom: 0.5rem;">+ attributes</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ methods()</div>
+        <div style="margin-bottom: 0.5rem;">+ operations()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669;">
+      <div style="color: #34d399; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #059669;">Helper Class</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem;">+ fields</div>
+        <div style="margin-bottom: 0.5rem;">+ data</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ helpers()</div>
+        <div style="margin-bottom: 0.5rem;">+ utilities()</div>
+      </div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed;">
+      <div style="color: #a78bfa; font-weight: bold; font-size: 1.125rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #7c3aed;">Interface</div>
+      <div style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.75rem;">
+        <div style="margin-bottom: 0.5rem; font-style: italic;">«interface»</div>
+      </div>
+      <div style="border-top: 1px solid #334155; padding-top: 0.75rem; margin-top: 0.75rem; color: #94a3b8; font-size: 0.875rem;">
+        <div style="margin-bottom: 0.5rem;">+ abstract methods()</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #334155; color: #64748b; font-size: 0.875rem; text-align: center;">
+    Arrows indicate inheritance, composition, and dependency relationships
+  </div>
+</div>
 ```
 ┌─────────────────┐
 │     Library     │
@@ -580,6 +618,55 @@ public class LibraryDemo {
 | Storage          | HashMap         | Fast access vs ordered data |
 | Fine calculation | On return       | Simplicity vs real-time     |
 | Reservation      | Queue           | Fair vs complex             |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls
+
+- **Not handling multiple copies**: One ISBN can have multiple physical copies - need copy ID
+- **No reservation queue**: Popular books should have waitlist system
+- **Hardcoded fine calculation**: Should be configurable strategy (daily rate, grace period)
+- **Missing transaction history**: Need audit trail for disputes
+
+### Design Pattern Recognition
+
+- **Singleton**: Single Library instance per branch
+- **Strategy**: Different fine calculation strategies (fixed, progressive, waiver for students)
+- **Observer**: Notify members when reserved book becomes available
+- **State**: Book states (Available → Issued → Overdue → Returned)
+- **Factory**: Create different member types (Student, Faculty, Guest)
+
+### Advanced Considerations
+
+- **Concurrent borrowing**: Two members try to issue last copy - need distributed locks
+- **Batch operations**: Process returns/fines overnight instead of real-time
+- **Search optimization**: Elasticsearch for full-text search across titles/authors/descriptions
+- **Multi-branch support**: Transfer books between branches, unified catalog
+- **Historical data**: Archive old transactions for analytics without bloating active DB
+
+### Creative Solutions
+
+- **Smart recommendations**: ML-based "users who borrowed this also borrowed..."
+- **Dynamic due dates**: Extend for books with no reservations, stricter for popular books
+- **Fine amnesty periods**: Waive fines during exam periods to encourage returns
+- **E-book integration**: Seamlessly handle both physical and digital books
+- **RFID tagging**: Self-checkout kiosks with RFID scanners
+
+### Trade-off Discussions
+
+- **In-memory vs Database**: Fast but volatile vs Persistent but slower
+- **Real-time fines vs Batch**: Immediate feedback vs Lower compute overhead
+- **Strict limits vs Flexible**: Max 3 books (fair) vs Dynamic based on return history (optimized)
+- **Reservation expiry**: Hold book for 24 hours (turn around) vs 7 days (member convenience)
+
+### Edge Cases
+
+- **Book lost before return**: How to handle fine + replacement cost? (Answer: Mark as LOST, charge replacement + processing fee)
+- **Member with overdue fines**: Can they borrow more? (Answer: Block until fines paid)
+- **Book damaged on return**: Who assesses damage? (Answer: Librarian inspection + damage codes)
+- **Reservation conflicts**: Two members reserved at same time (Answer: Timestamp-based priority queue)
+- **Renewal limits**: How many times can member renew? (Answer: Max 2 renewals if no reservations)
+- **Bulk return**: Member returns 20 books at once (Answer: Batch process to avoid blocking)
 
 ## Follow-up Questions
 

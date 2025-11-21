@@ -53,6 +53,51 @@ Design a scalable ride-sharing platform that connects riders with nearby drivers
 
 ## High-Level Design
 
+
+<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; border: 1px solid #334155; margin: 2rem 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);">
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #1e40af; text-align: center;">
+      <div style="color: #60a5fa; font-weight: bold; margin-bottom: 0.5rem;">Client Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Web/Mobile Apps</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #059669; text-align: center;">
+      <div style="color: #34d399; font-weight: bold; margin-bottom: 0.5rem;">Load Balancer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Traffic Distribution</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #7c3aed; text-align: center;">
+      <div style="color: #a78bfa; font-weight: bold; margin-bottom: 0.5rem;">API Gateway</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Request Routing</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #dc2626; text-align: center;">
+      <div style="color: #f87171; font-weight: bold; margin-bottom: 0.5rem;">Microservices</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Business Logic</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #d97706; text-align: center;">
+      <div style="color: #fbbf24; font-weight: bold; margin-bottom: 0.5rem;">Cache Layer</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Redis/Memcached</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #0891b2; text-align: center;">
+      <div style="color: #22d3ee; font-weight: bold; margin-bottom: 0.5rem;">Message Queue</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Kafka/RabbitMQ</div>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #16a34a; text-align: center;">
+      <div style="color: #4ade80; font-weight: bold; margin-bottom: 0.5rem;">Primary Database</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">PostgreSQL/MySQL</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #8b5cf6; text-align: center;">
+      <div style="color: #c084fc; font-weight: bold; margin-bottom: 0.5rem;">Replica Databases</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">Read Replicas</div>
+    </div>
+    <div style="background: #0f172a; padding: 1.5rem; border-radius: 8px; border: 1px solid #ec4899; text-align: center;">
+      <div style="color: #f9a8d4; font-weight: bold; margin-bottom: 0.5rem;">Object Storage</div>
+      <div style="color: #94a3b8; font-size: 0.875rem;">S3/CDN</div>
+    </div>
+  </div>
+</div>
 ### Components
 
 1. **User Service**
@@ -496,6 +541,46 @@ Response: {
 | Database         | NoSQL           | Scalability vs consistency    |
 | Pricing          | Dynamic         | Revenue vs user experience    |
 | Caching          | Aggressive      | Freshness vs performance      |
+
+## 💡 Interview Tips & Out-of-the-Box Thinking
+
+### Common Pitfalls to Avoid
+
+- **Ignoring real-time constraints**: Location updates need sub-second latency - don't suggest batch processing
+- **Oversimplifying matching**: Matching isn't just "closest driver" - consider traffic, ratings, acceptance rate, destination direction
+- **Forgetting driver supply**: System must incentivize drivers (surge pricing) when demand exceeds supply
+- **Underestimating WebSocket load**: Millions of persistent connections require specialized infrastructure
+
+### Advanced Considerations
+
+- **Geospatial indexing**: Redis GEO commands or PostGIS for efficient radius queries (GEORADIUS)
+- **Consistent hashing for location sharding**: Partition map by geohash to distribute load
+- **ETA accuracy**: Use historical traffic data + real-time conditions + ML models for better predictions
+- **Fraud detection**: Detect fake GPS spoofing, ghost rides, payment fraud patterns
+- **Driver routing optimization**: Pre-position drivers in high-demand areas using predictive models
+
+### Creative Solutions
+
+- **Destination-aware matching**: Match drivers already heading in the rider's direction (reduces deadheading)
+- **Batch matching**: For high-volume areas, match multiple riders to drivers every few seconds instead of one-by-one
+- **Predictive pre-positioning**: Send drivers to areas with predicted demand (concerts, airports at specific times)
+- **Peer-to-peer carpooling**: Allow riders going same direction to share rides (like UberPool)
+- **Blockchain for transparency**: Immutable trip records and fare calculations for dispute resolution
+
+### Trade-off Discussions
+
+- **Matching speed vs quality**: Fast matching (<2s) might not find best driver; slower matching (5s) finds better match but worse UX
+- **Location update frequency**: Every 5s saves battery/bandwidth but less accurate; every 1s drains battery but smooth tracking
+- **Surge pricing transparency**: Show multiplier upfront (honest but scary) vs hide it (better conversion but trust issues)
+- **Database choice**: SQL for ACID transactions vs NoSQL for horizontal scaling
+
+### Edge Cases to Mention
+
+- **Network partition during trip**: Driver and rider lose connection - how to reconcile state? (Answer: Event sourcing with timestamps)
+- **Simultaneous accepts**: Two drivers accept same ride due to race condition (Answer: Distributed locks with TTL)
+- **GPS drift**: Driver appears in water/building (Answer: Map-matching algorithms to snap to roads)
+- **Surge pricing spikes**: 10x surge during emergency evacuation (Answer: Cap maximum surge, prioritize fairness)
+- **Driver cancellation abuse**: Driver cancels to force surge pricing (Answer: Track cancellation patterns, penalize serial offenders)
 
 ## Advanced Features
 
