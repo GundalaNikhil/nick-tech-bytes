@@ -1,11 +1,11 @@
+import { ArrowRight, Rocket, Target, TrendingUp } from "lucide-react";
 import Link from "next/link";
-import { ArrowRight, Target, Rocket, TrendingUp } from "lucide-react";
 
 export function HomeSystemDesignBanner() {
   return (
-    <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8 z-0">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/40 via-gray-900 to-cyan-950/40">
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/40 via-gray-900 to-cyan-950/40 -z-10">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
       </div>
 

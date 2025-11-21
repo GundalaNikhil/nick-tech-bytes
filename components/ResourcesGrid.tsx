@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import type { InterviewQuestionsMap, TopicKey } from "@/lib/interviewData";
 import { motion, useInView } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import type { InterviewQuestionsMap, TopicKey } from "@/lib/interviewData";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,6 +43,24 @@ export default function ResourcesGrid({
         ease: "sine.inOut",
         stagger: 0.2,
       });
+
+      // Scroll-triggered floating animation
+      gsap.fromTo(
+        sectionRef.current,
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "top 20%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -55,43 +73,85 @@ export default function ResourcesGrid({
       className="py-16 sm:py-24 bg-gradient-to-b from-black/50 to-transparent"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref={titleRef} className="text-center mb-16">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+        <div ref={titleRef} className="text-center mb-16 relative">
+          {/* Decorative glow */}
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
             viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
-            className="uppercase tracking-[0.3em] text-xs text-gray-500 mb-3"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-8 w-32 h-32 bg-gradient-to-r from-cyan-500/20 to-purple-600/20 rounded-full blur-3xl"
+          />
+
+          <motion.p
+            initial={{ opacity: 0, letterSpacing: "0.1em" }}
+            whileInView={{ opacity: 1, letterSpacing: "0.3em" }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 0.8 }}
+            className="uppercase text-xs text-gray-500 mb-4 relative"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
-            Coverage Index
+            <span className="inline-block">🎯</span> Coverage Index{" "}
+            <span className="inline-block">🚀</span>
           </motion.p>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 relative"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
-            <span className="bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
               What We Dive Into Together
             </span>
           </motion.h2>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-400 text-lg max-w-3xl mx-auto"
-            style={{ fontFamily: "'Inter', sans-serif" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-4xl mx-auto space-y-4"
           >
-            Every topic is broken into digestible sections with curated
-            questions, code, and notes so you know exactly what's covered before
-            you jump in.
-          </motion.p>
+            <p
+              className="text-gray-300 text-lg md:text-xl leading-relaxed"
+              style={{ fontFamily: "'Inter', sans-serif" }}
+            >
+              From foundational concepts to advanced patterns, each topic is{" "}
+              <span className="text-cyan-400 font-semibold">
+                structured with real interview questions
+              </span>
+              , clean code examples, and practical insights to accelerate your
+              preparation.
+            </p>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap items-center justify-center gap-4 pt-4"
+            >
+              <div className="flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full backdrop-blur-sm">
+                <span className="text-cyan-400 font-semibold">✓</span>
+                <span className="text-gray-300 text-sm">Interview-Focused</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-full backdrop-blur-sm">
+                <span className="text-blue-400 font-semibold">✓</span>
+                <span className="text-gray-300 text-sm">
+                  Production-Ready Code
+                </span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full backdrop-blur-sm">
+                <span className="text-purple-400 font-semibold">✓</span>
+                <span className="text-gray-300 text-sm">
+                  Detailed Explanations
+                </span>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -129,6 +189,26 @@ function ResourceCard({
 }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: false, amount: 0.3 });
+
+  const getCardDescription = (topicName: string) => {
+    const descriptions: Record<string, string> = {
+      Java: "Master core Java concepts, OOP principles, collections framework, and concurrency patterns for technical interviews.",
+      "Spring Boot":
+        "Deep dive into Spring ecosystem, dependency injection, REST APIs, security, and microservices architecture.",
+      React:
+        "Build modern UIs with hooks, state management, component lifecycle, performance optimization, and best practices.",
+      Docker:
+        "Containerization fundamentals, image building, orchestration, networking, and production deployment strategies.",
+      HLD:
+        "Learn to architect scalable systems with HLD/LLD patterns, database design, caching, and distributed systems.",
+      "Java 8":
+        "Explore functional programming with streams, lambda expressions, Optional, method references, and modern Java features.",
+    };
+    return (
+      descriptions[topicName] ||
+      "Comprehensive interview preparation with real-world examples and best practices."
+    );
+  };
 
   return (
     <motion.div
@@ -199,7 +279,7 @@ function ResourceCard({
                   className="text-xs text-gray-400"
                   style={{ fontFamily: "'Inter', sans-serif" }}
                 >
-                  {section.questions.length} focused prompts
+                  {section.questions.length} Focused Questions
                 </p>
               </div>
             </motion.li>
@@ -209,11 +289,10 @@ function ResourceCard({
 
       <motion.div
         whileHover={{ scale: 1.02 }}
-        className="mt-auto p-4 bg-gray-900/40 rounded-lg border border-gray-800 text-sm text-gray-300 group-hover:border-cyan-500/30 transition-all"
+        className="mt-auto p-4 bg-gray-900/40 rounded-lg border border-gray-800 text-sm text-gray-300 group-hover:border-cyan-500/30 transition-all leading-relaxed"
         style={{ fontFamily: "'Inter', sans-serif" }}
       >
-        Built for learners who want clarity, confidence, and ready-to-use
-        interview stories.
+        {getCardDescription(topic)}
       </motion.div>
     </motion.div>
   );

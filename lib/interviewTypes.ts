@@ -15,6 +15,9 @@ export type Answer = {
   language?: string;
   note?: string;
   examples?: string[];
+  memoryTechnique?: string; // 🧠 Mnemonic or technique to remember the answer
+  simpleExplanation?: string; // 🌟 Real-life analogy in simple terms
+  visualHtml?: string; // 🎨 HTML for visual diagrams/explanations
 };
 
 export type Question = {

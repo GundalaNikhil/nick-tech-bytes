@@ -1,16 +1,28 @@
-import { notFound } from "next/navigation";
-import fs from "fs";
-import path from "path";
-import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { hldTopics } from "@/lib/topics/systemDesignTopics";
-import { ArrowLeft, Star, Building2, Clock, BookOpen, Zap } from "lucide-react";
-import Link from "next/link";
 import {
   CollapsibleSection,
   ImagePlaceholder,
 } from "@/components/system-design/MarkdownComponents";
+import { hldTopics } from "@/lib/topics/systemDesignTopics";
+import fs from "fs";
+import { ArrowLeft, BookOpen, Building2, Clock, Star, Zap } from "lucide-react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import path from "path";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
+
+// Custom sanitize schema that allows inline styles
+const customSchema = {
+  ...defaultSchema,
+  attributes: {
+    ...defaultSchema.attributes,
+    div: [...(defaultSchema.attributes?.div || []), "style"],
+    span: [...(defaultSchema.attributes?.span || []), "style"],
+  },
+};
 
 export async function generateStaticParams() {
   return hldTopics.map((topic) => ({
@@ -48,8 +60,10 @@ export default async function HLDTopicPage({
   }
 
   const difficultyColors = {
-    beginner: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30 shadow-emerald-500/10",
-    intermediate: "bg-yellow-500/15 text-yellow-300 border-yellow-500/30 shadow-yellow-500/10",
+    beginner:
+      "bg-emerald-500/15 text-emerald-300 border-emerald-500/30 shadow-emerald-500/10",
+    intermediate:
+      "bg-yellow-500/15 text-yellow-300 border-yellow-500/30 shadow-yellow-500/10",
     advanced: "bg-red-500/15 text-red-300 border-red-500/30 shadow-red-500/10",
   };
 
@@ -62,10 +76,13 @@ export default async function HLDTopicPage({
   // Parse content into sections
   const sections = content.split(/\n## /);
   const overview = sections[0];
-  const otherSections = sections.slice(1).map((section) => {
-    const [title, ...rest] = section.split("\n");
-    return { title: title.trim(), content: rest.join("\n") };
-  });
+  const otherSections = sections
+    .slice(1)
+    .map((section) => {
+      const [title, ...rest] = section.split("\n");
+      return { title: title.trim(), content: rest.join("\n") };
+    })
+    .filter((section) => section.title.toLowerCase() !== "overview");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black">
@@ -122,7 +139,9 @@ export default async function HLDTopicPage({
             {/* Read Time */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-700/50 bg-gray-800/50 backdrop-blur-sm shadow-lg shadow-black/20">
               <Clock className="h-4 w-4 text-gray-400" />
-              <span className="text-sm font-medium text-gray-200">15 min read</span>
+              <span className="text-sm font-medium text-gray-200">
+                15 min read
+              </span>
             </div>
           </div>
 
@@ -170,28 +189,25 @@ export default async function HLDTopicPage({
             </p>
           </div>
           <article
-            className="prose prose-invert max-w-none 
-            prose-headings:text-white prose-headings:font-bold
-            prose-p:text-gray-100 prose-p:leading-relaxed prose-p:text-base
-            prose-strong:text-white prose-strong:font-semibold
-            prose-em:text-emerald-300 prose-em:italic
-            prose-code:text-emerald-300 prose-code:bg-gray-800/80 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-[''] prose-code:after:content-['']
-            prose-a:text-emerald-400 prose-a:underline hover:prose-a:text-emerald-300
-            prose-ul:text-gray-100 prose-ul:my-4
-            prose-ol:text-gray-100 prose-ol:my-4
-            prose-li:text-gray-100 prose-li:my-2 prose-li:leading-relaxed
-            prose-blockquote:border-l-4 prose-blockquote:border-emerald-500/50 prose-blockquote:bg-gray-800/30 prose-blockquote:text-gray-100 prose-blockquote:italic prose-blockquote:pl-4 prose-blockquote:py-2
+            className="prose prose-invert max-w-none text-gray-100 p-6 rounded-xl bg-gray-800/30 border border-gray-700/30
+            [&>*]:!text-gray-100 [&_*]:!text-gray-100
+            prose-headings:!text-white prose-headings:font-bold
+            prose-p:!text-gray-100 prose-p:leading-relaxed prose-p:text-base
+            prose-strong:!text-white prose-strong:font-semibold
+            prose-em:!text-emerald-300 prose-em:italic
+            prose-code:!text-emerald-300 prose-code:bg-gray-800/80 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-[''] prose-code:after:content-['']
+            prose-a:!text-emerald-400 prose-a:underline hover:prose-a:text-emerald-300
+            prose-ul:!text-gray-100 prose-ul:my-4
+            prose-ol:!text-gray-100 prose-ol:my-4
+            prose-li:!text-gray-100 prose-li:my-2 prose-li:leading-relaxed
+            prose-blockquote:border-l-4 prose-blockquote:border-emerald-500/50 prose-blockquote:bg-gray-800/30 prose-blockquote:!text-gray-100 prose-blockquote:italic prose-blockquote:pl-4 prose-blockquote:py-2
           "
           >
-            <ReactMarkdown>{overview}</ReactMarkdown>
+            <div className="text-gray-100 [&_*]:text-gray-100">
+              <ReactMarkdown>{overview}</ReactMarkdown>
+            </div>
           </article>
         </div>
-
-        {/* Architecture Diagram Placeholder */}
-        <ImagePlaceholder
-          title="System Architecture Diagram"
-          description="Visual representation of the high-level system architecture and component interactions"
-        />
 
         {/* Collapsible Sections */}
         <div className="space-y-6">
@@ -202,90 +218,100 @@ export default async function HLDTopicPage({
               defaultOpen={idx < 2}
             >
               <article
-                className="prose prose-invert max-w-none 
-                prose-headings:text-white prose-headings:font-bold
-                prose-h1:text-3xl prose-h1:text-white prose-h1:border-b prose-h1:border-gray-700 prose-h1:pb-3
-                prose-h2:text-2xl prose-h2:text-gray-100 prose-h2:mt-8
-                prose-h3:text-xl prose-h3:text-gray-100 prose-h3:mt-6
-                prose-h4:text-lg prose-h4:text-gray-200
-                prose-p:text-gray-100 prose-p:leading-relaxed prose-p:text-base
-                prose-strong:text-white prose-strong:font-bold
-                prose-em:text-emerald-300 prose-em:italic
-                prose-code:text-emerald-300 prose-code:bg-gray-800/80 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-[''] prose-code:after:content-['']
-                prose-pre:bg-gray-950 prose-pre:border prose-pre:border-gray-800 prose-pre:rounded-xl prose-pre:shadow-2xl
-                prose-a:text-emerald-400 prose-a:underline hover:prose-a:text-emerald-300
-                prose-ul:text-gray-100 prose-ul:my-4 prose-ul:list-disc prose-ul:ml-6
-                prose-ol:text-gray-100 prose-ol:my-4 prose-ol:list-decimal prose-ol:ml-6
-                prose-li:text-gray-100 prose-li:my-2 prose-li:leading-relaxed
+                className="prose prose-invert max-w-none text-gray-100 p-6 rounded-xl bg-gray-800/30 border border-gray-700/30
+                [&>*]:!text-gray-100 [&_*]:!text-gray-100
+                prose-headings:!text-white prose-headings:font-bold
+                prose-h1:text-3xl prose-h1:!text-white prose-h1:border-b prose-h1:border-gray-700 prose-h1:pb-3
+                prose-h2:text-2xl prose-h2:!text-gray-100 prose-h2:mt-8
+                prose-h3:text-xl prose-h3:!text-gray-100 prose-h3:mt-6
+                prose-h4:text-lg prose-h4:!text-gray-200
+                prose-p:!text-gray-100 prose-p:leading-relaxed prose-p:text-base
+                prose-strong:!text-white prose-strong:font-bold
+                prose-em:!text-emerald-300 prose-em:italic
+                prose-code:!text-emerald-300 prose-code:bg-gray-800/80 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-[''] prose-code:after:content-['']
+                prose-pre:bg-gray-950 prose-pre:border prose-pre:border-gray-800 prose-pre:rounded-xl prose-pre:shadow-2xl prose-pre:!text-gray-100
+                prose-a:!text-emerald-400 prose-a:underline hover:prose-a:text-emerald-300
+                prose-ul:!text-gray-100 prose-ul:my-4 prose-ul:list-disc prose-ul:ml-6
+                prose-ol:!text-gray-100 prose-ol:my-4 prose-ol:list-decimal prose-ol:ml-6
+                prose-li:!text-gray-100 prose-li:my-2 prose-li:leading-relaxed
                 prose-table:border-gray-700 prose-table:my-8
                 prose-thead:bg-gray-800/50 prose-thead:border-b prose-thead:border-gray-700
-                prose-th:border-gray-700 prose-th:p-4 prose-th:text-emerald-300 prose-th:font-bold prose-th:text-left
-                prose-td:border-gray-700 prose-td:p-4 prose-td:text-gray-100
+                prose-th:border-gray-700 prose-th:p-4 prose-th:!text-emerald-300 prose-th:font-bold prose-th:text-left
+                prose-td:border-gray-700 prose-td:p-4 prose-td:!text-gray-100
                 prose-tr:border-b prose-tr:border-gray-800 hover:prose-tr:bg-gray-800/30
-                prose-blockquote:border-l-4 prose-blockquote:border-emerald-500/50 prose-blockquote:bg-gray-800/30 prose-blockquote:text-gray-100 prose-blockquote:italic prose-blockquote:pl-4 prose-blockquote:py-2 prose-blockquote:rounded-r-lg
+                prose-blockquote:border-l-4 prose-blockquote:border-emerald-500/50 prose-blockquote:bg-gray-800/30 prose-blockquote:!text-gray-100 prose-blockquote:italic prose-blockquote:pl-4 prose-blockquote:py-2 prose-blockquote:rounded-r-lg
                 prose-img:rounded-xl prose-img:border prose-img:border-gray-800 prose-img:shadow-2xl
                 "
               >
-                <ReactMarkdown
-                  components={{
-                    code({ node, inline, className, children, ...props }: any) {
-                      const match = /language-(\w+)/.exec(className || "");
-                      return !inline && match ? (
-                        <div className="relative group my-6">
-                          <div className="absolute top-0 right-0 px-3 py-1.5 bg-gray-800/90 rounded-bl-lg rounded-tr-xl border-l border-b border-gray-700/50 backdrop-blur-sm">
-                            <span className="text-xs text-gray-400 font-mono uppercase tracking-wider">
-                              {match[1]}
-                            </span>
+                <div className="text-gray-100 [&_*]:text-gray-100">
+                  <ReactMarkdown
+                    rehypePlugins={[rehypeRaw, [rehypeSanitize, customSchema]]}
+                    components={{
+                      code({
+                        node,
+                        inline,
+                        className,
+                        children,
+                        ...props
+                      }: any) {
+                        const match = /language-(\w+)/.exec(className || "");
+                        return !inline && match ? (
+                          <div className="relative group my-6">
+                            <div className="absolute top-0 right-0 px-3 py-1.5 bg-gray-800/90 rounded-bl-lg rounded-tr-xl border-l border-b border-gray-700/50 backdrop-blur-sm">
+                              <span className="text-xs text-gray-400 font-mono uppercase tracking-wider">
+                                {match[1]}
+                              </span>
+                            </div>
+                            <SyntaxHighlighter
+                              style={vscDarkPlus as any}
+                              language={match[1]}
+                              PreTag="div"
+                              customStyle={{
+                                margin: 0,
+                                borderRadius: "0.75rem",
+                                background: "#0a0a0a",
+                                border: "1px solid #1f2937",
+                                padding: "1.5rem",
+                                paddingTop: "2.5rem",
+                                fontSize: "0.9rem",
+                                lineHeight: "1.6",
+                              }}
+                              {...props}
+                            >
+                              {String(children).replace(/\n$/, "")}
+                            </SyntaxHighlighter>
                           </div>
-                          <SyntaxHighlighter
-                            style={vscDarkPlus as any}
-                            language={match[1]}
-                            PreTag="div"
-                            customStyle={{
-                              margin: 0,
-                              borderRadius: "0.75rem",
-                              background: "#0a0a0a",
-                              border: "1px solid #1f2937",
-                              padding: "1.5rem",
-                              paddingTop: "2.5rem",
-                              fontSize: "0.9rem",
-                              lineHeight: "1.6",
-                            }}
+                        ) : (
+                          <code
+                            className="bg-gray-800/80 px-2 py-1 rounded text-sm font-mono text-emerald-400 border border-gray-700/30"
                             {...props}
                           >
-                            {String(children).replace(/\n$/, "")}
-                          </SyntaxHighlighter>
-                        </div>
-                      ) : (
-                        <code
-                          className="bg-gray-800/80 px-2 py-1 rounded text-sm font-mono text-emerald-400 border border-gray-700/30"
-                          {...props}
-                        >
-                          {children}
-                        </code>
-                      );
-                    },
-                    table({ children }) {
-                      return (
-                        <div className="overflow-x-auto my-8 rounded-xl border border-gray-700/50 shadow-2xl">
-                          <table className="min-w-full divide-y divide-gray-700">
                             {children}
-                          </table>
-                        </div>
-                      );
-                    },
-                    h3({ children }) {
-                      return (
-                        <h3 className="flex items-center gap-3 text-xl font-bold text-gray-100 mt-8 mb-4">
-                          <span className="inline-block w-1.5 h-6 bg-gradient-to-b from-emerald-400 to-blue-400 rounded-full shadow-lg shadow-emerald-500/20" />
-                          {children}
-                        </h3>
-                      );
-                    },
-                  }}
-                >
-                  {section.content}
-                </ReactMarkdown>
+                          </code>
+                        );
+                      },
+                      table({ children }) {
+                        return (
+                          <div className="overflow-x-auto my-8 rounded-xl border border-gray-700/50 shadow-2xl">
+                            <table className="min-w-full divide-y divide-gray-700">
+                              {children}
+                            </table>
+                          </div>
+                        );
+                      },
+                      h3({ children }) {
+                        return (
+                          <h3 className="flex items-center gap-3 text-xl font-bold text-gray-100 mt-8 mb-4">
+                            <span className="inline-block w-1.5 h-6 bg-gradient-to-b from-emerald-400 to-blue-400 rounded-full shadow-lg shadow-emerald-500/20" />
+                            {children}
+                          </h3>
+                        );
+                      },
+                    }}
+                  >
+                    {section.content}
+                  </ReactMarkdown>
+                </div>
               </article>
 
               {/* Add diagram placeholder for certain sections */}
@@ -330,7 +356,9 @@ export default async function HLDTopicPage({
             </li>
             <li className="flex items-start gap-3">
               <span className="text-emerald-400 mt-1 font-bold text-lg">•</span>
-              <span className="leading-relaxed">Draw diagrams to visualize your design</span>
+              <span className="leading-relaxed">
+                Draw diagrams to visualize your design
+              </span>
             </li>
           </ul>
         </div>
