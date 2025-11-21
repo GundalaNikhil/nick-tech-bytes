@@ -25,6 +25,12 @@ const resolveTopicKey = (param: string): TopicKey | null => {
   );
 };
 
+export async function generateStaticParams() {
+  return topicsList.map((topic) => ({
+    topic: topic.toLowerCase(),
+  }));
+}
+
 export default async function TopicPage({ params }: TopicPageProps) {
   const { topic } = await params;
   const topicKey = resolveTopicKey(topic);
