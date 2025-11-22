@@ -296,6 +296,16 @@ export default function Navbar({
               </Link>
             </motion.div>
 
+            {/* React Tutorials Link */}
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href="/react-tutorials"
+                className="nav-link px-3 lg:px-5 py-2.5 rounded-xl text-xs lg:text-sm font-semibold text-gray-300 hover:text-white hover:bg-gray-800/50 transition-all duration-300"
+              >
+                React Tutorials
+              </Link>
+            </motion.div>
+
             {/* Blog Link */}
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
               <Link
@@ -432,6 +442,14 @@ export default function Navbar({
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 System Design
+              </Link>
+
+              <Link
+                href="/react-tutorials"
+                className="block text-gray-300 hover:text-white hover:bg-gray-800/50 px-4 py-3 rounded-xl text-sm font-semibold transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                React Tutorials
               </Link>
 
               <Link

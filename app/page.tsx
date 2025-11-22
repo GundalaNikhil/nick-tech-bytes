@@ -6,6 +6,7 @@ import ResourcesGrid from "@/components/ResourcesGrid";
 import AdditionalResources from "@/components/AdditionalResources";
 import Footer from "@/components/footer";
 import { HomeSystemDesignBanner } from "@/components/system-design/HomeSystemDesignBanner";
+import { ReactTutorialsBanner } from "@/components/react/ReactTutorialsBanner";
 import {
   interviewQuestions,
   interviewResources,
@@ -39,6 +40,8 @@ export default function NickTechBytes() {
       <Hero onExploreMore={() => router.push("/explore")} />
 
       <HomeSystemDesignBanner />
+
+      <ReactTutorialsBanner />
 
       <ResourcesGrid
         topicsList={topicsList}
