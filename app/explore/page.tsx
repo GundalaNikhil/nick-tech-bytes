@@ -1,4 +1,3 @@
-import Navbar from "@/components/navbar";
 import TopicSelector from "@/components/TopicSelector";
 import Footer from "@/components/footer";
 import {
@@ -10,8 +9,6 @@ import {
 export default function ExplorePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-      <Navbar topicsList={topicsList} interviewResources={interviewResources} />
-
       <section className="py-16 sm:py-24 bg-gradient-to-b from-transparent to-black/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">

@@ -1,0 +1,12 @@
+<svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <style>
+      .logo-text { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+    </style>
+  </defs>
+  <text x="250" y="68" font-size="58" fill="#FFFFFF" text-anchor="middle" class="logo-text">nicktechbytes<tspan fill="#FF0000">.</tspan>com</text>
+</svg>

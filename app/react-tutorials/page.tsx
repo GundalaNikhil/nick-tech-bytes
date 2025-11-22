@@ -18,7 +18,7 @@ export default function ReactTutorialsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black">
       {/* Header */}
-      <div className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-xl sticky top-0 z-40">
+      <div className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-xl sticky top-20 z-40">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <Link
             href="/"
