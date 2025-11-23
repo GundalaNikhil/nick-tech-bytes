@@ -27,7 +27,7 @@ const resolveTopicKey = (param: string): TopicKey | null => {
 
 export async function generateStaticParams() {
   return topicsList.map((topic) => ({
-    topic: topic.toLowerCase(),
+    topic: topic, // Keep original casing
   }));
 }
 

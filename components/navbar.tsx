@@ -248,7 +248,7 @@ export default function Navbar({
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.25 }}
-                      className="p-4"
+                      className="p-4 border-b border-gray-700/50"
                     >
                       <div className="flex items-center gap-2 mb-3 px-2">
                         <Code2 className="w-5 h-5 text-purple-400" />
@@ -263,6 +263,44 @@ export default function Navbar({
                       >
                         <div className="flex items-center justify-between">
                           <span>Build React Components</span>
+                          <motion.svg
+                            whileHover={{ x: 5 }}
+                            className="w-4 h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </motion.svg>
+                        </div>
+                      </Link>
+                    </motion.div>
+
+                    {/* Spring Boot Section */}
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="p-4"
+                    >
+                      <div className="flex items-center gap-2 mb-3 px-2">
+                        <BookOpen className="w-5 h-5 text-green-400" />
+                        <h3 className="text-sm font-bold text-green-400 uppercase tracking-wide">
+                          Spring Boot
+                        </h3>
+                      </div>
+                      <Link
+                        href="/spring-boot"
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="block px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-green-400 transition-all duration-200 rounded-lg border border-transparent hover:border-green-400/30 hover:bg-green-500/10"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span>Master Spring Boot</span>
                           <motion.svg
                             whileHover={{ x: 5 }}
                             className="w-4 h-4"
@@ -441,6 +479,15 @@ export default function Navbar({
               >
                 <Code2 className="w-4 h-4" />
                 <span>React Tutorials</span>
+              </Link>
+
+              <Link
+                href="/spring-boot"
+                className="flex items-center gap-2 text-green-400 hover:text-green-300 hover:bg-green-500/10 px-4 py-3 rounded-xl text-sm font-semibold transition-all border border-green-500/30"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>Spring Boot</span>
               </Link>
 
               <Link
