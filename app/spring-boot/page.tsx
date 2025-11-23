@@ -6,7 +6,15 @@ interface Tutorial {
   id: string;
   title: string;
   description: string;
-  category: "foundational" | "configuration" | "web" | "data" | "testing" | "monitoring" | "advanced" | "production";
+  category:
+    | "foundational"
+    | "configuration"
+    | "web"
+    | "data"
+    | "testing"
+    | "monitoring"
+    | "advanced"
+    | "production";
   difficulty: "beginner" | "intermediate" | "advanced";
   lines: number;
   slug: string;
@@ -14,66 +22,386 @@ interface Tutorial {
 
 const tutorials: Tutorial[] = [
   // Foundational
-  { id: "01", title: "What is Spring Boot?", description: "History, motivation, paradigm shift", category: "foundational", difficulty: "beginner", lines: 850, slug: "01_what_is_spring_boot" },
-  { id: "02", title: "Key Features", description: "Boot features that solve Spring problems", category: "foundational", difficulty: "beginner", lines: 920, slug: "02_key_features" },
-  { id: "03", title: "@SpringBootApplication", description: "Bootstrap configuration", category: "foundational", difficulty: "beginner", lines: 880, slug: "03_springbootapplication_annotation" },
-  { id: "04", title: "Advantages", description: "Why use Boot vs traditional Spring", category: "foundational", difficulty: "beginner", lines: 750, slug: "04_advantages" },
-  { id: "05", title: "Key Components", description: "Auto-config, starters, embedded servers", category: "foundational", difficulty: "beginner", lines: 920, slug: "05_key_components" },
-  { id: "06", title: "Boot vs Spring", description: "Comparison, benefits", category: "foundational", difficulty: "intermediate", lines: 850, slug: "06_boot_vs_spring" },
-  { id: "07", title: "Deep Dive Comparison", description: "Detailed architectural differences", category: "foundational", difficulty: "intermediate", lines: 1100, slug: "07_boot_vs_spring_deep_dive" },
-  
+  {
+    id: "01",
+    title: "What is Spring Boot?",
+    description: "History, motivation, paradigm shift",
+    category: "foundational",
+    difficulty: "beginner",
+    lines: 850,
+    slug: "01_what_is_spring_boot",
+  },
+  {
+    id: "02",
+    title: "Key Features",
+    description: "Boot features that solve Spring problems",
+    category: "foundational",
+    difficulty: "beginner",
+    lines: 920,
+    slug: "02_key_features",
+  },
+  {
+    id: "03",
+    title: "@SpringBootApplication",
+    description: "Bootstrap configuration",
+    category: "foundational",
+    difficulty: "beginner",
+    lines: 880,
+    slug: "03_springbootapplication_annotation",
+  },
+  {
+    id: "04",
+    title: "Advantages",
+    description: "Why use Boot vs traditional Spring",
+    category: "foundational",
+    difficulty: "beginner",
+    lines: 750,
+    slug: "04_advantages",
+  },
+  {
+    id: "05",
+    title: "Key Components",
+    description: "Auto-config, starters, embedded servers",
+    category: "foundational",
+    difficulty: "beginner",
+    lines: 920,
+    slug: "05_key_components",
+  },
+  {
+    id: "06",
+    title: "Boot vs Spring",
+    description: "Comparison, benefits",
+    category: "foundational",
+    difficulty: "intermediate",
+    lines: 850,
+    slug: "06_boot_vs_spring",
+  },
+  {
+    id: "07",
+    title: "Deep Dive Comparison",
+    description: "Detailed architectural differences",
+    category: "foundational",
+    difficulty: "intermediate",
+    lines: 1100,
+    slug: "07_boot_vs_spring_deep_dive",
+  },
+
   // Configuration & Setup
-  { id: "11", title: "Configuration Management", description: "Environment-specific configs", category: "configuration", difficulty: "intermediate", lines: 1050, slug: "11_configuration_management" },
-  { id: "12", title: "Auto-Configuration", description: "@EnableAutoConfiguration, @Conditional", category: "configuration", difficulty: "intermediate", lines: 1050, slug: "12_auto_configuration" },
-  { id: "13", title: "Spring Initializer", description: "Project generation, starter selection", category: "configuration", difficulty: "beginner", lines: 850, slug: "13_spring_initializer" },
-  { id: "14", title: "Starters Deep Dive", description: "How starters work, creating custom", category: "configuration", difficulty: "advanced", lines: 1200, slug: "14_spring_boot_starters" },
-  { id: "18", title: "Spring Boot CLI", description: "Command-line tool, Groovy scripts", category: "configuration", difficulty: "intermediate", lines: 950, slug: "18_spring_boot_cli" },
-  { id: "28", title: "Profiles Advanced", description: "Multi-environment, feature flags", category: "configuration", difficulty: "advanced", lines: 1100, slug: "28_profiles_advanced" },
-  { id: "29", title: "YAML Configuration", description: "YAML vs Properties, hierarchical", category: "configuration", difficulty: "intermediate", lines: 750, slug: "29_yaml_configuration" },
-  
+  {
+    id: "11",
+    title: "Configuration Management",
+    description: "Environment-specific configs",
+    category: "configuration",
+    difficulty: "intermediate",
+    lines: 1050,
+    slug: "11_configuration_management",
+  },
+  {
+    id: "12",
+    title: "Auto-Configuration",
+    description: "@EnableAutoConfiguration, @Conditional",
+    category: "configuration",
+    difficulty: "intermediate",
+    lines: 1050,
+    slug: "12_auto_configuration",
+  },
+  {
+    id: "13",
+    title: "Spring Initializer",
+    description: "Project generation, starter selection",
+    category: "configuration",
+    difficulty: "beginner",
+    lines: 850,
+    slug: "13_spring_initializer",
+  },
+  {
+    id: "14",
+    title: "Starters Deep Dive",
+    description: "How starters work, creating custom",
+    category: "configuration",
+    difficulty: "advanced",
+    lines: 1200,
+    slug: "14_spring_boot_starters",
+  },
+  {
+    id: "18",
+    title: "Spring Boot CLI",
+    description: "Command-line tool, Groovy scripts",
+    category: "configuration",
+    difficulty: "intermediate",
+    lines: 950,
+    slug: "18_spring_boot_cli",
+  },
+  {
+    id: "28",
+    title: "Profiles Advanced",
+    description: "Multi-environment, feature flags",
+    category: "configuration",
+    difficulty: "advanced",
+    lines: 1100,
+    slug: "28_profiles_advanced",
+  },
+  {
+    id: "29",
+    title: "YAML Configuration",
+    description: "YAML vs Properties, hierarchical",
+    category: "configuration",
+    difficulty: "intermediate",
+    lines: 750,
+    slug: "29_yaml_configuration",
+  },
+
   // Web Development
-  { id: "15", title: "Embedded Servers", description: "Tomcat/Jetty/Undertow config", category: "web", difficulty: "intermediate", lines: 1000, slug: "15_embedded_servers" },
-  { id: "23", title: "@RestController", description: "Building REST APIs", category: "web", difficulty: "intermediate", lines: 1050, slug: "23_rest_controller" },
-  { id: "24", title: "Spring Data", description: "JPA, repositories, database", category: "web", difficulty: "intermediate", lines: 920, slug: "24_spring_data_overview" },
-  { id: "25", title: "Spring Data REST", description: "Auto-generating REST endpoints", category: "web", difficulty: "intermediate", lines: 850, slug: "25_spring_data_rest" },
-  { id: "30", title: "Security", description: "Authentication & authorization", category: "web", difficulty: "advanced", lines: 1150, slug: "30_security_implementation" },
-  
+  {
+    id: "15",
+    title: "Embedded Servers",
+    description: "Tomcat/Jetty/Undertow config",
+    category: "web",
+    difficulty: "intermediate",
+    lines: 1000,
+    slug: "15_embedded_servers",
+  },
+  {
+    id: "23",
+    title: "@RestController",
+    description: "Building REST APIs",
+    category: "web",
+    difficulty: "intermediate",
+    lines: 1050,
+    slug: "23_rest_controller",
+  },
+  {
+    id: "24",
+    title: "Spring Data",
+    description: "JPA, repositories, database",
+    category: "web",
+    difficulty: "intermediate",
+    lines: 920,
+    slug: "24_spring_data_overview",
+  },
+  {
+    id: "25",
+    title: "Spring Data REST",
+    description: "Auto-generating REST endpoints",
+    category: "web",
+    difficulty: "intermediate",
+    lines: 850,
+    slug: "25_spring_data_rest",
+  },
+  {
+    id: "30",
+    title: "Security",
+    description: "Authentication & authorization",
+    category: "web",
+    difficulty: "advanced",
+    lines: 1150,
+    slug: "30_security_implementation",
+  },
+
   // Data & Persistence
-  { id: "19", title: "Dependency Management", description: "Managing dependencies, BOM", category: "data", difficulty: "intermediate", lines: 950, slug: "19_dependency_management" },
-  { id: "21", title: "IOC Container", description: "Spring Container, bean lifecycle", category: "data", difficulty: "intermediate", lines: 1100, slug: "21_ioc_container" },
-  { id: "31", title: "Transaction Management", description: "@Transactional, ACID, isolation", category: "data", difficulty: "advanced", lines: 1100, slug: "31_transaction_management" },
-  { id: "32", title: "Batch Processing", description: "Processing large datasets", category: "data", difficulty: "advanced", lines: 950, slug: "32_batch_processing" },
-  
+  {
+    id: "19",
+    title: "Dependency Management",
+    description: "Managing dependencies, BOM",
+    category: "data",
+    difficulty: "intermediate",
+    lines: 950,
+    slug: "19_dependency_management",
+  },
+  {
+    id: "21",
+    title: "IOC Container",
+    description: "Spring Container, bean lifecycle",
+    category: "data",
+    difficulty: "intermediate",
+    lines: 1100,
+    slug: "21_ioc_container",
+  },
+  {
+    id: "31",
+    title: "Transaction Management",
+    description: "@Transactional, ACID, isolation",
+    category: "data",
+    difficulty: "advanced",
+    lines: 1100,
+    slug: "31_transaction_management",
+  },
+  {
+    id: "32",
+    title: "Batch Processing",
+    description: "Processing large datasets",
+    category: "data",
+    difficulty: "advanced",
+    lines: 950,
+    slug: "32_batch_processing",
+  },
+
   // Testing & Quality
-  { id: "08", title: "Exception Handling", description: "Global handlers, error responses", category: "testing", difficulty: "intermediate", lines: 950, slug: "08_exception_handling" },
-  { id: "09", title: "Testing", description: "Unit, integration, E2E testing", category: "testing", difficulty: "intermediate", lines: 1100, slug: "09_testing" },
-  { id: "10", title: "Logging", description: "SLF4J, Logback, structured logging", category: "testing", difficulty: "intermediate", lines: 850, slug: "10_logging_best_practices" },
-  { id: "26", title: "Advanced Testing", description: "Integration testing at scale", category: "testing", difficulty: "advanced", lines: 1200, slug: "26_advanced_integration_testing" },
-  
+  {
+    id: "08",
+    title: "Exception Handling",
+    description: "Global handlers, error responses",
+    category: "testing",
+    difficulty: "intermediate",
+    lines: 950,
+    slug: "08_exception_handling",
+  },
+  {
+    id: "09",
+    title: "Testing",
+    description: "Unit, integration, E2E testing",
+    category: "testing",
+    difficulty: "intermediate",
+    lines: 1100,
+    slug: "09_testing",
+  },
+  {
+    id: "10",
+    title: "Logging",
+    description: "SLF4J, Logback, structured logging",
+    category: "testing",
+    difficulty: "intermediate",
+    lines: 850,
+    slug: "10_logging_best_practices",
+  },
+  {
+    id: "26",
+    title: "Advanced Testing",
+    description: "Integration testing at scale",
+    category: "testing",
+    difficulty: "advanced",
+    lines: 1200,
+    slug: "26_advanced_integration_testing",
+  },
+
   // Monitoring & Operations
-  { id: "16", title: "Metrics & Monitoring", description: "Actuator, custom metrics", category: "monitoring", difficulty: "intermediate", lines: 1050, slug: "16_metrics_monitoring" },
-  { id: "17", title: "Custom Endpoints", description: "Building custom monitoring", category: "monitoring", difficulty: "advanced", lines: 900, slug: "17_custom_actuators" },
-  { id: "22", title: "@ComponentScan", description: "Component discovery patterns", category: "monitoring", difficulty: "intermediate", lines: 1100, slug: "22_component_scan" },
-  { id: "27", title: "DevTools", description: "Live reload & development", category: "monitoring", difficulty: "beginner", lines: 800, slug: "27_devtools" },
-  
+  {
+    id: "16",
+    title: "Metrics & Monitoring",
+    description: "Actuator, custom metrics",
+    category: "monitoring",
+    difficulty: "intermediate",
+    lines: 1050,
+    slug: "16_metrics_monitoring",
+  },
+  {
+    id: "17",
+    title: "Custom Endpoints",
+    description: "Building custom monitoring",
+    category: "monitoring",
+    difficulty: "advanced",
+    lines: 900,
+    slug: "17_custom_actuators",
+  },
+  {
+    id: "22",
+    title: "@ComponentScan",
+    description: "Component discovery patterns",
+    category: "monitoring",
+    difficulty: "intermediate",
+    lines: 1100,
+    slug: "22_component_scan",
+  },
+  {
+    id: "27",
+    title: "DevTools",
+    description: "Live reload & development",
+    category: "monitoring",
+    difficulty: "beginner",
+    lines: 800,
+    slug: "27_devtools",
+  },
+
   // Advanced Patterns
-  { id: "20", title: "Non-Web Applications", description: "Background tasks, scheduled jobs", category: "advanced", difficulty: "intermediate", lines: 880, slug: "20_non_web_applications" },
-  { id: "33", title: "Event-Driven", description: "Pub-sub, async processing", category: "advanced", difficulty: "advanced", lines: 1000, slug: "33_event_driven_architecture" },
-  
+  {
+    id: "20",
+    title: "Non-Web Applications",
+    description: "Background tasks, scheduled jobs",
+    category: "advanced",
+    difficulty: "intermediate",
+    lines: 880,
+    slug: "20_non_web_applications",
+  },
+  {
+    id: "33",
+    title: "Event-Driven",
+    description: "Pub-sub, async processing",
+    category: "advanced",
+    difficulty: "advanced",
+    lines: 1000,
+    slug: "33_event_driven_architecture",
+  },
+
   // Production
-  { id: "41", title: "Caching", description: "Redis, cache invalidation", category: "production", difficulty: "advanced", lines: 1100, slug: "41_caching" },
-  { id: "42", title: "Task Scheduling", description: "@Scheduled, cron expressions", category: "production", difficulty: "advanced", lines: 950, slug: "42_scheduler" },
+  {
+    id: "41",
+    title: "Caching",
+    description: "Redis, cache invalidation",
+    category: "production",
+    difficulty: "advanced",
+    lines: 1100,
+    slug: "41_caching",
+  },
+  {
+    id: "42",
+    title: "Task Scheduling",
+    description: "@Scheduled, cron expressions",
+    category: "production",
+    difficulty: "advanced",
+    lines: 950,
+    slug: "42_scheduler",
+  },
 ];
 
 const categoryInfo = {
-  foundational: { name: "Foundational", icon: BookOpen, color: "cyan", gradient: "from-cyan-400 to-blue-400" },
-  configuration: { name: "Configuration", icon: Code2, color: "purple", gradient: "from-purple-400 to-pink-400" },
-  web: { name: "Web Development", icon: Layers, color: "emerald", gradient: "from-emerald-400 to-green-400" },
-  data: { name: "Data & Persistence", icon: BookOpen, color: "blue", gradient: "from-blue-400 to-indigo-400" },
-  testing: { name: "Testing & Quality", icon: Code2, color: "orange", gradient: "from-orange-400 to-red-400" },
-  monitoring: { name: "Monitoring", icon: Layers, color: "teal", gradient: "from-teal-400 to-cyan-400" },
-  advanced: { name: "Advanced Patterns", icon: BookOpen, color: "violet", gradient: "from-violet-400 to-purple-400" },
-  production: { name: "Production", icon: Code2, color: "rose", gradient: "from-rose-400 to-pink-400" },
+  foundational: {
+    name: "Foundational",
+    icon: BookOpen,
+    color: "cyan",
+    gradient: "from-cyan-400 to-blue-400",
+  },
+  configuration: {
+    name: "Configuration",
+    icon: Code2,
+    color: "purple",
+    gradient: "from-purple-400 to-pink-400",
+  },
+  web: {
+    name: "Web Development",
+    icon: Layers,
+    color: "emerald",
+    gradient: "from-emerald-400 to-green-400",
+  },
+  data: {
+    name: "Data & Persistence",
+    icon: BookOpen,
+    color: "blue",
+    gradient: "from-blue-400 to-indigo-400",
+  },
+  testing: {
+    name: "Testing & Quality",
+    icon: Code2,
+    color: "orange",
+    gradient: "from-orange-400 to-red-400",
+  },
+  monitoring: {
+    name: "Monitoring",
+    icon: Layers,
+    color: "teal",
+    gradient: "from-teal-400 to-cyan-400",
+  },
+  advanced: {
+    name: "Advanced Patterns",
+    icon: BookOpen,
+    color: "violet",
+    gradient: "from-violet-400 to-purple-400",
+  },
+  production: {
+    name: "Production",
+    icon: Code2,
+    color: "rose",
+    gradient: "from-rose-400 to-pink-400",
+  },
 };
 
 export default function SpringBootPage() {
@@ -110,7 +438,8 @@ export default function SpringBootPage() {
                 Spring Boot Mastery
               </h1>
               <p className="text-gray-400 mt-1">
-                Comprehensive tutorials from foundational through advanced concepts
+                Comprehensive tutorials from foundational through advanced
+                concepts
               </p>
             </div>
           </div>
@@ -139,69 +468,79 @@ export default function SpringBootPage() {
 
       {/* Content */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        {Object.entries(groupedTutorials).map(([category, categoryTutorials]) => {
-          const info = categoryInfo[category as keyof typeof categoryInfo];
-          const Icon = info.icon;
-          
-          return (
-            <section key={category} className="mb-16">
-              <div className="mb-8 flex items-center gap-4">
-                <div className={`p-2 rounded-lg bg-${info.color}-500/10 border border-${info.color}-500/30`}>
-                  <Icon className={`h-6 w-6 text-${info.color}-400`} />
-                </div>
-                <div className="flex-1">
-                  <h2 className="text-3xl font-bold text-white">
-                    {info.name}
-                  </h2>
-                  <p className="mt-2 text-gray-400">
-                    {categoryTutorials.length} tutorials
-                  </p>
-                </div>
-              </div>
-              
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {categoryTutorials.map((tutorial) => (
-                  <Link
-                    key={tutorial.id}
-                    href={`/spring-boot/${tutorial.slug}`}
-                    className="group relative overflow-hidden rounded-xl border border-gray-800 bg-gray-900/50 p-6 transition-all duration-300 hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10"
+        {Object.entries(groupedTutorials).map(
+          ([category, categoryTutorials]) => {
+            const info = categoryInfo[category as keyof typeof categoryInfo];
+            const Icon = info.icon;
+
+            return (
+              <section key={category} className="mb-16">
+                <div className="mb-8 flex items-center gap-4">
+                  <div
+                    className={`p-2 rounded-lg bg-${info.color}-500/10 border border-${info.color}-500/30`}
                   >
-                    <div className="mb-4 flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="mb-2 flex items-center gap-2">
-                          <span className={`text-xs font-bold px-2 py-1 rounded-md bg-gradient-to-r ${info.gradient} text-gray-900`}>
-                            {tutorial.id}
-                          </span>
-                          <span className={`text-xs px-2 py-1 rounded-md ${
-                            tutorial.difficulty === 'beginner' ? 'bg-green-500/20 text-green-400' :
-                            tutorial.difficulty === 'intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
-                            'bg-red-500/20 text-red-400'
-                          }`}>
-                            {tutorial.difficulty}
-                          </span>
-                        </div>
-                        <h3 className="text-lg font-bold text-white group-hover:text-green-400 transition-colors">
-                          {tutorial.title}
-                        </h3>
-                      </div>
-                    </div>
-                    
-                    <p className="text-sm text-gray-400 mb-4">
-                      {tutorial.description}
+                    <Icon className={`h-6 w-6 text-${info.color}-400`} />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-3xl font-bold text-white">
+                      {info.name}
+                    </h2>
+                    <p className="mt-2 text-gray-400">
+                      {categoryTutorials.length} tutorials
                     </p>
-                    
-                    <div className="flex items-center justify-between text-xs text-gray-500">
-                      <span>~{tutorial.lines} lines</span>
-                      <span className="group-hover:text-green-400 transition-colors">
-                        Read →
-                      </span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          );
-        })}
+                  </div>
+                </div>
+
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {categoryTutorials.map((tutorial) => (
+                    <Link
+                      key={tutorial.id}
+                      href={`/spring-boot/${tutorial.slug}`}
+                      className="group relative overflow-hidden rounded-xl border border-gray-800 bg-gray-900/50 p-6 transition-all duration-300 hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10"
+                    >
+                      <div className="mb-4 flex items-start justify-between">
+                        <div className="flex-1">
+                          <div className="mb-2 flex items-center gap-2">
+                            <span
+                              className={`text-xs font-bold px-2 py-1 rounded-md bg-gradient-to-r ${info.gradient} text-gray-900`}
+                            >
+                              {tutorial.id}
+                            </span>
+                            <span
+                              className={`text-xs px-2 py-1 rounded-md ${
+                                tutorial.difficulty === "beginner"
+                                  ? "bg-green-500/20 text-green-400"
+                                  : tutorial.difficulty === "intermediate"
+                                  ? "bg-yellow-500/20 text-yellow-400"
+                                  : "bg-red-500/20 text-red-400"
+                              }`}
+                            >
+                              {tutorial.difficulty}
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-white group-hover:text-green-400 transition-colors">
+                            {tutorial.title}
+                          </h3>
+                        </div>
+                      </div>
+
+                      <p className="text-sm text-gray-400 mb-4">
+                        {tutorial.description}
+                      </p>
+
+                      <div className="flex items-center justify-between text-xs text-gray-500">
+                        <span>~{tutorial.lines} lines</span>
+                        <span className="group-hover:text-green-400 transition-colors">
+                          Read →
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            );
+          }
+        )}
       </div>
     </div>
   );

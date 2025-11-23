@@ -38,16 +38,16 @@ Auto-configuration classes use `@Conditional` annotations to determine when they
 
 ### Common @Conditional Annotations
 
-| Annotation | Description |
-|-----------|-------------|
-| `@ConditionalOnClass` | Configuration only loaded if specified class is present |
-| `@ConditionalOnMissingClass` | Configuration loaded if specified class is NOT present |
-| `@ConditionalOnBean` | Configuration loaded if specified bean exists |
-| `@ConditionalOnMissingBean` | Configuration loaded if specified bean does NOT exist |
-| `@ConditionalOnProperty` | Configuration loaded based on Spring property |
-| `@ConditionalOnResource` | Configuration loaded if specified resource exists |
-| `@ConditionalOnWebApplication` | Configuration loaded if it's a web application |
-| `@ConditionalOnNotWebApplication` | Configuration loaded if it's NOT a web application |
+| Annotation                        | Description                                             |
+| --------------------------------- | ------------------------------------------------------- |
+| `@ConditionalOnClass`             | Configuration only loaded if specified class is present |
+| `@ConditionalOnMissingClass`      | Configuration loaded if specified class is NOT present  |
+| `@ConditionalOnBean`              | Configuration loaded if specified bean exists           |
+| `@ConditionalOnMissingBean`       | Configuration loaded if specified bean does NOT exist   |
+| `@ConditionalOnProperty`          | Configuration loaded based on Spring property           |
+| `@ConditionalOnResource`          | Configuration loaded if specified resource exists       |
+| `@ConditionalOnWebApplication`    | Configuration loaded if it's a web application          |
+| `@ConditionalOnNotWebApplication` | Configuration loaded if it's NOT a web application      |
 
 ### Example: Custom Auto-Configuration
 
@@ -60,13 +60,13 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(MyService.class)
 @ConditionalOnProperty(name = "myapp.service.enabled", havingValue = "true", matchIfMissing = true)
 public class MyServiceAutoConfiguration {
-    
+
     @Bean
     @ConditionalOnMissingBean
     public MyService myService() {
         return new MyServiceImpl();
     }
-    
+
     @Bean
     @ConditionalOnBean(DataSource.class)
     public MyDataService myDataService(DataSource dataSource) {
@@ -80,21 +80,25 @@ public class MyServiceAutoConfiguration {
 You can view which auto-configurations were applied by enabling debug logging:
 
 ### Method 1: application.properties
+
 ```properties
 debug=true
 ```
 
 ### Method 2: Command Line
+
 ```bash
 java -jar myapp.jar --debug
 ```
 
 ### Method 3: IDE
+
 ```bash
 mvn spring-boot:run -Ddebug
 ```
 
 The report shows:
+
 - **Positive matches**: Auto-configurations that were applied
 - **Negative matches**: Auto-configurations that were not applied (and why)
 - **Exclusions**: Auto-configurations explicitly excluded
@@ -117,7 +121,7 @@ import org.springframework.context.annotation.Bean;
 @ConditionalOnClass(MyLibraryClass.class)
 @EnableConfigurationProperties(MyLibraryProperties.class)
 public class MyLibraryAutoConfiguration {
-    
+
     @Bean
     @ConditionalOnMissingBean
     public MyLibraryService myLibraryService(MyLibraryProperties properties) {
@@ -135,32 +139,32 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "mylibrary")
 public class MyLibraryProperties {
-    
+
     private String apiKey;
     private boolean enabled = true;
     private int timeout = 5000;
-    
+
     // Getters and setters
     public String getApiKey() {
         return apiKey;
     }
-    
+
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
     }
-    
+
     public boolean isEnabled() {
         return enabled;
     }
-    
+
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-    
+
     public int getTimeout() {
         return timeout;
     }
-    
+
     public void setTimeout(int timeout) {
         this.timeout = timeout;
     }
@@ -176,6 +180,7 @@ com.example.autoconfigure.MyLibraryAutoConfiguration
 ```
 
 > **Note**: For Spring Boot 2.x, use `META-INF/spring.factories` instead:
+>
 > ```properties
 > org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 > com.example.autoconfigure.MyLibraryAutoConfiguration
@@ -219,6 +224,7 @@ public class MyConfiguration {
 ## Common Auto-Configurations
 
 ### Web Auto-Configuration
+
 ```java
 // Automatically configured when spring-boot-starter-web is present
 - DispatcherServlet
@@ -228,6 +234,7 @@ public class MyConfiguration {
 ```
 
 ### Data Auto-Configuration
+
 ```java
 // Automatically configured when spring-boot-starter-data-jpa is present
 - DataSource
@@ -237,6 +244,7 @@ public class MyConfiguration {
 ```
 
 ### Security Auto-Configuration
+
 ```java
 // Automatically configured when spring-boot-starter-security is present
 - Default security configuration
@@ -260,11 +268,11 @@ public class MyAutoConfiguration {
 
 ### Ordering Annotations
 
-| Annotation | Purpose |
-|-----------|---------|
-| `@AutoConfigureBefore` | Run this configuration before specified classes |
-| `@AutoConfigureAfter` | Run this configuration after specified classes |
-| `@AutoConfigureOrder` | Specify numeric order (lower values = higher priority) |
+| Annotation             | Purpose                                                |
+| ---------------------- | ------------------------------------------------------ |
+| `@AutoConfigureBefore` | Run this configuration before specified classes        |
+| `@AutoConfigureAfter`  | Run this configuration after specified classes         |
+| `@AutoConfigureOrder`  | Specify numeric order (lower values = higher priority) |
 
 ## Best Practices
 
@@ -332,18 +340,18 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.junit.jupiter.api.Test;
 
 class MyAutoConfigurationTest {
-    
-    private final ApplicationContextRunner contextRunner = 
+
+    private final ApplicationContextRunner contextRunner =
         new ApplicationContextRunner()
             .withConfiguration(AutoConfigurations.of(MyAutoConfiguration.class));
-    
+
     @Test
     void testAutoConfiguration() {
         contextRunner.run(context -> {
             assertThat(context).hasSingleBean(MyService.class);
         });
     }
-    
+
     @Test
     void testWhenDisabled() {
         contextRunner
@@ -360,6 +368,7 @@ class MyAutoConfigurationTest {
 ### Issue: Configuration Not Applied
 
 **Solution**: Check conditions with debug mode:
+
 ```properties
 debug=true
 logging.level.org.springframework.boot.autoconfigure=DEBUG
@@ -368,6 +377,7 @@ logging.level.org.springframework.boot.autoconfigure=DEBUG
 ### Issue: Wrong Bean Selected
 
 **Solution**: Use `@Primary` or `@Qualifier`:
+
 ```java
 @Bean
 @Primary
@@ -379,6 +389,7 @@ public MyService primaryMyService() {
 ### Issue: Circular Dependencies
 
 **Solution**: Use `@Lazy` or refactor configuration:
+
 ```java
 @Bean
 @Lazy
