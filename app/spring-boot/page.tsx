@@ -1,4 +1,4 @@
-import { ArrowLeft, BookOpen, Code2, Layers } from "lucide-react";
+import { ArrowLeft, BookOpen, Code2, Layers, Zap, Database, TestTube, Activity, Sparkles, Rocket } from "lucide-react";
 import Link from "next/link";
 
 // Tutorial data structure
@@ -374,31 +374,31 @@ const categoryInfo = {
   },
   data: {
     name: "Data & Persistence",
-    icon: BookOpen,
+    icon: Database,
     color: "blue",
     gradient: "from-blue-400 to-indigo-400",
   },
   testing: {
     name: "Testing & Quality",
-    icon: Code2,
+    icon: TestTube,
     color: "orange",
     gradient: "from-orange-400 to-red-400",
   },
   monitoring: {
     name: "Monitoring",
-    icon: Layers,
+    icon: Activity,
     color: "teal",
     gradient: "from-teal-400 to-cyan-400",
   },
   advanced: {
     name: "Advanced Patterns",
-    icon: BookOpen,
+    icon: Zap,
     color: "violet",
     gradient: "from-violet-400 to-purple-400",
   },
   production: {
     name: "Production",
-    icon: Code2,
+    icon: Rocket,
     color: "rose",
     gradient: "from-rose-400 to-pink-400",
   },
@@ -492,50 +492,77 @@ export default function SpringBootPage() {
                 </div>
 
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {categoryTutorials.map((tutorial) => (
-                    <Link
-                      key={tutorial.id}
-                      href={`/spring-boot/${tutorial.slug}`}
-                      className="group relative overflow-hidden rounded-xl border border-gray-800 bg-gray-900/50 p-6 transition-all duration-300 hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10"
-                    >
-                      <div className="mb-4 flex items-start justify-between">
-                        <div className="flex-1">
-                          <div className="mb-2 flex items-center gap-2">
-                            <span
-                              className={`text-xs font-bold px-2 py-1 rounded-md bg-gradient-to-r ${info.gradient} text-gray-900`}
-                            >
-                              {tutorial.id}
-                            </span>
-                            <span
-                              className={`text-xs px-2 py-1 rounded-md ${
-                                tutorial.difficulty === "beginner"
-                                  ? "bg-green-500/20 text-green-400"
-                                  : tutorial.difficulty === "intermediate"
-                                  ? "bg-yellow-500/20 text-yellow-400"
-                                  : "bg-red-500/20 text-red-400"
-                              }`}
-                            >
-                              {tutorial.difficulty}
+                  {categoryTutorials.map((tutorial) => {
+                    const difficultyEmoji = 
+                      tutorial.difficulty === "beginner" ? "🌱" :
+                      tutorial.difficulty === "intermediate" ? "⚡" : "🔥";
+                    
+                    const difficultyColor =
+                      tutorial.difficulty === "beginner"
+                        ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30"
+                        : tutorial.difficulty === "intermediate"
+                        ? "text-yellow-400 bg-yellow-500/10 border-yellow-500/30"
+                        : "text-red-400 bg-red-500/10 border-red-500/30";
+                    
+                    const gradientOverlay = 
+                      tutorial.difficulty === "beginner" ? "from-emerald-500/20 to-emerald-500/5" :
+                      tutorial.difficulty === "intermediate" ? "from-yellow-500/20 to-yellow-500/5" :
+                      "from-red-500/20 to-red-500/5";
+
+                    return (
+                      <Link
+                        key={tutorial.id}
+                        href={`/spring-boot/${tutorial.slug}`}
+                        className="group relative flex flex-col gap-4 rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-900/40 p-6 transition-all duration-300 hover:border-green-500/50 hover:shadow-xl hover:shadow-green-500/10 backdrop-blur-sm hover:scale-[1.02]"
+                      >
+                        {/* Gradient overlay on hover */}
+                        <div
+                          className={`absolute inset-0 rounded-xl bg-gradient-to-br ${gradientOverlay} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+                        />
+
+                        <div className="relative z-10 flex flex-col gap-4">
+                          {/* Header with badges */}
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="flex-1">
+                              <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2 group-hover:text-green-400 transition-colors">
+                                {tutorial.title}
+                              </h3>
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span
+                                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium border ${difficultyColor}`}
+                                >
+                                  <span>{difficultyEmoji}</span>
+                                  <span className="capitalize">{tutorial.difficulty}</span>
+                                </span>
+                                <span className="inline-flex items-center gap-1.5 rounded-md bg-gray-800/50 px-2 py-1 text-xs text-gray-400 border border-gray-700/50">
+                                  #{tutorial.id}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex-shrink-0 rounded-full bg-green-500/10 p-2.5 transition-all duration-300 group-hover:bg-green-500/20 group-hover:scale-110 group-hover:rotate-12">
+                              <BookOpen className="h-4 w-4 text-green-400 transition-transform duration-300" />
+                            </div>
+                          </div>
+
+                          {/* Description */}
+                          <p className="text-sm text-gray-400 line-clamp-2 leading-relaxed">
+                            {tutorial.description}
+                          </p>
+
+                          {/* Meta information */}
+                          <div className="flex items-center justify-between pt-2 border-t border-gray-800/50">
+                            <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                              <Code2 className="h-3.5 w-3.5 text-green-400" />
+                              <span>~{tutorial.lines} lines</span>
+                            </div>
+                            <span className="text-xs text-gray-500 group-hover:text-green-400 transition-colors font-medium">
+                              Read tutorial →
                             </span>
                           </div>
-                          <h3 className="text-lg font-bold text-white group-hover:text-green-400 transition-colors">
-                            {tutorial.title}
-                          </h3>
                         </div>
-                      </div>
-
-                      <p className="text-sm text-gray-400 mb-4">
-                        {tutorial.description}
-                      </p>
-
-                      <div className="flex items-center justify-between text-xs text-gray-500">
-                        <span>~{tutorial.lines} lines</span>
-                        <span className="group-hover:text-green-400 transition-colors">
-                          Read →
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
+                      </Link>
+                    );
+                  })}
                 </div>
               </section>
             );

@@ -357,27 +357,40 @@ export default async function SpringBootTutorialPage({
                 if (inline) {
                   return (
                     <code
-                      className="bg-gray-800 text-green-400 px-1.5 py-0.5 rounded text-sm font-mono"
+                      className="bg-gray-800 text-green-400 px-1.5 py-0.5 rounded text-sm font-mono border border-gray-700/50"
                       {...props}
                     >
                       {children}
                     </code>
                   );
                 }
+                // Extract language from className (format: language-xyz)
+                const language = className?.replace(/language-/, '') || 'code';
+                
                 return (
                   <code
-                    className={`${className} block bg-gray-800/50 border border-gray-700 rounded-lg p-4 overflow-x-auto text-sm font-mono`}
+                    className={`${className} block text-sm font-mono text-gray-300`}
                     {...props}
                   >
                     {children}
                   </code>
                 );
               },
-              pre: ({ node, ...props }) => (
-                <pre
-                  className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 overflow-x-auto mb-4"
-                  {...props}
-                />
+              pre: ({ node, children, ...props }) => (
+                <div className="my-6 rounded-xl border border-gray-800 overflow-hidden bg-gray-950 shadow-2xl">
+                  {/* macOS-style window header */}
+                  <div className="px-4 py-3 bg-gray-900 border-b border-gray-800 flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 transition-colors" />
+                      <div className="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors" />
+                      <div className="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors" />
+                    </div>
+                    <span className="text-xs text-gray-500 ml-2 font-mono">code</span>
+                  </div>
+                  <pre className="p-4 overflow-x-auto bg-gray-950" {...props}>
+                    {children}
+                  </pre>
+                </div>
               ),
               blockquote: ({ node, ...props }) => (
                 <blockquote
