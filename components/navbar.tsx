@@ -143,7 +143,7 @@ export default function Navbar({
             transition={{ duration: 0.7, delay: 0.3 }}
             className="hidden md:flex items-center space-x-2"
           >
-            {/* Explore Dropdown with Curtain Effect */}
+            {/* Discover Bytes Drawer */}
             <div
               className="relative"
               onMouseEnter={() => setIsDropdownOpen(true)}
@@ -154,7 +154,7 @@ export default function Navbar({
                 whileTap={{ scale: 0.95 }}
                 className="nav-link group px-5 lg:px-6 py-3 rounded-xl text-sm lg:text-base font-semibold bg-gradient-to-r from-cyan-500/10 to-purple-600/10 hover:from-cyan-500/20 hover:to-purple-600/20 border border-cyan-500/30 text-cyan-400 hover:text-cyan-300 transition-all duration-300 flex items-center gap-2"
               >
-                <span className="relative">Explore</span>
+                <span className="relative">Discover Bytes</span>
                 <motion.div
                   animate={{ rotate: isDropdownOpen ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
@@ -163,167 +163,138 @@ export default function Navbar({
                 </motion.div>
               </motion.button>
 
-              {/* Curtain Dropdown */}
+              {/* Slide-in Drawer from Top */}
               <AnimatePresence>
                 {isDropdownOpen && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="absolute left-0 mt-2 w-96 rounded-2xl shadow-2xl bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border border-cyan-500/30 overflow-hidden backdrop-blur-xl"
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="fixed left-0 right-0 top-20 mx-auto max-w-5xl px-4"
                     style={{ transformOrigin: "top" }}
                   >
-                    {/* Interview Prep Section */}
-                    <div className="p-4 border-b border-gray-700/50">
-                      <div className="flex items-center gap-2 mb-3 px-2">
-                        <BookOpen className="w-5 h-5 text-cyan-400" />
-                        <h3 className="text-sm font-bold text-cyan-400 uppercase tracking-wide">
-                          Interview Prep
-                        </h3>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        {topicsList.map((topic, index) => (
-                          <motion.button
-                            key={topic}
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.03 }}
-                            whileHover={{
-                              scale: 1.05,
-                              backgroundColor: "rgba(6, 182, 212, 0.15)",
-                            }}
-                            onClick={() => handleTopicClick(topic)}
-                            className="text-left px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-cyan-400 transition-all duration-200 rounded-lg border border-transparent hover:border-cyan-400/30 flex items-center gap-2 group"
-                          >
-                            <span className="text-xl group-hover:scale-110 transition-transform">
-                              {interviewResources[topic].icon}
-                            </span>
-                            <span className="flex-1 truncate">{topic}</span>
-                          </motion.button>
-                        ))}
-                      </div>
-                    </div>
+                    <div className="rounded-2xl shadow-2xl bg-gradient-to-br from-gray-900/98 via-gray-800/98 to-gray-900/98 border border-cyan-500/30 overflow-hidden backdrop-blur-xl">
+                      <div className="grid grid-cols-2 gap-6 p-6">
+                        {/* Left Section - Learning Bytes */}
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-3 mb-4">
+                            <BookOpen className="w-6 h-6 text-cyan-400" />
+                            <h2 className="text-lg font-bold text-cyan-400 uppercase tracking-wide">
+                              Learning Bytes
+                            </h2>
+                          </div>
 
-                    {/* System Design Section */}
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                      className="p-4 border-b border-gray-700/50"
-                    >
-                      <div className="flex items-center gap-2 mb-3 px-2">
-                        <Layers className="w-5 h-5 text-emerald-400" />
-                        <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wide">
-                          System Design
-                        </h3>
-                      </div>
-                      <Link
-                        href="/system-design"
-                        onClick={() => setIsDropdownOpen(false)}
-                        className="block px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-emerald-400 transition-all duration-200 rounded-lg border border-transparent hover:border-emerald-400/30 hover:bg-emerald-500/10"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span>Master HLD & LLD Concepts</span>
-                          <motion.svg
-                            whileHover={{ x: 5 }}
-                            className="w-4 h-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </motion.svg>
+                          {/* Interview Prep Topics */}
+                          <div className="space-y-2">
+                            <p className="text-xs text-gray-400 uppercase tracking-wider px-2 mb-3">
+                              Interview Preparation
+                            </p>
+                            <div className="grid grid-cols-2 gap-2">
+                              {topicsList.map((topic, index) => (
+                                <motion.button
+                                  key={topic}
+                                  initial={{ opacity: 0, x: -10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: index * 0.05 }}
+                                  whileHover={{
+                                    scale: 1.05,
+                                    backgroundColor: "rgba(6, 182, 212, 0.15)",
+                                  }}
+                                  onClick={() => handleTopicClick(topic)}
+                                  className="text-left px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-cyan-400 transition-all duration-200 rounded-lg border border-transparent hover:border-cyan-400/30 flex items-center gap-2 group"
+                                >
+                                  <span className="text-xl group-hover:scale-110 transition-transform">
+                                    {interviewResources[topic].icon}
+                                  </span>
+                                  <span className="flex-1 truncate">
+                                    {topic}
+                                  </span>
+                                </motion.button>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                      </Link>
-                    </motion.div>
 
-                    {/* React Tutorials Section */}
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.25 }}
-                      className="p-4 border-b border-gray-700/50"
-                    >
-                      <div className="flex items-center gap-2 mb-3 px-2">
-                        <Code2 className="w-5 h-5 text-purple-400" />
-                        <h3 className="text-sm font-bold text-purple-400 uppercase tracking-wide">
-                          React Tutorials
-                        </h3>
-                      </div>
-                      <Link
-                        href="/react-tutorials"
-                        onClick={() => setIsDropdownOpen(false)}
-                        className="block px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-purple-400 transition-all duration-200 rounded-lg border border-transparent hover:border-purple-400/30 hover:bg-purple-500/10"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span>Build React Components</span>
-                          <motion.svg
-                            whileHover={{ x: 5 }}
-                            className="w-4 h-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
+                        {/* Right Section - Hands-On Tutorials */}
+                        <div className="space-y-4 border-l border-gray-700/50 pl-6">
+                          <div className="flex items-center gap-3 mb-4">
+                            <Code2 className="w-6 h-6 text-purple-400" />
+                            <h2 className="text-lg font-bold text-purple-400 uppercase tracking-wide">
+                              Hands-On
+                            </h2>
+                          </div>
+
+                          {/* System Design */}
+                          <motion.div
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 }}
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </motion.svg>
-                        </div>
-                      </Link>
-                    </motion.div>
+                            <Link
+                              href="/system-design"
+                              onClick={() => setIsDropdownOpen(false)}
+                              className="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-emerald-400 transition-all duration-200 rounded-lg border border-transparent hover:border-emerald-400/30 hover:bg-emerald-500/10 group"
+                            >
+                              <div className="flex items-center gap-3 mb-1">
+                                <Layers className="w-5 h-5 text-emerald-400" />
+                                <span className="font-semibold">
+                                  System Design
+                                </span>
+                              </div>
+                              <p className="text-xs text-gray-400 ml-8">
+                                Master HLD & LLD Concepts
+                              </p>
+                            </Link>
+                          </motion.div>
 
-                    {/* Spring Boot Section */}
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
-                      className="p-4"
-                    >
-                      <div className="flex items-center gap-2 mb-3 px-2">
-                        <BookOpen className="w-5 h-5 text-green-400" />
-                        <h3 className="text-sm font-bold text-green-400 uppercase tracking-wide">
-                          Spring Boot
-                        </h3>
-                      </div>
-                      <Link
-                        href="/spring-boot"
-                        onClick={() => setIsDropdownOpen(false)}
-                        className="block px-3 py-2.5 text-sm font-medium text-gray-300 hover:text-green-400 transition-all duration-200 rounded-lg border border-transparent hover:border-green-400/30 hover:bg-green-500/10"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span>Master Spring Boot</span>
-                          <motion.svg
-                            whileHover={{ x: 5 }}
-                            className="w-4 h-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
+                          {/* React Tutorials */}
+                          <motion.div
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.15 }}
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
-                          </motion.svg>
-                        </div>
-                      </Link>
-                    </motion.div>
+                            <Link
+                              href="/react-tutorials"
+                              onClick={() => setIsDropdownOpen(false)}
+                              className="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-purple-400 transition-all duration-200 rounded-lg border border-transparent hover:border-purple-400/30 hover:bg-purple-500/10 group"
+                            >
+                              <div className="flex items-center gap-3 mb-1">
+                                <Code2 className="w-5 h-5 text-purple-400" />
+                                <span className="font-semibold">
+                                  React Tutorials
+                                </span>
+                              </div>
+                              <p className="text-xs text-gray-400 ml-8">
+                                Build React Components
+                              </p>
+                            </Link>
+                          </motion.div>
 
-                    {/* Footer */}
-                    <div className="bg-gradient-to-r from-cyan-500/10 to-purple-600/10 p-3 border-t border-cyan-500/20">
-                      <p className="text-xs text-gray-400 text-center">
-                        ✨ Choose your learning path
-                      </p>
+                          {/* Spring Boot */}
+                          <motion.div
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                          >
+                            <Link
+                              href="/spring-boot"
+                              onClick={() => setIsDropdownOpen(false)}
+                              className="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-green-400 transition-all duration-200 rounded-lg border border-transparent hover:border-green-400/30 hover:bg-green-500/10 group"
+                            >
+                              <div className="flex items-center gap-3 mb-1">
+                                <BookOpen className="w-5 h-5 text-green-400" />
+                                <span className="font-semibold">
+                                  Spring Boot
+                                </span>
+                              </div>
+                              <p className="text-xs text-gray-400 ml-8">
+                                Master Spring Boot
+                              </p>
+                            </Link>
+                          </motion.div>
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 )}
