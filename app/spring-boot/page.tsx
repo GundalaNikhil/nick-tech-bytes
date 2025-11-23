@@ -1,4 +1,17 @@
-import { ArrowLeft, BookOpen, Code2, Layers, Zap, Database, TestTube, Activity, Sparkles, Rocket } from "lucide-react";
+import {
+  ArrowLeft,
+  BookOpen,
+  Code2,
+  Layers,
+  Zap,
+  Database,
+  TestTube,
+  Activity,
+  Sparkles,
+  Rocket,
+  Clock,
+  Star,
+} from "lucide-react";
 import Link from "next/link";
 
 // Tutorial data structure
@@ -18,6 +31,8 @@ interface Tutorial {
   difficulty: "beginner" | "intermediate" | "advanced";
   lines: number;
   slug: string;
+  estimatedTime: string;
+  rating: number;
 }
 
 const tutorials: Tutorial[] = [
@@ -30,6 +45,8 @@ const tutorials: Tutorial[] = [
     difficulty: "beginner",
     lines: 850,
     slug: "01_what_is_spring_boot",
+    estimatedTime: "15 min",
+    rating: 4.8,
   },
   {
     id: "02",
@@ -39,6 +56,8 @@ const tutorials: Tutorial[] = [
     difficulty: "beginner",
     lines: 920,
     slug: "02_key_features",
+    estimatedTime: "18 min",
+    rating: 4.7,
   },
   {
     id: "03",
@@ -48,6 +67,8 @@ const tutorials: Tutorial[] = [
     difficulty: "beginner",
     lines: 880,
     slug: "03_springbootapplication_annotation",
+    estimatedTime: "17 min",
+    rating: 4.6,
   },
   {
     id: "04",
@@ -57,6 +78,8 @@ const tutorials: Tutorial[] = [
     difficulty: "beginner",
     lines: 750,
     slug: "04_advantages",
+    estimatedTime: "14 min",
+    rating: 4.5,
   },
   {
     id: "05",
@@ -66,6 +89,8 @@ const tutorials: Tutorial[] = [
     difficulty: "beginner",
     lines: 920,
     slug: "05_key_components",
+    estimatedTime: "18 min",
+    rating: 4.7,
   },
   {
     id: "06",
@@ -75,6 +100,8 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 850,
     slug: "06_boot_vs_spring",
+    estimatedTime: "16 min",
+    rating: 4.6,
   },
   {
     id: "07",
@@ -84,82 +111,100 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 1100,
     slug: "07_boot_vs_spring_deep_dive",
+    estimatedTime: "22 min",
+    rating: 4.8,
   },
 
   // Configuration & Setup
   {
     id: "11",
     title: "Configuration Management",
-    description: "Environment-specific configs",
+    description: "Externalized configuration",
     category: "configuration",
     difficulty: "intermediate",
-    lines: 1050,
+    lines: 950,
     slug: "11_configuration_management",
+    estimatedTime: "19 min",
+    rating: 4.7,
   },
   {
     id: "12",
     title: "Auto-Configuration",
-    description: "@EnableAutoConfiguration, @Conditional",
+    description: "@EnableAutoConfiguration, conditional",
     category: "configuration",
     difficulty: "intermediate",
-    lines: 1050,
+    lines: 950,
     slug: "12_auto_configuration",
+    estimatedTime: "19 min",
+    rating: 4.8,
   },
   {
     id: "13",
     title: "Spring Initializer",
-    description: "Project generation, starter selection",
+    description: "Starting new projects quickly",
     category: "configuration",
     difficulty: "beginner",
-    lines: 850,
+    lines: 900,
     slug: "13_spring_initializer",
+    estimatedTime: "17 min",
+    rating: 4.5,
   },
   {
     id: "14",
     title: "Starters Deep Dive",
-    description: "How starters work, creating custom",
+    description: "Starter dependencies explained",
     category: "configuration",
     difficulty: "advanced",
     lines: 1200,
     slug: "14_spring_boot_starters",
+    estimatedTime: "24 min",
+    rating: 4.9,
   },
   {
     id: "18",
     title: "Spring Boot CLI",
-    description: "Command-line tool, Groovy scripts",
+    description: "Command-line rapid development",
     category: "configuration",
     difficulty: "intermediate",
     lines: 950,
     slug: "18_spring_boot_cli",
+    estimatedTime: "19 min",
+    rating: 4.4,
   },
   {
     id: "28",
     title: "Profiles Advanced",
-    description: "Multi-environment, feature flags",
+    description: "Environment-specific configs",
     category: "configuration",
     difficulty: "advanced",
-    lines: 1100,
+    lines: 1050,
     slug: "28_profiles_advanced",
+    estimatedTime: "20 min",
+    rating: 4.7,
   },
   {
     id: "29",
     title: "YAML Configuration",
-    description: "YAML vs Properties, hierarchical",
+    description: "YAML vs properties deep dive",
     category: "configuration",
     difficulty: "intermediate",
-    lines: 750,
+    lines: 850,
     slug: "29_yaml_configuration",
+    estimatedTime: "16 min",
+    rating: 4.5,
   },
 
   // Web Development
   {
     id: "15",
     title: "Embedded Servers",
-    description: "Tomcat/Jetty/Undertow config",
+    description: "Tomcat, Jetty, Undertow",
     category: "web",
     difficulty: "intermediate",
-    lines: 1000,
+    lines: 950,
     slug: "15_embedded_servers",
+    estimatedTime: "19 min",
+    rating: 4.6,
   },
   {
     id: "23",
@@ -169,33 +214,41 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 1050,
     slug: "23_rest_controller",
+    estimatedTime: "20 min",
+    rating: 4.8,
   },
   {
     id: "24",
     title: "Spring Data",
-    description: "JPA, repositories, database",
+    description: "Repositories, CRUD operations",
     category: "web",
     difficulty: "intermediate",
-    lines: 920,
+    lines: 950,
     slug: "24_spring_data_overview",
+    estimatedTime: "19 min",
+    rating: 4.7,
   },
   {
     id: "25",
     title: "Spring Data REST",
-    description: "Auto-generating REST endpoints",
+    description: "Auto-generate REST endpoints",
     category: "web",
     difficulty: "intermediate",
-    lines: 850,
+    lines: 900,
     slug: "25_spring_data_rest",
+    estimatedTime: "17 min",
+    rating: 4.6,
   },
   {
     id: "30",
     title: "Security",
-    description: "Authentication & authorization",
+    description: "Authentication, authorization",
     category: "web",
     difficulty: "advanced",
-    lines: 1150,
+    lines: 1200,
     slug: "30_security_implementation",
+    estimatedTime: "24 min",
+    rating: 4.9,
   },
 
   // Data & Persistence
@@ -207,6 +260,8 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 950,
     slug: "19_dependency_management",
+    estimatedTime: "19 min",
+    rating: 4.5,
   },
   {
     id: "21",
@@ -216,6 +271,8 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 1100,
     slug: "21_ioc_container",
+    estimatedTime: "22 min",
+    rating: 4.8,
   },
   {
     id: "31",
@@ -225,6 +282,8 @@ const tutorials: Tutorial[] = [
     difficulty: "advanced",
     lines: 1100,
     slug: "31_transaction_management",
+    estimatedTime: "22 min",
+    rating: 4.8,
   },
   {
     id: "32",
@@ -234,6 +293,8 @@ const tutorials: Tutorial[] = [
     difficulty: "advanced",
     lines: 950,
     slug: "32_batch_processing",
+    estimatedTime: "19 min",
+    rating: 4.7,
   },
 
   // Testing & Quality
@@ -245,6 +306,8 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 950,
     slug: "08_exception_handling",
+    estimatedTime: "19 min",
+    rating: 4.6,
   },
   {
     id: "09",
@@ -254,6 +317,8 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 1100,
     slug: "09_testing",
+    estimatedTime: "22 min",
+    rating: 4.8,
   },
   {
     id: "10",
@@ -263,6 +328,8 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 850,
     slug: "10_logging_best_practices",
+    estimatedTime: "16 min",
+    rating: 4.5,
   },
   {
     id: "26",
@@ -272,6 +339,8 @@ const tutorials: Tutorial[] = [
     difficulty: "advanced",
     lines: 1200,
     slug: "26_advanced_integration_testing",
+    estimatedTime: "24 min",
+    rating: 4.9,
   },
 
   // Monitoring & Operations
@@ -283,6 +352,8 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 1050,
     slug: "16_metrics_monitoring",
+    estimatedTime: "20 min",
+    rating: 4.7,
   },
   {
     id: "17",
@@ -292,6 +363,8 @@ const tutorials: Tutorial[] = [
     difficulty: "advanced",
     lines: 900,
     slug: "17_custom_actuators",
+    estimatedTime: "17 min",
+    rating: 4.6,
   },
   {
     id: "22",
@@ -301,6 +374,8 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 1100,
     slug: "22_component_scan",
+    estimatedTime: "22 min",
+    rating: 4.5,
   },
   {
     id: "27",
@@ -310,6 +385,8 @@ const tutorials: Tutorial[] = [
     difficulty: "beginner",
     lines: 800,
     slug: "27_devtools",
+    estimatedTime: "15 min",
+    rating: 4.4,
   },
 
   // Advanced Patterns
@@ -321,6 +398,8 @@ const tutorials: Tutorial[] = [
     difficulty: "intermediate",
     lines: 880,
     slug: "20_non_web_applications",
+    estimatedTime: "17 min",
+    rating: 4.6,
   },
   {
     id: "33",
@@ -330,6 +409,8 @@ const tutorials: Tutorial[] = [
     difficulty: "advanced",
     lines: 1000,
     slug: "33_event_driven_architecture",
+    estimatedTime: "20 min",
+    rating: 4.8,
   },
 
   // Production
@@ -341,6 +422,8 @@ const tutorials: Tutorial[] = [
     difficulty: "advanced",
     lines: 1100,
     slug: "41_caching",
+    estimatedTime: "22 min",
+    rating: 4.8,
   },
   {
     id: "42",
@@ -350,6 +433,8 @@ const tutorials: Tutorial[] = [
     difficulty: "advanced",
     lines: 950,
     slug: "42_scheduler",
+    estimatedTime: "19 min",
+    rating: 4.7,
   },
 ];
 
@@ -417,7 +502,7 @@ export default function SpringBootPage() {
   const totalLines = tutorials.reduce((sum, t) => sum + t.lines, 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-x-hidden">
       {/* Header - Non-sticky */}
       <div className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -493,21 +578,26 @@ export default function SpringBootPage() {
 
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {categoryTutorials.map((tutorial) => {
-                    const difficultyEmoji = 
-                      tutorial.difficulty === "beginner" ? "🌱" :
-                      tutorial.difficulty === "intermediate" ? "⚡" : "🔥";
-                    
+                    const difficultyEmoji =
+                      tutorial.difficulty === "beginner"
+                        ? "🌱"
+                        : tutorial.difficulty === "intermediate"
+                        ? "⚡"
+                        : "🔥";
+
                     const difficultyColor =
                       tutorial.difficulty === "beginner"
                         ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30"
                         : tutorial.difficulty === "intermediate"
                         ? "text-yellow-400 bg-yellow-500/10 border-yellow-500/30"
                         : "text-red-400 bg-red-500/10 border-red-500/30";
-                    
-                    const gradientOverlay = 
-                      tutorial.difficulty === "beginner" ? "from-emerald-500/20 to-emerald-500/5" :
-                      tutorial.difficulty === "intermediate" ? "from-yellow-500/20 to-yellow-500/5" :
-                      "from-red-500/20 to-red-500/5";
+
+                    const gradientOverlay =
+                      tutorial.difficulty === "beginner"
+                        ? "from-emerald-500/20 to-emerald-500/5"
+                        : tutorial.difficulty === "intermediate"
+                        ? "from-yellow-500/20 to-yellow-500/5"
+                        : "from-red-500/20 to-red-500/5";
 
                     return (
                       <Link
@@ -532,7 +622,9 @@ export default function SpringBootPage() {
                                   className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium border ${difficultyColor}`}
                                 >
                                   <span>{difficultyEmoji}</span>
-                                  <span className="capitalize">{tutorial.difficulty}</span>
+                                  <span className="capitalize">
+                                    {tutorial.difficulty}
+                                  </span>
                                 </span>
                                 <span className="inline-flex items-center gap-1.5 rounded-md bg-gray-800/50 px-2 py-1 text-xs text-gray-400 border border-gray-700/50">
                                   #{tutorial.id}
@@ -550,6 +642,20 @@ export default function SpringBootPage() {
                           </p>
 
                           {/* Meta information */}
+                          <div className="flex items-center gap-4 text-xs text-gray-500">
+                            <div className="flex items-center gap-1.5">
+                              <Clock className="h-3.5 w-3.5 text-green-400" />
+                              <span>{tutorial.estimatedTime}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400" />
+                              <span className="text-gray-400 font-medium">
+                                {tutorial.rating.toFixed(1)}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Footer */}
                           <div className="flex items-center justify-between pt-2 border-t border-gray-800/50">
                             <div className="flex items-center gap-1.5 text-xs text-gray-500">
                               <Code2 className="h-3.5 w-3.5 text-green-400" />

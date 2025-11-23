@@ -5,6 +5,8 @@ import fs from "fs";
 import path from "path";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 // Tutorial metadata
 const tutorialMetadata: Record<
@@ -259,7 +261,7 @@ export default async function SpringBootTutorialPage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-x-hidden">
       {/* Header - Non-sticky */}
       <div className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-xl">
         <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
@@ -365,15 +367,28 @@ export default async function SpringBootTutorialPage({
                   );
                 }
                 // Extract language from className (format: language-xyz)
-                const language = className?.replace(/language-/, '') || 'code';
-                
+                const match = /language-(\w+)/.exec(className || "");
+                const language = match ? match[1] : "text";
+
                 return (
-                  <code
-                    className={`${className} block text-sm font-mono text-gray-300`}
-                    {...props}
+                  <SyntaxHighlighter
+                    language={language}
+                    style={vscDarkPlus}
+                    customStyle={{
+                      margin: 0,
+                      padding: "1rem",
+                      background: "transparent",
+                      fontSize: "0.875rem",
+                    }}
+                    codeTagProps={{
+                      style: {
+                        fontFamily:
+                          "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                      },
+                    }}
                   >
-                    {children}
-                  </code>
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
                 );
               },
               pre: ({ node, children, ...props }) => (
@@ -385,11 +400,11 @@ export default async function SpringBootTutorialPage({
                       <div className="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors" />
                       <div className="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors" />
                     </div>
-                    <span className="text-xs text-gray-500 ml-2 font-mono">code</span>
+                    <span className="text-xs text-gray-500 ml-2 font-mono">
+                      code
+                    </span>
                   </div>
-                  <pre className="p-4 overflow-x-auto bg-gray-950" {...props}>
-                    {children}
-                  </pre>
+                  <div className="bg-gray-950">{children}</div>
                 </div>
               ),
               blockquote: ({ node, ...props }) => (
