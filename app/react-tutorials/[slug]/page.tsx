@@ -1,4 +1,5 @@
 import { reactTutorials } from "@/lib/topics/reactTutorials";
+import { ReactIcon } from "@/components/icons";
 import fs from "fs";
 import {
   ArrowLeft,
@@ -72,152 +73,134 @@ export default async function ReactTutorialPage({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black">
-      {/* Hero Header */}
-      <div className="relative border-b border-gray-800/50 bg-gradient-to-r from-gray-900/95 via-gray-950/95 to-gray-900/95 backdrop-blur-xl">
+      {/* Compact Hero Header */}
+      <div className="relative border-b border-gray-800/50 bg-gradient-to-r from-gray-900/95 via-gray-950/95 to-gray-900/95 backdrop-blur-xl sticky top-20 z-40">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.02]" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl" />
 
-        <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
           <Link
             href="/react-tutorials"
-            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400 mb-6 transition-all duration-300 group"
+            className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-cyan-400 mb-3 transition-all duration-300 group"
           >
-            <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
+            <ArrowLeft className="h-3 w-3 transition-transform duration-300 group-hover:-translate-x-1" />
             Back to React Tutorials
           </Link>
 
-          {/* Tutorial Header */}
-          <div className="flex flex-col gap-6">
-            <div className="flex items-start gap-4 flex-wrap">
-              <div className="relative flex-shrink-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl blur-lg opacity-50" />
-                <div className="relative p-4 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30">
-                  <Code2 className="h-10 w-10 text-cyan-400" />
-                </div>
-              </div>
-
-              <div className="flex-1 min-w-0">
-                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-                  {tutorial.title}
-                </h1>
-                <p className="text-gray-400 text-lg mb-4">
-                  {tutorial.description}
-                </p>
-
-                {/* Meta Information Bar */}
-                <div className="flex flex-wrap items-center gap-4">
-                  <span
-                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium border shadow-lg ${
-                      difficultyColors[tutorial.difficulty]
-                    }`}
-                  >
-                    <span className="text-lg">
-                      {difficultyEmojis[tutorial.difficulty]}
-                    </span>
-                    <span className="capitalize">{tutorial.difficulty}</span>
-                  </span>
-
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-gray-700">
-                    <Clock className="h-4 w-4 text-cyan-400" />
-                    <span className="text-sm text-gray-300">
-                      {tutorial.estimatedTime}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-gray-700">
-                    <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                    <span className="text-sm font-semibold text-gray-300">
-                      {tutorial.rating.toFixed(1)}
-                    </span>
-                  </div>
-                </div>
+          {/* Compact Tutorial Header */}
+          <div className="flex items-start gap-3">
+            <div className="relative shrink-0">
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg blur-md opacity-40" />
+              <div className="relative p-2 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30">
+                <ReactIcon className="h-5 w-5 text-cyan-400" />
               </div>
             </div>
 
-            {/* Tags and Companies */}
-            <div className="flex flex-col gap-4 p-6 rounded-xl bg-gray-800/30 border border-gray-700/50 backdrop-blur-sm">
-              {/* Tags */}
-              <div className="flex flex-wrap items-center gap-2">
-                <Target className="h-4 w-4 text-cyan-400 flex-shrink-0" />
-                <span className="text-sm text-gray-400 font-medium">
-                  Key Topics:
-                </span>
-                {tutorial.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center gap-1.5 rounded-md bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-300 border border-cyan-500/20"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">
+                {tutorial.title}
+              </h1>
+              <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+                {tutorial.description}
+              </p>
 
-              {/* Companies */}
+              {/* Compact Badges and Info */}
               <div className="flex flex-wrap items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-purple-400 flex-shrink-0" />
-                <span className="text-sm text-gray-400 font-medium">
-                  Asked by:
+                <span
+                  className={`inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] font-semibold border ${
+                    difficultyColors[tutorial.difficulty]
+                  }`}
+                >
+                  <span>{difficultyEmojis[tutorial.difficulty]}</span>
+                  <span className="capitalize">{tutorial.difficulty}</span>
                 </span>
-                {tutorial.companies.map((company) => (
+
+                <div className="flex items-center gap-1 px-2 py-1 rounded bg-gray-800/50 border border-gray-700/50 text-gray-300 text-[10px] font-medium">
+                  <Clock className="h-3 w-3 text-cyan-400" />
+                  {tutorial.estimatedTime}
+                </div>
+
+                <div className="flex items-center gap-1 px-2 py-1 rounded bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-[10px] font-medium">
+                  <Star className="h-3 w-3 fill-yellow-400" />
+                  {tutorial.rating}
+                </div>
+
+                {/* Compact Companies */}
+                {tutorial.companies.slice(0, 3).map((company) => (
                   <span
                     key={company}
-                    className="inline-flex items-center rounded-md bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-300 border border-purple-500/20"
+                    className="text-[10px] px-2 py-1 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-medium"
                   >
                     {company}
                   </span>
                 ))}
+                {tutorial.companies.length > 3 && (
+                  <span className="text-[10px] text-gray-500">
+                    +{tutorial.companies.length - 3} more
+                  </span>
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        {/* Tutorial Content */}
-        <div className="prose prose-invert prose-cyan max-w-none">
+      {/* Content */}
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+        {/* Compact Quick Insights */}
+        <div className="grid grid-cols-3 gap-3 mb-8 p-3 rounded-lg bg-gray-900/50 border border-gray-800">
+          <div className="flex items-center gap-2">
+            <Target className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+            <div className="min-w-0">
+              <p className="text-[10px] text-gray-500 uppercase tracking-wide">
+                Goal
+              </p>
+              <p className="text-xs font-semibold text-white truncate">
+                Master React
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <TrendingUp className="h-3.5 w-3.5 text-purple-400 shrink-0" />
+            <div className="min-w-0">
+              <p className="text-[10px] text-gray-500 uppercase tracking-wide">
+                Level
+              </p>
+              <p className="text-xs font-semibold text-white capitalize truncate">
+                {tutorial.difficulty}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <Lightbulb className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+            <div className="min-w-0">
+              <p className="text-[10px] text-gray-500 uppercase tracking-wide">
+                Time
+              </p>
+              <p className="text-xs font-semibold text-white truncate">
+                {tutorial.estimatedTime}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Markdown Content */}
+        <div className="prose prose-invert max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw, rehypeSanitize]}
             components={{
-              h1: ({ children }) => (
-                <h1 className="text-4xl font-bold text-white mb-6 mt-8 flex items-center gap-3">
-                  <BookOpen className="h-8 w-8 text-cyan-400" />
-                  {children}
-                </h1>
-              ),
-              h2: ({ children }) => (
-                <h2 className="text-3xl font-bold text-white mb-4 mt-12 pb-3 border-b border-gray-800 flex items-center gap-3">
-                  <Rocket className="h-7 w-7 text-cyan-400" />
-                  {children}
-                </h2>
-              ),
-              h3: ({ children }) => (
-                <h3 className="text-2xl font-semibold text-white mb-3 mt-8 flex items-center gap-2">
-                  <Zap className="h-6 w-6 text-purple-400" />
-                  {children}
-                </h3>
-              ),
-              h4: ({ children }) => (
-                <h4 className="text-xl font-semibold text-gray-200 mb-2 mt-6 flex items-center gap-2">
-                  <Lightbulb className="h-5 w-5 text-yellow-400" />
-                  {children}
-                </h4>
-              ),
-              p: ({ children }) => (
-                <p className="text-gray-300 leading-relaxed mb-4">{children}</p>
-              ),
               code({ node, inline, className, children, ...props }: any) {
                 const match = /language-(\w+)/.exec(className || "");
                 return !inline && match ? (
-                  <div className="my-6 rounded-lg overflow-hidden border border-gray-800 shadow-2xl">
-                    <div className="bg-gray-800/50 px-4 py-2 border-b border-gray-700 flex items-center justify-between">
-                      <span className="text-xs font-mono text-gray-400 uppercase">
+                  <div className="my-4 rounded-lg overflow-hidden border border-gray-800 shadow-xl">
+                    <div className="bg-gray-800/50 px-3 py-1.5 border-b border-gray-700 flex items-center justify-between">
+                      <span className="text-[10px] font-mono text-gray-400 uppercase">
                         {match[1]}
                       </span>
-                      <Code2 className="h-4 w-4 text-cyan-400" />
+                      <Code2 className="h-3 w-3 text-cyan-400" />
                     </div>
                     <SyntaxHighlighter
                       style={vscDarkPlus}
@@ -225,9 +208,9 @@ export default async function ReactTutorialPage({
                       PreTag="div"
                       customStyle={{
                         margin: 0,
-                        padding: "1.5rem",
+                        padding: "1rem",
                         background: "rgba(17, 24, 39, 0.5)",
-                        fontSize: "0.875rem",
+                        fontSize: "0.75rem",
                       }}
                       {...props}
                     >
@@ -236,28 +219,59 @@ export default async function ReactTutorialPage({
                   </div>
                 ) : (
                   <code
-                    className="bg-cyan-500/10 text-cyan-300 px-2 py-1 rounded border border-cyan-500/20 text-sm font-mono"
+                    className="bg-cyan-500/10 text-cyan-300 px-1.5 py-0.5 rounded border border-cyan-500/20 text-xs font-mono"
                     {...props}
                   >
                     {children}
                   </code>
                 );
               },
+              h1: ({ children }) => (
+                <h1 className="text-2xl font-bold text-white mb-4 mt-6 flex items-center gap-2">
+                  <BookOpen className="h-5 w-5 text-cyan-400" />
+                  {children}
+                </h1>
+              ),
+              h2: ({ children }) => (
+                <h2 className="text-xl font-bold text-white mb-3 mt-8 pb-2 border-b border-gray-800 flex items-center gap-2">
+                  <Rocket className="h-4 w-4 text-cyan-400" />
+                  {children}
+                </h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-lg font-semibold text-white mb-2 mt-6 flex items-center gap-2">
+                  <Zap className="h-4 w-4 text-purple-400" />
+                  {children}
+                </h3>
+              ),
+              h4: ({ children }) => (
+                <h4 className="text-base font-semibold text-gray-200 mb-2 mt-4 flex items-center gap-1.5">
+                  <Lightbulb className="h-3.5 w-3.5 text-yellow-400" />
+                  {children}
+                </h4>
+              ),
+              p: ({ children }) => (
+                <p className="text-gray-300 text-sm leading-relaxed mb-3">
+                  {children}
+                </p>
+              ),
               ul: ({ children }) => (
-                <ul className="list-disc list-inside text-gray-300 space-y-2 mb-4 ml-4">
+                <ul className="list-disc list-inside text-gray-300 text-sm space-y-1.5 mb-3 ml-4">
                   {children}
                 </ul>
               ),
               ol: ({ children }) => (
-                <ol className="list-decimal list-inside text-gray-300 space-y-2 mb-4 ml-4">
+                <ol className="list-decimal list-inside text-gray-300 text-sm space-y-1.5 mb-3 ml-4">
                   {children}
                 </ol>
               ),
               li: ({ children }) => (
-                <li className="text-gray-300 leading-relaxed">{children}</li>
+                <li className="text-gray-300 text-sm leading-relaxed">
+                  {children}
+                </li>
               ),
               blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-cyan-500 bg-cyan-500/5 pl-4 py-3 my-4 italic text-gray-300 rounded-r-lg">
+                <blockquote className="border-l-4 border-cyan-500 bg-cyan-500/5 pl-3 py-2 my-3 italic text-gray-300 text-sm rounded-r-lg">
                   {children}
                 </blockquote>
               ),
@@ -277,8 +291,8 @@ export default async function ReactTutorialPage({
                 </a>
               ),
               table: ({ children }) => (
-                <div className="overflow-x-auto my-6">
-                  <table className="min-w-full border border-gray-800 rounded-lg overflow-hidden">
+                <div className="overflow-x-auto my-4">
+                  <table className="min-w-full border border-gray-800 rounded-lg overflow-hidden text-sm">
                     {children}
                   </table>
                 </div>
@@ -287,12 +301,12 @@ export default async function ReactTutorialPage({
                 <thead className="bg-gray-800/50">{children}</thead>
               ),
               th: ({ children }) => (
-                <th className="px-4 py-3 text-left text-sm font-semibold text-cyan-400 border-b border-gray-700">
+                <th className="px-3 py-2 text-left text-xs font-semibold text-cyan-400 border-b border-gray-700">
                   {children}
                 </th>
               ),
               td: ({ children }) => (
-                <td className="px-4 py-3 text-sm text-gray-300 border-b border-gray-800">
+                <td className="px-3 py-2 text-xs text-gray-300 border-b border-gray-800">
                   {children}
                 </td>
               ),
@@ -303,12 +317,12 @@ export default async function ReactTutorialPage({
         </div>
 
         {/* Navigation Footer */}
-        <div className="mt-16 pt-8 border-t border-gray-800">
+        <div className="mt-12 pt-6 border-t border-gray-800">
           <Link
             href="/react-tutorials"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 text-cyan-400 hover:from-cyan-500/20 hover:to-blue-500/20 transition-all duration-300 group"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 text-cyan-400 text-sm hover:from-cyan-500/20 hover:to-blue-500/20 transition-all duration-300 group"
           >
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
             Back to All Tutorials
           </Link>
         </div>
