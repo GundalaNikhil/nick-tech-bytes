@@ -19,6 +19,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
 
 // Tutorial metadata
 const tutorialMetadata: Record<
@@ -369,6 +371,7 @@ export default async function SpringBootTutorialPage({
         <article className="prose prose-invert max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw, rehypeSanitize]}
             components={{
               h1: ({ node, children, ...props }) => (
                 <h1
@@ -383,7 +386,13 @@ export default async function SpringBootTutorialPage({
               ),
               h2: ({ node, children, ...props }) => {
                 const text = String(children);
-                const isQuestion = text.toLowerCase().includes("question");
+                const isQuestion =
+                  text.toLowerCase().includes("question") ||
+                  text.toLowerCase().includes("understanding the") ||
+                  text.toLowerCase().includes("what are we trying") ||
+                  text.toLowerCase().includes("the problem") ||
+                  text.toLowerCase().includes("solution approach") ||
+                  text.toLowerCase().includes("visual representation");
 
                 if (isQuestion) {
                   return (
@@ -428,13 +437,19 @@ export default async function SpringBootTutorialPage({
               ),
               p: ({ node, children, ...props }) => {
                 const text = String(children);
-                const isAnswer =
+                const isImportant =
                   text
                     .toLowerCase()
                     .startsWith("what we're trying to achieve") ||
-                  text.toLowerCase().startsWith("goal/aim");
+                  text.toLowerCase().startsWith("goal/aim") ||
+                  text.toLowerCase().startsWith("we need to understand") ||
+                  text.toLowerCase().startsWith("the problem") ||
+                  text.toLowerCase().includes("spring boot delivers") ||
+                  text.toLowerCase().includes("core philosophy") ||
+                  (text.includes("✅") && text.split("\n").length > 2) ||
+                  (text.includes("❌") && text.split("\n").length > 2);
 
-                if (isAnswer) {
+                if (isImportant) {
                   return (
                     <div className="my-5 p-5 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 shadow-lg shadow-black/10">
                       <p className="text-gray-100 text-base leading-relaxed m-0">

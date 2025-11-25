@@ -249,7 +249,13 @@ export default async function ReactTutorialPage({
               ),
               h2: ({ children }) => {
                 const text = String(children);
-                const isQuestion = text.toLowerCase().includes("question");
+                const isQuestion =
+                  text.toLowerCase().includes("question") ||
+                  text.toLowerCase().includes("introduction") ||
+                  text.toLowerCase().includes("understanding") ||
+                  text.toLowerCase().includes("how to solve") ||
+                  text.toLowerCase().includes("visual representation") ||
+                  text.toLowerCase().includes("what are we trying");
 
                 if (isQuestion) {
                   return (
@@ -285,13 +291,19 @@ export default async function ReactTutorialPage({
               ),
               p: ({ children }) => {
                 const text = String(children);
-                const isAnswer =
+                const isImportant =
                   text
                     .toLowerCase()
                     .startsWith("what we're trying to achieve") ||
-                  text.toLowerCase().startsWith("goal/aim");
+                  text.toLowerCase().startsWith("goal/aim") ||
+                  text.toLowerCase().startsWith("we need to understand") ||
+                  text.toLowerCase().startsWith("the problem") ||
+                  text.toLowerCase().includes("react is") ||
+                  text.toLowerCase().includes("key concept") ||
+                  (text.includes("✅") && text.split("\n").length > 1) ||
+                  (text.includes("❌") && text.split("\n").length > 1);
 
-                if (isAnswer) {
+                if (isImportant) {
                   return (
                     <div className="my-5 p-5 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 shadow-lg shadow-black/10">
                       <p className="text-gray-100 text-base leading-relaxed m-0">

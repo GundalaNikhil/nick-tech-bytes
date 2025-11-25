@@ -249,7 +249,12 @@ export default async function DockerTutorialPage({
               ),
               h2: ({ children }) => {
                 const text = String(children);
-                const isQuestion = text.toLowerCase().includes("question");
+                const isQuestion =
+                  text.toLowerCase().includes("question") ||
+                  text.toLowerCase().includes("introduction") ||
+                  text.toLowerCase().includes("understanding") ||
+                  text.toLowerCase().includes("how to solve") ||
+                  text.toLowerCase().includes("visual representation");
 
                 if (isQuestion) {
                   return (
@@ -285,13 +290,19 @@ export default async function DockerTutorialPage({
               ),
               p: ({ children }) => {
                 const text = String(children);
-                const isAnswer =
+                const isImportant =
                   text
                     .toLowerCase()
                     .startsWith("what we're trying to achieve") ||
-                  text.toLowerCase().startsWith("goal/aim");
+                  text.toLowerCase().startsWith("goal/aim") ||
+                  text.toLowerCase().startsWith("imagine you've built") ||
+                  text.toLowerCase().includes("docker solves this problem") ||
+                  text.toLowerCase().includes("docker is like") ||
+                  text.toLowerCase().includes("why is docker used") ||
+                  (text.includes("✅") && text.split("\n").length > 1) ||
+                  (text.includes("❌") && text.split("\n").length > 1);
 
-                if (isAnswer) {
+                if (isImportant) {
                   return (
                     <div className="my-5 p-5 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 shadow-lg shadow-black/10">
                       <p className="text-gray-100 text-base leading-relaxed m-0">
