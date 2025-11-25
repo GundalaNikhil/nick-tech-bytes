@@ -185,4 +185,116 @@ export const dockerTutorials: DockerTutorial[] = [
     rating: 4.9,
     companies: ["Google", "Amazon", "Microsoft"],
   },
+
+  // Additional Beginner Topics
+  {
+    title: "Container Lifecycle",
+    slug: "16-container-lifecycle",
+    difficulty: "beginner",
+    description:
+      "Master the complete lifecycle of Docker containers from creation to removal, including all states and transitions.",
+    tags: ["Lifecycle", "Container States", "Management"],
+    estimatedTime: "25 min",
+    rating: 4.7,
+    companies: ["Docker Inc", "AWS", "Google Cloud"],
+  },
+  {
+    title: "CMD vs ENTRYPOINT",
+    slug: "17-cmd-vs-entrypoint",
+    difficulty: "intermediate",
+    description:
+      "Understand the critical differences between CMD and ENTRYPOINT, and learn when to use each in your Dockerfiles.",
+    tags: ["Dockerfile", "Best Practices", "Commands"],
+    estimatedTime: "22 min",
+    rating: 4.8,
+    companies: ["Netflix", "Spotify", "Uber"],
+  },
+  {
+    title: "Environment Variables",
+    slug: "18-environment-variables",
+    difficulty: "intermediate",
+    description:
+      "Learn to use environment variables for flexible configuration, secrets management, and multi-environment deployments.",
+    tags: ["Configuration", "Environment", "Secrets"],
+    estimatedTime: "26 min",
+    rating: 4.7,
+    companies: ["Amazon", "Microsoft", "GitLab"],
+  },
+  {
+    title: "Resource Constraints",
+    slug: "19-resource-constraints",
+    difficulty: "intermediate",
+    description:
+      "Control CPU, memory, and other resources to optimize container performance and prevent resource exhaustion.",
+    tags: ["Resources", "Performance", "Limits"],
+    estimatedTime: "24 min",
+    rating: 4.6,
+    companies: ["Google Cloud", "Kubernetes", "AWS"],
+  },
+  {
+    title: "Docker Swarm Basics",
+    slug: "20-docker-swarm",
+    difficulty: "advanced",
+    description:
+      "Introduction to Docker Swarm for container orchestration, creating clusters, and deploying services at scale.",
+    tags: ["Swarm", "Orchestration", "Clustering"],
+    estimatedTime: "35 min",
+    rating: 4.7,
+    companies: ["Docker Inc", "Digital Ocean", "Azure"],
+  },
+  {
+    title: "Health Checks",
+    slug: "21-health-checks",
+    difficulty: "intermediate",
+    description:
+      "Implement container health checks to ensure reliability, automatic recovery, and better orchestration.",
+    tags: ["Health Checks", "Monitoring", "Reliability"],
+    estimatedTime: "20 min",
+    rating: 4.6,
+    companies: ["AWS", "Google Cloud", "Kubernetes"],
+  },
+  {
+    title: "Multi-Stage Builds",
+    slug: "22-multistage-builds",
+    difficulty: "intermediate",
+    description:
+      "Optimize Docker images using multi-stage builds to reduce size, improve security, and separate build dependencies.",
+    tags: ["Optimization", "Best Practices", "Image Size"],
+    estimatedTime: "28 min",
+    rating: 4.8,
+    companies: ["Google", "Netflix", "Airbnb"],
+  },
+  {
+    title: "Docker Build Arguments",
+    slug: "23-build-arguments",
+    difficulty: "intermediate",
+    description:
+      "Use build arguments (ARG) to create flexible Dockerfiles that can be customized at build time.",
+    tags: ["ARG", "Build-time", "Customization"],
+    estimatedTime: "18 min",
+    rating: 4.5,
+    companies: ["GitHub", "GitLab", "CircleCI"],
+  },
+  {
+    title: "Container Debugging",
+    slug: "24-debugging",
+    difficulty: "intermediate",
+    description:
+      "Learn techniques and tools for debugging Docker containers, troubleshooting issues, and analyzing logs.",
+    tags: ["Debugging", "Troubleshooting", "Logs"],
+    estimatedTime: "30 min",
+    rating: 4.7,
+    companies: ["DataDog", "New Relic", "Splunk"],
+  },
+  {
+    title: "CI/CD with Docker",
+    slug: "25-cicd-docker",
+    difficulty: "advanced",
+    description:
+      "Implement continuous integration and deployment pipelines using Docker with Jenkins, GitLab CI, and GitHub Actions.",
+    tags: ["CI/CD", "Automation", "DevOps"],
+    estimatedTime: "38 min",
+    rating: 4.9,
+    companies: ["GitHub", "GitLab", "Jenkins"],
+  },
 ];
