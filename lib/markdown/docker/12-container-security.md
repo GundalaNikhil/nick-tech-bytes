@@ -136,6 +136,61 @@ EXPOSE 3000
 
 ## Secret Management
 
+### Security Levels Comparison
+
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 20px 0;">
+  <thead>
+    <tr style="background: linear-gradient(135deg, #0EA5E9, #6366F1);">
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Method</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Security Level</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Use Case</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: #FEE2E2;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: linear-gradient(135deg, #EF4444, #DC2626); color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Hardcoded</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #DC2626; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">🔴 Very Low</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Never use</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;"><code>ENV PASSWORD=secret</code></td>
+    </tr>
+    <tr style="background-color: #FED7AA;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: linear-gradient(135deg, #F97316, #FB923C); color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Environment Variables</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #F97316; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">🟠 Low</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Development only</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;"><code>--env-file .env</code></td>
+    </tr>
+    <tr style="background-color: #FEF3C7;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: linear-gradient(135deg, #EAB308, #CA8A04); color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Docker Secrets</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #EAB308; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">🟡 Medium</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Docker Swarm</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;"><code>docker secret create</code></td>
+    </tr>
+    <tr style="background-color: #D1FAE5;">
+      <td style="padding: 16px;">
+        <span style="background: linear-gradient(135deg, #22C55E, #10B981); color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">External Vault</span>
+      </td>
+      <td style="padding: 16px;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">🟢 High</span>
+      </td>
+      <td style="padding: 16px;">Production</td>
+      <td style="padding: 16px;"><code>Vault, AWS Secrets</code></td>
+    </tr>
+  </tbody>
+</table>
+
 ### Environment Variables (Development)
 
 ```bash
@@ -216,23 +271,43 @@ docker stats
 
 ## Security Checklist
 
-✅ **Scan images for vulnerabilities**
-✅ **Run containers as non-root**
-✅ **Use minimal base images**
-✅ **Drop unnecessary capabilities**
-✅ **Use secrets management for sensitive data**
-✅ **Keep images and base OS updated**
-✅ **Use custom networks**
-✅ **Enable logging and monitoring**
-✅ **Sign images (content trust)**
-✅ **Use security scanners in CI/CD**
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
 
-❌ **Don't run containers as root**
-❌ **Don't hardcode secrets**
-❌ **Don't use privileged mode**
-❌ **Don't ignore scan warnings**
-❌ **Don't use latest tag (hard to track)**
-❌ **Don't expose unnecessary ports**
+  <!-- DO Cards -->
+  <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #22C55E; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div style="margin-bottom: 12px;">
+      <span style="background: linear-gradient(135deg, #22C55E, #10B981); color: white; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600;">✅ DO</span>
+    </div>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Scan images for vulnerabilities</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Run containers as non-root</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Use minimal base images</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Drop unnecessary capabilities</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Use secrets management</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Keep images updated</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Use custom networks</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Enable logging & monitoring</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Sign images (content trust)</strong></li>
+      <li style="padding: 8px 0;"><strong>Use security scanners in CI/CD</strong></li>
+    </ul>
+  </div>
+
+  <!-- DON'T Cards -->
+  <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #EF4444; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div style="margin-bottom: 12px;">
+      <span style="background: linear-gradient(135deg, #EF4444, #DC2626); color: white; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600;">❌ DON'T</span>
+    </div>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't run containers as root</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't hardcode secrets</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't use privileged mode</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't ignore scan warnings</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't use latest tag</strong></li>
+      <li style="padding: 8px 0;"><strong>Don't expose unnecessary ports</strong></li>
+    </ul>
+  </div>
+
+</div>
 
 ---
 

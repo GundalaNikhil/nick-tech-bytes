@@ -8,6 +8,43 @@ Optimize container performance by reducing image sizes, implementing caching str
 
 ## Image Size Optimization
 
+### Base Image Size Comparison
+
+<div style="background: linear-gradient(135deg, #F0F9FF, #E0F2FE); padding: 24px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+    
+    <!-- Ubuntu -->
+    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      <div style="font-size: 18px; font-weight: 600; color: #DC2626; margin-bottom: 12px;">Ubuntu 22.04</div>
+      <div style="background: linear-gradient(to right, #EF4444, #DC2626); height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin-bottom: 8px;">
+        ~77 MB
+      </div>
+      <div style="color: #6B7280; font-size: 14px;">❌ Large attack surface</div>
+    </div>
+    
+    <!-- Debian Slim -->
+    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      <div style="font-size: 18px; font-weight: 600; color: #F59E0B; margin-bottom: 12px;">Debian Slim</div>
+      <div style="background: linear-gradient(to right, #F59E0B, #D97706); height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin-bottom: 8px;">
+        ~40 MB
+      </div>
+      <div style="color: #6B7280; font-size: 14px;">⚖️ Good compromise</div>
+    </div>
+    
+    <!-- Alpine -->
+    <div style="background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      <div style="font-size: 18px; font-weight: 600; color: #22C55E; margin-bottom: 12px;">Alpine 3.18</div>
+      <div style="background: linear-gradient(to right, #22C55E, #10B981); height: 15px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; margin-bottom: 8px;">
+        ~7 MB
+      </div>
+      <div style="color: #6B7280; font-size: 14px;">✅ Minimal & secure</div>
+    </div>
+    
+  </div>
+  
+</div>
+
 ### Use Minimal Base Images
 
 ```dockerfile
@@ -239,22 +276,42 @@ services:
 
 ## Performance Checklist
 
-✅ **Use minimal base images**
-✅ **Implement multi-stage builds**
-✅ **Clean up cache and temp files**
-✅ **Order Dockerfile instructions efficiently**
-✅ **Use .dockerignore**
-✅ **Enable BuildKit caching**
-✅ **Set resource limits**
-✅ **Monitor performance metrics**
-✅ **Use named volumes**
-✅ **Profile and benchmark**
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
 
-❌ **Don't use latest tag**
-❌ **Don't skip layer caching optimization**
-❌ **Don't ignore image size**
-❌ **Don't run without resource limits**
-❌ **Don't use host network unnecessarily**
+  <!-- DO Cards -->
+  <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #22C55E; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div style="margin-bottom: 12px;">
+      <span style="background: linear-gradient(135deg, #22C55E, #10B981); color: white; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600;">✅ DO</span>
+    </div>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Use minimal base images</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Implement multi-stage builds</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Clean up cache and temp files</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Order Dockerfile efficiently</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Use .dockerignore</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Enable BuildKit caching</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Set resource limits</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Monitor performance metrics</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Use named volumes</strong></li>
+      <li style="padding: 8px 0;"><strong>Profile and benchmark</strong></li>
+    </ul>
+  </div>
+
+  <!-- DON'T Cards -->
+  <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #EF4444; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div style="margin-bottom: 12px;">
+      <span style="background: linear-gradient(135deg, #EF4444, #DC2626); color: white; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600;">❌ DON'T</span>
+    </div>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't use latest tag</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't skip layer caching</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't ignore image size</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't run without limits</strong></li>
+      <li style="padding: 8px 0;"><strong>Don't use host network</strong></li>
+    </ul>
+  </div>
+
+</div>
 
 ---
 

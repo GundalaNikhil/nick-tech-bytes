@@ -211,6 +211,74 @@ kubectl delete deployment deployment-name
 
 ## Advantages Over Docker Compose
 
+<div style="overflow-x: auto; margin: 24px 0;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<thead>
+<tr style="background: linear-gradient(135deg, #6366F1, #8B5CF6);">
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Feature</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">🐳 Docker Compose</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">☸️ Kubernetes</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Scaling</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Manual</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Automatic (HPA)</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Self-Healing</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 6px 12px; border-radius: 6px; font-weight: 500;">No</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Yes</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Rolling Updates</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Manual</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Automatic</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Multi-Host</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 6px 12px; border-radius: 6px; font-weight: 500;">No</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Yes</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Load Balancing</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Manual</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Built-in</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151;">Persistent Storage</td>
+<td style="padding: 14px;">
+<span style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: #1E40AF; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Volumes</span>
+</td>
+<td style="padding: 14px;">
+<span style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: #1E40AF; padding: 6px 12px; border-radius: 6px; font-weight: 500;">PersistentVolumes</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 | Feature                | Docker Compose | Kubernetes        |
 | ---------------------- | -------------- | ----------------- |
 | **Scaling**            | Manual         | Automatic (HPA)   |
@@ -224,20 +292,61 @@ kubectl delete deployment deployment-name
 
 ## When to Use Kubernetes
 
-✅ **Use Kubernetes when:**
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
 
-- Deploying at scale (many containers)
-- Need auto-scaling capabilities
-- Multi-host/multi-datacenter deployments
-- Complex orchestration needs
-- Need high availability
+<div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 211, 238, 0.1)); border-radius: 12px; padding: 24px; border: 2px solid rgba(34, 197, 94, 0.3);">
+<h4 style="color: #22C55E; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+<span style="font-size: 24px;">☸️</span> Use Kubernetes When
+</h4>
+<ul style="list-style: none; padding: 0; margin: 0;">
+<li style="padding: 10px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid #22C55E;">
+<strong style="color: #16A34A;">Scale:</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Deploying many containers</div>
+</li>
+<li style="padding: 10px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid #10B981;">
+<strong style="color: #059669;">Auto-scaling:</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Need dynamic scaling capabilities</div>
+</li>
+<li style="padding: 10px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid #14B8A6;">
+<strong style="color: #0D9488;">Multi-host:</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Multi-datacenter deployments</div>
+</li>
+<li style="padding: 10px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid #06B6D4;">
+<strong style="color: #0891B2;">Orchestration:</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Complex orchestration needs</div>
+</li>
+<li style="padding: 10px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid #0EA5E9;">
+<strong style="color: #0284C7;">High Availability:</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Need maximum uptime</div>
+</li>
+</ul>
+</div>
 
-❌ **Use Docker Compose when:**
+<div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(251, 146, 60, 0.1)); border-radius: 12px; padding: 24px; border: 2px solid rgba(239, 68, 68, 0.3);">
+<h4 style="color: #EF4444; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+<span style="font-size: 24px;">🐳</span> Use Docker Compose When
+</h4>
+<ul style="list-style: none; padding: 0; margin: 0;">
+<li style="padding: 10px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid #F97316;">
+<strong style="color: #EA580C;">Single Machine:</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Development environment</div>
+</li>
+<li style="padding: 10px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid #FB923C;">
+<strong style="color: #F97316;">Simple Apps:</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Simple applications</div>
+</li>
+<li style="padding: 10px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid #FDBA74;">
+<strong style="color: #FB923C;">Prototyping:</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Quick prototyping</div>
+</li>
+<li style="padding: 10px; margin: 8px 0; background: white; border-radius: 8px; border-left: 4px solid #F59E0B;">
+<strong style="color: #D97706;">Learning:</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Learning Docker basics</div>
+</li>
+</ul>
+</div>
 
-- Single machine/development environment
-- Simple applications
-- Quick prototyping
-- Learning Docker basics
+</div>
 
 ---
 

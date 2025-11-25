@@ -8,6 +8,44 @@ Learn how to install Docker on your operating system and verify that everything 
 
 ## Installation on macOS
 
+<div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(34, 211, 238, 0.1)); border-radius: 12px; padding: 24px; margin: 24px 0; border: 2px solid rgba(6, 182, 212, 0.3);">
+
+<h3 style="color: #0EA5E9; margin-bottom: 20px;">🍎 macOS Installation Steps</h3>
+
+<div style="display: flex; flex-direction: column; gap: 16px;">
+
+<div style="display: flex; align-items: center; gap: 16px;">
+<div style="background: linear-gradient(135deg, #06B6D4, #0EA5E9); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(6, 182, 212, 0.4);">1</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #06B6D4;">
+<strong style="color: #0891B2;">Choose Installation Method</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Docker Desktop (full features) or Colima (lightweight)</div>
+</div>
+</div>
+
+<div style="border-left: 3px dashed #94A3B8; height: 20px; margin-left: 23px;"></div>
+
+<div style="display: flex; align-items: center; gap: 16px;">
+<div style="background: linear-gradient(135deg, #0EA5E9, #3B82F6); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(14, 165, 233, 0.4);">2</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #0EA5E9;">
+<strong style="color: #0284C7;">Install via Homebrew or Download</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Run: <code>brew install --cask docker</code></div>
+</div>
+</div>
+
+<div style="border-left: 3px dashed #94A3B8; height: 20px; margin-left: 23px;"></div>
+
+<div style="display: flex; align-items: center; gap: 16px;">
+<div style="background: linear-gradient(135deg, #3B82F6, #6366F1); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.4);">3</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #3B82F6;">
+<strong style="color: #1D4ED8;">Verify Installation</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Run: <code>docker --version</code> and <code>docker run hello-world</code></div>
+</div>
+</div>
+
+</div>
+
+</div>
+
 ### Option 1: Docker Desktop (Recommended)
 
 Docker Desktop includes the Docker daemon, CLI, and all necessary tools.
@@ -321,6 +359,61 @@ docker run -it <image-name> /bin/bash
 ---
 
 ## Quick Reference
+
+<div style="overflow-x: auto; margin: 24px 0;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<thead>
+<tr style="background: linear-gradient(135deg, #06B6D4, #0EA5E9);">
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Command</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #F3F4F6; padding: 4px 8px; border-radius: 4px; color: #1F2937;">docker --version</code>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #374151;">Check Docker version</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #F3F4F6; padding: 4px 8px; border-radius: 4px; color: #1F2937;">docker run hello-world</code>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #374151;">Test installation</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #F3F4F6; padding: 4px 8px; border-radius: 4px; color: #1F2937;">docker info</code>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #374151;">Display system info</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #F3F4F6; padding: 4px 8px; border-radius: 4px; color: #1F2937;">docker ps</code>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #374151;">List running containers</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #F3F4F6; padding: 4px 8px; border-radius: 4px; color: #1F2937;">docker images</code>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #374151;">List available images</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #F3F4F6; padding: 4px 8px; border-radius: 4px; color: #1F2937;">docker system df</code>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #374151;">Show disk usage</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px;">
+<code style="background: #F3F4F6; padding: 4px 8px; border-radius: 4px; color: #1F2937;">docker system prune</code>
+</td>
+<td style="padding: 14px; color: #374151;">Clean up unused resources</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 | Command                  | Purpose                   |
 | ------------------------ | ------------------------- |

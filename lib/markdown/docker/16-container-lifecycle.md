@@ -34,72 +34,73 @@ Docker containers follow a similar pattern, with states that determine what the 
 
 ## 3. Visual Representation
 
-```
-Container Lifecycle Flow:
-┌─────────────────────────────────────────────────────────────┐
-│                    CONTAINER LIFECYCLE                       │
-└─────────────────────────────────────────────────────────────┘
+### Container Lifecycle Flow
 
-    docker create
-         ↓
-    ┌─────────┐
-    │ CREATED │ ← Container exists but not running
-    └─────────┘
-         ↓ docker start
-    ┌─────────┐
-    │ RUNNING │ ← Container is actively executing
-    └─────────┘
-         ↓
-    ┌────┴────┬────────┬──────────┐
-    │         │        │          │
-docker pause  docker stop  docker kill  Exit normally
-    │         │        │          │
-    ↓         ↓        ↓          ↓
-┌────────┐ ┌─────────┐ ┌─────────┐
-│ PAUSED │ │ STOPPED │ │ STOPPED │
-└────────┘ └─────────┘ └─────────┘
-    ↓         ↓          ↓
-docker unpause docker start  docker start
-    ↓         ↓          ↓
-┌─────────┐ ┌─────────┐ ┌─────────┐
-│ RUNNING │ │ RUNNING │ │ RUNNING │
-└─────────┘ └─────────┘ └─────────┘
-    │         │          │
-    └─────────┴──────────┘
-            ↓
-       docker rm
-            ↓
-       ┌─────────┐
-       │ REMOVED │ ← Container is deleted
-       └─────────┘
-```
-
-### State Transition Diagram:
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│                     Container States                          │
-├──────────────────────────────────────────────────────────────┤
-│                                                               │
-│  ┌────────┐  start   ┌─────────┐  pause   ┌────────┐       │
-│  │Created │ ──────→  │ Running │ ──────→  │ Paused │       │
-│  └────────┘          └─────────┘          └────────┘       │
-│      ↑                   ↓  ↑                  ↓            │
-│      │                   │  │              unpause          │
-│      │                   │  │                  ↓            │
-│      │               stop/kill └──────────────────          │
-│      │                   ↓                                   │
-│      │              ┌─────────┐                             │
-│      └──────────────│ Stopped │                             │
-│                     └─────────┘                             │
-│                          ↓                                   │
-│                       remove                                 │
-│                          ↓                                   │
-│                     ┌─────────┐                             │
-│                     │ Removed │                             │
-│                     └─────────┘                             │
-└──────────────────────────────────────────────────────────────┘
-```
+<div style="background: linear-gradient(135deg, #F0F9FF, #E0F2FE); padding: 30px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  
+  <!-- Step 1: Created -->
+  <div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <div style="background: linear-gradient(135deg, #3B82F6, #2563EB); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">1</div>
+    <div style="flex: 1; background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #3B82F6;">
+      <strong style="color: #1E40AF;">CREATED</strong>
+      <div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Container exists but not running</div>
+      <code style="background: #DBEAFE; padding: 4px 8px; border-radius: 4px; font-size: 12px; color: #0369A1;">docker create</code>
+    </div>
+  </div>
+  
+  <!-- Arrow -->
+  <div style="text-align: center; color: #6B7280; margin: 10px 0;">↓</div>
+  
+  <!-- Step 2: Running -->
+  <div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <div style="background: linear-gradient(135deg, #22C55E, #10B981); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">2</div>
+    <div style="flex: 1; background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #22C55E;">
+      <strong style="color: #15803D;">RUNNING</strong>
+      <div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Container is actively executing</div>
+      <code style="background: #D1FAE5; padding: 4px 8px; border-radius: 4px; font-size: 12px; color: #047857;">docker start</code>
+    </div>
+  </div>
+  
+  <!-- Branches -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+    
+    <!-- Pause Branch -->
+    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #F59E0B;">
+      <strong style="color: #D97706;">PAUSED</strong>
+      <div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Process frozen</div>
+      <code style="background: #FEF3C7; padding: 4px 8px; border-radius: 4px; font-size: 12px; color: #92400E;">docker pause</code>
+    </div>
+    
+    <!-- Stop Branch -->
+    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #EF4444;">
+      <strong style="color: #DC2626;">STOPPED</strong>
+      <div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Graceful shutdown</div>
+      <code style="background: #FEE2E2; padding: 4px 8px; border-radius: 4px; font-size: 12px; color: #991B1B;">docker stop</code>
+    </div>
+    
+    <!-- Kill Branch -->
+    <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #991B1B;">
+      <strong style="color: #7F1D1D;">KILLED</strong>
+      <div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Forceful shutdown</div>
+      <code style="background: #FEE2E2; padding: 4px 8px; border-radius: 4px; font-size: 12px; color: #991B1B;">docker kill</code>
+    </div>
+    
+  </div>
+  
+  <!-- Arrow -->
+  <div style="text-align: center; color: #6B7280; margin: 10px 0;">↓</div>
+  
+  <!-- Step 3: Removed -->
+  <div style="display: flex; align-items: center;">
+    <div style="background: linear-gradient(135deg, #6B7280, #4B5563); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">3</div>
+    <div style="flex: 1; background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #6B7280;">
+      <strong style="color: #374151;">REMOVED</strong>
+      <div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Container is deleted</div>
+      <code style="background: #F3F4F6; padding: 4px 8px; border-radius: 4px; font-size: 12px; color: #1F2937;">docker rm</code>
+    </div>
+  </div>
+  
+</div>
 
 ---
 
@@ -132,23 +133,27 @@ docker unpause docker start  docker start
 ### Container States Explained:
 
 1. **Created State**
+
    - Container is initialized but not started
    - Resources allocated but not consuming CPU/memory
    - Configuration is set up
 
 2. **Running State**
+
    - Container process is actively executing
    - Consuming system resources
    - Network ports are active
    - Volumes are mounted
 
 3. **Paused State**
+
    - Process is frozen using cgroups
    - Memory is preserved
    - No CPU cycles used
    - Quick resume possible
 
 4. **Stopped State**
+
    - Main process has exited
    - Resources released
    - Data in container filesystem preserved
@@ -350,6 +355,7 @@ docker events --filter 'type=container'
 ### Best Practices:
 
 1. **Graceful Shutdown**
+
    ```bash
    # Always prefer stop over kill
    docker stop my-app  # Gives app time to clean up
@@ -357,19 +363,21 @@ docker events --filter 'type=container'
    ```
 
 2. **Use Restart Policies**
+
    ```bash
    # For production services
    docker run -d --restart=unless-stopped my-app
-   
+
    # For critical services
    docker run -d --restart=always my-app
    ```
 
 3. **Clean Up Regularly**
+
    ```bash
    # Remove stopped containers
    docker container prune
-   
+
    # Remove with auto-removal
    docker run --rm temp-container
    ```
@@ -398,17 +406,20 @@ docker events --filter 'type=container'
 ### State-Specific Considerations:
 
 **Created State:**
+
 - Container initialized but not consuming resources
 - Good for preparing containers before deployment
 - Configuration can still be modified
 
 **Running State:**
+
 - Actively consuming CPU and memory
 - Network ports are accessible
 - Logs are being generated
 - Can receive signals and commands
 
 **Paused State:**
+
 - Memory is preserved but frozen
 - No CPU cycles consumed
 - Quick to resume
@@ -416,6 +427,7 @@ docker events --filter 'type=container'
 - Not suitable for long-term storage
 
 **Stopped State:**
+
 - Process exited (code 0 for success, non-zero for error)
 - Container filesystem preserved
 - Can be restarted
@@ -423,6 +435,7 @@ docker events --filter 'type=container'
 - Restart resumes from initial state, not paused state
 
 **Removed State:**
+
 - Container definition deleted
 - All data in container lost (unless in volumes)
 - Cannot be recovered
@@ -434,17 +447,108 @@ docker events --filter 'type=container'
 
 ### Container Lifecycle Commands Reference
 
-| Command | From State | To State | Description |
-|---------|-----------|----------|-------------|
-| `docker create` | - | Created | Initialize container |
-| `docker start` | Created/Stopped | Running | Start container |
-| `docker run` | - | Running | Create and start |
-| `docker pause` | Running | Paused | Freeze container |
-| `docker unpause` | Paused | Running | Resume container |
-| `docker stop` | Running | Stopped | Graceful shutdown |
-| `docker kill` | Running | Stopped | Force shutdown |
-| `docker restart` | Running/Stopped | Running | Stop and start |
-| `docker rm` | Stopped | Removed | Delete container |
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 20px 0;">
+  <thead>
+    <tr style="background: linear-gradient(135deg, #0EA5E9, #6366F1);">
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Command</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">From State</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">To State</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker create</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">-</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #3B82F6; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Created</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Initialize container</td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker start</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Created/Stopped</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Running</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Start container</td>
+    </tr>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker run</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">-</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Running</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Create and start</td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker pause</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Running</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #F59E0B; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Paused</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Freeze container</td>
+    </tr>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker unpause</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Paused</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Running</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Resume container</td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker stop</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Running</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #EF4444; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Stopped</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Graceful shutdown</td>
+    </tr>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker kill</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Running</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #DC2626; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Stopped</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Force shutdown</td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker restart</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Running/Stopped</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Running</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Stop and start</td>
+    </tr>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker rm</code>
+      </td>
+      <td style="padding: 16px;">Stopped</td>
+      <td style="padding: 16px;">
+        <span style="background: #6B7280; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Removed</span>
+      </td>
+      <td style="padding: 16px;">Delete container</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Exit Codes and Their Meanings
 
@@ -465,6 +569,7 @@ docker inspect my-app --format='{{.State.ExitCode}}'
 ### Real-World Scenarios:
 
 **Scenario 1: Deploying Updates**
+
 ```bash
 # 1. Pull new image
 docker pull myapp:v2
@@ -483,6 +588,7 @@ docker rm myapp-v1
 ```
 
 **Scenario 2: Debugging a Failed Container**
+
 ```bash
 # Container keeps crashing
 docker ps -a
@@ -499,6 +605,7 @@ docker start -i my-app
 ```
 
 **Scenario 3: Maintenance Window**
+
 ```bash
 # Pause services during maintenance
 docker pause web-app
@@ -536,12 +643,12 @@ done
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 services:
   web:
     image: nginx
     restart: unless-stopped
-    
+
   db:
     image: postgres
     restart: always
@@ -569,13 +676,104 @@ docker-compose down -v
 
 ### Performance Impact by State
 
-| State | CPU Usage | Memory Usage | Disk I/O | Network |
-|-------|-----------|--------------|----------|---------|
-| Created | 0% | Minimal | None | None |
-| Running | Active | Active | Active | Active |
-| Paused | 0% | Preserved | None | None |
-| Stopped | 0% | Released | None | None |
-| Removed | 0% | Released | Released | None |
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 20px 0;">
+  <thead>
+    <tr style="background: linear-gradient(135deg, #0EA5E9, #6366F1);">
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">State</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">CPU Usage</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Memory Usage</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Disk I/O</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Network</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #3B82F6; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Created</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">0%</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #DBEAFE; color: #0369A1; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Minimal</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">None</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">None</span>
+      </td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Running</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #FEE2E2; color: #991B1B; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Active</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #FEE2E2; color: #991B1B; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Active</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #FEE2E2; color: #991B1B; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Active</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #FEE2E2; color: #991B1B; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Active</span>
+      </td>
+    </tr>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #F59E0B; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Paused</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">0%</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #FEF3C7; color: #92400E; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Preserved</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">None</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">None</span>
+      </td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #EF4444; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Stopped</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">0%</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Released</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">None</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">None</span>
+      </td>
+    </tr>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px;">
+        <span style="background: #6B7280; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Removed</span>
+      </td>
+      <td style="padding: 16px;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">0%</span>
+      </td>
+      <td style="padding: 16px;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Released</span>
+      </td>
+      <td style="padding: 16px;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Released</span>
+      </td>
+      <td style="padding: 16px;">
+        <span style="background: #D1FAE5; color: #047857; padding: 4px 12px; border-radius: 6px; font-size: 13px;">None</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 

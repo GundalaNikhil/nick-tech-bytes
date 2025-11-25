@@ -15,12 +15,14 @@
 Think of Docker containers like tenants in an apartment building:
 
 **Without Resource Limits:**
+
 - One tenant blasts music 24/7 (uses all CPU)
 - Another fills every room with stuff (uses all memory)
 - Other tenants suffer (other containers crash)
 - The whole building might collapse (server crashes)
 
 **With Resource Limits:**
+
 - Each tenant gets a fair share of space and utilities
 - No one can hog all the resources
 - Building stays stable and everyone coexists peacefully
@@ -38,54 +40,61 @@ Think of Docker containers like tenants in an apartment building:
 
 ## 3. Visual Representation
 
-```
-┌──────────────────────────────────────────────────────────┐
-│              Without Resource Limits                      │
-└──────────────────────────────────────────────────────────┘
+<div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1)); border-radius: 12px; padding: 32px; margin: 24px 0; border: 2px solid rgba(6, 182, 212, 0.3);">
 
-Host Machine: 8 CPU cores, 16GB RAM
-┌────────────────────────────────────────────────────────┐
-│  Container A: Uses 7 cores, 12GB RAM (greedy!)        │
-│  Container B: Uses 0.5 cores, 2GB RAM (starved)       │
-│  Container C: Uses 0.5 cores, 2GB RAM (starved)       │
-│  System: Crashes or becomes unresponsive              │
-└────────────────────────────────────────────────────────┘
+<h3 style="color: #0EA5E9; margin-bottom: 24px;">📊 Resource Allocation Comparison</h3>
 
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
 
-┌──────────────────────────────────────────────────────────┐
-│              With Resource Limits                         │
-└──────────────────────────────────────────────────────────┘
+<div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(251, 146, 60, 0.1)); border-radius: 12px; padding: 24px; border: 2px solid rgba(239, 68, 68, 0.3);">
+<h4 style="color: #EF4444; margin-bottom: 16px; text-align: center;">❌ Without Limits</h4>
+<div style="background: white; border-radius: 8px; padding: 16px; margin: 8px 0;">
+<div style="text-align: center; padding: 12px; background: linear-gradient(135deg, #F3F4F6, #E5E7EB); border-radius: 6px; margin-bottom: 12px; font-weight: bold; color: #374151;">Host: 8 CPU, 16GB RAM</div>
+<div style="padding: 12px; background: linear-gradient(135deg, #FEE2E2, #FECACA); border-radius: 6px; margin-bottom: 8px; border-left: 4px solid #EF4444;">
+<div style="font-weight: bold; color: #991B1B;">Container A 🔥</div>
+<div style="color: #991B1B; font-size: 13px;">7 cores, 12GB RAM</div>
+<div style="color: #6B7280; font-size: 12px; margin-top: 4px;">Hogging resources!</div>
+</div>
+<div style="padding: 12px; background: linear-gradient(135deg, #FEF3C7, #FDE68A); border-radius: 6px; margin-bottom: 8px; border-left: 4px solid #F59E0B;">
+<div style="font-weight: bold; color: #92400E;">Container B ⚠️</div>
+<div style="color: #92400E; font-size: 13px;">0.5 cores, 2GB RAM</div>
+<div style="color: #6B7280; font-size: 12px; margin-top: 4px;">Starved</div>
+</div>
+<div style="padding: 12px; background: linear-gradient(135deg, #FEF3C7, #FDE68A); border-radius: 6px; border-left: 4px solid #F59E0B;">
+<div style="font-weight: bold; color: #92400E;">Container C ⚠️</div>
+<div style="color: #92400E; font-size: 13px;">0.5 cores, 2GB RAM</div>
+<div style="color: #6B7280; font-size: 12px; margin-top: 4px;">Starved</div>
+</div>
+<div style="text-align: center; margin-top: 12px; padding: 8px; background: #FEE2E2; color: #991B1B; border-radius: 6px; font-weight: bold;">System Unstable 💥</div>
+</div>
+</div>
 
-Host Machine: 8 CPU cores, 16GB RAM
-┌────────────────────────────────────────────────────────┐
-│  Container A: Max 2 cores, Max 4GB RAM ✅              │
-│  Container B: Max 2 cores, Max 4GB RAM ✅              │
-│  Container C: Max 2 cores, Max 4GB RAM ✅              │
-│  System: Stable, reserved resources for OS ✅          │
-└────────────────────────────────────────────────────────┘
-```
+<div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 211, 238, 0.1)); border-radius: 12px; padding: 24px; border: 2px solid rgba(34, 197, 94, 0.3);">
+<h4 style="color: #22C55E; margin-bottom: 16px; text-align: center;">✅ With Limits</h4>
+<div style="background: white; border-radius: 8px; padding: 16px; margin: 8px 0;">
+<div style="text-align: center; padding: 12px; background: linear-gradient(135deg, #F3F4F6, #E5E7EB); border-radius: 6px; margin-bottom: 12px; font-weight: bold; color: #374151;">Host: 8 CPU, 16GB RAM</div>
+<div style="padding: 12px; background: linear-gradient(135deg, #D1FAE5, #A7F3D0); border-radius: 6px; margin-bottom: 8px; border-left: 4px solid #22C55E;">
+<div style="font-weight: bold; color: #065F46;">Container A ✅</div>
+<div style="color: #065F46; font-size: 13px;">Max 2 cores, 4GB RAM</div>
+<div style="color: #6B7280; font-size: 12px; margin-top: 4px;">Fair share</div>
+</div>
+<div style="padding: 12px; background: linear-gradient(135deg, #D1FAE5, #A7F3D0); border-radius: 6px; margin-bottom: 8px; border-left: 4px solid #10B981;">
+<div style="font-weight: bold; color: #065F46;">Container B ✅</div>
+<div style="color: #065F46; font-size: 13px;">Max 2 cores, 4GB RAM</div>
+<div style="color: #6B7280; font-size: 12px; margin-top: 4px;">Fair share</div>
+</div>
+<div style="padding: 12px; background: linear-gradient(135deg, #D1FAE5, #A7F3D0); border-radius: 6px; border-left: 4px solid #14B8A6;">
+<div style="font-weight: bold; color: #065F46;">Container C ✅</div>
+<div style="color: #065F46; font-size: 13px;">Max 2 cores, 4GB RAM</div>
+<div style="color: #6B7280; font-size: 12px; margin-top: 4px;">Fair share</div>
+</div>
+<div style="text-align: center; margin-top: 12px; padding: 8px; background: #D1FAE5; color: #065F46; border-radius: 6px; font-weight: bold;">System Stable ✨</div>
+</div>
+</div>
 
-### Memory Limit Hierarchy:
+</div>
 
-```
-Memory Limits:
-┌─────────────────────────────────────────┐
-│  Hard Limit (--memory)                  │
-│  Container cannot exceed this           │
-│  Exceeding → Container is killed (OOM)  │
-└─────────────────────────────────────────┘
-         ↓
-┌─────────────────────────────────────────┐
-│  Soft Limit (--memory-reservation)      │
-│  Container should try to stay under     │
-│  Can exceed if host has free memory     │
-└─────────────────────────────────────────┘
-         ↓
-┌─────────────────────────────────────────┐
-│  Swap (--memory-swap)                   │
-│  Memory + Swap total limit              │
-└─────────────────────────────────────────┘
-```
+</div>
 
 ---
 
@@ -118,12 +127,14 @@ Memory Limits:
 ### Resource Types:
 
 1. **Memory (RAM)**
+
    - Hard limit (`--memory`)
    - Soft limit (`--memory-reservation`)
    - Swap (`--memory-swap`)
    - OOM behavior
 
 2. **CPU**
+
    - CPU shares (`--cpu-shares`)
    - CPU count (`--cpus`)
    - CPU affinity (`--cpuset-cpus`)
@@ -237,7 +248,7 @@ docker run -d \
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 
 services:
   web:
@@ -245,38 +256,38 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
         reservations:
-          cpus: '0.25'
+          cpus: "0.25"
           memory: 256M
     ports:
       - "8080:80"
-      
+
   database:
     image: postgres:15
     deploy:
       resources:
         limits:
-          cpus: '2'
+          cpus: "2"
           memory: 2G
         reservations:
-          cpus: '1'
+          cpus: "1"
           memory: 1G
     environment:
       POSTGRES_PASSWORD: secret
     volumes:
       - db_data:/var/lib/postgresql/data
-      
+
   api:
     image: myapi:latest
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: "1"
           memory: 1G
         reservations:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
       # Restart if OOM killed
       restart_policy:
@@ -315,11 +326,12 @@ docker stats web database api
 ```
 
 ### Example Output:
+
 ```
-CONTAINER    CPU %   MEM USAGE / LIMIT     MEM %   NET I/O      
-web          0.50%   45.2MiB / 512MiB      8.83%   1.2kB / 0B   
-database     2.35%   1.5GiB / 2GiB         75%     2.4kB / 0B   
-api          1.20%   750MiB / 1GiB         73.24%  5.1kB / 1kB  
+CONTAINER    CPU %   MEM USAGE / LIMIT     MEM %   NET I/O
+web          0.50%   45.2MiB / 512MiB      8.83%   1.2kB / 0B
+database     2.35%   1.5GiB / 2GiB         75%     2.4kB / 0B
+api          1.20%   750MiB / 1GiB         73.24%  5.1kB / 1kB
 ```
 
 ### Testing Memory Limits
@@ -383,7 +395,7 @@ docker stats unlimited limited
 
 ```yaml
 # docker-compose.production.yml
-version: '3.8'
+version: "3.8"
 
 services:
   frontend:
@@ -392,56 +404,56 @@ services:
       replicas: 3
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
         reservations:
-          cpus: '0.25'
+          cpus: "0.25"
           memory: 256M
     ports:
       - "80:80"
-      
+
   backend:
     image: myapp/backend:latest
     deploy:
       replicas: 5
       resources:
         limits:
-          cpus: '1'
+          cpus: "1"
           memory: 1G
         reservations:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
     environment:
       - NODE_ENV=production
-      - MAX_OLD_SPACE_SIZE=768  # Node.js heap limit
+      - MAX_OLD_SPACE_SIZE=768 # Node.js heap limit
     depends_on:
       - database
       - cache
-      
+
   database:
     image: postgres:15
     deploy:
       resources:
         limits:
-          cpus: '4'
+          cpus: "4"
           memory: 8G
         reservations:
-          cpus: '2'
+          cpus: "2"
           memory: 4G
     environment:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
-      
+
   cache:
     image: redis:7-alpine
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: "1"
           memory: 512M
         reservations:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 256M
     command: redis-server --maxmemory 400mb --maxmemory-policy allkeys-lru
 
@@ -472,26 +484,29 @@ docker update --restart=unless-stopped $(docker ps -q)
 ### Best Practices:
 
 1. **Always Set Limits in Production**
+
    ```yaml
    # ✅ Good - explicit limits
    deploy:
      resources:
        limits:
          memory: 1G
-         cpus: '1'
+         cpus: "1"
    ```
 
 2. **Set Reservations for Critical Services**
+
    ```yaml
    # Guarantees minimum resources
    deploy:
      resources:
        reservations:
          memory: 512M
-         cpus: '0.5'
+         cpus: "0.5"
    ```
 
 3. **Monitor and Adjust**
+
    ```bash
    # Regular monitoring
    docker stats --no-stream > resource-usage.log
@@ -536,11 +551,11 @@ docker update --restart=unless-stopped $(docker ps -q)
 
 ### CPU Shares vs CPUs:
 
-| Option | Behavior | Use Case |
-|--------|----------|----------|
-| `--cpu-shares` | Relative weight | Multiple containers sharing CPU |
-| `--cpus` | Absolute limit | Fixed CPU allocation |
-| `--cpuset-cpus` | Pin to cores | NUMA optimization |
+| Option          | Behavior        | Use Case                        |
+| --------------- | --------------- | ------------------------------- |
+| `--cpu-shares`  | Relative weight | Multiple containers sharing CPU |
+| `--cpus`        | Absolute limit  | Fixed CPU allocation            |
+| `--cpuset-cpus` | Pin to cores    | NUMA optimization               |
 
 ---
 
@@ -620,6 +635,7 @@ docker run \
 ### Real-World Scenarios:
 
 **Scenario 1: Memory Leak Detection**
+
 ```bash
 # Monitor container over time
 watch -n 5 'docker stats my-app --no-stream'
@@ -630,6 +646,7 @@ docker update --memory="2g" my-app
 ```
 
 **Scenario 2: Microservices Resource Allocation**
+
 ```yaml
 services:
   # High priority, more resources
@@ -637,37 +654,37 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
+          cpus: "2"
           memory: 2G
-  
+
   # Medium priority
   user-service:
     deploy:
       resources:
         limits:
-          cpus: '1'
+          cpus: "1"
           memory: 1G
-  
+
   # Low priority, fewer resources
   analytics-service:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
 ```
 
 ### Quick Reference Table:
 
-| Resource | Flag | Example | Description |
-|----------|------|---------|-------------|
-| Memory limit | `--memory` | `--memory="1g"` | Hard memory limit |
-| Memory reservation | `--memory-reservation` | `--memory-reservation="512m"` | Soft limit |
-| Swap | `--memory-swap` | `--memory-swap="2g"` | Memory + Swap total |
-| CPU count | `--cpus` | `--cpus="1.5"` | Number of CPUs |
-| CPU shares | `--cpu-shares` | `--cpu-shares=512` | Relative CPU weight |
-| CPU affinity | `--cpuset-cpus` | `--cpuset-cpus="0-3"` | Pin to specific cores |
-| PID limit | `--pids-limit` | `--pids-limit=100` | Max processes |
+| Resource           | Flag                   | Example                       | Description           |
+| ------------------ | ---------------------- | ----------------------------- | --------------------- |
+| Memory limit       | `--memory`             | `--memory="1g"`               | Hard memory limit     |
+| Memory reservation | `--memory-reservation` | `--memory-reservation="512m"` | Soft limit            |
+| Swap               | `--memory-swap`        | `--memory-swap="2g"`          | Memory + Swap total   |
+| CPU count          | `--cpus`               | `--cpus="1.5"`                | Number of CPUs        |
+| CPU shares         | `--cpu-shares`         | `--cpu-shares=512`            | Relative CPU weight   |
+| CPU affinity       | `--cpuset-cpus`        | `--cpuset-cpus="0-3"`         | Pin to specific cores |
+| PID limit          | `--pids-limit`         | `--pids-limit=100`            | Max processes         |
 
 ---
 

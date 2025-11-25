@@ -15,12 +15,14 @@
 Think of build arguments like a customizable pizza order form:
 
 **Without Build Arguments (Hardcoded):**
+
 - Pizza shop can only make one type of pizza
 - Want different size? Need different kitchen
 - Want different toppings? Need different recipe
 - Very inflexible
 
 **With Build Arguments (Customizable):**
+
 - One recipe/kitchen (one Dockerfile)
 - Customer specifies: size, toppings, crust type
 - Same recipe, different inputs each time
@@ -154,13 +156,72 @@ docker build --build-arg NODE_VERSION=18 .
 
 ### ARG vs ENV:
 
-| Feature | ARG | ENV |
-|---------|-----|-----|
-| **When** | Build-time | Runtime |
-| **Availability** | During build only | In running containers |
-| **Override** | `--build-arg` | `-e` or ENV in Dockerfile |
-| **Persisted** | No | Yes |
-| **Use Case** | Build customization | App configuration |
+<div style="overflow-x: auto; margin: 24px 0;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<thead>
+<tr style="background: linear-gradient(135deg, #8B5CF6, #A855F7);">
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Feature</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">🔨 ARG</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">🌍 ENV</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">When</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FED7AA, #FDBA74); color: #9A3412; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Build-time</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Runtime</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Availability</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">During build only</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">In running containers</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Override</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #E9D5FF; color: #6B21A8; padding: 4px 8px; border-radius: 4px;">--build-arg</code>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #DBEAFE; color: #1E40AF; padding: 4px 8px; border-radius: 4px;">-e or ENV</code>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Persisted</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 6px 12px; border-radius: 6px; font-weight: 500;">No</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Yes</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151;">Use Case</td>
+<td style="padding: 14px;">
+<span style="background: linear-gradient(135deg, #E9D5FF, #D8B4FE); color: #6B21A8; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Build customization</span>
+</td>
+<td style="padding: 14px;">
+<span style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: #1E40AF; padding: 6px 12px; border-radius: 6px; font-weight: 500;">App configuration</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+| Feature          | ARG                 | ENV                       |
+| ---------------- | ------------------- | ------------------------- |
+| **When**         | Build-time          | Runtime                   |
+| **Availability** | During build only   | In running containers     |
+| **Override**     | `--build-arg`       | `-e` or ENV in Dockerfile |
+| **Persisted**    | No                  | Yes                       |
+| **Use Case**     | Build customization | App configuration         |
 
 ### Understanding Plan:
 
@@ -496,7 +557,7 @@ docker build $BUILD_ARGS -t myapp .
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 
 services:
   web:
@@ -506,9 +567,9 @@ services:
       args:
         - NODE_VERSION=18
         - BUILD_ENV=production
-        - API_URL=${API_URL}  # From .env file
+        - API_URL=${API_URL} # From .env file
     image: myapp:latest
-    
+
   api:
     build:
       context: ./api
@@ -539,38 +600,42 @@ docker-compose build --build-arg NODE_VERSION=20
 ### Best Practices:
 
 1. **Provide Defaults**
+
    ```dockerfile
    # ✅ Good - has default
    ARG NODE_VERSION=18
-   
+
    # ❌ Avoid - no default (fails if not provided)
    ARG NODE_VERSION
    ```
 
 2. **Document ARG Usage**
+
    ```dockerfile
    # Application version (default: 1.0.0)
    ARG APP_VERSION=1.0.0
-   
+
    # Node.js version to use (16, 18, 20)
    ARG NODE_VERSION=18
    ```
 
 3. **Use ARG for Build Configuration**
+
    ```dockerfile
    # ✅ Good - build-time configuration
    ARG ENVIRONMENT=production
    ARG INSTALL_DEV_TOOLS=false
-   
+
    # ❌ Avoid - runtime configuration (use ENV)
    ARG DATABASE_PASSWORD  # Use ENV instead!
    ```
 
 4. **Secure Sensitive Data**
+
    ```dockerfile
    # ❌ NEVER - secrets visible in build history
    ARG SECRET_KEY=my-secret
-   
+
    # ✅ Use Docker secrets or ENV at runtime
    ```
 
@@ -697,23 +762,23 @@ CMD ["node", "server.js"]
 build:
   script:
     - docker build \
-        --build-arg CI_COMMIT_SHA=$CI_COMMIT_SHA \
-        --build-arg CI_COMMIT_TAG=$CI_COMMIT_TAG \
-        --build-arg CI_PIPELINE_ID=$CI_PIPELINE_ID \
-        --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
-        -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG .
+      --build-arg CI_COMMIT_SHA=$CI_COMMIT_SHA \
+      --build-arg CI_COMMIT_TAG=$CI_COMMIT_TAG \
+      --build-arg CI_PIPELINE_ID=$CI_PIPELINE_ID \
+      --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
+      -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG .
 ```
 
 ### Quick Reference
 
-| Scenario | Command | Use Case |
-|----------|---------|----------|
-| Default value | `ARG NAME=value` | Fallback if not provided |
-| No default | `ARG NAME` | Required from command line |
-| Override | `--build-arg NAME=value` | Custom build |
-| Multiple args | `--build-arg A=1 --build-arg B=2` | Multiple values |
-| From env | `--build-arg VAR` | Use host's $VAR |
-| Persist | `ENV VAR=${ARG_VAR}` | Make available at runtime |
+| Scenario      | Command                           | Use Case                   |
+| ------------- | --------------------------------- | -------------------------- |
+| Default value | `ARG NAME=value`                  | Fallback if not provided   |
+| No default    | `ARG NAME`                        | Required from command line |
+| Override      | `--build-arg NAME=value`          | Custom build               |
+| Multiple args | `--build-arg A=1 --build-arg B=2` | Multiple values            |
+| From env      | `--build-arg VAR`                 | Use host's $VAR            |
+| Persist       | `ENV VAR=${ARG_VAR}`              | Make available at runtime  |
 
 ---
 

@@ -15,12 +15,14 @@
 Think of multi-stage builds like building a house:
 
 **Without Multi-Stage (Single Stage):**
+
 - You bring ALL construction equipment to the house
 - Cement mixers, scaffolding, tools stay permanently
 - The house is huge because it contains build materials
 - Visitors see all the messy construction equipment
 
 **With Multi-Stage:**
+
 - Stage 1: Build the house with all equipment
 - Stage 2: Copy only the finished house
 - Leave behind cement mixers, scaffolding, tools
@@ -38,65 +40,100 @@ Think of multi-stage builds like building a house:
 
 ## 3. Visual Representation
 
-```
-┌────────────────────────────────────────────────────────────┐
-│             Single-Stage Build (Traditional)                │
-└────────────────────────────────────────────────────────────┘
+### Image Size Comparison
 
-FROM node:18                    ┌─────────────────────┐
-                                │  Final Image        │
-COPY source code                │  - Node.js 18       │
-RUN npm install                 │  - Source code      │
-RUN npm run build               │  - node_modules     │
-                                │  - Build tools      │
-CMD ["npm", "start"]            │  - Dev dependencies │
-                                │  - Build artifacts  │
-                                │  Size: 1.2 GB       │
-                                └─────────────────────┘
+<div style="background: linear-gradient(135deg, #F0F9FF, #E0F2FE); padding: 30px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  
+  <div style="text-align: center; margin-bottom: 30px;">
+    <h3 style="color: #0369A1; margin: 0;">Single-Stage vs Multi-Stage Builds</h3>
+  </div>
+  
+  <!-- Single Stage -->
+  <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #EF4444;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+      <h4 style="color: #DC2626; margin: 0;">❌ Single-Stage Build</h4>
+      <span style="background: #FEE2E2; color: #991B1B; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 18px;">1.2 GB</span>
+    </div>
+    
+    <div style="background: linear-gradient(to right, #FEE2E2, #DC2626); height: 40px; border-radius: 6px; margin-bottom: 15px;"></div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+      <div style="background: #FEE2E2; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px;">Node.js 18</div>
+      <div style="background: #FEE2E2; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px;">Source Code</div>
+      <div style="background: #FEE2E2; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px;">node_modules</div>
+      <div style="background: #FEE2E2; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px;">Build Tools</div>
+      <div style="background: #FEE2E2; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px;">Dev Dependencies</div>
+      <div style="background: #FEE2E2; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px;">Build Artifacts</div>
+    </div>
+  </div>
+  
+  <!-- Multi Stage -->
+  <div style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid #22C55E;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+      <h4 style="color: #15803D; margin: 0;">✅ Multi-Stage Build</h4>
+      <span style="background: #D1FAE5; color: #166534; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 18px;">150 MB</span>
+    </div>
+    
+    <div style="background: linear-gradient(to right, #D1FAE5, #22C55E); height: 40px; border-radius: 6px; width: 12.5%; margin-bottom: 15px;"></div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+      <div style="background: #D1FAE5; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px;">Node.js Slim</div>
+      <div style="background: #D1FAE5; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px;">Built Files</div>
+      <div style="background: #D1FAE5; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px;">Prod Dependencies</div>
+    </div>
+    
+    <div style="margin-top: 15px; padding: 12px; background: #ECFDF5; border-radius: 6px; text-align: center; color: #166534; font-weight: 600;">
+      🎉 87% Size Reduction!
+    </div>
+  </div>
+  
+</div>
 
+### Multi-Stage Build Flow
 
-┌────────────────────────────────────────────────────────────┐
-│             Multi-Stage Build (Optimized)                   │
-└────────────────────────────────────────────────────────────┘
-
-Stage 1: Builder                Stage 2: Production
-┌──────────────────┐           ┌──────────────────┐
-│ FROM node:18     │           │ FROM node:18-slim│
-│                  │           │                  │
-│ Install deps     │           │ COPY from Stage 1│
-│ Build app        │  ─────>   │ - Built files    │
-│ Run tests        │           │ - Prod deps only │
-│                  │           │                  │
-│ Size: 1.2 GB     │           │ Size: 150 MB ✨  │
-│ (discarded)      │           │ (87% smaller!)   │
-└──────────────────┘           └──────────────────┘
-```
-
-### Build Flow:
-
-```
-Multi-Stage Build Process:
-┌─────────────────────────────────────────────────────┐
-│                                                      │
-│  Stage 1: BUILD                                     │
-│  ┌──────────────────────────────────────────┐      │
-│  │ - Full development environment            │      │
-│  │ - Install ALL dependencies                │      │
-│  │ - Compile/Build application               │      │
-│  │ - Run tests                               │      │
-│  └──────────────────────────────────────────┘      │
-│                    ↓ COPY artifacts                 │
-│  Stage 2: PRODUCTION                               │
-│  ┌──────────────────────────────────────────┐      │
-│  │ - Minimal base image                      │      │
-│  │ - Only runtime dependencies               │      │
-│  │ - Only built artifacts                    │      │
-│  │ - No build tools                          │      │
-│  └──────────────────────────────────────────┘      │
-│                    ↓                                │
-│         Final Image (small & secure)                │
-└─────────────────────────────────────────────────────┘
-```
+<div style="background: linear-gradient(135deg, #F0F9FF, #E0F2FE); padding: 24px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  
+  <!-- Stage 1: Build -->
+  <div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <div style="background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">1</div>
+    <div style="flex: 1; background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #8B5CF6;">
+      <strong style="color: #7C3AED; font-size: 16px;">BUILD Stage</strong>
+      <div style="color: #6B7280; font-size: 14px; margin-top: 8px;">Full development environment</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin-top: 12px;">
+        <div style="background: #F3E8FF; padding: 8px; border-radius: 4px; font-size: 12px;">Install ALL dependencies</div>
+        <div style="background: #F3E8FF; padding: 8px; border-radius: 4px; font-size: 12px;">Compile/Build app</div>
+        <div style="background: #F3E8FF; padding: 8px; border-radius: 4px; font-size: 12px;">Run tests</div>
+        <div style="background: #F3E8FF; padding: 8px; border-radius: 4px; font-size: 12px;">Create artifacts</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Arrow -->
+  <div style="text-align: center; color: #6B7280; margin: 15px 0; font-size: 14px;">
+    ↓ COPY only artifacts
+  </div>
+  
+  <!-- Stage 2: Production -->
+  <div style="display: flex; align-items: center;">
+    <div style="background: linear-gradient(135deg, #22C55E, #10B981); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; flex-shrink: 0;">2</div>
+    <div style="flex: 1; background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #22C55E;">
+      <strong style="color: #15803D; font-size: 16px;">PRODUCTION Stage</strong>
+      <div style="color: #6B7280; font-size: 14px; margin-top: 8px;">Minimal runtime environment</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin-top: 12px;">
+        <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; font-size: 12px;">Minimal base image</div>
+        <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; font-size: 12px;">Runtime deps only</div>
+        <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; font-size: 12px;">Built artifacts only</div>
+        <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; font-size: 12px;">No build tools</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Result -->
+  <div style="text-align: center; margin-top: 20px; padding: 16px; background: white; border-radius: 8px; border: 2px solid #22C55E;">
+    <span style="font-size: 16px; font-weight: 600; color: #15803D;">✨ Final Image: Small & Secure ✨</span>
+  </div>
+  
+</div>
 
 ---
 
@@ -129,11 +166,13 @@ Multi-Stage Build Process:
 ### Multi-Stage Concepts:
 
 1. **Multiple FROM Statements**
+
    - Each FROM starts a new stage
    - Stages can be named
    - Previous stages are discarded
 
 2. **COPY --from**
+
    - Copy files from previous stages
    - Copy only what's needed
    - Leave build artifacts behind
@@ -164,6 +203,7 @@ Step 5: Compare image sizes
 ### Example 1: Simple Node.js App
 
 **Single-Stage (Before):**
+
 ```dockerfile
 FROM node:18
 
@@ -182,6 +222,7 @@ CMD ["node", "dist/server.js"]
 ```
 
 **Multi-Stage (After):**
+
 ```dockerfile
 # Stage 1: Build
 FROM node:18 AS builder
@@ -501,6 +542,7 @@ docker build \
 ### Best Practices:
 
 1. **Order Stages Logically**
+
    ```dockerfile
    # ✅ Good order
    FROM base AS dependencies
@@ -510,33 +552,36 @@ docker build \
    ```
 
 2. **Name Your Stages**
+
    ```dockerfile
    # ✅ Good - named stages
    FROM node:18 AS builder
    FROM node:18-slim AS production
-   
+
    # ❌ Avoid - unnamed stages
    FROM node:18
    FROM node:18-slim
    ```
 
 3. **Use Minimal Base Images**
+
    ```dockerfile
    # ✅ Good - minimal
    FROM node:18-alpine
    FROM python:3.11-slim
-   
+
    # ❌ Avoid - full images
    FROM node:18  # Too large
    FROM python:3.11  # Too large
    ```
 
 4. **Copy Only What's Needed**
+
    ```dockerfile
    # ✅ Good - specific files
    COPY --from=builder /app/dist ./dist
    COPY --from=builder /app/node_modules ./node_modules
-   
+
    # ❌ Avoid - everything
    COPY --from=builder /app .
    ```
@@ -557,13 +602,88 @@ docker build \
 
 ### Size Comparison Examples:
 
-| Application | Single-Stage | Multi-Stage | Reduction |
-|-------------|-------------|-------------|-----------|
-| Node.js | 1.1 GB | 150 MB | 86% |
-| React | 350 MB | 25 MB | 93% |
-| Go | 800 MB | 15 MB | 98% |
-| Python | 900 MB | 180 MB | 80% |
-| Java | 700 MB | 280 MB | 60% |
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 20px 0;">
+  <thead>
+    <tr style="background: linear-gradient(135deg, #0EA5E9, #6366F1);">
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Application</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Single-Stage</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Multi-Stage</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Reduction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #DBEAFE; color: #0369A1; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Node.js</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #FEE2E2; color: #991B1B; padding: 4px 12px; border-radius: 6px; font-size: 13px;">1.1 GB</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #166534; padding: 4px 12px; border-radius: 6px; font-size: 13px;">150 MB</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 600;">86%</span>
+      </td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #DBEAFE; color: #0369A1; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">React</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #FEE2E2; color: #991B1B; padding: 4px 12px; border-radius: 6px; font-size: 13px;">350 MB</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #166534; padding: 4px 12px; border-radius: 6px; font-size: 13px;">25 MB</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 600;">93%</span>
+      </td>
+    </tr>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #DBEAFE; color: #0369A1; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Go</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #FEE2E2; color: #991B1B; padding: 4px 12px; border-radius: 6px; font-size: 13px;">800 MB</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #166534; padding: 4px 12px; border-radius: 6px; font-size: 13px;">15 MB</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 600;">98%</span>
+      </td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #DBEAFE; color: #0369A1; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Python</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #FEE2E2; color: #991B1B; padding: 4px 12px; border-radius: 6px; font-size: 13px;">900 MB</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #D1FAE5; color: #166534; padding: 4px 12px; border-radius: 6px; font-size: 13px;">180 MB</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 600;">80%</span>
+      </td>
+    </tr>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px;">
+        <span style="background: #DBEAFE; color: #0369A1; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">Java</span>
+      </td>
+      <td style="padding: 16px;">
+        <span style="background: #FEE2E2; color: #991B1B; padding: 4px 12px; border-radius: 6px; font-size: 13px;">700 MB</span>
+      </td>
+      <td style="padding: 16px;">
+        <span style="background: #D1FAE5; color: #166534; padding: 4px 12px; border-radius: 6px; font-size: 13px;">280 MB</span>
+      </td>
+      <td style="padding: 16px;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 600;">60%</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -661,7 +781,7 @@ CMD ["node", "dist/server.js"]
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 
 services:
   app-dev:
@@ -673,7 +793,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-      
+
   app-prod:
     build:
       context: .
@@ -683,7 +803,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
 ```
 

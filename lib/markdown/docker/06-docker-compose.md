@@ -17,6 +17,55 @@ Docker Compose is a tool for defining and running **multi-container Docker appli
 
 ### Why Use Docker Compose?
 
+<div style="overflow-x: auto; margin: 24px 0;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<thead>
+<tr style="background: linear-gradient(135deg, #8B5CF6, #A855F7);">
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Feature</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #E9D5FF, #D8B4FE); color: #6B21A8; padding: 6px 12px; border-radius: 6px;">📄 Single File Definition</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Define entire stack in one file</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px;">⚡ One Command</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Start all services with <code>docker-compose up</code></td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: #1E40AF; padding: 6px 12px; border-radius: 6px;">🌐 Networking</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Automatic service discovery</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px;">🔧 Environment Management</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Environment variables and .env files</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FED7AA, #FDBA74); color: #9A3412; padding: 6px 12px; border-radius: 6px;">💻 Development</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Speeds up local development</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151;">
+<span style="background: linear-gradient(135deg, #FBCFE8, #F9A8D4); color: #831843; padding: 6px 12px; border-radius: 6px;">💾 Volume Management</span>
+</td>
+<td style="padding: 14px; color: #4B5563;">Easy persistent data handling</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 | Feature                    | Benefit                                     |
 | -------------------------- | ------------------------------------------- |
 | **Single File Definition** | Define entire stack in one file             |

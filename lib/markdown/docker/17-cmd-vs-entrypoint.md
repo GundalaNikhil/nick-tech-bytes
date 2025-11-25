@@ -15,14 +15,17 @@
 Think of CMD and ENTRYPOINT like restaurant ordering:
 
 **ENTRYPOINT** = The main course you must order
+
 - "This is a pizza restaurant" - you're getting pizza
 - Can't change the main item, only customize it
 
 **CMD** = Default toppings/sides
+
 - "By default, you get pepperoni pizza"
 - You can easily change it to vegetarian or Hawaiian
 
 **Together:**
+
 - ENTRYPOINT: "You're ordering pizza"
 - CMD: "Default is pepperoni"
 - Customer can say: "I want Hawaiian instead" (overriding CMD)
@@ -136,10 +139,12 @@ docker run myimage "Goodbye"
 ### Understanding Two Forms:
 
 1. **Shell Form**
+
    ```dockerfile
    CMD echo "Hello"
    ENTRYPOINT echo "Hello"
    ```
+
    - Runs in a shell (`/bin/sh -c`)
    - Variable substitution works
    - Signals not properly handled
@@ -156,13 +161,13 @@ docker run myimage "Goodbye"
 
 ### When to Use What:
 
-| Scenario | Use | Reason |
-|----------|-----|--------|
-| Flexible command | CMD | Easy to override |
-| Fixed executable | ENTRYPOINT | Ensures specific tool runs |
-| CLI tool | ENTRYPOINT + CMD | Tool fixed, args flexible |
-| Script with defaults | Both | Script is ENTRY, defaults are CMD |
-| Simple container | CMD | Simplicity |
+| Scenario             | Use              | Reason                            |
+| -------------------- | ---------------- | --------------------------------- |
+| Flexible command     | CMD              | Easy to override                  |
+| Fixed executable     | ENTRYPOINT       | Ensures specific tool runs        |
+| CLI tool             | ENTRYPOINT + CMD | Tool fixed, args flexible         |
+| Script with defaults | Both             | Script is ENTRY, defaults are CMD |
+| Simple container     | CMD              | Simplicity                        |
 
 ---
 
@@ -451,26 +456,29 @@ docker run my-aws-cli ec2 describe-instances
 ### Best Practices:
 
 1. **Use Exec Form**
+
    ```dockerfile
    # ✅ Good - exec form
    CMD ["nginx", "-g", "daemon off;"]
-   
+
    # ❌ Avoid - shell form
    CMD nginx -g daemon off;
    ```
 
 2. **ENTRYPOINT for Tools, CMD for Defaults**
+
    ```dockerfile
    # For CLI tools
    ENTRYPOINT ["aws"]
    CMD ["--help"]
-   
+
    # For applications
    ENTRYPOINT ["python"]
    CMD ["app.py"]
    ```
 
 3. **Make Scripts Executable**
+
    ```dockerfile
    COPY entrypoint.sh /
    RUN chmod +x /entrypoint.sh
@@ -478,10 +486,11 @@ docker run my-aws-cli ec2 describe-instances
    ```
 
 4. **Handle Signals Properly**
+
    ```dockerfile
    # Use exec to replace shell process
    CMD ["exec", "node", "server.js"]
-   
+
    # Or in script:
    # exec "$@"  # This is important!
    ```
@@ -502,15 +511,92 @@ docker run my-aws-cli ec2 describe-instances
 
 ### Shell vs Exec Form Comparison:
 
-| Aspect | Shell Form | Exec Form |
-|--------|------------|-----------|
-| Syntax | `CMD command arg` | `CMD ["command", "arg"]` |
-| Process | `/bin/sh -c "command arg"` | Direct execution |
-| PID 1 | Shell process | Your process |
-| Signals | Not passed correctly | Handled properly |
-| Variables | `$VAR works` | Need explicit shell |
-| Performance | Slower (shell overhead) | Faster |
-| Preferred | Rarely | Always for production |
+<div style="overflow-x: auto; margin: 24px 0;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<thead>
+<tr style="background: linear-gradient(135deg, #8B5CF6, #A855F7);">
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Aspect</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">🐚 Shell Form</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">⚡ Exec Form</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Syntax</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #FEF3C7; color: #92400E; padding: 4px 8px; border-radius: 4px;">CMD command arg</code>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<code style="background: #D1FAE5; color: #065F46; padding: 4px 8px; border-radius: 4px;">CMD ["command", "arg"]</code>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Process</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: #FEF3C7; color: #92400E; padding: 6px 12px; border-radius: 6px; font-size: 13px;">/bin/sh -c "command arg"</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: #D1FAE5; color: #065F46; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Direct execution</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">PID 1</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Shell process</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Your process</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Signals</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Not passed correctly</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Handled properly</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Variables</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-size: 13px;">$VAR works</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Need explicit shell</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Performance</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Slower (shell overhead)</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Faster</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151;">Preferred</td>
+<td style="padding: 14px;">
+<span style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Rarely</span>
+</td>
+<td style="padding: 14px;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-size: 13px;">Always for production</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+| Aspect      | Shell Form                 | Exec Form                |
+| ----------- | -------------------------- | ------------------------ |
+| Syntax      | `CMD command arg`          | `CMD ["command", "arg"]` |
+| Process     | `/bin/sh -c "command arg"` | Direct execution         |
+| PID 1       | Shell process              | Your process             |
+| Signals     | Not passed correctly       | Handled properly         |
+| Variables   | `$VAR works`               | Need explicit shell      |
+| Performance | Slower (shell overhead)    | Faster                   |
+| Preferred   | Rarely                     | Always for production    |
 
 ---
 
@@ -557,6 +643,7 @@ services:
 ### Real-World Patterns:
 
 **Pattern 1: Web Server**
+
 ```dockerfile
 FROM nginx:alpine
 ENTRYPOINT ["nginx"]
@@ -564,6 +651,7 @@ CMD ["-g", "daemon off;"]
 ```
 
 **Pattern 2: Database**
+
 ```dockerfile
 FROM postgres:15
 ENTRYPOINT ["docker-entrypoint.sh"]
@@ -571,6 +659,7 @@ CMD ["postgres"]
 ```
 
 **Pattern 3: CLI Tool**
+
 ```dockerfile
 FROM python:3.11
 ENTRYPOINT ["python", "-m"]
@@ -578,6 +667,7 @@ CMD ["myapp.cli"]
 ```
 
 **Pattern 4: Application**
+
 ```dockerfile
 FROM node:18
 ENTRYPOINT ["npm"]
@@ -600,13 +690,13 @@ docker run myimage ps aux
 
 ### Common Use Cases:
 
-| Use Case | Pattern | Example |
-|----------|---------|---------|
-| Web app | ENTRY + CMD | `ENTRYPOINT ["npm"]` `CMD ["start"]` |
-| Database | Script ENTRY + CMD | `ENTRYPOINT ["init.sh"]` `CMD ["mysqld"]` |
-| CLI tool | ENTRY + help CMD | `ENTRYPOINT ["aws"]` `CMD ["--help"]` |
-| Batch job | CMD only | `CMD ["python", "job.py"]` |
-| Development | CMD only | `CMD ["npm", "run", "dev"]` |
+| Use Case    | Pattern            | Example                                   |
+| ----------- | ------------------ | ----------------------------------------- |
+| Web app     | ENTRY + CMD        | `ENTRYPOINT ["npm"]` `CMD ["start"]`      |
+| Database    | Script ENTRY + CMD | `ENTRYPOINT ["init.sh"]` `CMD ["mysqld"]` |
+| CLI tool    | ENTRY + help CMD   | `ENTRYPOINT ["aws"]` `CMD ["--help"]`     |
+| Batch job   | CMD only           | `CMD ["python", "job.py"]`                |
+| Development | CMD only           | `CMD ["npm", "run", "dev"]`               |
 
 ---
 

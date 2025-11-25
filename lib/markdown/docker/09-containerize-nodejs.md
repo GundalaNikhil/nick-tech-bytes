@@ -132,13 +132,71 @@ volumes:
 
 ## Best Practices
 
-✅ **Use Alpine base image for smaller size**
-✅ **Use npm ci instead of npm install in Docker**
-✅ **Run as non-root user**
-✅ **Use multi-stage builds**
-✅ **Include health checks**
-❌ **Don't use latest tag**
-❌ **Don't include node_modules in COPY**
+<div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 211, 238, 0.1)); border-radius: 12px; padding: 24px; margin: 24px 0; border: 2px solid rgba(34, 197, 94, 0.3);">
+
+<h3 style="color: #22C55E; margin-bottom: 20px;">✅ Node.js Containerization Best Practices</h3>
+
+<div style="display: grid; gap: 12px;">
+
+<div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #22C55E;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+<span style="background: linear-gradient(135deg, #22C55E, #10B981); color: white; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 14px;">✅ DO</span>
+<strong style="color: #16A34A;">Use Alpine base image for smaller size</strong>
+</div>
+<div style="color: #6B7280; font-size: 14px; padding-left: 12px;">Alpine images are 5-10x smaller than regular Node images</div>
+</div>
+
+<div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #0EA5E9;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+<span style="background: linear-gradient(135deg, #0EA5E9, #3B82F6); color: white; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 14px;">✅ DO</span>
+<strong style="color: #0284C7;">Use npm ci instead of npm install</strong>
+</div>
+<div style="color: #6B7280; font-size: 14px; padding-left: 12px;">npm ci is faster and more reliable for CI/CD environments</div>
+</div>
+
+<div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #8B5CF6;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+<span style="background: linear-gradient(135deg, #8B5CF6, #A855F7); color: white; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 14px;">✅ DO</span>
+<strong style="color: #7C3AED;">Run as non-root user</strong>
+</div>
+<div style="color: #6B7280; font-size: 14px; padding-left: 12px;">Improves security by limiting container privileges</div>
+</div>
+
+<div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #14B8A6;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+<span style="background: linear-gradient(135deg, #14B8A6, #06B6D4); color: white; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 14px;">✅ DO</span>
+<strong style="color: #0D9488;">Use multi-stage builds</strong>
+</div>
+<div style="color: #6B7280; font-size: 14px; padding-left: 12px;">Separate build and runtime environments for smaller images</div>
+</div>
+
+<div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #10B981;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+<span style="background: linear-gradient(135deg, #10B981, #22C55E); color: white; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 14px;">✅ DO</span>
+<strong style="color: #059669;">Include health checks</strong>
+</div>
+<div style="color: #6B7280; font-size: 14px; padding-left: 12px;">Enable container health monitoring for production</div>
+</div>
+
+<div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #EF4444;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+<span style="background: linear-gradient(135deg, #EF4444, #F97316); color: white; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 14px;">❌ DON'T</span>
+<strong style="color: #DC2626;">Use latest tag</strong>
+</div>
+<div style="color: #6B7280; font-size: 14px; padding-left: 12px;">Specify exact versions for reproducible builds</div>
+</div>
+
+<div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #F97316;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+<span style="background: linear-gradient(135deg, #F97316, #FB923C); color: white; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 14px;">❌ DON'T</span>
+<strong style="color: #EA580C;">Include node_modules in COPY</strong>
+</div>
+<div style="color: #6B7280; font-size: 14px; padding-left: 12px;">Use .dockerignore to exclude node_modules and let npm install them</div>
+</div>
+
+</div>
+
+</div>
 
 ---
 

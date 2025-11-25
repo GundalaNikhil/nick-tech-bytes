@@ -210,16 +210,73 @@ RUN echo "Building version $VERSION"
 
 ### 1. Use Specific Base Image Versions
 
-```dockerfile
-# ❌ Avoid
-FROM node:latest
+<div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(34, 197, 94, 0.05)); border-radius: 12px; padding: 24px; margin: 24px 0; border-left: 4px solid #6366F1;">
 
-# ✅ Good
-FROM node:18-alpine
+<h4 style="color: #6366F1; margin-bottom: 20px;">📋 Dockerfile Best Practices</h4>
 
-# ✅ Best (with digest)
-FROM node:18-alpine@sha256:abc123...
-```
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr style="background: linear-gradient(135deg, #FEE2E2, #FED7AA);">
+<th style="padding: 14px; text-align: left; color: #991B1B; font-weight: 600; border-bottom: 2px solid #FCA5A5;">❌ Avoid</th>
+<th style="padding: 14px; text-align: left; color: #065F46; font-weight: 600; border-bottom: 2px solid #6EE7B7;">✅ Better Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(255, 255, 255, 0.5);">
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; vertical-align: top;">
+<strong style="color: #DC2626;">1. Vague Base Images</strong>
+<div style="margin-top: 8px;"><code style="background: #FEE2E2; color: #991B1B; padding: 4px 8px; border-radius: 4px;">FROM node:latest</code></div>
+<div style="color: #6B7280; font-size: 13px; margin-top: 6px;">Unpredictable, breaks over time</div>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; vertical-align: top;">
+<strong style="color: #16A34A;">Specific Version Tags</strong>
+<div style="margin-top: 8px;"><code style="background: #D1FAE5; color: #065F46; padding: 4px 8px; border-radius: 4px;">FROM node:18-alpine</code></div>
+<div style="color: #6B7280; font-size: 13px; margin-top: 6px;">Predictable, reproducible builds</div>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; vertical-align: top;">
+<strong style="color: #DC2626;">2. Multiple RUN Layers</strong>
+<div style="margin-top: 8px;"><code style="background: #FEE2E2; color: #991B1B; padding: 4px 8px; border-radius: 4px; display: block; margin: 4px 0;">RUN apt-get update</code></div>
+<div style="margin-top: 4px;"><code style="background: #FEE2E2; color: #991B1B; padding: 4px 8px; border-radius: 4px; display: block;">RUN apt-get install curl</code></div>
+<div style="color: #6B7280; font-size: 13px; margin-top: 6px;">Creates unnecessary layers</div>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; vertical-align: top;">
+<strong style="color: #16A34A;">Chain Commands</strong>
+<div style="margin-top: 8px;"><code style="background: #D1FAE5; color: #065F46; padding: 4px 8px; border-radius: 4px; display: block;">RUN apt-get update && \</code></div>
+<div style="margin-top: 4px;"><code style="background: #D1FAE5; color: #065F46; padding: 4px 8px; border-radius: 4px; display: block; margin-left: 12px;">apt-get install -y curl</code></div>
+<div style="color: #6B7280; font-size: 13px; margin-top: 6px;">Single layer, smaller image</div>
+</td>
+</tr>
+<tr style="background: rgba(255, 255, 255, 0.5);">
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; vertical-align: top;">
+<strong style="color: #DC2626;">3. Large Base Images</strong>
+<div style="margin-top: 8px;"><code style="background: #FEE2E2; color: #991B1B; padding: 4px 8px; border-radius: 4px;">FROM ubuntu:22.04</code></div>
+<div style="color: #6B7280; font-size: 13px; margin-top: 6px;">~600MB, slow builds</div>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; vertical-align: top;">
+<strong style="color: #16A34A;">Alpine Linux</strong>
+<div style="margin-top: 8px;"><code style="background: #D1FAE5; color: #065F46; padding: 4px 8px; border-radius: 4px;">FROM node:18-alpine</code></div>
+<div style="color: #6B7280; font-size: 13px; margin-top: 6px;">~100MB, faster builds</div>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; vertical-align: top;">
+<strong style="color: #DC2626;">4. Running as Root</strong>
+<div style="margin-top: 8px;"><code style="background: #FEE2E2; color: #991B1B; padding: 4px 8px; border-radius: 4px;">CMD ["npm", "start"]</code></div>
+<div style="color: #6B7280; font-size: 13px; margin-top: 6px;">Security risk</div>
+</td>
+<td style="padding: 14px; vertical-align: top;">
+<strong style="color: #16A34A;">Non-Root User</strong>
+<div style="margin-top: 8px;"><code style="background: #D1FAE5; color: #065F46; padding: 4px 8px; border-radius: 4px; display: block; margin: 4px 0;">RUN adduser -S appuser</code></div>
+<div style="margin-top: 4px;"><code style="background: #D1FAE5; color: #065F46; padding: 4px 8px; border-radius: 4px; display: block;">USER appuser</code></div>
+<div style="color: #6B7280; font-size: 13px; margin-top: 6px;">Better security</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 
 ### 2. Minimize Layer Count
 

@@ -23,13 +23,48 @@ A Docker image is a **lightweight, standalone, executable package** that contain
 
 ### Key Characteristics of Images
 
-| Aspect           | Details                                                          |
-| ---------------- | ---------------------------------------------------------------- |
-| **Immutability** | Images are read-only; changes create new layers                  |
-| **Portability**  | Same image runs identically on any system                        |
-| **Reusability**  | One image can create multiple containers                         |
-| **Layered**      | Built from multiple filesystem layers (like layers in Photoshop) |
-| **Versioning**   | Can be tagged with versions (e.g., `myapp:1.0`, `myapp:latest`)  |
+<div style="overflow-x: auto; margin: 24px 0;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<thead>
+<tr style="background: linear-gradient(135deg, #06B6D4, #0EA5E9);">
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Aspect</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: #1E40AF; padding: 6px 12px; border-radius: 6px;">Immutability</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Images are read-only; changes create new layers</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px;">Portability</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Same image runs identically on any system</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FED7AA, #FDBA74); color: #9A3412; padding: 6px 12px; border-radius: 6px;">Reusability</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">One image can create multiple containers</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #E9D5FF, #D8B4FE); color: #6B21A8; padding: 6px 12px; border-radius: 6px;">Layered</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Built from multiple filesystem layers (like layers in Photoshop)</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px;">Versioning</span>
+</td>
+<td style="padding: 14px; color: #4B5563;">Can be tagged with versions (e.g., <code>myapp:1.0</code>, <code>myapp:latest</code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 ### Image Structure
 
@@ -72,13 +107,48 @@ Think of it like:
 
 ### Key Characteristics of Containers
 
-| Aspect          | Details                                    |
-| --------------- | ------------------------------------------ |
-| **Ephemeral**   | Can be created and destroyed quickly       |
-| **Isolated**    | Separate filesystem, network, process tree |
-| **Stateful**    | Can have writable layer and changes        |
-| **Lightweight** | Shares host OS kernel                      |
-| **Fast**        | Starts in milliseconds to seconds          |
+<div style="overflow-x: auto; margin: 24px 0;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<thead>
+<tr style="background: linear-gradient(135deg, #22C55E, #10B981);">
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Aspect</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px;">Ephemeral</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Can be created and destroyed quickly</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FED7AA, #FDBA74); color: #9A3412; padding: 6px 12px; border-radius: 6px;">Isolated</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Separate filesystem, network, process tree</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #DBEAFE, #BFDBFE); color: #1E40AF; padding: 6px 12px; border-radius: 6px;">Stateful</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Can have writable layer and changes</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #E9D5FF, #D8B4FE); color: #6B21A8; padding: 6px 12px; border-radius: 6px;">Lightweight</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB; color: #4B5563;">Shares host OS kernel</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px;">Fast</span>
+</td>
+<td style="padding: 14px; color: #4B5563;">Starts in milliseconds to seconds</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 ### Container Lifecycle
 

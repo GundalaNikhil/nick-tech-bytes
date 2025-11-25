@@ -15,12 +15,14 @@
 Think of health checks like a heartbeat monitor in a hospital:
 
 **Without Health Checks:**
+
 - Patient appears to be lying in bed (container is running)
 - But you don't know if they're actually alive and well
 - Could be unconscious, in pain, or in critical condition
 - No one knows until someone manually checks
 
 **With Health Checks:**
+
 - Automatic heartbeat monitor (periodic health check)
 - Alerts when something is wrong
 - Doctors notified immediately (orchestrator restarts container)
@@ -38,67 +40,53 @@ Think of health checks like a heartbeat monitor in a hospital:
 
 ## 3. Visual Representation
 
-```
-┌──────────────────────────────────────────────────────────┐
-│              Container Health States                      │
-└──────────────────────────────────────────────────────────┘
+<div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 211, 238, 0.1)); border-radius: 12px; padding: 32px; margin: 24px 0; border: 2px solid rgba(34, 197, 94, 0.3);">
 
-Container Lifecycle with Health:
-┌─────────┐
-│ CREATED │
-└─────────┘
-     ↓ start
-┌─────────────┐
-│  STARTING   │ ← Health: starting (grace period)
-└─────────────┘
-     ↓ health check passes
-┌─────────────┐
-│  HEALTHY    │ ← Health: healthy ✅
-└─────────────┘
-     ↓ health check fails
-┌─────────────┐
-│  UNHEALTHY  │ ← Health: unhealthy ❌
-└─────────────┘
-     ↓ orchestrator action
-┌─────────────┐
-│   RESTART   │ ← Container restarted
-└─────────────┘
-```
+<h3 style="color: #22C55E; margin-bottom: 24px; text-align: center;">💓 Health Check States</h3>
 
-### Health Check Flow:
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 600px; margin: 0 auto;">
 
-```
-Time ──────────────────────────────────────────────→
+<div style="display: flex; align-items: center; gap: 16px;">
+<div style="background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(99, 102, 241, 0.4);">🚀</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #6366F1;">
+<strong style="color: #4F46E5;">STARTING</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Grace period - No checks yet</div>
+</div>
+</div>
 
-Start Period (grace)         Regular Checks
-│◄─────────────►│◄────────────────────────────────►│
-│               │                                   │
-│  No checks    │  Check every interval             │
-│  Container    │  ↓       ↓       ↓       ↓       │
-│  starting up  │  OK      OK      FAIL    FAIL    │
-│               │  ✅      ✅      ❌  ❌ ❌        │
-│               │                  │                 │
-│               │                  └─→ UNHEALTHY    │
-│               │                      after retries │
-```
+<div style="border-left: 3px dashed #94A3B8; height: 20px; margin-left: 27px;"></div>
 
-### Health Check Components:
+<div style="display: flex; align-items: center; gap: 16px;">
+<div style="background: linear-gradient(135deg, #22C55E, #10B981); color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(34, 197, 94, 0.4);">✅</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #22C55E;">
+<strong style="color: #16A34A;">HEALTHY</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Health checks passing - Ready for traffic</div>
+</div>
+</div>
 
-```
-┌────────────────────────────────────────────────────┐
-│  HEALTHCHECK Configuration                         │
-├────────────────────────────────────────────────────┤
-│                                                    │
-│  --interval=30s     ← How often to check          │
-│  --timeout=3s       ← Max time for check to run   │
-│  --start-period=0s  ← Grace period after start    │
-│  --retries=3        ← Failures before unhealthy   │
-│                                                    │
-│  Command:                                          │
-│  CMD curl -f http://localhost/health || exit 1    │
-│                                                    │
-└────────────────────────────────────────────────────┘
-```
+<div style="border-left: 3px dashed #94A3B8; height: 20px; margin-left: 27px;"></div>
+
+<div style="display: flex; align-items: center; gap: 16px;">
+<div style="background: linear-gradient(135deg, #EF4444, #DC2626); color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(239, 68, 68, 0.4);">❌</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #EF4444;">
+<strong style="color: #DC2626;">UNHEALTHY</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Health checks failing - Needs restart</div>
+</div>
+</div>
+
+<div style="border-left: 3px dashed #94A3B8; height: 20px; margin-left: 27px;"></div>
+
+<div style="display: flex; align-items: center; gap: 16px;">
+<div style="background: linear-gradient(135deg, #F97316, #FB923C); color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(249, 115, 22, 0.4);">🔄</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #F97316;">
+<strong style="color: #EA580C;">RESTART</strong>
+<div style="color: #6B7280; font-size: 14px; margin-top: 4px;">Orchestrator restarts container automatically</div>
+</div>
+</div>
+
+</div>
+
+</div>
 
 ---
 
@@ -217,7 +205,7 @@ CMD ["node", "server.js"]
 
 ```javascript
 // server.js
-const express = require('express');
+const express = require("express");
 const app = express();
 
 let isHealthy = true;
@@ -226,35 +214,35 @@ let dbConnected = false;
 // Simulate DB connection
 setTimeout(() => {
   dbConnected = true;
-  console.log('Database connected');
+  console.log("Database connected");
 }, 5000);
 
 // Health endpoint
-app.get('/health', (req, res) => {
+app.get("/health", (req, res) => {
   if (!isHealthy || !dbConnected) {
     return res.status(503).json({
-      status: 'unhealthy',
-      database: dbConnected ? 'connected' : 'disconnected'
+      status: "unhealthy",
+      database: dbConnected ? "connected" : "disconnected",
     });
   }
-  
+
   res.json({
-    status: 'healthy',
+    status: "healthy",
     uptime: process.uptime(),
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
 // Readiness endpoint (for Kubernetes)
-app.get('/ready', (req, res) => {
+app.get("/ready", (req, res) => {
   if (!dbConnected) {
-    return res.status(503).json({ status: 'not ready' });
+    return res.status(503).json({ status: "not ready" });
   }
-  res.json({ status: 'ready' });
+  res.json({ status: "ready" });
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
 const PORT = process.env.PORT || 3000;
@@ -265,18 +253,18 @@ app.listen(PORT, () => {
 
 ```javascript
 // healthcheck.js - Custom health check script
-const http = require('http');
+const http = require("http");
 
 const options = {
-  host: 'localhost',
+  host: "localhost",
   port: 3000,
-  path: '/health',
-  timeout: 2000
+  path: "/health",
+  timeout: 2000,
 };
 
 const healthCheck = http.request(options, (res) => {
   console.log(`Health check status: ${res.statusCode}`);
-  
+
   if (res.statusCode === 200) {
     process.exit(0); // Healthy
   } else {
@@ -284,8 +272,8 @@ const healthCheck = http.request(options, (res) => {
   }
 });
 
-healthCheck.on('error', (err) => {
-  console.error('Health check failed:', err.message);
+healthCheck.on("error", (err) => {
+  console.error("Health check failed:", err.message);
   process.exit(1); // Unhealthy
 });
 
@@ -337,7 +325,7 @@ def health():
                 'reason': 'high memory usage',
                 'memory_percent': memory.percent
             }), 503
-        
+
         # Check if we have enough disk space
         disk = psutil.disk_usage('/')
         if disk.percent > 90:
@@ -346,7 +334,7 @@ def health():
                 'reason': 'low disk space',
                 'disk_percent': disk.percent
             }), 503
-        
+
         # All checks passed
         return jsonify({
             'status': 'healthy',
@@ -354,7 +342,7 @@ def health():
             'memory_percent': memory.percent,
             'disk_percent': disk.percent
         }), 200
-        
+
     except Exception as e:
         return jsonify({
             'status': 'unhealthy',
@@ -406,7 +394,7 @@ HEALTHCHECK --interval=5s --timeout=3s --start-period=10s --retries=3 \
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 
 services:
   web:
@@ -422,7 +410,7 @@ services:
     depends_on:
       api:
         condition: service_healthy
-      
+
   api:
     build: ./api
     ports:
@@ -438,7 +426,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-      
+
   database:
     image: postgres:15
     environment:
@@ -451,7 +439,7 @@ services:
       start_period: 30s
     volumes:
       - db_data:/var/lib/postgresql/data
-      
+
   redis:
     image: redis:7-alpine
     healthcheck:
@@ -545,43 +533,47 @@ HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
 ### Best Practices:
 
 1. **Implement Proper Health Endpoints**
+
    ```javascript
    // ✅ Good - comprehensive check
-   app.get('/health', async (req, res) => {
+   app.get("/health", async (req, res) => {
      try {
        await db.ping(); // Check database
        await cache.ping(); // Check Redis
        // Check other dependencies
-       res.json({ status: 'healthy' });
+       res.json({ status: "healthy" });
      } catch (error) {
-       res.status(503).json({ status: 'unhealthy', error: error.message });
+       res.status(503).json({ status: "unhealthy", error: error.message });
      }
    });
    ```
 
 2. **Set Appropriate Timeouts**
+
    ```dockerfile
    # ✅ Good timing
    HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3
-   
+
    # ❌ Too aggressive
    HEALTHCHECK --interval=5s --timeout=1s --start-period=0s --retries=1
    ```
 
 3. **Use Start Period for Slow Startups**
+
    ```dockerfile
    # ✅ Good - adequate startup time
    HEALTHCHECK --start-period=60s CMD ...
-   
+
    # For databases
    HEALTHCHECK --start-period=120s CMD ...
    ```
 
 4. **Return Proper Exit Codes**
+
    ```bash
    # ✅ Healthy
    exit 0
-   
+
    # ❌ Unhealthy
    exit 1
    ```
@@ -602,27 +594,27 @@ HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
 
 ### Health vs Readiness:
 
-| Type | Purpose | When to Fail | Example |
-|------|---------|--------------|---------|
-| **Health** | Is app functioning? | App crash, deadlock | Process check, /health |
-| **Readiness** | Can app serve traffic? | DB down, warming up | /ready endpoint |
+| Type          | Purpose                | When to Fail        | Example                |
+| ------------- | ---------------------- | ------------------- | ---------------------- |
+| **Health**    | Is app functioning?    | App crash, deadlock | Process check, /health |
+| **Readiness** | Can app serve traffic? | DB down, warming up | /ready endpoint        |
 
 ```javascript
 // Health - application itself
-app.get('/health', (req, res) => {
+app.get("/health", (req, res) => {
   if (processIsHealthy()) {
-    res.status(200).send('OK');
+    res.status(200).send("OK");
   } else {
-    res.status(503).send('Unhealthy');
+    res.status(503).send("Unhealthy");
   }
 });
 
 // Readiness - dependencies ready
-app.get('/ready', async (req, res) => {
+app.get("/ready", async (req, res) => {
   if (await allDependenciesReady()) {
-    res.status(200).send('Ready');
+    res.status(200).send("Ready");
   } else {
-    res.status(503).send('Not Ready');
+    res.status(503).send("Not Ready");
   }
 });
 ```
@@ -662,8 +654,9 @@ docker events --filter type=container --filter event=health_status
 ### Integration with Orchestration
 
 **Docker Swarm:**
+
 ```yaml
-version: '3.8'
+version: "3.8"
 
 services:
   web:
@@ -683,6 +676,7 @@ services:
 ```
 
 **Kubernetes (converted):**
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -690,22 +684,22 @@ metadata:
   name: myapp
 spec:
   containers:
-  - name: myapp
-    image: myapp:latest
-    livenessProbe:
-      httpGet:
-        path: /health
-        port: 8080
-      initialDelaySeconds: 40
-      periodSeconds: 30
-      timeoutSeconds: 10
-      failureThreshold: 3
-    readinessProbe:
-      httpGet:
-        path: /ready
-        port: 8080
-      initialDelaySeconds: 10
-      periodSeconds: 10
+    - name: myapp
+      image: myapp:latest
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 8080
+        initialDelaySeconds: 40
+        periodSeconds: 30
+        timeoutSeconds: 10
+        failureThreshold: 3
+      readinessProbe:
+        httpGet:
+          path: /ready
+          port: 8080
+        initialDelaySeconds: 10
+        periodSeconds: 10
 ```
 
 ### Debugging Failed Health Checks

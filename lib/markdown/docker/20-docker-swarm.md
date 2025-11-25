@@ -15,12 +15,14 @@
 Think of Docker Swarm like managing a fleet of delivery trucks:
 
 **Without Swarm (Single Host):**
+
 - One warehouse (server) with one truck (container)
 - If the truck breaks down, deliveries stop
 - Can't handle increased demand
 - One person managing everything manually
 
 **With Docker Swarm (Orchestration):**
+
 - Multiple warehouses (nodes) with many trucks (containers)
 - If one truck breaks, others take over automatically
 - Add more trucks when demand increases
@@ -40,90 +42,83 @@ Think of Docker Swarm like managing a fleet of delivery trucks:
 
 ## 3. Visual Representation
 
-```
-┌────────────────────────────────────────────────────────────┐
-│              Docker Swarm Architecture                      │
-└────────────────────────────────────────────────────────────┘
+### Docker Swarm Architecture
 
-Without Swarm:
-┌──────────────┐
-│  Single Host │
-│              │
-│  Container 1 │
-│  Container 2 │
-│  Container 3 │
-└──────────────┘
-  ❌ Single point of failure
-  ❌ No load balancing
-  ❌ Manual scaling
-
-
-With Docker Swarm:
-┌─────────────────────────────────────────────────────────┐
-│                    SWARM CLUSTER                         │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│  ┌────────────────┐  ┌────────────────┐                │
-│  │ Manager Node 1 │  │ Manager Node 2 │                │
-│  │   (Leader)     │  │   (Reachable)  │                │
-│  │ ┌────┐ ┌────┐ │  │ ┌────┐ ┌────┐ │                │
-│  │ │Svc1│ │Svc2│ │  │ │Svc1│ │Svc2│ │                │
-│  │ └────┘ └────┘ │  │ └────┘ └────┘ │                │
-│  └────────────────┘  └────────────────┘                │
-│           │                  │                          │
-│           └──────────┬───────┘                          │
-│                      │                                  │
-│  ┌───────────────────┼───────────────────┐             │
-│  │                   │                   │             │
-│  ┌─────────┐   ┌─────────┐   ┌─────────┐             │
-│  │Worker 1 │   │Worker 2 │   │Worker 3 │             │
-│  │┌───┐┌───┐  │┌───┐┌───┐  │┌───┐┌───┐             │
-│  ││C1 ││C2 │  ││C3 ││C4 │  ││C5 ││C6 │             │
-│  │└───┘└───┘  │└───┘└───┘  │└───┘└───┘             │
-│  └─────────┘   └─────────┘   └─────────┘             │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
-  ✅ High availability
-  ✅ Load balancing
-  ✅ Auto-scaling
-```
-
-### Service Deployment Flow:
-
-```
-docker service create --replicas 3 my-app
-         ↓
-┌────────────────────┐
-│  Swarm Manager     │
-│  (Orchestrator)    │
-└────────────────────┘
-         ↓
-   Distributes tasks
-         ↓
-┌────────┴────────┬──────────┐
-│                 │          │
-Node 1          Node 2     Node 3
-[Container]     [Container] [Container]
-```
-
-### Load Balancing:
-
-```
-        Client Request
-              ↓
-     ┌────────────────┐
-     │  Ingress Load  │
-     │    Balancer    │
-     └────────────────┘
-              ↓
-    ┌─────────┴──────────┐
-    │                    │
-┌─────────┐        ┌─────────┐
-│Service  │        │Service  │
-│Replica 1│        │Replica 2│
-│ Node A  │        │ Node B  │
-└─────────┘        └─────────┘
-```
+<div style="background: linear-gradient(135deg, #F0F9FF, #E0F2FE); padding: 30px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  
+  <div style="text-align: center; margin-bottom: 30px;">
+    <h3 style="color: #0369A1; margin: 0;">Swarm Cluster Architecture</h3>
+  </div>
+  
+  <!-- Manager Nodes -->
+  <div style="background: linear-gradient(135deg, #8B5CF6, #7C3AED); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+    <div style="color: white; font-weight: 600; font-size: 16px; margin-bottom: 15px; text-align: center;">Manager Nodes (Control Plane)</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+      <div style="background: white; padding: 15px; border-radius: 8px;">
+        <div style="font-weight: 600; color: #7C3AED; margin-bottom: 8px;">Manager 1 (Leader)</div>
+        <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <div style="background: #DBEAFE; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 12px;">Service 1</div>
+          <div style="background: #DBEAFE; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 12px;">Service 2</div>
+        </div>
+      </div>
+      <div style="background: white; padding: 15px; border-radius: 8px;">
+        <div style="font-weight: 600; color: #7C3AED; margin-bottom: 8px;">Manager 2 (Reachable)</div>
+        <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <div style="background: #DBEAFE; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 12px;">Service 1</div>
+          <div style="background: #DBEAFE; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 12px;">Service 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Arrow -->
+  <div style="text-align: center; color: #6B7280; font-size: 24px; margin: 10px 0;">↓</div>
+  
+  <!-- Worker Nodes -->
+  <div style="background: linear-gradient(135deg, #22C55E, #10B981); padding: 20px; border-radius: 12px;">
+    <div style="color: white; font-weight: 600; font-size: 16px; margin-bottom: 15px; text-align: center;">Worker Nodes (Container Execution)</div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+      <div style="background: white; padding: 15px; border-radius: 8px;">
+        <div style="font-weight: 600; color: #10B981; margin-bottom: 8px;">Worker 1</div>
+        <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 11px;">C1</div>
+          <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 11px;">C2</div>
+        </div>
+      </div>
+      <div style="background: white; padding: 15px; border-radius: 8px;">
+        <div style="font-weight: 600; color: #10B981; margin-bottom: 8px;">Worker 2</div>
+        <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 11px;">C3</div>
+          <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 11px;">C4</div>
+        </div>
+      </div>
+      <div style="background: white; padding: 15px; border-radius: 8px;">
+        <div style="font-weight: 600; color: #10B981; margin-bottom: 8px;">Worker 3</div>
+        <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 11px;">C5</div>
+          <div style="background: #D1FAE5; padding: 8px; border-radius: 4px; flex: 1; text-align: center; font-size: 11px;">C6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Benefits -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+      <div style="color: #22C55E; font-size: 24px;">✅</div>
+      <div style="color: #374151; font-weight: 600; font-size: 14px;">High Availability</div>
+    </div>
+    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+      <div style="color: #22C55E; font-size: 24px;">✅</div>
+      <div style="color: #374151; font-weight: 600; font-size: 14px;">Load Balancing</div>
+    </div>
+    <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
+      <div style="color: #22C55E; font-size: 24px;">✅</div>
+      <div style="color: #374151; font-weight: 600; font-size: 14px;">Auto-Scaling</div>
+    </div>
+  </div>
+  
+</div>
 
 ---
 
@@ -156,14 +151,17 @@ Node 1          Node 2     Node 3
 ### Swarm Concepts:
 
 1. **Node Types:**
+
    - Manager Nodes: Control plane, maintain cluster state
    - Worker Nodes: Execute containers
 
 2. **Services:**
+
    - Replicated: Specified number of identical tasks
    - Global: One task per node
 
 3. **Tasks:**
+
    - Individual container instances
    - Scheduled by managers onto workers
 
@@ -357,7 +355,7 @@ docker service update \
 
 ```yaml
 # docker-compose.yml (stack file)
-version: '3.8'
+version: "3.8"
 
 services:
   web:
@@ -373,7 +371,7 @@ services:
         condition: on-failure
     networks:
       - frontend
-      
+
   api:
     image: myapp/api:latest
     deploy:
@@ -383,17 +381,17 @@ services:
           - node.role == worker
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
         reservations:
-          cpus: '0.25'
+          cpus: "0.25"
           memory: 256M
     environment:
       - NODE_ENV=production
     networks:
       - frontend
       - backend
-      
+
   database:
     image: postgres:15
     deploy:
@@ -542,25 +540,28 @@ docker node rm worker1
 ### Best Practices:
 
 1. **Use Odd Number of Managers**
+
    ```bash
    # ✅ Good - 1, 3, 5, or 7 managers
    # Maintains quorum for high availability
-   
+
    # ❌ Avoid - 2, 4, 6 managers
    # No benefit, higher split-brain risk
    ```
 
 2. **Separate Manager and Worker Roles**
+
    ```bash
    # Prevent containers on managers
    docker node update --availability drain manager1
    ```
 
 3. **Use Docker Secrets for Sensitive Data**
+
    ```bash
    # ✅ Good
    echo "password" | docker secret create db_pass -
-   
+
    # ❌ Avoid - environment variables for secrets
    --env DB_PASSWORD=mysecret
    ```
@@ -591,14 +592,14 @@ docker node rm worker1
 
 ### Swarm vs Kubernetes:
 
-| Feature | Docker Swarm | Kubernetes |
-|---------|-------------|------------|
-| **Setup** | Very easy | Complex |
-| **Learning Curve** | Gentle | Steep |
-| **Ecosystem** | Smaller | Massive |
-| **Use Case** | Small-medium | Medium-large |
-| **Auto-scaling** | Basic | Advanced |
-| **Community** | Good | Excellent |
+| Feature            | Docker Swarm | Kubernetes   |
+| ------------------ | ------------ | ------------ |
+| **Setup**          | Very easy    | Complex      |
+| **Learning Curve** | Gentle       | Steep        |
+| **Ecosystem**      | Smaller      | Massive      |
+| **Use Case**       | Small-medium | Medium-large |
+| **Auto-scaling**   | Basic        | Advanced     |
+| **Community**      | Good         | Excellent    |
 
 ---
 
@@ -660,7 +661,7 @@ docker node inspect worker1
 
 ```yaml
 # production-stack.yml
-version: '3.8'
+version: "3.8"
 
 services:
   nginx:
@@ -686,7 +687,7 @@ services:
     configs:
       - source: nginx_config
         target: /etc/nginx/nginx.conf
-        
+
   app:
     image: myapp:${VERSION:-latest}
     deploy:
@@ -696,10 +697,10 @@ services:
         delay: 10s
       resources:
         limits:
-          cpus: '1'
+          cpus: "1"
           memory: 1G
         reservations:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
     environment:
       - NODE_ENV=production
@@ -714,7 +715,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-      
+
   db:
     image: postgres:15
     deploy:

@@ -39,59 +39,123 @@ Think of an **apartment building** vs **separate houses**:
 
 ## 3. Visual Representation
 
-```
-VIRTUAL MACHINES:
-┌─────────────────────────────────────────────────────────────┐
-│                    Physical Server                          │
-├─────────────────────────────────────────────────────────────┤
-│                    Host Operating System                    │
-├─────────────────────────────────────────────────────────────┤
-│                      Hypervisor                             │
-├───────────────┬───────────────┬──────────────┬──────────────┤
-│   VM 1        │   VM 2        │   VM 3       │   VM 4       │
-│ ┌───────────┐ │ ┌───────────┐ │ ┌──────────┐ │ ┌──────────┐ │
-│ │  App A    │ │ │  App B    │ │ │  App C   │ │ │  App D   │ │
-│ ├───────────┤ │ ├───────────┤ │ ├──────────┤ │ ├──────────┤ │
-│ │  Libs     │ │ │  Libs     │ │ │  Libs    │ │ │  Libs    │ │
-│ ├───────────┤ │ ├───────────┤ │ ├──────────┤ │ ├──────────┤ │
-│ │ Guest OS  │ │ │ Guest OS  │ │ │ Guest OS │ │ │ Guest OS │ │
-│ │ (Linux)   │ │ │ (Windows) │ │ │ (Linux)  │ │ │ (Ubuntu) │ │
-│ └───────────┘ │ └───────────┘ │ └──────────┘ │ └──────────┘ │
-│   ~1-2 GB     │   ~3-4 GB     │   ~1-2 GB    │   ~1-2 GB    │
-└───────────────┴───────────────┴──────────────┴──────────────┘
+<div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1)); border-radius: 12px; padding: 32px; margin: 24px 0; border: 2px solid rgba(6, 182, 212, 0.3);">
 
+<h3 style="color: #0EA5E9; margin-bottom: 24px;">🏗️ Architecture Comparison</h3>
 
-DOCKER CONTAINERS:
-┌─────────────────────────────────────────────────────────────┐
-│                    Physical Server                          │
-├─────────────────────────────────────────────────────────────┤
-│                    Host Operating System                    │
-├─────────────────────────────────────────────────────────────┤
-│                      Docker Engine                          │
-├──────────┬──────────┬──────────┬──────────┬─────────────────┤
-│ Cont 1   │ Cont 2   │ Cont 3   │ Cont 4   │  Cont 5-20+     │
-│┌────────┐│┌────────┐│┌────────┐│┌────────┐│                 │
-││ App A  │││ App B  │││ App C  │││ App D  ││  Many more...   │
-│├────────┤│├────────┤│├────────┤│├────────┤│                 │
-││ Libs   │││ Libs   │││ Libs   │││ Libs   ││                 │
-│└────────┘│└────────┘│└────────┘│└────────┘│                 │
-│ ~100 MB  │ ~200 MB  │ ~150 MB  │ ~100 MB  │  ~100-500 MB    │
-└──────────┴──────────┴──────────┴──────────┴─────────────────┘
-```
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 24px 0;">
 
-### Boot Time Comparison:
+<div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(251, 146, 60, 0.1)); border-radius: 12px; padding: 24px; border: 2px solid rgba(239, 68, 68, 0.3);">
+<h4 style="color: #EF4444; margin-bottom: 16px; text-align: center;">⚠️ Virtual Machines</h4>
+<div style="background: white; border-radius: 8px; padding: 16px; margin: 8px 0;">
+<div style="text-align: center; padding: 12px; background: linear-gradient(135deg, #F3F4F6, #E5E7EB); border-radius: 6px; margin-bottom: 12px; font-weight: bold; color: #374151;">Physical Server</div>
+<div style="text-align: center; padding: 12px; background: linear-gradient(135deg, #DBEAFE, #BFDBFE); border-radius: 6px; margin-bottom: 12px; font-weight: bold; color: #1E40AF;">Host Operating System</div>
+<div style="text-align: center; padding: 12px; background: linear-gradient(135deg, #FEE2E2, #FECACA); border-radius: 6px; margin-bottom: 12px; font-weight: bold; color: #991B1B;">Hypervisor</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+<div style="text-align: center; padding: 8px; background: linear-gradient(135deg, #FED7AA, #FDBA74); border-radius: 6px; font-size: 12px;">
+<div style="font-weight: bold; color: #9A3412;">VM 1</div>
+<div style="color: #9A3412;">App A</div>
+<div style="color: #9A3412;">Libs</div>
+<div style="color: #9A3412; font-weight: bold;">Guest OS</div>
+<div style="color: #9A3412; font-size: 11px;">~2 GB</div>
+</div>
+<div style="text-align: center; padding: 8px; background: linear-gradient(135deg, #FED7AA, #FDBA74); border-radius: 6px; font-size: 12px;">
+<div style="font-weight: bold; color: #9A3412;">VM 2</div>
+<div style="color: #9A3412;">App B</div>
+<div style="color: #9A3412;">Libs</div>
+<div style="color: #9A3412; font-weight: bold;">Guest OS</div>
+<div style="color: #9A3412; font-size: 11px;">~3 GB</div>
+</div>
+<div style="text-align: center; padding: 8px; background: linear-gradient(135deg, #FED7AA, #FDBA74); border-radius: 6px; font-size: 12px;">
+<div style="font-weight: bold; color: #9A3412;">VM 3</div>
+<div style="color: #9A3412;">App C</div>
+<div style="color: #9A3412;">Libs</div>
+<div style="color: #9A3412; font-weight: bold;">Guest OS</div>
+<div style="color: #9A3412; font-size: 11px;">~2 GB</div>
+</div>
+<div style="text-align: center; padding: 8px; background: linear-gradient(135deg, #FED7AA, #FDBA74); border-radius: 6px; font-size: 12px;">
+<div style="font-weight: bold; color: #9A3412;">VM 4</div>
+<div style="color: #9A3412;">App D</div>
+<div style="color: #9A3412;">Libs</div>
+<div style="color: #9A3412; font-weight: bold;">Guest OS</div>
+<div style="color: #9A3412; font-size: 11px;">~2 GB</div>
+</div>
+</div>
+</div>
+</div>
 
-```
-Virtual Machine Boot Process:
-[Start] → BIOS → Bootloader → Kernel → Init → Services → Ready
- 0s       5s       10s         30s      45s     60s      60s+
-████████████████████████████████████████████████████████ (1 minute+)
+<div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 211, 238, 0.1)); border-radius: 12px; padding: 24px; border: 2px solid rgba(34, 197, 94, 0.3);">
+<h4 style="color: #22C55E; margin-bottom: 16px; text-align: center;">✅ Docker Containers</h4>
+<div style="background: white; border-radius: 8px; padding: 16px; margin: 8px 0;">
+<div style="text-align: center; padding: 12px; background: linear-gradient(135deg, #F3F4F6, #E5E7EB); border-radius: 6px; margin-bottom: 12px; font-weight: bold; color: #374151;">Physical Server</div>
+<div style="text-align: center; padding: 12px; background: linear-gradient(135deg, #DBEAFE, #BFDBFE); border-radius: 6px; margin-bottom: 12px; font-weight: bold; color: #1E40AF;">Host Operating System</div>
+<div style="text-align: center; padding: 12px; background: linear-gradient(135deg, #A7F3D0, #6EE7B7); border-radius: 6px; margin-bottom: 12px; font-weight: bold; color: #065F46;">Docker Engine</div>
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px;">
+<div style="text-align: center; padding: 8px; background: linear-gradient(135deg, #D1FAE5, #A7F3D0); border-radius: 6px; font-size: 11px;">
+<div style="font-weight: bold; color: #065F46;">C1</div>
+<div style="color: #065F46;">App A</div>
+<div style="color: #065F46;">Libs</div>
+<div style="color: #065F46; font-size: 10px;">~100 MB</div>
+</div>
+<div style="text-align: center; padding: 8px; background: linear-gradient(135deg, #D1FAE5, #A7F3D0); border-radius: 6px; font-size: 11px;">
+<div style="font-weight: bold; color: #065F46;">C2</div>
+<div style="color: #065F46;">App B</div>
+<div style="color: #065F46;">Libs</div>
+<div style="color: #065F46; font-size: 10px;">~200 MB</div>
+</div>
+<div style="text-align: center; padding: 8px; background: linear-gradient(135deg, #D1FAE5, #A7F3D0); border-radius: 6px; font-size: 11px;">
+<div style="font-weight: bold; color: #065F46;">C3</div>
+<div style="color: #065F46;">App C</div>
+<div style="color: #065F46;">Libs</div>
+<div style="color: #065F46; font-size: 10px;">~150 MB</div>
+</div>
+<div style="text-align: center; padding: 8px; background: linear-gradient(135deg, #D1FAE5, #A7F3D0); border-radius: 6px; font-size: 11px;">
+<div style="font-weight: bold; color: #065F46;">C4</div>
+<div style="color: #065F46;">App D</div>
+<div style="color: #065F46;">Libs</div>
+<div style="color: #065F46; font-size: 10px;">~100 MB</div>
+</div>
+<div style="text-align: center; padding: 8px; background: linear-gradient(135deg, #D1FAE5, #A7F3D0); border-radius: 6px; font-size: 11px;">
+<div style="font-weight: bold; color: #065F46;">+More</div>
+<div style="color: #065F46; font-size: 10px;">Many</div>
+<div style="color: #065F46; font-size: 10px;">More...</div>
+</div>
+</div>
+</div>
+</div>
 
-Container Boot Process:
-[Start] → Process Creation → Ready
- 0s       0.1s                 1s
-███ (Under 1 second)
-```
+</div>
+
+</div>
+
+<div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1)); border-radius: 12px; padding: 24px; margin: 24px 0; border: 2px solid rgba(139, 92, 246, 0.3);">
+
+<h3 style="color: #8B5CF6; margin-bottom: 20px;">⚡ Boot Time Comparison</h3>
+
+<div style="margin: 16px 0;">
+<div style="margin-bottom: 24px;">
+<div style="display: flex; align-items: center; margin-bottom: 8px;">
+<span style="background: linear-gradient(135deg, #EF4444, #F97316); color: white; padding: 6px 12px; border-radius: 6px; font-weight: bold; margin-right: 12px;">VM Boot</span>
+<span style="color: #6B7280;">60+ seconds</span>
+</div>
+<div style="background: linear-gradient(to right, #EF4444, #F97316); height: 24px; border-radius: 12px; width: 100%; position: relative;">
+<span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold; font-size: 12px;">BIOS → Bootloader → Kernel → Init → Services → Ready</span>
+</div>
+</div>
+
+<div>
+<div style="display: flex; align-items: center; margin-bottom: 8px;">
+<span style="background: linear-gradient(135deg, #22C55E, #10B981); color: white; padding: 6px 12px; border-radius: 6px; font-weight: bold; margin-right: 12px;">Container Boot</span>
+<span style="color: #6B7280;">~1 second</span>
+</div>
+<div style="background: linear-gradient(to right, #22C55E, #10B981); height: 24px; border-radius: 12px; width: 15%; position: relative;">
+<span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold; font-size: 12px;">Start → Ready</span>
+</div>
+</div>
+
+</div>
+
+</div>
 
 ---
 
@@ -296,211 +360,178 @@ docker stats --no-stream --format "table {{.Container}}\t{{.CPUPerc}}\t{{.MemUsa
 
 ### Detailed Comparison Table:
 
-| Aspect             | Virtual Machines             | Docker Containers             |
-| ------------------ | ---------------------------- | ----------------------------- |
-| **Size**           | GBs (1-10+ GB)               | MBs (10-500 MB)               |
-| **Boot Time**      | Minutes (1-5 min)            | Seconds (1-10 sec)            |
-| **Performance**    | Slower (hypervisor overhead) | Near-native speed             |
-| **Isolation**      | Complete (separate kernel)   | Process-level (shared kernel) |
-| **OS Support**     | Any OS on any host           | Must match host kernel        |
-| **Security**       | Stronger isolation           | Good but shares kernel        |
-| **Portability**    | Less portable (large files)  | Highly portable               |
-| **Resource Usage** | Heavy                        | Lightweight                   |
-| **Density**        | 10-20 VMs per host           | 100+ containers per host      |
-| **Networking**     | Slower (virtual NIC)         | Faster (same network stack)   |
-| **Storage**        | Slower (virtual disk)        | Faster (layered filesystem)   |
-
-### When to Use VMs:
-
-✅ **Use Virtual Machines When:**
-
-- Need to run different operating systems (Windows on Linux)
-- Require complete isolation for security
-- Running legacy applications that need full OS
-- Need to allocate dedicated resources
-- Testing different OS versions
-- Maximum security is required
-
-**Example Use Cases:**
-
-- Running Windows apps on Mac/Linux
-- Creating isolated testing environments
-- Running untrusted code
-- Infrastructure as a Service (IaaS)
-- Desktop virtualization
-
-### When to Use Containers:
-
-✅ **Use Docker Containers When:**
-
-- Building microservices
-- Need rapid scaling
-- Developing cloud-native applications
-- Want consistent dev/test/prod environments
-- Deploying multiple services on same host
-- CI/CD pipelines
-
-**Example Use Cases:**
-
-- Web applications
-- APIs and microservices
-- Development environments
-- Batch processing
-- Machine learning models
-- Serverless functions
-
-### Common Pitfalls:
-
-❌ **Treating containers like VMs**
-
-- Containers are ephemeral, VMs are persistent
-- Don't store data in containers
-
-❌ **Choosing based on trends instead of needs**
-
-- Evaluate actual requirements
-- Sometimes VMs are the right choice
-
-❌ **Ignoring security implications**
-
-- Shared kernel = potential security risk
-- VMs provide stronger isolation
-
-### Best Practices:
-
-**For VMs:**
-
-- Keep images updated
-- Allocate resources appropriately
-- Use snapshots for backups
-- Monitor resource utilization
-
-**For Containers:**
-
-- Keep images small
-- Use official base images
-- Implement proper logging
-- Use orchestration for production
-
----
-
-## 8. Additional Helpful Sections
-
-### Hybrid Approach: Containers IN Virtual Machines
-
-Many organizations use both technologies together:
-
-```
-┌─────────────────────────────────────────────┐
-│           Physical Server / Cloud           │
-├─────────────────────────────────────────────┤
-│         VM 1          │         VM 2        │
-│  ┌─────────────────┐  │  ┌─────────────────┐│
-│  │ Docker Engine   │  │  │ Docker Engine   ││
-│  ├───┬───┬───┬───┬─┤  │  ├───┬───┬───┬────┤│
-│  │C1 │C2 │C3 │C4 │..  │  │C1 │C2 │C3 │... ││
-│  └───┴───┴───┴───┴─┘  │  └───┴───┴───┴────┘│
-└─────────────────────────────────────────────┘
-
-Benefits:
-- Security of VMs + efficiency of containers
-- Isolate teams/projects in separate VMs
-- Run containers in different cloud regions
-```
-
-### Real-World Examples:
-
-**Netflix:**
-
-- Uses VMs for security and isolation
-- Runs containers inside VMs for deployment speed
-- Best of both worlds
-
-**Spotify:**
-
-- Heavily container-based infrastructure
-- Uses Kubernetes for orchestration
-- Thousands of microservices
-
-**Enterprise Banks:**
-
-- VMs for regulatory compliance
-- Containers for new applications
-- Gradual migration strategy
-
-### Migration Considerations:
-
-**VM to Container Migration:**
-
-```
-Assessment Phase:
-├─ Check if app needs full OS
-├─ Evaluate storage requirements
-├─ Review networking dependencies
-└─ Identify stateful components
-
-Planning Phase:
-├─ Create Dockerfiles
-├─ Set up container registry
-├─ Plan data migration
-└─ Test thoroughly
-
-Execution Phase:
-├─ Containerize application
-├─ Deploy alongside VMs (gradual)
-├─ Monitor performance
-└─ Complete cutover
-```
-
-### Cost Comparison:
-
-```
-Cloud VM Costs (example):
-- t3.medium (2 vCPU, 4GB): $30/month
-- Running 10 apps: $300/month
-
-Container Costs (example):
-- t3.medium (2 vCPU, 4GB): $30/month
-- Running 50+ apps: $30/month
-
-Savings: 80-90% in many scenarios
-```
-
-### Technology Evolution:
-
-```
-1960s-1990s: Physical Servers
-     │
-     ↓
-2000s: Virtual Machines (VMware, VirtualBox)
-     │
-     ↓
-2013+: Containers (Docker, rkt)
-     │
-     ↓
-2015+: Container Orchestration (Kubernetes, Docker Swarm)
-     │
-     ↓
-Future: Serverless, WebAssembly, Edge Computing
-```
+<div style="overflow-x: auto; margin: 24px 0;">
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<thead>
+<tr style="background: linear-gradient(135deg, #0EA5E9, #6366F1);">
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600; border-bottom: 2px solid rgba(255, 255, 255, 0.2);">Aspect</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600; border-bottom: 2px solid rgba(255, 255, 255, 0.2);">🖥️ Virtual Machines</th>
+<th style="padding: 16px; text-align: left; color: white; font-weight: 600; border-bottom: 2px solid rgba(255, 255, 255, 0.2);">🐳 Docker Containers</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Size</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 6px 12px; border-radius: 6px; font-weight: 500;">GBs (1-10+ GB)</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">MBs (10-500 MB)</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Boot Time</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Minutes (1-5 min)</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Seconds (1-10 sec)</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Performance</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Slower (hypervisor overhead)</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Near-native speed</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Isolation</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Complete (separate kernel)</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Process-level (shared kernel)</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">OS Support</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Any OS on any host</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Must match host kernel</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Security</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Stronger isolation</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Good but shares kernel</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Portability</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Less portable (large files)</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Highly portable</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Resource Usage</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Heavy</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Lightweight</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Density</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">10-20 VMs per host</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">100+ containers per host</span>
+</td>
+</tr>
+<tr style="background: white;">
+<td style="padding: 14px; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB;">Networking</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Slower (virtual NIC)</span>
+</td>
+<td style="padding: 14px; border-bottom: 1px solid #E5E7EB;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Faster (same network stack)</span>
+</td>
+</tr>
+<tr style="background: rgba(249, 250, 251, 0.5);">
+<td style="padding: 14px; font-weight: 600; color: #374151;">Storage</td>
+<td style="padding: 14px;">
+<span style="background: linear-gradient(135deg, #FEF3C7, #FDE68A); color: #92400E; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Slower (virtual disk)</span>
+</td>
+<td style="padding: 14px;">
+<span style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 6px 12px; border-radius: 6px; font-weight: 500;">Faster (layered filesystem)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 ### Quick Decision Matrix:
 
-```
-Need different OS? ────────→ Use VMs
-   │ No
-   ↓
-Need maximum isolation? ───→ Use VMs
-   │ No
-   ↓
-Need rapid scaling? ───────→ Use Containers
-   │ Yes
-   ↓
-Building microservices? ───→ Use Containers
-   │ Yes
-   ↓
-Want fast deployments? ────→ Use Containers
-```
+<div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1)); border-radius: 12px; padding: 32px; margin: 24px 0; border: 2px solid rgba(99, 102, 241, 0.3);">
+
+<h4 style="color: #6366F1; margin-bottom: 24px; text-align: center;">🎯 Decision Flow Chart</h4>
+
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 600px; margin: 0 auto;">
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; padding: 16px 24px; border-radius: 10px; flex: 1; text-align: center; font-weight: 600; box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3);">
+Need different OS?
+</div>
+<div style="font-size: 24px;">→</div>
+<div style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 12px 20px; border-radius: 8px; font-weight: 600;">Use VMs</div>
+</div>
+
+<div style="text-align: center; font-size: 20px; color: #6B7280;">↓ No</div>
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; padding: 16px 24px; border-radius: 10px; flex: 1; text-align: center; font-weight: 600; box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3);">
+Need maximum isolation?
+</div>
+<div style="font-size: 24px;">→</div>
+<div style="background: linear-gradient(135deg, #FEE2E2, #FECACA); color: #991B1B; padding: 12px 20px; border-radius: 8px; font-weight: 600;">Use VMs</div>
+</div>
+
+<div style="text-align: center; font-size: 20px; color: #6B7280;">↓ No</div>
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; padding: 16px 24px; border-radius: 10px; flex: 1; text-align: center; font-weight: 600; box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3);">
+Need rapid scaling?
+</div>
+<div style="font-size: 24px;">→</div>
+<div style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 12px 20px; border-radius: 8px; font-weight: 600;">Use Containers</div>
+</div>
+
+<div style="text-align: center; font-size: 20px; color: #6B7280;">↓ Yes</div>
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; padding: 16px 24px; border-radius: 10px; flex: 1; text-align: center; font-weight: 600; box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3);">
+Building microservices?
+</div>
+<div style="font-size: 24px;">→</div>
+<div style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 12px 20px; border-radius: 8px; font-weight: 600;">Use Containers</div>
+</div>
+
+<div style="text-align: center; font-size: 20px; color: #6B7280;">↓ Yes</div>
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="background: linear-gradient(135deg, #6366F1, #8B5CF6); color: white; padding: 16px 24px; border-radius: 10px; flex: 1; text-align: center; font-weight: 600; box-shadow: 0 4px 6px rgba(99, 102, 241, 0.3);">
+Want fast deployments?
+</div>
+<div style="font-size: 24px;">→</div>
+<div style="background: linear-gradient(135deg, #D1FAE5, #A7F3D0); color: #065F46; padding: 12px 20px; border-radius: 8px; font-weight: 600;">Use Containers</div>
+</div>
+
+</div>
+
+</div>
 
 ---
 

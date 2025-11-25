@@ -28,7 +28,64 @@ docker logs --since 2024-01-01 container-id
 docker logs --until 2024-01-31 container-id
 ```
 
-### Logging Drivers
+## Logging Drivers
+
+### Available Logging Drivers
+
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 20px 0;">
+  <thead>
+    <tr style="background: linear-gradient(135deg, #0EA5E9, #6366F1);">
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Driver</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Use Case</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Performance</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Best For</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: #DBEAFE;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: linear-gradient(135deg, #3B82F6, #2563EB); color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">json-file</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Default local storage</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Fast</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Development</td>
+    </tr>
+    <tr style="background-color: #FEE2E2;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: linear-gradient(135deg, #EF4444, #DC2626); color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">syslog</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Unix syslog daemon</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #22C55E; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Fast</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Linux systems</td>
+    </tr>
+    <tr style="background-color: #DBEAFE;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">splunk</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Splunk logging</td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <span style="background: #EAB308; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Medium</span>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Enterprise</td>
+    </tr>
+    <tr style="background-color: #FEE2E2;">
+      <td style="padding: 16px;">
+        <span style="background: linear-gradient(135deg, #F97316, #EA580C); color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px; font-weight: 500;">awslogs</span>
+      </td>
+      <td style="padding: 16px;">AWS CloudWatch</td>
+      <td style="padding: 16px;">
+        <span style="background: #EAB308; color: white; padding: 4px 12px; border-radius: 6px; font-size: 13px;">Medium</span>
+      </td>
+      <td style="padding: 16px;">AWS deployments</td>
+    </tr>
+  </tbody>
+</table>
+
+### View Container Logs
 
 ```bash
 # JSON file driver (default)
@@ -252,30 +309,78 @@ CMD ["node", "-r", "newrelic", "app.js"]
 
 ## Monitoring Best Practices
 
-✅ **Enable structured logging**
-✅ **Set appropriate log retention**
-✅ **Monitor resource usage**
-✅ **Implement health checks**
-✅ **Use centralized logging**
-✅ **Set up alerts**
-✅ **Monitor error rates**
-✅ **Track performance metrics**
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
 
-❌ **Don't log sensitive data**
-❌ **Don't ignore error logs**
-❌ **Don't set unlimited log retention**
-❌ **Don't skip health checks**
+  <!-- DO Cards -->
+  <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #22C55E; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div style="margin-bottom: 12px;">
+      <span style="background: linear-gradient(135deg, #22C55E, #10B981); color: white; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600;">✅ DO</span>
+    </div>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Enable structured logging</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Set appropriate log retention</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Monitor resource usage</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Implement health checks</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Use centralized logging</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Set up alerts</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Monitor error rates</strong></li>
+      <li style="padding: 8px 0;"><strong>Track performance metrics</strong></li>
+    </ul>
+  </div>
+
+  <!-- DON'T Cards -->
+  <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #EF4444; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div style="margin-bottom: 12px;">
+      <span style="background: linear-gradient(135deg, #EF4444, #DC2626); color: white; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600;">❌ DON'T</span>
+    </div>
+    <ul style="list-style: none; padding: 0; margin: 0;">
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't log sensitive data</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't ignore error logs</strong></li>
+      <li style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;"><strong>Don't set unlimited retention</strong></li>
+      <li style="padding: 8px 0;"><strong>Don't skip health checks</strong></li>
+    </ul>
+  </div>
+
+</div>
 
 ---
 
 ## Quick Reference
 
-| Command                    | Purpose                |
-| -------------------------- | ---------------------- |
-| `docker logs -f container` | View live logs         |
-| `docker stats`             | Monitor resource usage |
-| `docker inspect container` | View health status     |
-| `docker events`            | Monitor events         |
+<table style="width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin: 20px 0;">
+  <thead>
+    <tr style="background: linear-gradient(135deg, #0EA5E9, #6366F1);">
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Command</th>
+      <th style="color: white; padding: 16px; text-align: left; font-weight: 600;">Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker logs -f container</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">View live logs</td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker stats</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">Monitor resource usage</td>
+    </tr>
+    <tr style="background-color: #F9FAFB;">
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker inspect container</code>
+      </td>
+      <td style="padding: 16px; border-bottom: 1px solid #e5e7eb;">View health status</td>
+    </tr>
+    <tr style="background-color: #FFFFFF;">
+      <td style="padding: 16px;">
+        <code style="background: #E0F2FE; padding: 4px 8px; border-radius: 4px; color: #0369A1;">docker events</code>
+      </td>
+      <td style="padding: 16px;">Monitor events</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 

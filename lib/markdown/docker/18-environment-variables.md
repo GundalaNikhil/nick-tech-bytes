@@ -15,11 +15,13 @@
 Think of environment variables like switches and dials on a machine:
 
 **Without Environment Variables:**
+
 - You build a coffee machine that's hardcoded to make "Medium, Regular coffee"
 - To change it, you need to rebuild the entire machine
 - Different offices need different machines
 
 **With Environment Variables:**
+
 - You build ONE coffee machine with adjustable settings
 - SIZE=Large, TYPE=Decaf (just change the dials)
 - Same machine works everywhere, just adjust the settings
@@ -70,18 +72,53 @@ With Environment Variables:
 
 ### Environment Variable Priority:
 
-```
-Priority (Highest to Lowest):
-┌────────────────────────────────────┐
-│ 1. docker run -e (command line)    │ ← Highest priority
-├────────────────────────────────────┤
-│ 2. docker-compose.yml environment  │
-├────────────────────────────────────┤
-│ 3. .env file                       │
-├────────────────────────────────────┤
-│ 4. Dockerfile ENV                  │ ← Lowest priority
-└────────────────────────────────────┘
-```
+<div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1)); border-radius: 12px; padding: 32px; margin: 24px 0; border: 2px solid rgba(99, 102, 241, 0.3);">
+
+<h4 style="color: #6366F1; margin-bottom: 24px; text-align: center;">📊 Environment Variable Priority</h4>
+
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 600px; margin: 0 auto;">
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="background: linear-gradient(135deg, #EF4444, #DC2626); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(239, 68, 68, 0.4);">1</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #EF4444; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+<strong style="color: #DC2626;">Command Line</strong>
+<div style="color: #6B7280; font-size: 13px; margin-top: 4px;"><code>docker run -e VAR=value</code> - Highest priority</div>
+</div>
+</div>
+
+<div style="border-left: 3px dashed #94A3B8; height: 16px; margin-left: 23px;"></div>
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="background: linear-gradient(135deg, #F97316, #FB923C); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(249, 115, 22, 0.4);">2</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #F97316; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+<strong style="color: #EA580C;">docker-compose.yml</strong>
+<div style="color: #6B7280; font-size: 13px; margin-top: 4px;">Environment section in compose file</div>
+</div>
+</div>
+
+<div style="border-left: 3px dashed #94A3B8; height: 16px; margin-left: 23px;"></div>
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="background: linear-gradient(135deg, #F59E0B, #FBBF24); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.4);">3</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #F59E0B; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+<strong style="color: #D97706;">.env File</strong>
+<div style="color: #6B7280; font-size: 13px; margin-top: 4px;">Environment file in project root</div>
+</div>
+</div>
+
+<div style="border-left: 3px dashed #94A3B8; height: 16px; margin-left: 23px;"></div>
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="background: linear-gradient(135deg, #3B82F6, #2563EB); color: white; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; flex-shrink: 0; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.4);">4</div>
+<div style="flex: 1; background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #3B82F6; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+<strong style="color: #1D4ED8;">Dockerfile ENV</strong>
+<div style="color: #6B7280; font-size: 13px; margin-top: 4px;">ENV instruction in Dockerfile - Lowest priority</div>
+</div>
+</div>
+
+</div>
+
+</div>
 
 ---
 
@@ -168,12 +205,12 @@ CMD ["node", "server.js"]
 
 ```javascript
 // server.js - Using environment variables
-const express = require('express');
+const express = require("express");
 const app = express();
 
 // Read from environment variables
 const PORT = process.env.PORT || 3000;
-const NODE_ENV = process.env.NODE_ENV || 'development';
+const NODE_ENV = process.env.NODE_ENV || "development";
 const DB_HOST = process.env.DB_HOST;
 
 console.log(`Starting server in ${NODE_ENV} mode`);
@@ -233,7 +270,7 @@ docker run \
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 
 services:
   web:
@@ -243,20 +280,20 @@ services:
       NODE_ENV: production
       PORT: 8080
       DB_HOST: db
-      
+
   api:
     image: myapi:latest
     # Method 2: Array format
     environment:
       - NODE_ENV=production
       - PORT=3000
-      
+
   database:
     image: postgres:15
     # Method 3: Environment file
     env_file:
       - .env.database
-      
+
   worker:
     image: myworker:latest
     # Method 4: Multiple env files
@@ -281,14 +318,14 @@ DB_VERSION=15
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 
 services:
   app:
     image: node:${NODE_VERSION}-alpine
     environment:
-      NODE_ENV: ${NODE_ENV:-production}  # Default to production
-      
+      NODE_ENV: ${NODE_ENV:-production} # Default to production
+
   db:
     image: postgres:${DB_VERSION}
     environment:
@@ -435,7 +472,7 @@ docker build \
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 
 services:
   app:
@@ -455,7 +492,7 @@ services:
     depends_on:
       - db
       - redis
-      
+
   db:
     image: postgres:15
     environment:
@@ -464,10 +501,10 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
-      
+
   redis:
     image: redis:7-alpine
-    
+
 volumes:
   db_data:
 ```
@@ -507,15 +544,17 @@ docker-compose --env-file .env.production up -d
 ### Best Practices:
 
 1. **Never Hardcode Secrets**
+
    ```dockerfile
    # ❌ BAD - Secret in Dockerfile
    ENV DB_PASSWORD=mysecretpassword
-   
+
    # ✅ GOOD - Secret from environment
    # Set at runtime: docker run -e DB_PASSWORD=$SECRET
    ```
 
 2. **Provide Sensible Defaults**
+
    ```dockerfile
    # Good defaults for non-sensitive values
    ENV NODE_ENV=production \
@@ -524,11 +563,12 @@ docker-compose --env-file .env.production up -d
    ```
 
 3. **Use ARG for Build-Time, ENV for Runtime**
+
    ```dockerfile
    # Build-time only
    ARG NODE_VERSION=18
    FROM node:${NODE_VERSION}
-   
+
    # Runtime variable
    ENV PORT=3000
    ```
@@ -609,7 +649,7 @@ CMD ["node", "server.js"]
 
 ```yaml
 # docker-compose.yml
-version: '3.8'
+version: "3.8"
 
 services:
   app:
@@ -646,7 +686,7 @@ printenv
 
 ```yaml
 # docker-compose.prod.yml
-version: '3.8'
+version: "3.8"
 
 services:
   frontend:
@@ -656,7 +696,7 @@ services:
       - REACT_APP_ENV=production
     ports:
       - "80:80"
-      
+
   backend:
     image: myapp/backend:${VERSION}
     env_file:
@@ -675,7 +715,7 @@ services:
     depends_on:
       - database
       - cache
-      
+
   database:
     image: postgres:15
     environment:
@@ -684,10 +724,10 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - db_data:/var/lib/postgresql/data
-      
+
   cache:
     image: redis:7-alpine
-    
+
 volumes:
   db_data:
 ```
@@ -706,14 +746,14 @@ AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
 ### Quick Reference: ENV vs ARG
 
-| Feature | ENV | ARG |
-|---------|-----|-----|
-| **When** | Runtime | Build-time only |
-| **Scope** | In running container | During image build |
-| **Override** | `docker run -e` | `docker build --build-arg` |
-| **In Dockerfile** | Available everywhere | Only after declaration |
-| **Use Case** | App configuration | Build configuration |
-| **Persistence** | Saved in image | Not saved in image |
+| Feature           | ENV                  | ARG                        |
+| ----------------- | -------------------- | -------------------------- |
+| **When**          | Runtime              | Build-time only            |
+| **Scope**         | In running container | During image build         |
+| **Override**      | `docker run -e`      | `docker build --build-arg` |
+| **In Dockerfile** | Available everywhere | Only after declaration     |
+| **Use Case**      | App configuration    | Build configuration        |
+| **Persistence**   | Saved in image       | Not saved in image         |
 
 ---
 
