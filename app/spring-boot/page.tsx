@@ -503,80 +503,83 @@ export default function SpringBootPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-x-hidden">
-      {/* Header - Non-sticky */}
-      <div className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-xl">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      {/* Header - Compact */}
+      <div className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-xl sticky top-20 z-40">
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-green-400 mb-4 transition-colors group"
+            className="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-green-400 mb-3 transition-colors group"
           >
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            <ArrowLeft className="h-3 w-3 transition-transform group-hover:-translate-x-1" />
             Back to Home
           </Link>
 
-          <div className="flex items-center gap-4 mb-4">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30">
-              <BookOpen className="h-8 w-8 text-green-400" />
+          <div className="flex items-center gap-3 mb-3">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg blur-md opacity-40" />
+              <div className="relative p-2 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30">
+                <BookOpen className="h-5 w-5 text-green-400" />
+              </div>
             </div>
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent">
                 Spring Boot Mastery
               </h1>
-              <p className="text-gray-400 mt-1">
+              <p className="text-xs text-gray-400 mt-0.5">
                 Comprehensive tutorials from foundational through advanced
                 concepts
               </p>
             </div>
           </div>
 
-          {/* Stats Bar */}
-          <div className="flex items-center gap-6 mt-6 flex-wrap">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-gray-700">
-              <span className="text-2xl font-bold text-green-400">
+          {/* Stats Bar - Compact */}
+          <div className="flex items-center gap-3 flex-wrap">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-green-500/10 border border-green-500/30">
+              <span className="text-lg font-bold text-green-400">
                 {totalTutorials}
               </span>
-              <span className="text-sm text-gray-400">Total Tutorials</span>
+              <span className="text-[11px] text-gray-400">Tutorials</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-gray-700">
-              <span className="text-2xl font-bold text-emerald-400">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/30">
+              <span className="text-lg font-bold text-emerald-400">
                 {(totalLines / 1000).toFixed(1)}K
               </span>
-              <span className="text-sm text-gray-400">Lines of Content</span>
+              <span className="text-[11px] text-gray-400">Lines</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-gray-700">
-              <span className="text-2xl font-bold text-teal-400">5</span>
-              <span className="text-sm text-gray-400">Learning Paths</span>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-teal-500/10 border border-teal-500/30">
+              <span className="text-lg font-bold text-teal-400">5</span>
+              <span className="text-[11px] text-gray-400">Paths</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      {/* Content - Compact */}
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {Object.entries(groupedTutorials).map(
           ([category, categoryTutorials]) => {
             const info = categoryInfo[category as keyof typeof categoryInfo];
             const Icon = info.icon;
 
             return (
-              <section key={category} className="mb-16">
-                <div className="mb-8 flex items-center gap-4">
+              <section key={category} className="mb-12">
+                <div className="mb-6 flex items-center gap-3">
                   <div
                     className={`p-2 rounded-lg bg-${info.color}-500/10 border border-${info.color}-500/30`}
                   >
-                    <Icon className={`h-6 w-6 text-${info.color}-400`} />
+                    <Icon className={`h-5 w-5 text-${info.color}-400`} />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-3xl font-bold text-white">
+                    <h2 className="text-2xl font-bold text-white">
                       {info.name}
                     </h2>
-                    <p className="mt-2 text-gray-400">
+                    <p className="text-xs text-gray-400 mt-0.5">
                       {categoryTutorials.length} tutorials
                     </p>
                   </div>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {categoryTutorials.map((tutorial) => {
                     const difficultyEmoji =
                       tutorial.difficulty === "beginner"
@@ -603,66 +606,67 @@ export default function SpringBootPage() {
                       <Link
                         key={tutorial.id}
                         href={`/spring-boot/${tutorial.slug}`}
-                        className="group relative flex flex-col gap-4 rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-900/40 p-6 transition-all duration-300 hover:border-green-500/50 hover:shadow-xl hover:shadow-green-500/10 backdrop-blur-sm hover:scale-[1.02]"
+                        className="group relative flex flex-col rounded-lg border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-900/40 p-4 transition-all duration-300 hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10 backdrop-blur-sm hover:scale-[1.01]"
                       >
                         {/* Gradient overlay on hover */}
                         <div
-                          className={`absolute inset-0 rounded-xl bg-gradient-to-br ${gradientOverlay} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+                          className={`absolute inset-0 rounded-lg bg-gradient-to-br ${gradientOverlay} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
                         />
 
-                        <div className="relative z-10 flex flex-col gap-4">
-                          {/* Header with badges */}
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="flex-1">
-                              <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2 group-hover:text-green-400 transition-colors">
+                        <div className="relative z-10 flex flex-col gap-3">
+                          {/* Header - Compact */}
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="flex-1 min-w-0">
+                              <h3 className="text-base font-semibold text-white mb-1.5 line-clamp-2 group-hover:text-green-400 transition-colors leading-snug">
                                 {tutorial.title}
                               </h3>
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span
-                                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium border ${difficultyColor}`}
-                                >
-                                  <span>{difficultyEmoji}</span>
-                                  <span className="capitalize">
-                                    {tutorial.difficulty}
-                                  </span>
-                                </span>
-                                <span className="inline-flex items-center gap-1.5 rounded-md bg-gray-800/50 px-2 py-1 text-xs text-gray-400 border border-gray-700/50">
-                                  #{tutorial.id}
-                                </span>
-                              </div>
                             </div>
-                            <div className="flex-shrink-0 rounded-full bg-green-500/10 p-2.5 transition-all duration-300 group-hover:bg-green-500/20 group-hover:scale-110 group-hover:rotate-12">
-                              <BookOpen className="h-4 w-4 text-green-400 transition-transform duration-300" />
-                            </div>
+                            <span
+                              className={`shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium border ${difficultyColor}`}
+                            >
+                              <span className="text-xs">{difficultyEmoji}</span>
+                              <span className="capitalize">
+                                {tutorial.difficulty}
+                              </span>
+                            </span>
                           </div>
 
-                          {/* Description */}
-                          <p className="text-sm text-gray-400 line-clamp-2 leading-relaxed">
+                          {/* Description - More compact */}
+                          <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed">
                             {tutorial.description}
                           </p>
 
-                          {/* Meta information */}
-                          <div className="flex items-center gap-4 text-xs text-gray-500">
-                            <div className="flex items-center gap-1.5">
-                              <Clock className="h-3.5 w-3.5 text-green-400" />
-                              <span>{tutorial.estimatedTime}</span>
+                          {/* Compact Meta Row */}
+                          <div className="flex items-center justify-between gap-3 text-[11px] text-gray-500 py-2 border-y border-gray-800/50">
+                            <div className="flex items-center gap-3">
+                              <div className="flex items-center gap-1">
+                                <Clock className="h-3 w-3 text-green-400" />
+                                <span className="text-gray-400">
+                                  {tutorial.estimatedTime}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
+                                <span className="text-gray-400 font-medium">
+                                  {tutorial.rating.toFixed(1)}
+                                </span>
+                              </div>
                             </div>
-                            <div className="flex items-center gap-1.5">
-                              <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400" />
-                              <span className="text-gray-400 font-medium">
-                                {tutorial.rating.toFixed(1)}
+                            <div className="flex items-center gap-1">
+                              <span className="text-[10px] text-gray-500 px-1.5 py-0.5 bg-gray-800/30 rounded">
+                                #{tutorial.id}
                               </span>
                             </div>
                           </div>
 
-                          {/* Footer */}
-                          <div className="flex items-center justify-between pt-2 border-t border-gray-800/50">
-                            <div className="flex items-center gap-1.5 text-xs text-gray-500">
-                              <Code2 className="h-3.5 w-3.5 text-green-400" />
+                          {/* Footer - Compact */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-1 text-[11px] text-gray-500">
+                              <Code2 className="h-3 w-3 text-green-400" />
                               <span>~{tutorial.lines} lines</span>
                             </div>
-                            <span className="text-xs text-gray-500 group-hover:text-green-400 transition-colors font-medium">
-                              Read tutorial →
+                            <span className="text-[10px] text-gray-500 group-hover:text-green-400 transition-colors font-medium">
+                              Read →
                             </span>
                           </div>
                         </div>

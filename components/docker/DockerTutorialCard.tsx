@@ -54,96 +54,88 @@ export function DockerTutorialCard({
   return (
     <Link
       href={`/docker-tutorials/${slug}`}
-      className="group relative flex flex-col gap-4 rounded-xl border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-900/40 p-6 transition-all duration-300 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10 backdrop-blur-sm hover:scale-[1.02]"
+      className="group relative flex flex-col rounded-lg border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-900/40 p-4 transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 backdrop-blur-sm hover:scale-[1.01]"
     >
       {/* Gradient overlay on hover */}
       <div
-        className={`absolute inset-0 rounded-xl bg-gradient-to-br ${difficultyInfo.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+        className={`absolute inset-0 rounded-lg bg-gradient-to-br ${difficultyInfo.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
       />
 
-      <div className="relative z-10 flex flex-col gap-4">
-        {/* Header with difficulty badge */}
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex-1">
-            <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2 group-hover:text-cyan-400 transition-colors">
+      <div className="relative z-10 flex flex-col gap-3">
+        {/* Header - Compact */}
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-base font-semibold text-white mb-1.5 line-clamp-2 group-hover:text-cyan-400 transition-colors leading-snug">
               {title}
             </h3>
-            <span
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${difficultyInfo.color}`}
-            >
-              <span>{difficultyInfo.emoji}</span>
-              <span>{difficultyInfo.label}</span>
-            </span>
           </div>
-          <div className="flex-shrink-0 rounded-full bg-cyan-500/10 p-2.5 transition-all duration-300 group-hover:bg-cyan-500/20 group-hover:scale-110 group-hover:rotate-12">
-            <ArrowRight className="h-4 w-4 text-cyan-400 transition-transform duration-300 group-hover:translate-x-1" />
-          </div>
+          <span
+            className={`shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium ${difficultyInfo.color}`}
+          >
+            <span className="text-xs">{difficultyInfo.emoji}</span>
+            <span>{difficultyInfo.label}</span>
+          </span>
         </div>
 
-        {/* Description */}
-        <p className="text-sm text-gray-400 line-clamp-2 leading-relaxed">
+        {/* Description - More compact */}
+        <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed">
           {description}
         </p>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5">
-          {tags.slice(0, 2).map((tag, idx) => {
+        {/* Compact Meta Row - All in one line */}
+        <div className="flex items-center justify-between gap-3 text-[11px] text-gray-500 py-2 border-y border-gray-800/50">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              <Clock className="h-3 w-3 text-cyan-400" />
+              <span className="text-gray-400">{estimatedTime}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
+              <span className="text-gray-400 font-medium">
+                {rating.toFixed(1)}
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center gap-1">
+            {displayCompanies.slice(0, 2).map((company, idx) => (
+              <span
+                key={idx}
+                className="text-[10px] text-gray-500 px-1.5 py-0.5 bg-gray-800/30 rounded"
+              >
+                {company}
+              </span>
+            ))}
+            {companies.length > 2 && (
+              <span className="text-[10px] text-gray-600">
+                +{companies.length - 2}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Tags - Compact */}
+        <div className="flex flex-wrap gap-1">
+          {tags.slice(0, 3).map((tag, idx) => {
             const tagColors = [
-              "bg-cyan-500/15 text-cyan-300 border-cyan-500/30 hover:bg-cyan-500/25",
-              "bg-purple-500/15 text-purple-300 border-purple-500/30 hover:bg-purple-500/25",
-              "bg-pink-500/15 text-pink-300 border-pink-500/30 hover:bg-pink-500/25",
+              "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+              "bg-purple-500/10 text-purple-400 border-purple-500/20",
+              "bg-pink-500/10 text-pink-400 border-pink-500/20",
             ];
             const colorClass = tagColors[idx % tagColors.length];
             return (
               <span
                 key={tag}
-                className={`rounded-full px-2.5 py-1 text-xs border transition-colors ${colorClass}`}
+                className={`rounded px-1.5 py-0.5 text-[10px] border font-medium ${colorClass}`}
               >
-                #{tag}
+                {tag}
               </span>
             );
           })}
-          {tags.length > 2 && (
-            <span className="rounded-full bg-gray-800/50 px-2.5 py-1 text-xs text-gray-400 border border-gray-700/50">
-              +{tags.length - 2}
+          {tags.length > 3 && (
+            <span className="rounded bg-gray-800/50 px-1.5 py-0.5 text-[10px] text-gray-500 border border-gray-700/50">
+              +{tags.length - 3}
             </span>
           )}
-        </div>
-
-        {/* Meta information */}
-        <div className="flex items-center gap-4 text-xs text-gray-500">
-          <div className="flex items-center gap-1.5">
-            <Clock className="h-3.5 w-3.5 text-cyan-400" />
-            <span>{estimatedTime}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400" />
-            <span className="text-gray-400 font-medium">
-              {rating.toFixed(1)}
-            </span>
-          </div>
-        </div>
-
-        {/* Footer with companies */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-800/50">
-          <div className="flex items-center gap-1">
-            {displayCompanies.map((company, idx) => (
-              <span
-                key={idx}
-                className="text-xs text-gray-400 px-2 py-1 bg-gray-800/30 rounded-md"
-              >
-                {company}
-              </span>
-            ))}
-            {hasMoreCompanies && (
-              <span className="text-xs text-gray-500 px-2 py-1">
-                +{companies.length - 3}
-              </span>
-            )}
-          </div>
-          <span className="text-xs text-gray-500 group-hover:text-cyan-400 transition-colors font-medium">
-            Start →
-          </span>
         </div>
       </div>
     </Link>
