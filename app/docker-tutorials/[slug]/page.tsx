@@ -1,5 +1,5 @@
-import { reactTutorials } from "@/lib/topics/reactTutorials";
-import { ReactIcon } from "@/components/icons";
+import { dockerTutorials } from "@/lib/topics/dockerTutorials";
+import { DockerIcon } from "@/components/icons";
 import fs from "fs";
 import {
   ArrowLeft,
@@ -48,18 +48,18 @@ const sanitizeSchema = {
 };
 
 export async function generateStaticParams() {
-  return reactTutorials.map((tutorial) => ({
+  return dockerTutorials.map((tutorial) => ({
     slug: tutorial.slug,
   }));
 }
 
-export default async function ReactTutorialPage({
+export default async function DockerTutorialPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const tutorial = reactTutorials.find((t) => t.slug === slug);
+  const tutorial = dockerTutorials.find((t) => t.slug === slug);
 
   if (!tutorial) {
     notFound();
@@ -70,7 +70,7 @@ export default async function ReactTutorialPage({
     process.cwd(),
     "lib",
     "markdown",
-    "react",
+    "docker",
     `${slug}.md`
   );
 
@@ -106,11 +106,11 @@ export default async function ReactTutorialPage({
 
         <div className="relative mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
           <Link
-            href="/react-tutorials"
+            href="/docker-tutorials"
             className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-cyan-400 mb-3 transition-all duration-300 group"
           >
             <ArrowLeft className="h-3 w-3 transition-transform duration-300 group-hover:-translate-x-1" />
-            Back to React Tutorials
+            Back to Docker Tutorials
           </Link>
 
           {/* Compact Tutorial Header */}
@@ -118,7 +118,7 @@ export default async function ReactTutorialPage({
             <div className="relative shrink-0">
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg blur-md opacity-40" />
               <div className="relative p-2 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-500/30">
-                <ReactIcon className="h-5 w-5 text-cyan-400" />
+                <DockerIcon className="h-5 w-5 text-cyan-400" />
               </div>
             </div>
 
@@ -184,7 +184,7 @@ export default async function ReactTutorialPage({
                 Goal
               </p>
               <p className="text-sm font-bold text-white truncate">
-                Master React
+                Master Docker
               </p>
             </div>
           </div>
@@ -278,8 +278,7 @@ export default async function ReactTutorialPage({
                   text.toLowerCase().includes("introduction") ||
                   text.toLowerCase().includes("understanding") ||
                   text.toLowerCase().includes("how to solve") ||
-                  text.toLowerCase().includes("visual representation") ||
-                  text.toLowerCase().includes("what are we trying");
+                  text.toLowerCase().includes("visual representation");
 
                 if (isQuestion) {
                   return (
@@ -320,10 +319,10 @@ export default async function ReactTutorialPage({
                     .toLowerCase()
                     .startsWith("what we're trying to achieve") ||
                   text.toLowerCase().startsWith("goal/aim") ||
-                  text.toLowerCase().startsWith("we need to understand") ||
-                  text.toLowerCase().startsWith("the problem") ||
-                  text.toLowerCase().includes("react is") ||
-                  text.toLowerCase().includes("key concept") ||
+                  text.toLowerCase().startsWith("imagine you've built") ||
+                  text.toLowerCase().includes("docker solves this problem") ||
+                  text.toLowerCase().includes("docker is like") ||
+                  text.toLowerCase().includes("why is docker used") ||
                   (text.includes("✅") && text.split("\n").length > 1) ||
                   (text.includes("❌") && text.split("\n").length > 1);
 
@@ -415,7 +414,7 @@ export default async function ReactTutorialPage({
         {/* Navigation Footer */}
         <div className="mt-12 pt-6 border-t border-gray-800">
           <Link
-            href="/react-tutorials"
+            href="/docker-tutorials"
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 text-cyan-400 text-sm hover:from-cyan-500/20 hover:to-blue-500/20 transition-all duration-300 group"
           >
             <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />

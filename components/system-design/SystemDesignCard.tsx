@@ -53,67 +53,60 @@ export function SystemDesignCard({
   return (
     <Link
       href={`${basePath}/${slug}`}
-      className="group relative flex flex-col gap-4 rounded-xl border border-gray-800 bg-gray-900/50 p-6 transition-all hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 backdrop-blur-sm"
+      className="group relative flex flex-col rounded-lg border border-gray-800 bg-gray-900/50 p-4 transition-all hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 backdrop-blur-sm hover:scale-[1.01]"
     >
-      {/* Header */}
-      <div className="flex items-start justify-between gap-4">
-        <h3 className="text-lg font-semibold text-white line-clamp-2 group-hover:text-emerald-400 transition-colors">
-          {title}
-        </h3>
-        <div className="flex-shrink-0 rounded-full bg-emerald-500/10 p-2 transition-all group-hover:bg-emerald-500/20 group-hover:scale-110">
-          <ArrowRight className="h-4 w-4 text-emerald-400 transition-transform group-hover:translate-x-1" />
+      <div className="flex flex-col gap-3">
+        {/* Header - Compact */}
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="flex-1 text-base font-semibold text-white line-clamp-2 group-hover:text-emerald-400 transition-colors leading-snug">
+            {title}
+          </h3>
+          <span
+            className={`shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium ${difficultyInfo.color}`}
+          >
+            <span className="text-xs">{difficultyInfo.emoji}</span>
+            <span>{difficultyInfo.label}</span>
+          </span>
         </div>
-      </div>
 
-      {/* Rating */}
-      <div className="flex items-center gap-2">
-        <div className="flex items-center">
-          {Array.from({ length: 5 }).map((_, i) => (
+        {/* Compact Meta Row */}
+        <div className="flex items-center justify-between gap-3 text-[11px] py-2 border-y border-gray-800/50">
+          <div className="flex items-center gap-1">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span
+                key={i}
+                className={`text-xs ${
+                  i < Math.floor(rating) ? "text-yellow-400" : "text-gray-700"
+                }`}
+              >
+                ★
+              </span>
+            ))}
+            <span className="text-[11px] font-medium text-gray-400 ml-1">
+              {rating.toFixed(1)}
+            </span>
+          </div>
+          <span className="text-[10px] font-medium text-gray-500">
+            {category}
+          </span>
+        </div>
+
+        {/* Company Tags - Compact */}
+        <div className="flex flex-wrap gap-1.5">
+          {displayCompanies.map((company) => (
             <span
-              key={i}
-              className={`text-sm ${
-                i < Math.floor(rating) ? "text-yellow-400" : "text-gray-700"
-              }`}
+              key={company}
+              className="inline-flex items-center rounded bg-gray-800 border border-gray-700 px-2 py-0.5 text-[10px] font-medium text-gray-300 group-hover:border-emerald-500/30 transition-colors"
             >
-              ★
+              {company}
             </span>
           ))}
+          {hasMoreCompanies && (
+            <span className="inline-flex items-center rounded bg-gray-800 border border-gray-700 px-2 py-0.5 text-[10px] font-medium text-gray-500">
+              +{companies.length - 2}
+            </span>
+          )}
         </div>
-        <span className="text-sm font-medium text-gray-400">
-          {rating.toFixed(1)}
-        </span>
-      </div>
-
-      {/* Difficulty Badge */}
-      <div className="inline-flex items-center gap-2 self-start">
-        <span
-          className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${difficultyInfo.color}`}
-        >
-          <span>{difficultyInfo.emoji}</span>
-          <span>{difficultyInfo.label}</span>
-        </span>
-      </div>
-
-      {/* Company Tags */}
-      <div className="flex flex-wrap gap-2">
-        {displayCompanies.map((company) => (
-          <span
-            key={company}
-            className="inline-flex items-center rounded-full bg-gray-800 border border-gray-700 px-3 py-1 text-xs font-medium text-gray-300 group-hover:border-emerald-500/30 transition-colors"
-          >
-            {company}
-          </span>
-        ))}
-        {hasMoreCompanies && (
-          <span className="inline-flex items-center rounded-full bg-gray-800 border border-gray-700 px-3 py-1 text-xs font-medium text-gray-500">
-            +{companies.length - 2} more
-          </span>
-        )}
-      </div>
-
-      {/* Category Label */}
-      <div className="mt-auto pt-2">
-        <span className="text-xs font-medium text-gray-500">{category}</span>
       </div>
     </Link>
   );

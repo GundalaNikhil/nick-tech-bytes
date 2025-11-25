@@ -178,6 +178,276 @@ export const dockerQuestions: InterviewQuestionsMap["Docker"] = {
 </div>`,
           },
         },
+        {
+          question: "What is a Docker container?",
+          difficulty: "beginner",
+          answer: {
+            text: "A Docker container is a lightweight, standalone, executable package that contains everything needed to run an application - the code, runtime, system tools, libraries, and settings.",
+            memoryTechnique:
+              "Container = Complete, Consistent, Compact package. Think: All-in-one box",
+            simpleExplanation:
+              "A Docker container is like a lunchbox. It contains everything you need for lunch - sandwich, fruit, drink - all in one portable package. You don't need to figure out what to bring; it's all there, ready to go anywhere.",
+          },
+        },
+        {
+          question: "What is Docker Hub?",
+          difficulty: "beginner",
+          answer: {
+            text: "Docker Hub is the official centralized repository for Docker images. It's like GitHub for Docker images where you can find, download, and share container images.",
+            points: [
+              "Public registry with millions of images",
+              "Official images from Docker and major vendors",
+              "Community-contributed images",
+              "Free and paid repositories",
+              "Automated builds from GitHub/GitLab",
+            ],
+            memoryTechnique:
+              "Docker Hub = Heart Hub - Central repository for all Docker containers",
+            simpleExplanation:
+              "Docker Hub is like an app store for containers. Instead of downloading apps from an app store, you download container images from Docker Hub using 'docker pull'. You can also share your own images there.",
+          },
+        },
+        {
+          question: "Explain the lifecycle of a Docker container",
+          difficulty: "beginner",
+          answer: {
+            text: "A Docker container goes through several states: Created → Running → Paused → Stopped → Removed",
+            points: [
+              "Created: Container is created but not started",
+              "Running: Container is executing",
+              "Paused: Container is paused (SIGSTOP signal)",
+              "Stopped: Container has stopped (exited)",
+              "Removed: Container is deleted, no recovery possible",
+            ],
+            memoryTechnique:
+              "Container Lifecycle = CRPSR: Created, Running, Paused, Stopped, Removed",
+            simpleExplanation:
+              "A container lifecycle is like a person's daily schedule. Created (wake up), Running (work), Paused (break), Stopped (sleep), Removed (gone forever). Each state has specific commands (docker create, docker start, docker pause, docker stop, docker rm).",
+          },
+        },
+        {
+          question:
+            "What is the difference between CMD and ENTRYPOINT in Dockerfile?",
+          difficulty: "beginner",
+          answer: {
+            text: "Both CMD and ENTRYPOINT specify what command to run when a container starts, but they behave differently.",
+            points: [
+              "CMD: Can be overridden by docker run arguments. Sets default command.",
+              "ENTRYPOINT: Defines the container's main process. Less likely to be overridden.",
+              "Together: ENTRYPOINT provides the main command, CMD provides default arguments",
+              "Best practice: Use ENTRYPOINT for the main app, CMD for default arguments",
+            ],
+            code: `# Using CMD (can be overridden)
+FROM node
+CMD ["node", "server.js"]
+# docker run myapp npm test  -> runs npm test (CMD overridden)
+
+# Using ENTRYPOINT (harder to override)
+FROM node
+ENTRYPOINT ["node"]
+CMD ["server.js"]
+# docker run myapp test.js -> runs node test.js (CMD overridden, ENTRYPOINT fixed)`,
+            memoryTechnique:
+              "CMD = Changeable Default, ENTRYPOINT = Essential (harder to change)",
+            simpleExplanation:
+              "ENTRYPOINT is like the main actor in a movie (hard to replace), CMD is like the default dialogue (easy to change). You can change what the actor says, but the actor stays the same.",
+          },
+        },
+        {
+          question: "What are Docker tags?",
+          difficulty: "beginner",
+          answer: {
+            text: "Docker tags are labels for Docker images that typically represent version numbers or variants of an image.",
+            points: [
+              "Format: repository:tag (e.g., myapp:1.0, myapp:latest)",
+              "Default tag is 'latest' if not specified",
+              "Tags help version control and identify image variants",
+              "Same image can have multiple tags",
+              "Tags can point to the same image layer (aliasing)",
+            ],
+            code: `# Tagging images
+docker build -t myapp:1.0 .
+docker build -t myapp:latest .
+docker tag myapp:1.0 myapp:stable
+
+# Tagging with registry
+docker tag myapp:1.0 docker.io/username/myapp:1.0
+
+# Pushing tagged images
+docker push myapp:1.0`,
+            memoryTechnique:
+              "Tags = Version Tags. Think: Like book editions or app versions",
+            simpleExplanation:
+              "Docker tags are like version numbers on books. 'Node:14' is like 'Book Edition 14', 'Node:latest' is the most current edition. You can have multiple names for the same thing (book = Edition 2 = Latest Edition).",
+          },
+        },
+        {
+          question: "How to remove Docker images and containers?",
+          difficulty: "beginner",
+          answer: {
+            text: "Docker provides commands to clean up images, containers, and unused resources.",
+            points: [
+              "docker rm <container>: Remove container",
+              "docker rmi <image>: Remove image",
+              "docker rm $(docker ps -q): Remove all containers",
+              "docker system prune: Remove all unused resources",
+              "docker system prune -a: Remove all unused including images",
+            ],
+            code: `# Remove single container
+docker rm mycontainer
+
+# Remove stopped containers
+docker container prune
+
+# Remove image
+docker rmi myimage:tag
+
+# Remove all dangling images (untagged)
+docker image prune
+
+# Remove all unused (containers, images, networks, volumes)
+docker system prune -a --volumes`,
+            memoryTechnique:
+              "Remove = rm for containers, rmi for images, prune for cleanup",
+            simpleExplanation:
+              "Removing containers is like throwing out old magazines (temporary). Removing images is like selling your book collection (permanent). 'prune' is like a garage sale where you get rid of everything unused.",
+          },
+        },
+        {
+          question: "What is Docker Swarm?",
+          difficulty: "beginner",
+          answer: {
+            text: "Docker Swarm is Docker's native container orchestration platform that allows you to manage and scale multiple Docker containers across multiple machines.",
+            points: [
+              "Built-in to Docker Engine",
+              "Simpler than Kubernetes",
+              "Creates a cluster of Docker nodes",
+              "Distribute containers across nodes",
+              "Load balancing and automatic restart",
+            ],
+            memoryTechnique:
+              "Swarm = Multiple nodes working together like a bee colony",
+            simpleExplanation:
+              "Docker Swarm is like a beehive where bees work together. Each bee (container) does its job, and the queen (manager) coordinates everything. If a bee dies, another takes its place automatically.",
+          },
+        },
+        {
+          question: "Explain Docker layers",
+          difficulty: "beginner",
+          answer: {
+            text: "Docker images are built in layers, where each command in a Dockerfile creates a new layer on top of the previous one. These layers are stacked read-only layers.",
+            points: [
+              "Each Dockerfile command creates a layer",
+              "Layers are immutable (read-only)",
+              "New containers add a writable layer on top",
+              "Layers enable efficient storage and caching",
+              "Fewer layers = smaller images",
+            ],
+            code: `FROM ubuntu:20.04           # Layer 1 (base)
+RUN apt-get update          # Layer 2
+RUN apt-get install -y node # Layer 3
+COPY app.js /app/           # Layer 4
+CMD ["node", "/app/app.js"] # Layer 5`,
+            memoryTechnique:
+              "Layers = Lasagna layers - stacked, read-only, with writable top layer",
+            simpleExplanation:
+              "Docker layers are like making lasagna. You put down base pasta (base image), add sauce (RUN commands), add cheese (COPY files), and seal it (CMD). Each layer is permanent; you just keep adding on top.",
+          },
+        },
+        {
+          question: "What is the purpose of .dockerignore file?",
+          difficulty: "beginner",
+          answer: {
+            text: ".dockerignore file specifies which files and directories should be excluded from the Docker build context. It works like .gitignore for Git.",
+            points: [
+              "Reduces build context size",
+              "Speeds up builds by not copying unnecessary files",
+              "Improves security by excluding sensitive files",
+              "Similar to .gitignore syntax",
+              "Common items: node_modules, .git, .env, .DS_Store",
+            ],
+            code: `# .dockerignore example
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+.env
+.env.local
+.DS_Store
+dist
+build`,
+            memoryTechnique: ".dockerignore = Don't Include list for builds",
+            simpleExplanation:
+              ".dockerignore is like a packing checklist. You list things you don't want to pack (node_modules, .git), so you don't waste space sending unnecessary items to the docker builder.",
+          },
+        },
+        {
+          question: "How to run a Docker container in detached mode?",
+          difficulty: "beginner",
+          answer: {
+            text: "Detached mode runs a container in the background. Use the '-d' flag with docker run.",
+            code: `# Run in detached mode
+docker run -d -p 8080:80 --name myapp nginx
+
+# View container output later
+docker logs myapp
+
+# Attach to running container
+docker attach myapp
+
+# Run in foreground (interactive)
+docker run -it ubuntu /bin/bash`,
+            memoryTechnique:
+              "Detached = -d flag, runs in background like a service",
+            simpleExplanation:
+              "Detached mode is like starting a background service. You start it and don't need to stay connected. Compare to interactive mode which is like having a conversation on the phone (you must stay connected).",
+          },
+        },
+        {
+          question: "What is multi-stage build in Docker?",
+          difficulty: "beginner",
+          answer: {
+            text: "Multi-stage builds allow you to use multiple FROM statements in a Dockerfile, enabling smaller final images by discarding build dependencies.",
+            code: `FROM node:20 AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+CMD ["node", "dist/server.js"]`,
+            memoryTechnique:
+              "Multi-stage = Build stage removes build tools, final stage only includes runtime",
+            simpleExplanation:
+              "Multi-stage is like building a house. You use heavy machinery (build stage) to construct, then remove the machinery before moving in (final stage). The final house doesn't include cranes and cement mixers!",
+          },
+        },
+        {
+          question: "How to expose ports in Docker?",
+          difficulty: "beginner",
+          answer: {
+            text: "Ports are exposed using EXPOSE in Dockerfile and mapped using -p flag in docker run.",
+            code: `# In Dockerfile
+FROM nginx
+EXPOSE 80
+EXPOSE 443
+
+# When running container
+docker run -d -p 8080:80 -p 8443:443 nginx
+# -p hostPort:containerPort
+
+# Expose all exposed ports
+docker run -d -P nginx`,
+            memoryTechnique: "EXPOSE = document ports, -p = actually map ports",
+            simpleExplanation:
+              "EXPOSE is like labeling a door in a blueprint (documentation). -p flag is like actually opening the door (creating the connection). You need both for the port to be accessible.",
+          },
+        },
       ],
     },
     {
@@ -185,150 +455,458 @@ export const dockerQuestions: InterviewQuestionsMap["Docker"] = {
       icon: "⚙️",
       questions: [
         {
-          question: "What is a Dockerfile and what are best practices?",
-          difficulty: "intermediate",
-          answer: {
-            text: "A Dockerfile contains all commands to assemble an image.",
-            points: [
-              "Use Multi-stage Builds: Separate build-time from runtime dependencies",
-              "Use specific base image: FROM node:20-alpine instead of FROM node:latest",
-              "Minimize Layers: Chain commands with && to reduce layers",
-              "Use .dockerignore: Exclude unnecessary files like .git, node_modules",
-            ],
-            code: `FROM node:20-alpine AS builder\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\n\nFROM node:20-alpine\nWORKDIR /app\nCOPY --from=builder /app/node_modules ./node_modules\nCOPY . .\nEXPOSE 3000\nCMD ["node", "server.js"]`,
-            language: "dockerfile",
-            memoryTechnique:
-              "Dockerfile Best Practices = SLIM: Specific base, Layer minimization, Ignore files, Multi-stage",
-            simpleExplanation:
-              "A Dockerfile is like a construction blueprint for building a house. Multi-stage builds are like having separate contractors for foundation (builder) and finishing (final) - you don't keep the scaffolding in the final house. Using specific versions is like ordering 'exactly 100 bricks' instead of 'some bricks' - you know what you're getting.",
-          },
-        },
-        {
-          question: "What is Docker Compose and when is it used?",
-          difficulty: "intermediate",
-          answer: {
-            text: "Docker Compose defines and runs multi-container Docker applications using a YAML file (docker-compose.yml). Used for local development, testing, and staging environments with multiple interconnected services (web app, database, message queue).",
-            points: [
-              "Single file defines all services, networks, and volumes",
-              "Start all services with one command: docker-compose up",
-              "Automatic networking between containers",
-              "Service discovery by service name",
-            ],
-            code: `version: '3.8'\nservices:\n  web:\n    build: .\n    ports:\n      - "3000:3000"\n    depends_on:\n      - db\n  db:\n    image: postgres:15\n    environment:\n      POSTGRES_PASSWORD: secret\n    volumes:\n      - db-data:/var/lib/postgresql/data\nvolumes:\n  db-data:`,
-            memoryTechnique:
-              "Docker Compose = Orchestrate Multiple Services. Think: Conductor for Container Orchestra",
-            simpleExplanation:
-              "Docker Compose is like a party planner who coordinates everything. Instead of calling the caterer, decorator, and DJ separately (running each container individually), you tell the planner what you need in one list (docker-compose.yml), and they handle everything with one command. All services work together automatically.",
-            visualHtml: `<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; margin: 1.5rem 0;">
-  <div style="text-align: center; margin-bottom: 1.5rem;">
-    <div style="color: #60a5fa; font-weight: bold; font-size: 1.25rem;">Docker Compose Architecture</div>
-  </div>
-  <div style="display: grid; gap: 1rem;">
-    <div style="background: rgba(59, 130, 246, 0.1); border: 2px solid #3b82f6; border-radius: 8px; padding: 1rem; text-align: center;">
-      <div style="color: #60a5fa; font-weight: bold; margin-bottom: 0.5rem;">📄 docker-compose.yml</div>
-      <div style="color: #94a3b8; font-size: 0.875rem;">Single configuration file</div>
-    </div>
-    <div style="text-align: center; color: #94a3b8;">↓ docker-compose up</div>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
-      <div style="background: rgba(34, 197, 94, 0.1); border: 2px solid #22c55e; border-radius: 8px; padding: 1rem; text-align: center;">
-        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🌐</div>
-        <div style="color: #4ade80; font-weight: bold; font-size: 0.875rem;">Web Service</div>
-      </div>
-      <div style="background: rgba(168, 85, 247, 0.1); border: 2px solid #a855f7; border-radius: 8px; padding: 1rem; text-align: center;">
-        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🗄️</div>
-        <div style="color: #c084fc; font-weight: bold; font-size: 0.875rem;">Database</div>
-      </div>
-      <div style="background: rgba(249, 115, 22, 0.1); border: 2px solid #f97316; border-radius: 8px; padding: 1rem; text-align: center;">
-        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📦</div>
-        <div style="color: #fb923c; font-weight: bold; font-size: 0.875rem;">Cache</div>
-      </div>
-    </div>
-    <div style="text-align: center; color: #94a3b8; font-size: 0.875rem; margin-top: 0.5rem;">
-      All services connected via automatic networking
-    </div>
-  </div>
-</div>`,
-          },
-        },
-        {
-          question: "Explain Docker Volumes",
-          difficulty: "intermediate",
-          answer: {
-            text: "Docker Volumes are the preferred mechanism for persisting data generated by containers.",
-            points: [
-              "Managed by Docker and stored outside container's file system",
-              "Independent of container's lifecycle",
-              "Data persists even when container is stopped or deleted",
-              "Can share data between containers",
-            ],
-            code: `# Create a volume\ndocker volume create my-data\n\n# Use volume in container\ndocker run -v my-data:/app/data myapp\n\n# List volumes\ndocker volume ls\n\n# Remove volume\ndocker volume rm my-data`,
-            memoryTechnique:
-              "Volumes = Vault for Data. Think: External storage that survives container death",
-            simpleExplanation:
-              "Docker Volumes are like external hard drives. When you delete an app from your computer (stop container), you lose the app but not the files on your external drive (volume). You can plug that drive into another computer (mount to another container) and still access your data.",
-            visualHtml: `<div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 2rem; border-radius: 12px; margin: 1.5rem 0;">
-  <div style="display: grid; gap: 1.5rem;">
-    <div style="background: rgba(239, 68, 68, 0.1); border: 2px solid #ef4444; border-radius: 8px; padding: 1.5rem;">
-      <div style="color: #f87171; font-weight: bold; margin-bottom: 1rem; text-align: center;">❌ Without Volumes</div>
-      <div style="display: flex; align-items: center; justify-content: space-around;">
-        <div style="text-align: center;">
-          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📦</div>
-          <div style="color: #94a3b8; font-size: 0.875rem;">Container + Data</div>
-        </div>
-        <div style="color: #94a3b8; font-size: 1.5rem;">→</div>
-        <div style="text-align: center;">
-          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🗑️</div>
-          <div style="color: #f87171; font-size: 0.875rem;">Deleted</div>
-        </div>
-        <div style="color: #94a3b8; font-size: 1.5rem;">→</div>
-        <div style="text-align: center;">
-          <div style="font-size: 2rem; margin-bottom: 0.5rem;">💔</div>
-          <div style="color: #f87171; font-size: 0.875rem;">Data Lost!</div>
-        </div>
-      </div>
-    </div>
-    <div style="background: rgba(34, 197, 94, 0.1); border: 2px solid #22c55e; border-radius: 8px; padding: 1.5rem;">
-      <div style="color: #4ade80; font-weight: bold; margin-bottom: 1rem; text-align: center;">✅ With Volumes</div>
-      <div style="display: flex; align-items: center; justify-content: space-around;">
-        <div style="text-align: center;">
-          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📦</div>
-          <div style="color: #94a3b8; font-size: 0.875rem;">Container</div>
-          <div style="font-size: 1.5rem; margin-top: 0.5rem;">📀</div>
-          <div style="color: #4ade80; font-size: 0.875rem;">Volume</div>
-        </div>
-        <div style="color: #94a3b8; font-size: 1.5rem;">→</div>
-        <div style="text-align: center;">
-          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🗑️</div>
-          <div style="color: #94a3b8; font-size: 0.875rem;">Container Deleted</div>
-          <div style="font-size: 1.5rem; margin-top: 0.5rem;">📀</div>
-          <div style="color: #4ade80; font-size: 0.875rem;">Volume Persists</div>
-        </div>
-        <div style="color: #94a3b8; font-size: 1.5rem;">→</div>
-        <div style="text-align: center;">
-          <div style="font-size: 2rem; margin-bottom: 0.5rem;">✨</div>
-          <div style="color: #4ade80; font-size: 0.875rem;">Data Safe!</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>`,
-          },
-        },
-        {
-          question: "What is Docker networking and its types?",
+          question: "What is Docker BuildKit?",
           difficulty: "advanced",
           answer: {
-            text: "Docker networking allows containers to communicate with each other and the outside world.",
+            text: "Docker BuildKit is a modern build engine for Docker that provides performance improvements, new features, and better caching.",
             points: [
-              "Bridge: Default network, containers on same bridge can communicate",
-              "Host: Container uses host's network directly, no isolation",
-              "None: No networking, completely isolated",
-              "Overlay: For multi-host networking in Swarm mode",
+              "Faster builds with improved caching",
+              "Parallel stage execution",
+              "Better error messages",
+              "Support for new Dockerfile syntax",
+              "Enable with DOCKER_BUILDKIT=1",
             ],
+            code: `# Enable BuildKit
+export DOCKER_BUILDKIT=1
+
+# Modern Dockerfile syntax (requires BuildKit)
+# syntax=docker/dockerfile:1.4
+
+FROM node:20-alpine
+WORKDIR /app
+
+# Cache mount example
+RUN --mount=type=cache,target=/root/.npm npm ci
+
+# Secrets in build (not in final image)
+RUN --mount=type=secret,id=npm_token \\
+    npm config set //registry.npmjs.org/:_authToken=$(cat /run/secrets/npm_token) && \\
+    npm ci
+
+# Build
+docker build --secret npm_token=<token> -t myapp .`,
             memoryTechnique:
-              "Docker Networks: BHNO = Bridge, Host, None, Overlay. Think: Bridge for isolation, Host for speed",
+              "BuildKit = Better, Intelligent, Lower-Level Docker Kit",
             simpleExplanation:
-              "Docker networks are like different phone plans. Bridge is like having separate phone numbers for each person but they can still call each other (isolated but connected). Host is like everyone sharing the same phone number (fast but no privacy). None is like having no phone at all (complete isolation).",
+              "Docker BuildKit is like upgrading from a bicycle to an electric bike. It does the same job but faster, with less effort, and newer features.",
+          },
+        },
+        {
+          question: "Explain Docker secrets management",
+          difficulty: "advanced",
+          answer: {
+            text: "Docker secrets management provides a secure way to handle sensitive data like passwords, API keys, and certificates.",
+            points: [
+              "Use environment variables carefully - visible in logs/inspect",
+              "Docker Secrets (Swarm mode) - encrypted, not visible to container env",
+              "External secret managers (Vault, AWS Secrets Manager)",
+              "Never hardcode secrets in images or Dockerfiles",
+              ".env files for development only, not production",
+            ],
+            code: `# Create Docker secret (Swarm mode)
+echo 'my-secret-password' | docker secret create db_password -
+
+# Use in docker-compose (Swarm mode)
+services:
+  db:
+    image: postgres
+    secrets:
+      - db_password
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+
+secrets:
+  db_password:
+    external: true
+
+# For development: use .env file
+# In docker-compose.yml
+services:
+  app:
+    env_file: .env    # File contains KEY=VALUE pairs`,
+            memoryTechnique:
+              "Secrets = Never hardcode, use secret manager or secure mounting",
+            simpleExplanation:
+              "Managing secrets is like managing your password. Don't write it on a sticky note (hardcode), don't shout it (environment variables), store it in a safe (secret manager).",
+          },
+        },
+        {
+          question: "What is Docker Swarm mode clustering?",
+          difficulty: "advanced",
+          answer: {
+            text: "Docker Swarm mode allows multiple Docker nodes to form a cluster and manage containers collectively.",
+            points: [
+              "One or more manager nodes for orchestration",
+              "Worker nodes execute containers",
+              "Automatic service discovery and load balancing",
+              "Declarative service definition",
+              "Rolling updates and rollback capabilities",
+            ],
+            code: `# Initialize Swarm on first node
+docker swarm init
+
+# Join other nodes to swarm
+docker swarm join --token SWMTKN-xxx <manager-ip>:2377
+
+# Create a service (replicated)
+docker service create --replicas 3 -p 8080:80 --name web nginx
+
+# Scale service
+docker service scale web=5
+
+# Update service
+docker service update --image nginx:latest web
+
+# View services
+docker service ls
+docker service ps web`,
+            memoryTechnique:
+              "Swarm = Managers orchestrate, Workers execute, Self-healing cluster",
+            simpleExplanation:
+              "Swarm mode is like a beehive. Worker bees (nodes) do the work, queen (manager) coordinates, if a bee dies, another is born (auto-restart).",
+          },
+        },
+        {
+          question: "What is Docker Stack?",
+          difficulty: "advanced",
+          answer: {
+            text: "Docker Stack is a deployment unit in Swarm mode that groups services together, defined in a Compose file.",
+            code: `# docker-compose.yml (compatible with Stack)
+version: '3.8'
+services:
+  web:
+    image: myapp:1.0
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+  db:
+    image: postgres:15
+
+# Deploy stack
+docker stack deploy -c docker-compose.yml myapp
+
+# List stacks
+docker stack ls
+
+# View services in stack
+docker stack services myapp
+
+# Remove stack
+docker stack rm myapp`,
+            memoryTechnique:
+              "Stack = Collection of services deployed together in Swarm",
+            simpleExplanation:
+              "A Docker Stack is like a complete meal at a restaurant. A Service is one dish, a Stack is the entire meal with appetizer, main course, and dessert.",
+          },
+        },
+        {
+          question: "How to monitor Docker containers?",
+          difficulty: "advanced",
+          answer: {
+            text: "Monitor containers using Docker native tools and external monitoring solutions.",
+            code: `# Docker native monitoring
+docker stats              # Real-time resource usage
+docker stats --no-stream  # One snapshot
+docker top mycontainer    # Show running processes
+docker events             # Stream Docker events
+
+# Logs
+docker logs -f mycontainer      # Follow logs
+docker logs --tail 50 mycontainer
+
+# External monitoring tools
+# Prometheus + cAdvisor + Grafana
+# ELK Stack (Elasticsearch, Logstash, Kibana)
+# DataDog
+# New Relic`,
+            memoryTechnique:
+              "Monitoring = stats (resources), logs (output), events (changes)",
+            simpleExplanation:
+              "Monitoring containers is like monitoring your health. stats = vital signs, logs = symptoms, events = medical history.",
+          },
+        },
+        {
+          question: "What tools integrate with Docker for logging?",
+          difficulty: "advanced",
+          answer: {
+            text: "Multiple tools help collect, store, and analyze Docker container logs.",
+            points: [
+              "ELK Stack: Elasticsearch for storage, Logstash for processing, Kibana for visualization",
+              "Splunk: Enterprise-grade log analysis and monitoring",
+              "DataDog: Cloud-native monitoring with log aggregation",
+              "New Relic: APM and log management",
+              "Prometheus: Metrics collection (not logs)",
+              "Fluentd: Log aggregation and routing",
+            ],
+            code: `# Docker JSON file logging driver
+docker run -d \\
+  --log-driver json-file \\
+  --log-opt max-size=10m \\
+  --log-opt max-file=3 \\
+  myapp
+
+# Splunk logging driver
+docker run -d \\
+  --log-driver splunk \\
+  --log-opt splunk-token=<token> \\
+  --log-opt splunk-url=https://splunk.example.com \\
+  myapp
+
+# Compose with logging
+services:
+  app:
+    image: myapp
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"`,
+            memoryTechnique:
+              "Logging tools = ELK (popular), Splunk (enterprise), DataDog (cloud-native)",
+            simpleExplanation:
+              "Logging tools are like filing cabinets. Some are basic (json-file), some are fancy organized systems (ELK), some are cloud-based (DataDog).",
+          },
+        },
+        {
+          question: "Explain multi-architecture builds in Docker",
+          difficulty: "advanced",
+          answer: {
+            text: "Build Docker images for multiple architectures (AMD64, ARM64, ARM) from a single Dockerfile.",
+            code: `# Using docker buildx (modern approach)
+docker buildx build \\
+  --platform linux/amd64,linux/arm64 \\
+  -t myapp:latest \\
+  --push .
+
+# Using buildx for local testing
+docker buildx build \\
+  --platform linux/amd64,linux/arm64 \\
+  -t myapp:latest \\
+  --load .  # Note: only loads first platform
+
+# Building for specific architecture
+docker buildx build \\
+  --platform linux/arm64 \\
+  -t myapp:latest-arm64 \\
+  --push .`,
+            memoryTechnique:
+              "Multi-arch = one dockerfile → multiple platforms (amd64, arm64, etc)",
+            simpleExplanation:
+              "Multi-architecture builds are like designing clothes in multiple sizes. One pattern (Dockerfile), tailored for different body types (architectures).",
+          },
+        },
+        {
+          question: "What is rootless Docker?",
+          difficulty: "advanced",
+          answer: {
+            text: "Rootless Docker allows running Docker daemon without root privileges, improving security.",
+            points: [
+              "Docker daemon runs as non-root user",
+              "Containers inherit user namespace isolation",
+              "Improved security posture",
+              "Some features unavailable (AppArmor, cgroups v1)",
+              "Slower than rootful for some operations",
+            ],
+            code: `# Install rootless Docker
+curl https://get.docker.com/rootless | sh
+
+# Enable rootless mode
+$HOME/bin/docker-rootless-extras install
+
+# Use rootless Docker
+export DOCKER_HOST=unix://$HOME/.docker/run/docker.sock
+docker ps
+
+# Check if running rootless
+docker info | grep rootless`,
+            memoryTechnique:
+              "Rootless = Docker daemon runs as regular user, not root",
+            simpleExplanation:
+              "Rootless Docker is like living in a house without being the owner. You still have your room (container), but you can't access other tenants' rooms (better isolation).",
+          },
+        },
+        {
+          question: "How to implement CI/CD with Docker?",
+          difficulty: "advanced",
+          answer: {
+            text: "Docker integrates with CI/CD pipelines for automated testing, building, and deployment.",
+            code: `# .github/workflows/docker.yml (GitHub Actions example)
+name: Docker Build
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build image
+        run: docker build -t myapp:HASH .
+      - name: Run tests
+        run: docker run myapp:HASH npm test
+      - name: Push to registry
+        run: docker push myapp:HASH
+      - name: Deploy
+        run: docker pull myapp:HASH && docker-compose up -d`,
+            memoryTechnique: "CI/CD with Docker = Build → Test → Push → Deploy",
+            simpleExplanation:
+              "Docker CI/CD is like an assembly line. Code → Build image → Test → Push to registry → Deploy. Fully automated.",
+          },
+        },
+        {
+          question: "What is Docker UNION file system?",
+          difficulty: "advanced",
+          answer: {
+            text: "The UNION file system (UnionFS) allows Docker to stack multiple layers into a single file system view.",
+            points: [
+              "Each Dockerfile command creates a new layer",
+              "Layers are stacked read-only except for container's writable layer",
+              "Reduces storage by sharing common layers between images",
+              "Copy-on-write mechanism for efficient modifications",
+              "Enables fast container startup times",
+            ],
+            code: `# Inspect image layers
+docker image inspect myimage
+
+# View image history (shows layers)
+docker image history myimage
+
+# Check layer details
+docker image inspect --format='{{json .RootFS.Layers}}' myimage | jq`,
+            memoryTechnique:
+              "UnionFS = Layers stacked, read-only + writable container layer at top",
+            simpleExplanation:
+              "UnionFS is like transparent overlays. You have a base drawing (base layer), then add transparencies on top (additional layers). You see all of them together, but each layer is separate.",
+          },
+        },
+        {
+          question: "How to use Docker with Jenkins?",
+          difficulty: "advanced",
+          answer: {
+            text: "Docker integrates with Jenkins for containerized CI/CD pipelines.",
+            code: `# Jenkinsfile example
+pipeline {
+    agent {
+        docker {
+            image 'node:20-alpine'
+            args '-p 3000:3000'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t myapp:latest .'
+            }
+        }
+        stage('Docker Push') {
+            steps {
+                sh 'docker push myapp:latest'
+            }
+        }
+    }
+}`,
+            memoryTechnique:
+              "Jenkins + Docker = Containerized build agents and artifact delivery",
+            simpleExplanation:
+              "Jenkins with Docker is like having a factory with modular workstations. Each job runs in its own container (workstation), no interference between jobs, clean setup every time.",
+          },
+        },
+        {
+          question: "Explain Docker health checks",
+          difficulty: "advanced",
+          answer: {
+            text: "Health checks monitor container status and allow orchestration systems to manage unhealthy containers.",
+            code: `# In Dockerfile
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \\
+  CMD curl -f http://localhost:3000/health || exit 1
+
+# In docker-compose.yml
+services:
+  web:
+    image: myapp
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+# Check container health
+docker container ls --format '{{.Names}} {{.Status}}'`,
+            memoryTechnique:
+              "Health checks = Periodic monitoring of container status",
+            simpleExplanation:
+              "Health checks are like a doctor checking your pulse. The orchestrator checks if the container is alive and working, and can restart it if it's not feeling well.",
+          },
+        },
+        {
+          question:
+            "What is the difference between docker run and docker exec?",
+          difficulty: "intermediate",
+          answer: {
+            text: "docker run creates and starts a new container, while docker exec runs a command in an existing running container.",
+            code: `# docker run - creates new container and runs command
+docker run -d -p 8080:80 --name myapp nginx
+# Result: New container 'myapp' created from nginx image and started
+
+# docker exec - runs command in existing container
+docker exec -it myapp /bin/bash
+# Result: Opens bash shell in already-running 'myapp' container
+
+# Comparison
+docker run -it ubuntu ls         # Creates new Ubuntu container, runs ls, exits
+docker exec -it container ls     # Runs ls in running 'container', returns to shell`,
+            memoryTechnique: "run = create new, exec = command in existing",
+            simpleExplanation:
+              "docker run is like opening a new browser tab and loading a page. docker exec is like clicking a link on the already-open page.",
+          },
+        },
+        {
+          question: "How to handle persistent data in Docker?",
+          difficulty: "intermediate",
+          answer: {
+            text: "Persistent data is managed through volumes, bind mounts, and tmpfs mounts to survive container restarts.",
+            points: [
+              "Volumes: Preferred for production, Docker-managed storage",
+              "Bind mounts: Direct host file system access, useful for development",
+              "tmpfs mounts: In-memory storage, data lost on container stop",
+              "Named volumes: Easier management and sharing between containers",
+            ],
+            code: `# Using named volume
+docker volume create mydata
+docker run -v mydata:/data myapp
+
+# In docker-compose
+services:
+  db:
+    image: postgres
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+
+volumes:
+  db-volume:
+
+# Check volume usage
+docker volume inspect mydata
+docker volume ls`,
+            memoryTechnique:
+              "Persistent data = Volumes (production) or Bind mounts (development)",
+            simpleExplanation:
+              "Persistent data is like a safe deposit box. Store important things there, and they survive even if you close the bank (stop container).",
           },
         },
       ],

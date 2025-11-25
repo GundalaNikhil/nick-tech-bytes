@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Clock, Code2, Star, TrendingUp } from "lucide-react";
-import type { DifficultyLevel } from "@/lib/topics/reactTutorials";
+import type { DifficultyLevel } from "@/lib/topics/dockerTutorials";
 
-interface ReactTutorialCardProps {
+interface DockerTutorialCardProps {
   title: string;
   slug: string;
   difficulty: DifficultyLevel;
@@ -37,7 +37,7 @@ const difficultyConfig: Record<
   },
 };
 
-export function ReactTutorialCard({
+export function DockerTutorialCard({
   title,
   slug,
   difficulty,
@@ -46,14 +46,14 @@ export function ReactTutorialCard({
   estimatedTime,
   rating,
   companies,
-}: ReactTutorialCardProps) {
+}: DockerTutorialCardProps) {
   const difficultyInfo = difficultyConfig[difficulty];
   const displayCompanies = companies.slice(0, 3);
   const hasMoreCompanies = companies.length > 3;
 
   return (
     <Link
-      href={`/react-tutorials/${slug}`}
+      href={`/docker-tutorials/${slug}`}
       className="group relative flex flex-col rounded-lg border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-900/40 p-4 transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 backdrop-blur-sm hover:scale-[1.01]"
     >
       {/* Gradient overlay on hover */}
