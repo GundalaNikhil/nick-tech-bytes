@@ -20,7 +20,31 @@ import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import rehypeRaw from "rehype-raw";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
+
+// Allow inline styles and additional attributes for HTML rendering
+const sanitizeSchema = {
+  ...defaultSchema,
+  attributes: {
+    ...defaultSchema.attributes,
+    div: [...(defaultSchema.attributes?.div || []), ["style"], ["className"]],
+    table: [
+      ...(defaultSchema.attributes?.table || []),
+      ["style"],
+      ["className"],
+    ],
+    thead: [...(defaultSchema.attributes?.thead || []), ["style"]],
+    tbody: [...(defaultSchema.attributes?.tbody || []), ["style"]],
+    tr: [...(defaultSchema.attributes?.tr || []), ["style"]],
+    th: [...(defaultSchema.attributes?.th || []), ["style"]],
+    td: [...(defaultSchema.attributes?.td || []), ["style"]],
+    span: [...(defaultSchema.attributes?.span || []), ["style"]],
+    ul: [...(defaultSchema.attributes?.ul || []), ["style"]],
+    li: [...(defaultSchema.attributes?.li || []), ["style"]],
+    h3: [...(defaultSchema.attributes?.h3 || []), ["style"]],
+    h4: [...(defaultSchema.attributes?.h4 || []), ["style"]],
+  },
+};
 
 // Tutorial metadata
 const tutorialMetadata: Record<
@@ -371,7 +395,7 @@ export default async function SpringBootTutorialPage({
         <article className="prose prose-invert max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw, rehypeSanitize]}
+            rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
             components={{
               h1: ({ node, children, ...props }) => (
                 <h1

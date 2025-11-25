@@ -41,59 +41,169 @@ When you send this box to anyone, anywhere, it works exactly the same way. No su
 
 ## 3. Visual Representation
 
-```
-Traditional Development (Without Docker):
-┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-│  Developer's    │  │   Test Server   │  │  Production     │
-│    Laptop       │  │                 │  │    Server       │
-├─────────────────┤  ├─────────────────┤  ├─────────────────┤
-│ OS: Windows     │  │ OS: Ubuntu      │  │ OS: CentOS      │
-│ Python 3.9      │  │ Python 3.8      │  │ Python 3.10     │
-│ Node 14         │  │ Node 16         │  │ Node 18         │
-│ MySQL 5.7       │  │ MySQL 8.0       │  │ PostgreSQL      │
-└─────────────────┘  └─────────────────┘  └─────────────────┘
-     ✅ Works           ❌ Breaks            ❌ Breaks
+<div style="background: linear-gradient(to bottom right, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1)); border-radius: 12px; padding: 24px; margin: 24px 0; border: 1px solid rgba(6, 182, 212, 0.2);">
 
+### 🔴 Traditional Development (Without Docker)
 
-With Docker:
-┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-│  Developer's    │  │   Test Server   │  │  Production     │
-│    Laptop       │  │                 │  │    Server       │
-├─────────────────┤  ├─────────────────┤  ├─────────────────┤
-│   Docker        │  │   Docker        │  │   Docker        │
-│ ┌─────────────┐ │  │ ┌─────────────┐ │  │ ┌─────────────┐ │
-│ │  Container  │ │  │ │  Container  │ │  │ │  Container  │ │
-│ │ Python 3.9  │ │  │ │ Python 3.9  │ │  │ │ Python 3.9  │ │
-│ │ Node 14     │ │  │ │ Node 14     │ │  │ │ Node 14     │ │
-│ │ MySQL 5.7   │ │  │ │ MySQL 5.7   │ │  │ │ MySQL 5.7   │ │
-│ │ Your App    │ │  │ │ Your App    │ │  │ │ Your App    │ │
-│ └─────────────┘ │  │ └─────────────┘ │  │ └─────────────┘ │
-└─────────────────┘  └─────────────────┘  └─────────────────┘
-     ✅ Works           ✅ Works            ✅ Works
-```
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
 
-### Docker Architecture Overview:
+<div style="background: rgba(239, 68, 68, 0.1); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 16px;">
+<div style="font-weight: bold; color: #22D3EE; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+💻 Developer's Laptop
+</div>
+<div style="font-size: 14px; color: rgba(255, 255, 255, 0.8); line-height: 1.8;">
+<div>OS: Windows</div>
+<div>Python 3.9</div>
+<div>Node 14</div>
+<div>MySQL 5.7</div>
+</div>
+<div style="margin-top: 12px; padding: 8px; background: rgba(34, 197, 94, 0.2); border-radius: 4px; text-align: center; font-weight: bold; color: #22C55E;">
+✅ Works
+</div>
+</div>
 
-```
-┌───────────────────────────────────────────────────────────┐
-│                     Docker Host                           │
-│                                                           │
-│  ┌─────────────────────────────────────────────────────┐ │
-│  │              Docker Daemon (dockerd)                 │ │
-│  └─────────────────────────────────────────────────────┘ │
-│                                                           │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
-│  │Container │  │Container │  │Container │              │
-│  │    1     │  │    2     │  │    3     │              │
-│  │          │  │          │  │          │              │
-│  │  App A   │  │  App B   │  │  App C   │              │
-│  └──────────┘  └──────────┘  └──────────┘              │
-│                                                           │
-│  ┌─────────────────────────────────────────────────────┐ │
-│  │              Operating System Kernel                 │ │
-│  └─────────────────────────────────────────────────────┘ │
-└───────────────────────────────────────────────────────────┘
-```
+<div style="background: rgba(239, 68, 68, 0.1); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 16px;">
+<div style="font-weight: bold; color: #22D3EE; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+🖥️ Test Server
+</div>
+<div style="font-size: 14px; color: rgba(255, 255, 255, 0.8); line-height: 1.8;">
+<div>OS: Ubuntu</div>
+<div>Python 3.8</div>
+<div>Node 16</div>
+<div>MySQL 8.0</div>
+</div>
+<div style="margin-top: 12px; padding: 8px; background: rgba(239, 68, 68, 0.2); border-radius: 4px; text-align: center; font-weight: bold; color: #EF4444;">
+❌ Breaks
+</div>
+</div>
+
+<div style="background: rgba(239, 68, 68, 0.1); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 16px;">
+<div style="font-weight: bold; color: #22D3EE; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+☁️ Production Server
+</div>
+<div style="font-size: 14px; color: rgba(255, 255, 255, 0.8); line-height: 1.8;">
+<div>OS: CentOS</div>
+<div>Python 3.10</div>
+<div>Node 18</div>
+<div>PostgreSQL</div>
+</div>
+<div style="margin-top: 12px; padding: 8px; background: rgba(239, 68, 68, 0.2); border-radius: 4px; text-align: center; font-weight: bold; color: #EF4444;">
+❌ Breaks
+</div>
+</div>
+
+</div>
+
+### 🟢 With Docker
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
+
+<div style="background: rgba(34, 197, 94, 0.1); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 16px;">
+<div style="font-weight: bold; color: #22D3EE; margin-bottom: 12px;">💻 Developer's Laptop</div>
+<div style="background: rgba(6, 182, 212, 0.1); border: 1px dashed rgba(6, 182, 212, 0.3); border-radius: 6px; padding: 12px; margin-top: 8px;">
+<div style="font-weight: bold; color: #22D3EE; font-size: 12px; margin-bottom: 8px;">🐳 Docker Container</div>
+<div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+<div>Python 3.9</div>
+<div>Node 14</div>
+<div>MySQL 5.7</div>
+<div>Your App</div>
+</div>
+</div>
+<div style="margin-top: 12px; padding: 8px; background: rgba(34, 197, 94, 0.2); border-radius: 4px; text-align: center; font-weight: bold; color: #22C55E;">
+✅ Works
+</div>
+</div>
+
+<div style="background: rgba(34, 197, 94, 0.1); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 16px;">
+<div style="font-weight: bold; color: #22D3EE; margin-bottom: 12px;">🖥️ Test Server</div>
+<div style="background: rgba(6, 182, 212, 0.1); border: 1px dashed rgba(6, 182, 212, 0.3); border-radius: 6px; padding: 12px; margin-top: 8px;">
+<div style="font-weight: bold; color: #22D3EE; font-size: 12px; margin-bottom: 8px;">🐳 Docker Container</div>
+<div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+<div>Python 3.9</div>
+<div>Node 14</div>
+<div>MySQL 5.7</div>
+<div>Your App</div>
+</div>
+</div>
+<div style="margin-top: 12px; padding: 8px; background: rgba(34, 197, 94, 0.2); border-radius: 4px; text-align: center; font-weight: bold; color: #22C55E;">
+✅ Works
+</div>
+</div>
+
+<div style="background: rgba(34, 197, 94, 0.1); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 16px;">
+<div style="font-weight: bold; color: #22D3EE; margin-bottom: 12px;">☁️ Production Server</div>
+<div style="background: rgba(6, 182, 212, 0.1); border: 1px dashed rgba(6, 182, 212, 0.3); border-radius: 6px; padding: 12px; margin-top: 8px;">
+<div style="font-weight: bold; color: #22D3EE; font-size: 12px; margin-bottom: 8px;">🐳 Docker Container</div>
+<div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+<div>Python 3.9</div>
+<div>Node 14</div>
+<div>MySQL 5.7</div>
+<div>Your App</div>
+</div>
+</div>
+<div style="margin-top: 12px; padding: 8px; background: rgba(34, 197, 94, 0.2); border-radius: 4px; text-align: center; font-weight: bold; color: #22C55E;">
+✅ Works
+</div>
+</div>
+
+</div>
+
+</div>
+
+### Docker Architecture Overview
+
+<div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border-radius: 12px; padding: 32px; margin: 24px 0; border: 2px solid rgba(6, 182, 212, 0.3);">
+
+<div style="text-align: center; margin-bottom: 24px;">
+<div style="display: inline-block; background: rgba(6, 182, 212, 0.2); padding: 12px 24px; border-radius: 8px; border: 1px solid rgba(6, 182, 212, 0.4);">
+<span style="font-weight: bold; font-size: 18px; color: #22D3EE;">🖥️ Docker Host</span>
+</div>
+</div>
+
+<div style="background: rgba(59, 130, 246, 0.1); border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+<div style="text-align: center; font-weight: bold; color: #3B82F6; font-size: 16px;">
+⚙️ Docker Daemon (dockerd)
+</div>
+<div style="text-align: center; font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-top: 4px;">
+Manages containers, images, networks, and volumes
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 20px;">
+
+<div style="background: rgba(139, 92, 246, 0.1); border: 2px solid rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 16px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 8px;">📦</div>
+<div style="font-weight: bold; color: #8B5CF6; margin-bottom: 4px;">Container 1</div>
+<div style="font-size: 13px; color: rgba(255, 255, 255, 0.7);">App A</div>
+<div style="font-size: 11px; color: rgba(255, 255, 255, 0.5); margin-top: 4px;">Node.js API</div>
+</div>
+
+<div style="background: rgba(139, 92, 246, 0.1); border: 2px solid rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 16px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 8px;">📦</div>
+<div style="font-weight: bold; color: #8B5CF6; margin-bottom: 4px;">Container 2</div>
+<div style="font-size: 13px; color: rgba(255, 255, 255, 0.7);">App B</div>
+<div style="font-size: 11px; color: rgba(255, 255, 255, 0.5); margin-top: 4px;">Python ML</div>
+</div>
+
+<div style="background: rgba(139, 92, 246, 0.1); border: 2px solid rgba(139, 92, 246, 0.3); border-radius: 8px; padding: 16px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 8px;">📦</div>
+<div style="font-weight: bold; color: #8B5CF6; margin-bottom: 4px;">Container 3</div>
+<div style="font-size: 13px; color: rgba(255, 255, 255, 0.7);">App C</div>
+<div style="font-size: 11px; color: rgba(255, 255, 255, 0.5); margin-top: 4px;">Database</div>
+</div>
+
+</div>
+
+<div style="background: rgba(34, 197, 94, 0.1); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 16px;">
+<div style="text-align: center; font-weight: bold; color: #22C55E; font-size: 16px;">
+🧠 Operating System Kernel
+</div>
+<div style="text-align: center; font-size: 12px; color: rgba(255, 255, 255, 0.6); margin-top: 4px;">
+Shared by all containers (lightweight virtualization)
+</div>
+</div>
+
+</div>
 
 ---
 
@@ -142,29 +252,63 @@ With Docker:
    - Rapid deployment
    - Scalability
 
-### Understanding Plan:
+### Understanding Plan
 
-```
-Step 1: Understand the Problem
-↓
-What challenges exist in software deployment?
+<div style="background: linear-gradient(to bottom, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05)); border-radius: 12px; padding: 24px; margin: 24px 0; border: 1px solid rgba(6, 182, 212, 0.2);">
 
-Step 2: Learn Docker's Solution
-↓
-How Docker packages and isolates applications
+<div style="display: flex; flex-direction: column; gap: 16px;">
 
-Step 3: Explore Components
-↓
-Images, Containers, Registry, Engine
+<div style="display: flex; align-items: start; gap: 16px;">
+<div style="flex-shrink: 0; width: 40px; height: 40px; background: linear-gradient(135deg, #22D3EE, #3B82F6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 18px;">1</div>
+<div style="flex: 1;">
+<div style="font-weight: bold; color: #22D3EE; font-size: 16px; margin-bottom: 4px;">Understand the Problem</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">What challenges exist in software deployment?</div>
+</div>
+</div>
 
-Step 4: See Real Use Cases
-↓
-Development, Testing, Production environments
+<div style="margin-left: 20px; border-left: 2px dashed rgba(6, 182, 212, 0.3); height: 24px;"></div>
 
-Step 5: Compare Alternatives
-↓
-Docker vs VMs, Docker vs other containerization
-```
+<div style="display: flex; align-items: start; gap: 16px;">
+<div style="flex-shrink: 0; width: 40px; height: 40px; background: linear-gradient(135deg, #3B82F6, #8B5CF6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 18px;">2</div>
+<div style="flex: 1;">
+<div style="font-weight: bold; color: #3B82F6; font-size: 16px; margin-bottom: 4px;">Learn Docker's Solution</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">How Docker packages and isolates applications</div>
+</div>
+</div>
+
+<div style="margin-left: 20px; border-left: 2px dashed rgba(6, 182, 212, 0.3); height: 24px;"></div>
+
+<div style="display: flex; align-items: start; gap: 16px;">
+<div style="flex-shrink: 0; width: 40px; height: 40px; background: linear-gradient(135deg, #8B5CF6, #A855F7); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 18px;">3</div>
+<div style="flex: 1;">
+<div style="font-weight: bold; color: #8B5CF6; font-size: 16px; margin-bottom: 4px;">Explore Components</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Images, Containers, Registry, Engine</div>
+</div>
+</div>
+
+<div style="margin-left: 20px; border-left: 2px dashed rgba(6, 182, 212, 0.3); height: 24px;"></div>
+
+<div style="display: flex; align-items: start; gap: 16px;">
+<div style="flex-shrink: 0; width: 40px; height: 40px; background: linear-gradient(135deg, #A855F7, #EC4899); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 18px;">4</div>
+<div style="flex: 1;">
+<div style="font-weight: bold; color: #A855F7; font-size: 16px; margin-bottom: 4px;">See Real Use Cases</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Development, Testing, Production environments</div>
+</div>
+</div>
+
+<div style="margin-left: 20px; border-left: 2px dashed rgba(6, 182, 212, 0.3); height: 24px;"></div>
+
+<div style="display: flex; align-items: start; gap: 16px;">
+<div style="flex-shrink: 0; width: 40px; height: 40px; background: linear-gradient(135deg, #EC4899, #EF4444); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-size: 18px;">5</div>
+<div style="flex: 1;">
+<div style="font-weight: bold; color: #EC4899; font-size: 16px; margin-bottom: 4px;">Compare Alternatives</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Docker vs VMs, Docker vs other containerization</div>
+</div>
+</div>
+
+</div>
+
+</div>
 
 ---
 
@@ -291,19 +435,62 @@ docker-compose down
    - Leverage multi-stage builds
    - Tag images properly (version numbers)
 
-### Common Pitfalls:
+### Common Pitfalls
 
-❌ **Storing data inside containers** (data is lost when container stops)
-✅ Use volumes for persistent data
+<div style="background: linear-gradient(to bottom right, rgba(239, 68, 68, 0.1), rgba(251, 146, 60, 0.1)); border-radius: 12px; padding: 24px; margin: 24px 0; border: 1px solid rgba(239, 68, 68, 0.3);">
 
-❌ **Building huge images** (slow downloads, security risks)
-✅ Use multi-stage builds and minimal base images
+<table style="width: 100%; border-collapse: separate; border-spacing: 0;">
+<thead>
+<tr style="background: rgba(239, 68, 68, 0.2);">
+<th style="padding: 16px; text-align: left; border-top-left-radius: 8px; font-weight: bold; color: #EF4444; border-bottom: 2px solid rgba(239, 68, 68, 0.3);">❌ Wrong Approach</th>
+<th style="padding: 16px; text-align: left; border-top-right-radius: 8px; font-weight: bold; color: #22C55E; border-bottom: 2px solid rgba(34, 197, 94, 0.3);">✅ Right Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(0, 0, 0, 0.2);">
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); vertical-align: top;">
+<div style="color: #EF4444; font-weight: bold; margin-bottom: 8px;">Storing data inside containers</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Data is lost when container stops</div>
+</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); vertical-align: top;">
+<div style="color: #22C55E; font-weight: bold; margin-bottom: 8px;">Use volumes for persistent data</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Data survives container lifecycle</div>
+</td>
+</tr>
+<tr style="background: rgba(0, 0, 0, 0.1);">
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); vertical-align: top;">
+<div style="color: #EF4444; font-weight: bold; margin-bottom: 8px;">Building huge images</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Slow downloads, security risks</div>
+</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); vertical-align: top;">
+<div style="color: #22C55E; font-weight: bold; margin-bottom: 8px;">Use multi-stage builds and minimal base images</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Smaller, faster, more secure</div>
+</td>
+</tr>
+<tr style="background: rgba(0, 0, 0, 0.2);">
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); vertical-align: top;">
+<div style="color: #EF4444; font-weight: bold; margin-bottom: 8px;">Hardcoding configuration</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Not flexible across environments</div>
+</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); vertical-align: top;">
+<div style="color: #22C55E; font-weight: bold; margin-bottom: 8px;">Use environment variables</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Easy configuration per environment</div>
+</td>
+</tr>
+<tr style="background: rgba(0, 0, 0, 0.1);">
+<td style="padding: 16px; vertical-align: top;">
+<div style="color: #EF4444; font-weight: bold; margin-bottom: 8px;">Not cleaning up resources</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Disk space fills up quickly</div>
+</td>
+<td style="padding: 16px; vertical-align: top;">
+<div style="color: #22C55E; font-weight: bold; margin-bottom: 8px;">Regularly prune unused images and containers</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px;">Keep system clean and efficient</div>
+</td>
+</tr>
+</tbody>
+</table>
 
-❌ **Hardcoding configuration** (not flexible)
-✅ Use environment variables
-
-❌ **Not cleaning up** (disk space fills up)
-✅ Regularly prune unused images and containers
+</div>
 
 ### Performance Tips:
 
@@ -341,38 +528,141 @@ docker-compose down
    - Gradually migrate to modern architectures
    - Isolate dependencies
 
-### Docker vs Virtual Machines:
+### Docker vs Virtual Machines
 
-| Feature        | Docker Container | Virtual Machine |
-| -------------- | ---------------- | --------------- |
-| Size           | MBs              | GBs             |
-| Startup Time   | Seconds          | Minutes         |
-| Performance    | Near-native      | Overhead        |
-| Isolation      | Process-level    | Complete OS     |
-| Resource Usage | Efficient        | Heavy           |
+<div style="background: linear-gradient(to right, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1)); border-radius: 12px; padding: 24px; margin: 24px 0; border: 1px solid rgba(6, 182, 212, 0.2); overflow-x: auto;">
 
-### When to Use Docker:
+<table style="width: 100%; min-width: 600px; border-collapse: separate; border-spacing: 0;">
+<thead>
+<tr style="background: linear-gradient(to right, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.2));">
+<th style="padding: 16px; text-align: left; border-top-left-radius: 8px; font-weight: bold; color: #22D3EE; border-bottom: 2px solid rgba(6, 182, 212, 0.4);">Feature</th>
+<th style="padding: 16px; text-align: left; font-weight: bold; color: #22D3EE; border-bottom: 2px solid rgba(6, 182, 212, 0.4);">🐳 Docker Container</th>
+<th style="padding: 16px; text-align: left; border-top-right-radius: 8px; font-weight: bold; color: #8B5CF6; border-bottom: 2px solid rgba(139, 92, 246, 0.4);">💻 Virtual Machine</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background: rgba(0, 0, 0, 0.2);">
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-weight: 600; color: rgba(255, 255, 255, 0.9);">Size</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<span style="display: inline-block; background: rgba(34, 197, 94, 0.2); color: #22C55E; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 14px;">MBs</span>
+</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<span style="display: inline-block; background: rgba(251, 146, 60, 0.2); color: #FB923C; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 14px;">GBs</span>
+</td>
+</tr>
+<tr style="background: rgba(0, 0, 0, 0.1);">
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-weight: 600; color: rgba(255, 255, 255, 0.9);">Startup Time</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<span style="display: inline-block; background: rgba(34, 197, 94, 0.2); color: #22C55E; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 14px;">Seconds</span>
+</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<span style="display: inline-block; background: rgba(251, 146, 60, 0.2); color: #FB923C; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 14px;">Minutes</span>
+</td>
+</tr>
+<tr style="background: rgba(0, 0, 0, 0.2);">
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-weight: 600; color: rgba(255, 255, 255, 0.9);">Performance</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<span style="display: inline-block; background: rgba(34, 197, 94, 0.2); color: #22C55E; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 14px;">Near-native</span>
+</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<span style="display: inline-block; background: rgba(251, 146, 60, 0.2); color: #FB923C; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 14px;">Overhead</span>
+</td>
+</tr>
+<tr style="background: rgba(0, 0, 0, 0.1);">
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-weight: 600; color: rgba(255, 255, 255, 0.9);">Isolation</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<span style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">Process-level</span>
+</td>
+<td style="padding: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+<span style="color: rgba(255, 255, 255, 0.8); font-size: 14px;">Complete OS</span>
+</td>
+</tr>
+<tr style="background: rgba(0, 0, 0, 0.2);">
+<td style="padding: 16px; font-weight: 600; color: rgba(255, 255, 255, 0.9);">Resource Usage</td>
+<td style="padding: 16px;">
+<span style="display: inline-block; background: rgba(34, 197, 94, 0.2); color: #22C55E; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 14px;">Efficient</span>
+</td>
+<td style="padding: 16px;">
+<span style="display: inline-block; background: rgba(251, 146, 60, 0.2); color: #FB923C; padding: 4px 12px; border-radius: 12px; font-weight: bold; font-size: 14px;">Heavy</span>
+</td>
+</tr>
+</tbody>
+</table>
 
-✅ **Good Use Cases:**
+</div>
 
-- Microservices
-- CI/CD pipelines
-- Development environments
-- Portable applications
-- Rapid scaling needs
+### When to Use Docker
 
-❌ **Not Ideal For:**
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 24px 0;">
 
-- GUI-heavy applications
-- Applications requiring kernel modifications
-- Legacy monoliths that can't be containerized
-- When you need complete OS isolation (use VMs)
+<div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 12px; padding: 24px;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+<span style="font-size: 32px;">✅</span>
+<h4 style="margin: 0; color: #22C55E; font-size: 18px;">Good Use Cases</h4>
+</div>
+<ul style="list-style: none; padding: 0; margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 14px; line-height: 2;">
+<li style="padding: 8px 0; border-bottom: 1px solid rgba(34, 197, 94, 0.2);">🎯 Microservices architecture</li>
+<li style="padding: 8px 0; border-bottom: 1px solid rgba(34, 197, 94, 0.2);">🔄 CI/CD pipelines</li>
+<li style="padding: 8px 0; border-bottom: 1px solid rgba(34, 197, 94, 0.2);">💻 Development environments</li>
+<li style="padding: 8px 0; border-bottom: 1px solid rgba(34, 197, 94, 0.2);">📦 Portable applications</li>
+<li style="padding: 8px 0;">⚡ Rapid scaling needs</li>
+</ul>
+</div>
 
-### Learning Path:
+<div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1)); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 24px;">
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+<span style="font-size: 32px;">❌</span>
+<h4 style="margin: 0; color: #EF4444; font-size: 18px;">Not Ideal For</h4>
+</div>
+<ul style="list-style: none; padding: 0; margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 14px; line-height: 2;">
+<li style="padding: 8px 0; border-bottom: 1px solid rgba(239, 68, 68, 0.2);">🖼️ GUI-heavy applications</li>
+<li style="padding: 8px 0; border-bottom: 1px solid rgba(239, 68, 68, 0.2);">⚙️ Apps requiring kernel modifications</li>
+<li style="padding: 8px 0; border-bottom: 1px solid rgba(239, 68, 68, 0.2);">🏛️ Legacy monoliths that can't be containerized</li>
+<li style="padding: 8px 0;">🔒 When you need complete OS isolation (use VMs)</li>
+</ul>
+</div>
 
-1. **Beginner:** Learn basic commands, run existing images
-2. **Intermediate:** Create Dockerfiles, use Docker Compose
-3. **Advanced:** Orchestration (Swarm/Kubernetes), security, optimization
+</div>
+
+### Learning Path
+
+<div style="background: linear-gradient(to bottom right, rgba(6, 182, 212, 0.05), rgba(168, 85, 247, 0.05)); border-radius: 12px; padding: 32px 24px; margin: 24px 0; border: 1px solid rgba(6, 182, 212, 0.2);">
+
+<div style="display: grid; gap: 20px;">
+
+<div style="position: relative; padding-left: 60px;">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; background: linear-gradient(135deg, #22C55E, #16A34A); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);">
+🌱
+</div>
+<div>
+<div style="font-weight: bold; color: #22C55E; font-size: 16px; margin-bottom: 6px;">Beginner Level</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.6;">Learn basic commands, run existing images from Docker Hub, understand container lifecycle</div>
+</div>
+</div>
+
+<div style="position: relative; padding-left: 60px;">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; background: linear-gradient(135deg, #F59E0B, #D97706); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);">
+⚡
+</div>
+<div>
+<div style="font-weight: bold; color: #F59E0B; font-size: 16px; margin-bottom: 6px;">Intermediate Level</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.6;">Create Dockerfiles, build custom images, use Docker Compose for multi-container apps</div>
+</div>
+</div>
+
+<div style="position: relative; padding-left: 60px;">
+<div style="position: absolute; left: 0; top: 0; width: 48px; height: 48px; background: linear-gradient(135deg, #EF4444, #DC2626); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);">
+🔥
+</div>
+<div>
+<div style="font-weight: bold; color: #EF4444; font-size: 16px; margin-bottom: 6px;">Advanced Level</div>
+<div style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.6;">Orchestration with Swarm/Kubernetes, security hardening, performance optimization, production deployment</div>
+</div>
+</div>
+
+</div>
+
+</div>
 
 ### Helpful Commands Cheat Sheet:
 

@@ -20,8 +20,32 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import rehypeRaw from "rehype-raw";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
+
+// Allow inline styles and additional attributes for HTML rendering
+const sanitizeSchema = {
+  ...defaultSchema,
+  attributes: {
+    ...defaultSchema.attributes,
+    div: [...(defaultSchema.attributes?.div || []), ["style"], ["className"]],
+    table: [
+      ...(defaultSchema.attributes?.table || []),
+      ["style"],
+      ["className"],
+    ],
+    thead: [...(defaultSchema.attributes?.thead || []), ["style"]],
+    tbody: [...(defaultSchema.attributes?.tbody || []), ["style"]],
+    tr: [...(defaultSchema.attributes?.tr || []), ["style"]],
+    th: [...(defaultSchema.attributes?.th || []), ["style"]],
+    td: [...(defaultSchema.attributes?.td || []), ["style"]],
+    span: [...(defaultSchema.attributes?.span || []), ["style"]],
+    ul: [...(defaultSchema.attributes?.ul || []), ["style"]],
+    li: [...(defaultSchema.attributes?.li || []), ["style"]],
+    h3: [...(defaultSchema.attributes?.h3 || []), ["style"]],
+    h4: [...(defaultSchema.attributes?.h4 || []), ["style"]],
+  },
+};
 
 export async function generateStaticParams() {
   return reactTutorials.map((tutorial) => ({
@@ -196,7 +220,7 @@ export default async function ReactTutorialPage({
         <div className="prose prose-invert max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw, rehypeSanitize]}
+            rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
             components={{
               code({ node, inline, className, children, ...props }: any) {
                 const match = /language-(\w+)/.exec(className || "");
