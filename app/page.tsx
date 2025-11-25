@@ -6,6 +6,7 @@ import AdditionalResources from "@/components/AdditionalResources";
 import Footer from "@/components/footer";
 import { HomeSystemDesignBanner } from "@/components/system-design/HomeSystemDesignBanner";
 import { ReactTutorialsBanner } from "@/components/react/ReactTutorialsBanner";
+import { DockerTutorialsBanner } from "@/components/docker/DockerTutorialsBanner";
 import { interviewQuestions, topicsList } from "@/lib/interviewData";
 import { useRouter } from "next/navigation";
 
@@ -19,6 +20,8 @@ export default function NickTechBytes() {
       <HomeSystemDesignBanner />
 
       <ReactTutorialsBanner />
+
+      <DockerTutorialsBanner />
 
       <ResourcesGrid
         topicsList={topicsList}
