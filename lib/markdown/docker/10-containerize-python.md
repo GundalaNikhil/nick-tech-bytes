@@ -156,5 +156,5 @@ CMD ["python", "model_server.py"]
 
 ## Next Steps
 
-- [Docker Registry & Image Management](./11-docker-registry.md)
-- [Container Security Best Practices](./12-container-security.md)
+- [Docker Registry & Image Management](/docker-tutorials/11-docker-registry)
+- [Container Security Best Practices](/docker-tutorials/12-container-security)

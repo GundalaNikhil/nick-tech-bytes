@@ -293,6 +293,29 @@ export default function Navbar({
                               </p>
                             </Link>
                           </motion.div>
+
+                          {/* Docker Tutorials */}
+                          <motion.div
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.25 }}
+                          >
+                            <Link
+                              href="/docker-tutorials"
+                              onClick={() => setIsDropdownOpen(false)}
+                              className="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-cyan-400 transition-all duration-200 rounded-lg border border-transparent hover:border-cyan-400/30 hover:bg-cyan-500/10 group"
+                            >
+                              <div className="flex items-center gap-3 mb-1">
+                                <Code2 className="w-5 h-5 text-cyan-400" />
+                                <span className="font-semibold">
+                                  Docker Tutorials
+                                </span>
+                              </div>
+                              <p className="text-xs text-gray-400 ml-8">
+                                Master Containerization
+                              </p>
+                            </Link>
+                          </motion.div>
                         </div>
                       </div>
                     </div>

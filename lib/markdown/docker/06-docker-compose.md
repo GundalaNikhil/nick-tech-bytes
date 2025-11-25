@@ -617,6 +617,6 @@ services:
 
 ## Next Steps
 
-- [Docker Networking](./07-docker-networking.md)
-- [Docker Volumes & Data Persistence](./08-docker-volumes.md)
-- [Containerizing Node.js App](./09-containerize-nodejs.md)
+- [Docker Networking](/docker-tutorials/07-docker-networking)
+- [Docker Volumes & Data Persistence](/docker-tutorials/08-docker-volumes)
+- [Containerizing Node.js App](/docker-tutorials/09-containerize-nodejs)

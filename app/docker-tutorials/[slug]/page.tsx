@@ -147,9 +147,9 @@ export default async function DockerTutorialPage({
       </div>
 
       {/* Content */}
-      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
         {/* Quick Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
           <div className="rounded-lg bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 p-4">
             <div className="flex items-center gap-2 mb-2">
               <Target className="h-4 w-4 text-cyan-400" />

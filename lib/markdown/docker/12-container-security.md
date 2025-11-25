@@ -238,6 +238,6 @@ docker stats
 
 ## Next Steps
 
-- [Docker Performance Optimization](./13-performance-optimization.md)
-- [Docker Monitoring & Logging](./14-monitoring-logging.md)
+- [Docker Performance Optimization](/docker-tutorials/13-performance-optimization)
+- [Docker Monitoring & Logging](/docker-tutorials/14-monitoring-logging)
 - [Kubernetes Fundamentals](./15-kubernetes-basics.md)

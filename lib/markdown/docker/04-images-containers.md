@@ -487,6 +487,6 @@ docker stop <container-id>
 
 ## Next Steps
 
-- [Writing Dockerfiles](./05-writing-dockerfiles.md)
-- [Docker Compose Basics](./06-docker-compose.md)
+- [Writing Dockerfiles](/docker-tutorials/05-writing-dockerfiles)
+- [Docker Compose Basics](/docker-tutorials/06-docker-compose)
 - [Docker Networking](./07-docker-networking.md)

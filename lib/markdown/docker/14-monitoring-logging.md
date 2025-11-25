@@ -281,5 +281,5 @@ CMD ["node", "-r", "newrelic", "app.js"]
 
 ## Next Steps
 
-- [Kubernetes Fundamentals](./15-kubernetes-basics.md)
-- [Container Security Best Practices](./12-container-security.md)
+- [Kubernetes Fundamentals](/docker-tutorials/15-kubernetes-basics)
+- [Container Security Best Practices](/docker-tutorials/12-container-security)

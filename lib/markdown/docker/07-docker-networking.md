@@ -82,5 +82,5 @@ docker run -d -p 127.0.0.1:8080:80 nginx
 
 ## Next Steps
 
-- [Docker Volumes & Data Persistence](./08-docker-volumes.md)
-- [Containerizing Node.js App](./09-containerize-nodejs.md)
+- [Docker Volumes & Data Persistence](/docker-tutorials/08-docker-volumes)
+- [Containerizing Node.js App](/docker-tutorials/09-containerize-nodejs)

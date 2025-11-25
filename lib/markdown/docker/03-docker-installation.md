@@ -336,9 +336,9 @@ docker run -it <image-name> /bin/bash
 
 ## Next Steps
 
-- Learn about [Docker Images and Containers](./04-images-containers.md)
-- Write your first [Dockerfile](./05-writing-dockerfiles.md)
-- Explore [Docker Compose](./06-docker-compose.md)
+- Learn about [Docker Images and Containers](/docker-tutorials/04-images-containers)
+- Write your first [Dockerfile](/docker-tutorials/05-writing-dockerfiles)
+- Explore [Docker Compose](/docker-tutorials/06-docker-compose)
 
 ---
 

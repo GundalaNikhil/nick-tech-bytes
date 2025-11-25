@@ -280,5 +280,5 @@ docker run --rm -e STARTUP=true myapp:1.0 time node app.js
 
 ## Next Steps
 
-- [Docker Monitoring & Logging](./14-monitoring-logging.md)
-- [Kubernetes Fundamentals](./15-kubernetes-basics.md)
+- [Docker Monitoring & Logging](/docker-tutorials/14-monitoring-logging)
+- [Kubernetes Fundamentals](/docker-tutorials/15-kubernetes-basics)

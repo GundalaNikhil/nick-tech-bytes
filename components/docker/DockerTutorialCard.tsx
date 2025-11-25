@@ -87,14 +87,22 @@ export function DockerTutorialCard({
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5">
-          {tags.slice(0, 2).map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-gray-800/50 px-2.5 py-1 text-xs text-gray-300 border border-gray-700/50 hover:border-cyan-500/30 transition-colors"
-            >
-              #{tag}
-            </span>
-          ))}
+          {tags.slice(0, 2).map((tag, idx) => {
+            const tagColors = [
+              "bg-cyan-500/15 text-cyan-300 border-cyan-500/30 hover:bg-cyan-500/25",
+              "bg-purple-500/15 text-purple-300 border-purple-500/30 hover:bg-purple-500/25",
+              "bg-pink-500/15 text-pink-300 border-pink-500/30 hover:bg-pink-500/25",
+            ];
+            const colorClass = tagColors[idx % tagColors.length];
+            return (
+              <span
+                key={tag}
+                className={`rounded-full px-2.5 py-1 text-xs border transition-colors ${colorClass}`}
+              >
+                #{tag}
+              </span>
+            );
+          })}
           {tags.length > 2 && (
             <span className="rounded-full bg-gray-800/50 px-2.5 py-1 text-xs text-gray-400 border border-gray-700/50">
               +{tags.length - 2}

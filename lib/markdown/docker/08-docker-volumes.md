@@ -65,5 +65,5 @@ docker run --tmpfs /tmp myapp
 
 ## Next Steps
 
-- [Containerizing Node.js App](./09-containerize-nodejs.md)
-- [Containerizing Python App](./10-containerize-python.md)
+- [Containerizing Node.js App](/docker-tutorials/09-containerize-nodejs)
+- [Containerizing Python App](/docker-tutorials/10-containerize-python)

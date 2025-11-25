@@ -144,5 +144,5 @@ volumes:
 
 ## Next Steps
 
-- [Containerizing Python App](./10-containerize-python.md)
-- [Docker Compose Basics](./06-docker-compose.md)
+- [Containerizing Python App](/docker-tutorials/10-containerize-python)
+- [Docker Compose Basics](/docker-tutorials/06-docker-compose)

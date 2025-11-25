@@ -503,6 +503,6 @@ DOCKER_BUILDKIT=1 docker build -t myapp:1.0 .
 
 ## Next Steps
 
-- [Docker Compose Basics](./06-docker-compose.md)
-- [Containerizing Node.js App](./09-containerize-nodejs.md)
-- [Container Security](./12-container-security.md)
+- [Docker Compose Basics](/docker-tutorials/06-docker-compose)
+- [Containerizing Node.js App](/docker-tutorials/09-containerize-nodejs)
+- [Container Security](/docker-tutorials/12-container-security)

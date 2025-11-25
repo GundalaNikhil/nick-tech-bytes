@@ -130,5 +130,5 @@ docker load < myapp-1.0.tar.gz
 
 ## Next Steps
 
-- [Container Security Best Practices](./12-container-security.md)
-- [Docker Monitoring & Logging](./14-monitoring-logging.md)
+- [Container Security Best Practices](/docker-tutorials/12-container-security)
+- [Docker Monitoring & Logging](/docker-tutorials/14-monitoring-logging)
