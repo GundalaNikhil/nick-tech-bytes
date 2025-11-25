@@ -148,45 +148,51 @@ export default async function DockerTutorialPage({
       </div>
 
       {/* Content */}
-      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Compact Quick Insights */}
-        <div className="grid grid-cols-3 gap-3 mb-8 p-3 rounded-lg bg-gray-900/50 border border-gray-800">
-          <div className="flex items-center gap-2">
-            <Target className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+        {/* Enhanced Quick Insights with Box Shadow */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 p-5 rounded-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 shadow-2xl shadow-black/20">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 shrink-0">
+              <Target className="h-5 w-5 text-cyan-400" />
+            </div>
             <div className="min-w-0">
-              <p className="text-[10px] text-gray-500 uppercase tracking-wide">
+              <p className="text-xs text-gray-400 uppercase tracking-wide font-medium mb-0.5">
                 Goal
               </p>
-              <p className="text-xs font-semibold text-white truncate">
+              <p className="text-sm font-bold text-white truncate">
                 Master Docker
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <TrendingUp className="h-3.5 w-3.5 text-purple-400 shrink-0" />
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-lg bg-purple-500/10 border border-purple-500/30 shrink-0">
+              <TrendingUp className="h-5 w-5 text-purple-400" />
+            </div>
             <div className="min-w-0">
-              <p className="text-[10px] text-gray-500 uppercase tracking-wide">
+              <p className="text-xs text-gray-400 uppercase tracking-wide font-medium mb-0.5">
                 Level
               </p>
-              <p className="text-xs font-semibold text-white capitalize truncate">
+              <p className="text-sm font-bold text-white capitalize truncate">
                 {tutorial.difficulty}
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <Lightbulb className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 shrink-0">
+              <Lightbulb className="h-5 w-5 text-emerald-400" />
+            </div>
             <div className="min-w-0">
-              <p className="text-[10px] text-gray-500 uppercase tracking-wide">
+              <p className="text-xs text-gray-400 uppercase tracking-wide font-medium mb-0.5">
                 Time
               </p>
-              <p className="text-xs font-semibold text-white truncate">
+              <p className="text-sm font-bold text-white truncate">
                 {tutorial.estimatedTime}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Markdown Content */}
+        {/* Markdown Content with Enhanced Styling */}
         <div className="prose prose-invert max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
@@ -195,12 +201,19 @@ export default async function DockerTutorialPage({
               code({ node, inline, className, children, ...props }: any) {
                 const match = /language-(\w+)/.exec(className || "");
                 return !inline && match ? (
-                  <div className="my-4 rounded-lg overflow-hidden border border-gray-800 shadow-xl">
-                    <div className="bg-gray-800/50 px-3 py-1.5 border-b border-gray-700 flex items-center justify-between">
-                      <span className="text-[10px] font-mono text-gray-400 uppercase">
-                        {match[1]}
-                      </span>
-                      <Code2 className="h-3 w-3 text-cyan-400" />
+                  <div className="my-6 rounded-xl overflow-hidden border border-gray-700/50 shadow-2xl shadow-black/20">
+                    <div className="bg-gradient-to-r from-gray-800/80 to-gray-900/80 px-4 py-2.5 border-b border-gray-700 flex items-center justify-between backdrop-blur-sm">
+                      <div className="flex items-center gap-2">
+                        <Code2 className="h-4 w-4 text-cyan-400" />
+                        <span className="text-xs font-mono text-gray-300 uppercase tracking-wider">
+                          {match[1]}
+                        </span>
+                      </div>
+                      <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                        <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                      </div>
                     </div>
                     <SyntaxHighlighter
                       style={vscDarkPlus}
@@ -208,9 +221,9 @@ export default async function DockerTutorialPage({
                       PreTag="div"
                       customStyle={{
                         margin: 0,
-                        padding: "1rem",
-                        background: "rgba(17, 24, 39, 0.5)",
-                        fontSize: "0.75rem",
+                        padding: "1.5rem",
+                        background: "rgba(17, 24, 39, 0.6)",
+                        fontSize: "0.875rem",
                       }}
                       {...props}
                     >
@@ -219,7 +232,7 @@ export default async function DockerTutorialPage({
                   </div>
                 ) : (
                   <code
-                    className="bg-cyan-500/10 text-cyan-300 px-1.5 py-0.5 rounded border border-cyan-500/20 text-xs font-mono"
+                    className="bg-cyan-500/10 text-cyan-300 px-2 py-0.5 rounded border border-cyan-500/20 text-sm font-mono"
                     {...props}
                   >
                     {children}
@@ -227,58 +240,95 @@ export default async function DockerTutorialPage({
                 );
               },
               h1: ({ children }) => (
-                <h1 className="text-2xl font-bold text-white mb-4 mt-6 flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-cyan-400" />
+                <h1 className="text-3xl font-bold text-white mb-6 mt-10 flex items-center gap-3 pb-3 border-b-2 border-cyan-500/30">
+                  <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/30">
+                    <BookOpen className="h-6 w-6 text-cyan-400" />
+                  </div>
                   {children}
                 </h1>
               ),
-              h2: ({ children }) => (
-                <h2 className="text-xl font-bold text-white mb-3 mt-8 pb-2 border-b border-gray-800 flex items-center gap-2">
-                  <Rocket className="h-4 w-4 text-cyan-400" />
-                  {children}
-                </h2>
-              ),
+              h2: ({ children }) => {
+                const text = String(children);
+                const isQuestion = text.toLowerCase().includes("question");
+
+                if (isQuestion) {
+                  return (
+                    <div className="mt-10 mb-6 p-5 rounded-xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-l-4 border-cyan-500 shadow-lg shadow-cyan-500/10">
+                      <h2 className="text-2xl font-bold text-cyan-300 flex items-center gap-3 m-0">
+                        <div className="p-2 rounded-lg bg-cyan-500/20 border border-cyan-500/40">
+                          <Rocket className="h-5 w-5 text-cyan-400" />
+                        </div>
+                        {children}
+                      </h2>
+                    </div>
+                  );
+                }
+
+                return (
+                  <h2 className="text-2xl font-bold text-white mb-4 mt-8 pb-3 border-b border-gray-700 flex items-center gap-2">
+                    <Rocket className="h-5 w-5 text-cyan-400" />
+                    {children}
+                  </h2>
+                );
+              },
               h3: ({ children }) => (
-                <h3 className="text-lg font-semibold text-white mb-2 mt-6 flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-purple-400" />
+                <h3 className="text-xl font-semibold text-white mb-4 mt-8 flex items-center gap-2">
+                  <Zap className="h-5 w-5 text-purple-400" />
                   {children}
                 </h3>
               ),
               h4: ({ children }) => (
-                <h4 className="text-base font-semibold text-gray-200 mb-2 mt-4 flex items-center gap-1.5">
-                  <Lightbulb className="h-3.5 w-3.5 text-yellow-400" />
+                <h4 className="text-lg font-semibold text-gray-200 mb-3 mt-6 flex items-center gap-2">
+                  <Lightbulb className="h-4 w-4 text-yellow-400" />
                   {children}
                 </h4>
               ),
-              p: ({ children }) => (
-                <p className="text-gray-300 text-sm leading-relaxed mb-3">
-                  {children}
-                </p>
-              ),
+              p: ({ children }) => {
+                const text = String(children);
+                const isAnswer =
+                  text
+                    .toLowerCase()
+                    .startsWith("what we're trying to achieve") ||
+                  text.toLowerCase().startsWith("goal/aim");
+
+                if (isAnswer) {
+                  return (
+                    <div className="my-5 p-5 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 shadow-lg shadow-black/10">
+                      <p className="text-gray-100 text-base leading-relaxed m-0">
+                        {children}
+                      </p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <p className="text-gray-300 text-base leading-relaxed mb-4">
+                    {children}
+                  </p>
+                );
+              },
               ul: ({ children }) => (
-                <ul className="list-disc list-inside text-gray-300 text-sm space-y-1.5 mb-3 ml-4">
+                <ul className="list-disc list-outside text-gray-300 text-base space-y-2 mb-5 ml-6 pl-2">
                   {children}
                 </ul>
               ),
               ol: ({ children }) => (
-                <ol className="list-decimal list-inside text-gray-300 text-sm space-y-1.5 mb-3 ml-4">
+                <ol className="list-decimal list-outside text-gray-300 text-base space-y-2 mb-5 ml-6 pl-2">
                   {children}
                 </ol>
               ),
               li: ({ children }) => (
-                <li className="text-gray-300 text-sm leading-relaxed">
+                <li className="text-gray-300 text-base leading-relaxed pl-2">
                   {children}
                 </li>
               ),
+              strong: ({ children }) => (
+                <strong className="text-white font-bold">{children}</strong>
+              ),
               blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-cyan-500 bg-cyan-500/5 pl-3 py-2 my-3 italic text-gray-300 text-sm rounded-r-lg">
+                <blockquote className="border-l-4 border-cyan-500 bg-gradient-to-r from-cyan-500/10 to-transparent pl-5 py-4 my-6 italic text-gray-200 text-base rounded-r-xl shadow-lg shadow-cyan-500/5">
                   {children}
                 </blockquote>
-              ),
-              strong: ({ children }) => (
-                <strong className="font-semibold text-cyan-400">
-                  {children}
-                </strong>
               ),
               a: ({ children, href }) => (
                 <a
@@ -291,22 +341,32 @@ export default async function DockerTutorialPage({
                 </a>
               ),
               table: ({ children }) => (
-                <div className="overflow-x-auto my-4">
-                  <table className="min-w-full border border-gray-800 rounded-lg overflow-hidden text-sm">
+                <div className="overflow-x-auto my-6">
+                  <table className="min-w-full border border-gray-700/50 rounded-lg overflow-hidden text-sm shadow-lg">
                     {children}
                   </table>
                 </div>
               ),
               thead: ({ children }) => (
-                <thead className="bg-gray-800/50">{children}</thead>
+                <thead className="bg-gray-800/80">{children}</thead>
+              ),
+              tbody: ({ children }) => (
+                <tbody className="divide-y divide-gray-700/50">
+                  {children}
+                </tbody>
+              ),
+              tr: ({ children }) => (
+                <tr className="hover:bg-gray-800/30 transition-colors">
+                  {children}
+                </tr>
               ),
               th: ({ children }) => (
-                <th className="px-3 py-2 text-left text-xs font-semibold text-cyan-400 border-b border-gray-700">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-cyan-400 border-b border-gray-700">
                   {children}
                 </th>
               ),
               td: ({ children }) => (
-                <td className="px-3 py-2 text-xs text-gray-300 border-b border-gray-800">
+                <td className="px-4 py-3 text-sm text-gray-300 border-b border-gray-800/50">
                   {children}
                 </td>
               ),

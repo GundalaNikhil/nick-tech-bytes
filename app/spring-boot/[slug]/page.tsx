@@ -319,38 +319,44 @@ export default async function SpringBootTutorialPage({
         </div>
       </div>
 
-      {/* Quick Insights - Compact Horizontal Grid */}
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 mt-6">
-        <div className="grid grid-cols-3 gap-3 p-3 rounded-xl bg-gray-900/50 border border-gray-800/50">
-          <div className="flex items-center gap-2 min-w-0">
-            <Target className="h-3.5 w-3.5 text-green-400 shrink-0" />
+      {/* Enhanced Quick Insights with Box Shadow */}
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-5 rounded-xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 shadow-2xl shadow-black/20">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-lg bg-green-500/10 border border-green-500/30 shrink-0">
+              <Target className="h-5 w-5 text-green-400" />
+            </div>
             <div className="min-w-0">
-              <p className="text-[10px] text-gray-500 uppercase tracking-wide font-medium">
+              <p className="text-xs text-gray-400 uppercase tracking-wide font-medium mb-0.5">
                 Category
               </p>
-              <p className="text-xs font-semibold text-white truncate">
+              <p className="text-sm font-bold text-white truncate">
                 {metadata.category}
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2 min-w-0">
-            <TrendingUp className="h-3.5 w-3.5 text-green-400 shrink-0" />
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-lg bg-purple-500/10 border border-purple-500/30 shrink-0">
+              <TrendingUp className="h-5 w-5 text-purple-400" />
+            </div>
             <div className="min-w-0">
-              <p className="text-[10px] text-gray-500 uppercase tracking-wide font-medium">
+              <p className="text-xs text-gray-400 uppercase tracking-wide font-medium mb-0.5">
                 Level
               </p>
-              <p className="text-xs font-semibold text-white truncate">
+              <p className="text-sm font-bold text-white truncate">
                 {metadata.difficulty}
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2 min-w-0">
-            <Clock className="h-3.5 w-3.5 text-green-400 shrink-0" />
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 shrink-0">
+              <Clock className="h-5 w-5 text-emerald-400" />
+            </div>
             <div className="min-w-0">
-              <p className="text-[10px] text-gray-500 uppercase tracking-wide font-medium">
+              <p className="text-xs text-gray-400 uppercase tracking-wide font-medium mb-0.5">
                 Duration
               </p>
-              <p className="text-xs font-semibold text-white truncate">
+              <p className="text-sm font-bold text-white truncate">
                 {metadata.estimatedTime}
               </p>
             </div>
@@ -358,65 +364,127 @@ export default async function SpringBootTutorialPage({
         </div>
       </div>
 
-      {/* Content - Compact Typography */}
-      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-        <article className="prose prose-invert prose-sm max-w-none">
+      {/* Content - Enhanced Typography with Better Spacing */}
+      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+        <article className="prose prose-invert max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              h1: ({ node, ...props }) => (
+              h1: ({ node, children, ...props }) => (
                 <h1
-                  className="text-2xl font-bold text-white mb-4 mt-6 flex items-center gap-2"
+                  className="text-3xl font-bold text-white mb-6 mt-10 flex items-center gap-3 pb-3 border-b-2 border-green-500/30"
                   {...props}
-                />
+                >
+                  <div className="p-2 rounded-lg bg-green-500/10 border border-green-500/30">
+                    <BookOpen className="h-6 w-6 text-green-400" />
+                  </div>
+                  {children}
+                </h1>
               ),
-              h2: ({ node, ...props }) => (
-                <h2
-                  className="text-xl font-bold text-white mb-3 mt-8 border-b border-gray-800 pb-2 flex items-center gap-2"
-                  {...props}
-                />
-              ),
-              h3: ({ node, ...props }) => (
+              h2: ({ node, children, ...props }) => {
+                const text = String(children);
+                const isQuestion = text.toLowerCase().includes("question");
+
+                if (isQuestion) {
+                  return (
+                    <div className="mt-10 mb-6 p-5 rounded-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-l-4 border-green-500 shadow-lg shadow-green-500/10">
+                      <h2 className="text-2xl font-bold text-green-300 flex items-center gap-3 m-0">
+                        <div className="p-2 rounded-lg bg-green-500/20 border border-green-500/40">
+                          <Rocket className="h-5 w-5 text-green-400" />
+                        </div>
+                        {children}
+                      </h2>
+                    </div>
+                  );
+                }
+
+                return (
+                  <h2
+                    className="text-2xl font-bold text-white mb-4 mt-8 pb-3 border-b border-gray-700 flex items-center gap-2"
+                    {...props}
+                  >
+                    <Rocket className="h-5 w-5 text-green-400" />
+                    {children}
+                  </h2>
+                );
+              },
+              h3: ({ node, children, ...props }) => (
                 <h3
-                  className="text-lg font-semibold text-white mb-2 mt-6 flex items-center gap-2"
+                  className="text-xl font-semibold text-white mb-4 mt-8 flex items-center gap-2"
                   {...props}
-                />
+                >
+                  <Zap className="h-5 w-5 text-purple-400" />
+                  {children}
+                </h3>
               ),
-              h4: ({ node, ...props }) => (
+              h4: ({ node, children, ...props }) => (
                 <h4
-                  className="text-base font-semibold text-white mb-2 mt-4 flex items-center gap-1.5"
+                  className="text-lg font-semibold text-gray-200 mb-3 mt-6 flex items-center gap-2"
                   {...props}
-                />
+                >
+                  <Lightbulb className="h-4 w-4 text-yellow-400" />
+                  {children}
+                </h4>
               ),
-              p: ({ node, ...props }) => (
-                <p
-                  className="text-sm text-gray-300 mb-3 leading-relaxed"
-                  {...props}
-                />
-              ),
-              ul: ({ node, ...props }) => (
+              p: ({ node, children, ...props }) => {
+                const text = String(children);
+                const isAnswer =
+                  text
+                    .toLowerCase()
+                    .startsWith("what we're trying to achieve") ||
+                  text.toLowerCase().startsWith("goal/aim");
+
+                if (isAnswer) {
+                  return (
+                    <div className="my-5 p-5 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-500/30 shadow-lg shadow-black/10">
+                      <p className="text-gray-100 text-base leading-relaxed m-0">
+                        {children}
+                      </p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <p
+                    className="text-base text-gray-300 mb-4 leading-relaxed"
+                    {...props}
+                  >
+                    {children}
+                  </p>
+                );
+              },
+              ul: ({ node, children, ...props }) => (
                 <ul
-                  className="list-disc list-inside text-sm text-gray-300 mb-3 space-y-1.5"
+                  className="list-disc list-outside text-base text-gray-300 mb-5 space-y-2 ml-6 pl-2"
                   {...props}
-                />
+                >
+                  {children}
+                </ul>
               ),
-              ol: ({ node, ...props }) => (
+              ol: ({ node, children, ...props }) => (
                 <ol
-                  className="list-decimal list-inside text-sm text-gray-300 mb-3 space-y-1.5"
+                  className="list-decimal list-outside text-base text-gray-300 mb-5 space-y-2 ml-6 pl-2"
                   {...props}
-                />
+                >
+                  {children}
+                </ol>
               ),
-              li: ({ node, ...props }) => (
+              li: ({ node, children, ...props }) => (
                 <li
-                  className="text-sm text-gray-300 leading-relaxed"
+                  className="text-base text-gray-300 leading-relaxed pl-2"
                   {...props}
-                />
+                >
+                  {children}
+                </li>
+              ),
+              strong: ({ children }) => (
+                <strong className="text-white font-bold">{children}</strong>
               ),
               code: ({ node, inline, className, children, ...props }: any) => {
                 if (inline) {
                   return (
                     <code
-                      className="bg-gray-800 text-green-400 px-1.5 py-0.5 rounded text-xs font-mono border border-gray-700/50"
+                      className="bg-green-500/10 text-green-300 px-2 py-0.5 rounded border border-green-500/20 text-sm font-mono"
                       {...props}
                     >
                       {children}
@@ -428,59 +496,62 @@ export default async function SpringBootTutorialPage({
                 const language = match ? match[1] : "text";
 
                 return (
-                  <SyntaxHighlighter
-                    language={language}
-                    style={vscDarkPlus}
-                    customStyle={{
-                      margin: 0,
-                      padding: "1rem",
-                      background: "transparent",
-                      fontSize: "0.75rem",
-                    }}
-                    codeTagProps={{
-                      style: {
-                        fontFamily:
-                          "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-                      },
-                    }}
-                  >
-                    {String(children).replace(/\n$/, "")}
-                  </SyntaxHighlighter>
+                  <div className="my-6 rounded-xl overflow-hidden border border-gray-700/50 shadow-2xl shadow-black/20">
+                    <div className="bg-gradient-to-r from-gray-800/80 to-gray-900/80 px-4 py-2.5 border-b border-gray-700 flex items-center justify-between backdrop-blur-sm">
+                      <div className="flex items-center gap-2">
+                        <Code2 className="h-4 w-4 text-green-400" />
+                        <span className="text-xs font-mono text-gray-300 uppercase tracking-wider">
+                          {language}
+                        </span>
+                      </div>
+                      <div className="flex gap-1.5">
+                        <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                        <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                      </div>
+                    </div>
+                    <SyntaxHighlighter
+                      language={language}
+                      style={vscDarkPlus}
+                      customStyle={{
+                        margin: 0,
+                        padding: "1.5rem",
+                        background: "rgba(17, 24, 39, 0.6)",
+                        fontSize: "0.875rem",
+                      }}
+                      codeTagProps={{
+                        style: {
+                          fontFamily:
+                            "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                        },
+                      }}
+                    >
+                      {String(children).replace(/\n$/, "")}
+                    </SyntaxHighlighter>
+                  </div>
                 );
               },
-              pre: ({ node, children, ...props }) => (
-                <div className="my-4 rounded-lg border border-gray-800 overflow-hidden bg-gray-950 shadow-lg">
-                  {/* macOS-style window header */}
-                  <div className="px-3 py-1.5 bg-gray-900 border-b border-gray-800 flex items-center gap-1.5">
-                    <div className="flex gap-1">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80 hover:bg-red-500 transition-colors" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 hover:bg-yellow-500 transition-colors" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/80 hover:bg-green-500 transition-colors" />
-                    </div>
-                    <Code2 className="h-3 w-3 text-green-400/70 ml-1" />
-                    <span className="text-[10px] text-gray-500 font-mono">
-                      code
-                    </span>
-                  </div>
-                  <div className="bg-gray-950">{children}</div>
-                </div>
-              ),
-              blockquote: ({ node, ...props }) => (
+              pre: ({ node, children, ...props }) => <>{children}</>,
+              blockquote: ({ node, children, ...props }) => (
                 <blockquote
-                  className="border-l-4 border-green-500 pl-3 py-2 italic text-gray-400 my-3 bg-green-500/5 rounded-r"
+                  className="border-l-4 border-green-500 bg-gradient-to-r from-green-500/10 to-transparent pl-5 py-4 my-6 italic text-gray-200 text-base rounded-r-xl shadow-lg shadow-green-500/5"
                   {...props}
-                />
+                >
+                  {children}
+                </blockquote>
               ),
-              a: ({ node, ...props }) => (
+              a: ({ node, children, ...props }) => (
                 <a
-                  className="text-green-400 hover:text-green-300 underline decoration-green-500/30 hover:decoration-green-400 transition-colors"
+                  className="text-green-400 hover:text-green-300 underline underline-offset-2 transition-colors"
                   {...props}
-                />
+                >
+                  {children}
+                </a>
               ),
               table: ({ node, ...props }) => (
-                <div className="overflow-x-auto my-4">
+                <div className="overflow-x-auto my-6">
                   <table
-                    className="min-w-full text-sm border border-gray-700 rounded-lg"
+                    className="min-w-full text-sm border border-gray-700 rounded-lg overflow-hidden"
                     {...props}
                   />
                 </div>
@@ -497,14 +568,18 @@ export default async function SpringBootTutorialPage({
                   {...props}
                 />
               ),
-              th: ({ node, ...props }) => (
+              th: ({ node, children, ...props }) => (
                 <th
-                  className="px-3 py-2 text-left text-xs font-semibold text-white"
+                  className="px-4 py-3 text-left text-xs font-semibold text-green-400"
                   {...props}
-                />
+                >
+                  {children}
+                </th>
               ),
-              td: ({ node, ...props }) => (
-                <td className="px-3 py-2 text-xs text-gray-300" {...props} />
+              td: ({ node, children, ...props }) => (
+                <td className="px-4 py-3 text-sm text-gray-300" {...props}>
+                  {children}
+                </td>
               ),
             }}
           >
@@ -512,11 +587,11 @@ export default async function SpringBootTutorialPage({
           </ReactMarkdown>
         </article>
 
-        {/* Navigation Footer - Compact */}
+        {/* Navigation Footer */}
         <div className="mt-12 pt-6 border-t border-gray-800">
           <Link
             href="/spring-boot"
-            className="inline-flex items-center gap-2 text-sm text-green-400 hover:text-green-300 transition-colors group"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/30 text-green-400 text-sm hover:from-green-500/20 hover:to-emerald-500/20 transition-all duration-300 group"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             Back to all Spring Boot tutorials
