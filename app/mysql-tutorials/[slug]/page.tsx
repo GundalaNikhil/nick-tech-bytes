@@ -562,15 +562,78 @@ export default async function MySQLTutorialPage({
           </ReactMarkdown>
         </div>
 
-        {/* Navigation Footer */}
-        <div className="mt-12 pt-6 border-t border-gray-800">
-          <Link
-            href="/mysql-tutorials"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500/10 to-yellow-500/10 border border-orange-500/30 text-orange-400 text-sm hover:from-orange-500/20 hover:to-yellow-500/20 transition-all duration-300 group"
-          >
-            <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
-            Back to All Tutorials
-          </Link>
+        {/* Navigation Footer - Next/Previous Articles */}
+        <div className="mt-12 pt-8 border-t border-gray-800/50">
+          {/* Next/Previous Navigation */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            {/* Previous Article */}
+            {(() => {
+              const currentIndex = mysqlTutorials.findIndex((t) => t.slug === slug);
+              const previousTutorial = currentIndex > 0 ? mysqlTutorials[currentIndex - 1] : null;
+              
+              return previousTutorial ? (
+                <Link
+                  href={`/mysql-tutorials/${previousTutorial.slug}`}
+                  className="group flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 hover:border-orange-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/10"
+                >
+                  <div className="p-2 rounded-lg bg-orange-500/10 border border-orange-500/30 shrink-0 group-hover:bg-orange-500/20 transition-colors">
+                    <ArrowLeft className="h-4 w-4 text-orange-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Previous</p>
+                    <p className="text-sm font-semibold text-white truncate group-hover:text-orange-400 transition-colors">
+                      {previousTutorial.title}
+                    </p>
+                  </div>
+                </Link>
+              ) : (
+                <div className="p-4 rounded-xl bg-gray-900/30 border border-gray-800/50 opacity-50">
+                  <p className="text-xs text-gray-600">No previous tutorial</p>
+                </div>
+              );
+            })()}
+
+            {/* Next Article */}
+            {(() => {
+              const currentIndex = mysqlTutorials.findIndex((t) => t.slug === slug);
+              const nextTutorial = currentIndex < mysqlTutorials.length - 1 ? mysqlTutorials[currentIndex + 1] : null;
+              
+              return nextTutorial ? (
+                <Link
+                  href={`/mysql-tutorials/${nextTutorial.slug}`}
+                  className="group flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 hover:border-orange-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/10"
+                >
+                  <div className="flex-1 min-w-0 text-right">
+                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Next</p>
+                    <p className="text-sm font-semibold text-white truncate group-hover:text-orange-400 transition-colors">
+                      {nextTutorial.title}
+                    </p>
+                  </div>
+                  <div className="p-2 rounded-lg bg-orange-500/10 border border-orange-500/30 shrink-0 group-hover:bg-orange-500/20 transition-colors">
+                    <ArrowLeft className="h-4 w-4 text-orange-400 rotate-180" />
+                  </div>
+                </Link>
+              ) : (
+                <div className="p-4 rounded-xl bg-gray-900/30 border border-gray-800/50 opacity-50 text-right">
+                  <p className="text-xs text-gray-600">No next tutorial</p>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* Back to All Tutorials */}
+          <div className="text-center">
+            <Link
+              href="/mysql-tutorials"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-orange-500/10 to-yellow-500/10 border border-orange-500/30 text-orange-400 text-sm font-medium hover:from-orange-500/20 hover:to-yellow-500/20 transition-all duration-300 group shadow-lg shadow-orange-500/5"
+            >
+              <Database className="h-4 w-4" />
+              View All MySQL Tutorials
+              <span className="text-xs px-2 py-0.5 rounded-full bg-orange-500/20 border border-orange-500/30">
+                {mysqlTutorials.length}
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

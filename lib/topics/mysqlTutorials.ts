@@ -1,3 +1,5 @@
+import { mysqlTutorialsCatalog, type MySQLTutorial as CatalogTutorial } from './mysqlTutorialsCatalog';
+
 export interface MySQLTutorial {
   id: number;
   title: string;
@@ -14,7 +16,25 @@ export interface MySQLTutorial {
   tags: string[];
 }
 
-export const mysqlTutorials: MySQLTutorial[] = [
+// Map catalog tutorials to the format expected by the page
+const mapCatalogToTutorial = (catalogTutorial: CatalogTutorial): MySQLTutorial => {
+  return {
+    id: parseInt(catalogTutorial.id.replace(/\D/g, '')),
+    title: catalogTutorial.title,
+    slug: catalogTutorial.slug,
+    description: catalogTutorial.description,
+    difficulty: catalogTutorial.level,
+    category: catalogTutorial.category as any,
+    readTime: catalogTutorial.readTime,
+    tags: catalogTutorial.tags,
+  };
+};
+
+// Export all tutorials from the catalog
+export const mysqlTutorials: MySQLTutorial[] = mysqlTutorialsCatalog.map(mapCatalogToTutorial);
+
+// Legacy tutorials (kept for reference, but catalog is the source of truth)
+export const legacyMysqlTutorials: MySQLTutorial[] = [
   // BEGINNER LEVEL - Fundamentals
   {
     id: 1,

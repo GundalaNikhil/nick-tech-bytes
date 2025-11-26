@@ -1,17 +1,31 @@
-import MySQLTutorialCard from '@/components/mysql/MySQLTutorialCard';
-import { mysqlTutorials } from '@/lib/topics/mysqlTutorials';
-import { ArrowLeft, Code2, Database, Rocket, Sparkles, Zap } from 'lucide-react';
-import Link from 'next/link';
+import MySQLTutorialCard from "@/components/mysql/MySQLTutorialCard";
+import { mysqlTutorials } from "@/lib/topics/mysqlTutorials";
+import {
+  ArrowLeft,
+  Code2,
+  Database,
+  Rocket,
+  Sparkles,
+  Zap,
+} from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
-  title: 'MySQL Tutorials | Nick Tech Bytes',
-  description: 'Master MySQL from basics to advanced concepts. Learn SQL queries, performance optimization, replication, and production-level database design.',
+  title: "MySQL Tutorials | Nick Tech Bytes",
+  description:
+    "Master MySQL from basics to advanced concepts. Learn SQL queries, performance optimization, replication, and production-level database design.",
 };
 
 export default function MySQLTutorialsPage() {
-  const beginnerTutorials = mysqlTutorials.filter(t => t.difficulty === 'beginner');
-  const intermediateTutorials = mysqlTutorials.filter(t => t.difficulty === 'intermediate');
-  const advancedTutorials = mysqlTutorials.filter(t => t.difficulty === 'advanced');
+  const beginnerTutorials = mysqlTutorials.filter(
+    (t) => t.difficulty === "beginner"
+  );
+  const intermediateTutorials = mysqlTutorials.filter(
+    (t) => t.difficulty === "intermediate"
+  );
+  const advancedTutorials = mysqlTutorials.filter(
+    (t) => t.difficulty === "advanced"
+  );
 
   const totalTutorials = mysqlTutorials.length;
   const totalEstimatedHours = Math.round(
@@ -72,7 +86,9 @@ export default function MySQLTutorialsPage() {
               <span className="text-[11px] text-gray-400">Beginner</span>
             </div>
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-orange-500/10 border border-orange-500/30">
-              <span className="text-lg font-bold text-orange-400">MySQL 8+</span>
+              <span className="text-lg font-bold text-orange-400">
+                MySQL 8+
+              </span>
               <span className="text-[11px] text-gray-400">Version</span>
             </div>
           </div>
@@ -89,9 +105,12 @@ export default function MySQLTutorialsPage() {
                 <Sparkles className="h-5 w-5 text-emerald-400" />
               </div>
               <div className="flex-1">
-                <h2 className="text-2xl font-bold text-white">Getting Started</h2>
+                <h2 className="text-2xl font-bold text-white">
+                  Getting Started
+                </h2>
                 <p className="text-xs text-gray-400 mt-0.5">
-                  {beginnerTutorials.length} tutorials to learn MySQL fundamentals
+                  {beginnerTutorials.length} tutorials to learn MySQL
+                  fundamentals
                 </p>
               </div>
             </div>
@@ -116,7 +135,8 @@ export default function MySQLTutorialsPage() {
                   Practical Skills
                 </h2>
                 <p className="text-xs text-gray-400 mt-0.5">
-                  {intermediateTutorials.length} tutorials for real-world applications
+                  {intermediateTutorials.length} tutorials for real-world
+                  applications
                 </p>
               </div>
             </div>
@@ -141,7 +161,8 @@ export default function MySQLTutorialsPage() {
                   Advanced Mastery
                 </h2>
                 <p className="text-xs text-gray-400 mt-0.5">
-                  {advancedTutorials.length} tutorials for production-ready skills
+                  {advancedTutorials.length} tutorials for production-ready
+                  skills
                 </p>
               </div>
             </div>
@@ -161,31 +182,47 @@ export default function MySQLTutorialsPage() {
               <Code2 className="h-6 w-6 text-orange-400" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white">Recommended Learning Path</h2>
-              <p className="text-sm text-gray-400 mt-1">Follow this path to master MySQL from scratch</p>
+              <h2 className="text-2xl font-bold text-white">
+                Recommended Learning Path
+              </h2>
+              <p className="text-sm text-gray-400 mt-1">
+                Follow this path to master MySQL from scratch
+              </p>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-orange-500/30 transition-colors">
               <div className="text-4xl mb-4">1️⃣</div>
-              <h3 className="font-bold text-lg text-white mb-2">Fundamentals</h3>
-              <p className="text-sm text-gray-400">Learn MySQL basics, data types, and SQL syntax</p>
+              <h3 className="font-bold text-lg text-white mb-2">
+                Fundamentals
+              </h3>
+              <p className="text-sm text-gray-400">
+                Learn MySQL basics, data types, and SQL syntax
+              </p>
             </div>
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-yellow-500/30 transition-colors">
               <div className="text-4xl mb-4">2️⃣</div>
               <h3 className="font-bold text-lg text-white mb-2">Queries</h3>
-              <p className="text-sm text-gray-400">Master joins, subqueries, and window functions</p>
+              <p className="text-sm text-gray-400">
+                Master joins, subqueries, and window functions
+              </p>
             </div>
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-orange-500/30 transition-colors">
               <div className="text-4xl mb-4">3️⃣</div>
-              <h3 className="font-bold text-lg text-white mb-2">Optimization</h3>
-              <p className="text-sm text-gray-400">Learn indexing, query optimization, and performance tuning</p>
+              <h3 className="font-bold text-lg text-white mb-2">
+                Optimization
+              </h3>
+              <p className="text-sm text-gray-400">
+                Learn indexing, query optimization, and performance tuning
+              </p>
             </div>
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-yellow-500/30 transition-colors">
               <div className="text-4xl mb-4">4️⃣</div>
               <h3 className="font-bold text-lg text-white mb-2">Production</h3>
-              <p className="text-sm text-gray-400">Master replication, scaling, and production deployments</p>
+              <p className="text-sm text-gray-400">
+                Master replication, scaling, and production deployments
+              </p>
             </div>
           </div>
         </section>
