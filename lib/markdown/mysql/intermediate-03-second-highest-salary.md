@@ -18,6 +18,7 @@ Imagine you're organizing a race 🏃:
 2. **Second place** = Second fastest runner (2nd highest salary)
 
 But what if:
+
 - Only ONE person ran? (No second place exists)
 - Two people tied for first? (Who is second?)
 
@@ -114,6 +115,7 @@ INSERT INTO employees VALUES
 ## 🎯 Method 1: LIMIT with OFFSET (Simple)
 
 ### Approach
+
 Sort salaries in descending order, skip the first (highest), and get the next one.
 
 ```sql
@@ -155,6 +157,7 @@ LIMIT 1 OFFSET 1;
 ```
 
 ### ⚠️ Limitation
+
 Returns empty set if only one salary exists (should return NULL instead).
 
 ---
@@ -162,6 +165,7 @@ Returns empty set if only one salary exists (should return NULL instead).
 ## 🎯 Method 2: Subquery with MAX (Handles NULL)
 
 ### Approach
+
 Find the maximum salary that is less than the overall maximum.
 
 ```sql
@@ -178,7 +182,7 @@ SELECT MAX(salary) FROM employees;
 -- Result: 100000
 
 -- Step 2: Find all salaries less than highest
-SELECT salary 
+SELECT salary
 FROM employees
 WHERE salary < 100000;
 -- Result: 80000, 80000, 70000, 60000
@@ -200,6 +204,7 @@ WHERE salary < (SELECT MAX(salary) FROM employees);
 ```
 
 ### ✅ Advantage
+
 Returns NULL if only one salary exists (more correct).
 
 ---
@@ -207,12 +212,13 @@ Returns NULL if only one salary exists (more correct).
 ## 🎯 Method 3: DENSE_RANK() Window Function
 
 ### Approach
+
 Use window function to rank salaries, then filter for rank = 2.
 
 ```sql
 SELECT salary AS second_highest_salary
 FROM (
-    SELECT 
+    SELECT
         salary,
         DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
     FROM employees
@@ -224,7 +230,7 @@ WHERE salary_rank = 2;
 
 ```sql
 -- Step 1: Add rank to each salary
-SELECT 
+SELECT
     name,
     salary,
     DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
@@ -232,6 +238,7 @@ FROM employees;
 ```
 
 **Result:**
+
 ```
 +---------+----------+--------------+
 | name    | salary   | salary_rank  |
@@ -248,7 +255,7 @@ FROM employees;
 -- Step 2: Filter only rank 2 and get distinct
 SELECT DISTINCT salary AS second_highest_salary
 FROM (
-    SELECT 
+    SELECT
         salary,
         DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
     FROM employees
@@ -267,6 +274,7 @@ WHERE salary_rank = 2;
 ```
 
 ### ✅ Advantage
+
 Handles duplicate salaries correctly using DENSE_RANK.
 
 ---
@@ -274,6 +282,7 @@ Handles duplicate salaries correctly using DENSE_RANK.
 ## 🎯 Method 4: Self JOIN
 
 ### Approach
+
 Join table to itself where salary is less than, then find the minimum of those.
 
 ```sql
@@ -295,11 +304,12 @@ JOIN employees e2 ON e1.salary < e2.salary;
 ## 🎯 Method 5: Common Table Expression (CTE)
 
 ### Approach
+
 Use CTE for better readability.
 
 ```sql
 WITH RankedSalaries AS (
-    SELECT 
+    SELECT
         DISTINCT salary,
         DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
     FROM employees
@@ -310,6 +320,7 @@ WHERE salary_rank = 2;
 ```
 
 ### ✅ Advantage
+
 Most readable and maintainable approach!
 
 ---
@@ -352,7 +363,6 @@ UPDATE employees SET salary = 80000;
 -- This should work perfectly with all methods
 DELETE FROM employees WHERE salary NOT IN (100000, 80000);
 ```
-
 
 ---
 
@@ -412,18 +422,21 @@ DELETE FROM employees WHERE salary NOT IN (100000, 80000);
 ### What to Avoid
 
 ❌ **Don't:** Forget DISTINCT when using LIMIT OFFSET
+
 ```sql
 -- This might return duplicate salary if two employees have it
 SELECT salary FROM employees ORDER BY salary DESC LIMIT 1 OFFSET 1;
 ```
 
 ❌ **Don't:** Ignore the case when there's no second highest
+
 ```sql
 -- This returns empty set instead of NULL
 SELECT DISTINCT salary FROM employees ORDER BY salary DESC LIMIT 1 OFFSET 1;
 ```
 
 ✅ **Do:** Use MAX with subquery for production
+
 ```sql
 -- Returns NULL when appropriate
 SELECT MAX(salary) AS second_highest_salary
@@ -432,11 +445,12 @@ WHERE salary < (SELECT MAX(salary) FROM employees);
 ```
 
 ✅ **Do:** Use IFNULL/COALESCE for guaranteed result
+
 ```sql
 SELECT IFNULL(
-    (SELECT DISTINCT salary 
-     FROM employees 
-     ORDER BY salary DESC 
+    (SELECT DISTINCT salary
+     FROM employees
+     ORDER BY salary DESC
      LIMIT 1 OFFSET 1),
     NULL
 ) AS second_highest_salary;
@@ -468,20 +482,24 @@ SELECT IFNULL(
 ### How to Answer in an Interview
 
 **Good Answer:**
+
 > "I would use a subquery with MAX to find the second highest salary: `SELECT MAX(salary) FROM employees WHERE salary < (SELECT MAX(salary) FROM employees)`. This approach is simple, efficient, and correctly returns NULL when there's no second highest value. Alternatively, I could use DENSE_RANK() window function for more complex scenarios or if I need to extend it to find the Nth highest value."
 
 **Points to Mention:**
+
 - Always mention you need to handle the case where no second highest exists
 - Discuss DISTINCT to avoid returning duplicate values
 - If they ask for the Nth highest, mention you'd use DENSE_RANK() or LIMIT with dynamic OFFSET
 - Know the difference between RANK, DENSE_RANK, and ROW_NUMBER
 
 **What NOT to say:**
+
 - ❌ "I'll just use LIMIT 1 OFFSET 1" (doesn't handle edge cases)
 - ❌ "I don't know how to handle duplicates" (always use DISTINCT or DENSE_RANK)
 - ❌ Not mentioning NULL handling
 
 **Follow-up Questions You Might Get:**
+
 1. "How would you find the Nth highest salary?" → Use LIMIT N-1, 1 or DENSE_RANK
 2. "What if there are duplicate salaries?" → Use DISTINCT or DENSE_RANK
 3. "Which method is fastest?" → Depends on table size, but LIMIT OFFSET is generally fastest for simple cases
@@ -509,8 +527,8 @@ Try solving these variations yourself:
 SELECT MAX(salary) AS third_highest
 FROM employees
 WHERE salary < (
-    SELECT MAX(salary) 
-    FROM employees 
+    SELECT MAX(salary)
+    FROM employees
     WHERE salary < (SELECT MAX(salary) FROM employees)
 );
 
@@ -523,11 +541,11 @@ FROM (
 WHERE rnk = 3;
 
 -- Exercise 2: 2nd highest per department
-SELECT 
+SELECT
     department,
     salary AS second_highest_salary
 FROM (
-    SELECT 
+    SELECT
         department,
         salary,
         DENSE_RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rnk
@@ -565,5 +583,3 @@ LIMIT 3;
 - [MySQL Window Functions Documentation](https://dev.mysql.com/doc/refman/8.0/en/window-functions.html)
 - [Ranking Functions](https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html#function_dense-rank)
 - [Subquery Optimization](https://dev.mysql.com/doc/refman/8.0/en/subquery-optimization.html)
-
-

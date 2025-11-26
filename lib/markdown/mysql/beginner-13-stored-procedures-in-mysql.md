@@ -15,16 +15,20 @@
 **Think of a coffee machine with preset buttons:**
 
 **Without Stored Procedures** = **Making coffee manually every time:**
+
 - Grind beans → measure water → heat water → brew → add milk → add sugar
 - You repeat these steps every single time you want coffee
 
 **With Stored Procedures** = **Pressing the "Latte" button:**
+
 - All the steps are programmed into the machine
 - Press one button → get perfect latte every time
 - Faster, consistent, no mistakes
 
 ### In Database Terms:
+
 **Stored Procedure** = A saved SQL recipe that:
+
 - Contains multiple SQL statements bundled together
 - Accepts parameters (like "large" or "small" coffee)
 - Executes with a single command: `CALL make_latte('large')`
@@ -33,6 +37,7 @@
 
 **Example:**
 Instead of writing 10 lines of SQL every time you want to give an employee a raise, you call:
+
 ```sql
 CALL give_raise('Alice', 10.5);  -- Give Alice a 10.5% raise
 ```
@@ -91,12 +96,14 @@ CALL give_raise('Alice', 10.5);  -- Give Alice a 10.5% raise
 ### Core Understanding
 
 **1. What is a Stored Procedure?**
+
 - A set of SQL statements stored in the database
 - Can accept input parameters and return output
 - Pre-compiled and optimized for better performance
 - Executed with a single `CALL` command
 
 **2. Key Benefits**
+
 - **Performance**: Pre-compiled, cached execution plan
 - **Network Efficiency**: One call instead of multiple queries
 - **Security**: Users can execute procedures without direct table access
@@ -104,12 +111,14 @@ CALL give_raise('Alice', 10.5);  -- Give Alice a 10.5% raise
 - **Code Reusability**: Write once, use everywhere
 
 **3. Components**
+
 - **Parameters**: IN (input), OUT (output), INOUT (both)
 - **Variables**: Local storage within procedure
 - **Control Flow**: IF/ELSE, CASE, LOOP, WHILE
 - **Error Handling**: DECLARE handlers for exceptions
 
 **4. Use Cases**
+
 - Complex business logic (multi-step operations)
 - Data validation before INSERT/UPDATE
 - Batch processing (bulk updates)
@@ -141,6 +150,7 @@ CALL get_all_employees();
 ```
 
 **Output:**
+
 ```
 +--------+----------------+------------+----------+
 | emp_id | emp_name       | department | salary   |
@@ -174,6 +184,7 @@ CALL get_employees_by_dept('IT');
 ```
 
 **Output:**
+
 ```
 +--------+---------------+----------+
 | emp_id | emp_name      | salary   |
@@ -209,6 +220,7 @@ SELECT @total AS total_it_employees;
 ```
 
 **Output:**
+
 ```
 +---------------------+
 | total_it_employees  |
@@ -233,28 +245,28 @@ CREATE PROCEDURE give_employee_raise(
 )
 BEGIN
     DECLARE current_salary DECIMAL(10,2);
-    
+
     -- Start transaction
     START TRANSACTION;
-    
+
     -- Get current salary
     SELECT salary INTO current_salary
     FROM employees
     WHERE emp_id = employee_id;
-    
+
     -- Calculate new salary
     SET old_salary = current_salary;
     SET new_salary = current_salary * (1 + raise_percent / 100);
-    
+
     -- Update employee salary
     UPDATE employees
     SET salary = new_salary
     WHERE emp_id = employee_id;
-    
+
     -- Insert audit log
     INSERT INTO salary_audit (emp_id, old_salary, new_salary, change_date)
     VALUES (employee_id, old_salary, new_salary, NOW());
-    
+
     -- Commit transaction
     COMMIT;
 END$$
@@ -267,6 +279,7 @@ SELECT @old AS old_salary, @new AS new_salary;
 ```
 
 **Output:**
+
 ```
 +------------+------------+
 | old_salary | new_salary |
@@ -289,11 +302,11 @@ CREATE PROCEDURE categorize_employee_salary(
 )
 BEGIN
     DECLARE emp_salary DECIMAL(10,2);
-    
+
     SELECT salary INTO emp_salary
     FROM employees
     WHERE emp_id = employee_id;
-    
+
     IF emp_salary >= 80000 THEN
         SET category = 'High';
     ELSEIF emp_salary >= 60000 THEN
@@ -326,31 +339,31 @@ CREATE PROCEDURE give_dept_raises(
 BEGIN
     DECLARE done INT DEFAULT 0;
     DECLARE v_emp_id INT;
-    
+
     -- Declare cursor for employee IDs
     DECLARE emp_cursor CURSOR FOR
         SELECT emp_id FROM employees WHERE department = dept_name;
-    
+
     -- Declare handler for end of cursor
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
-    
+
     -- Open cursor
     OPEN emp_cursor;
-    
+
     -- Loop through employees
     read_loop: LOOP
         FETCH emp_cursor INTO v_emp_id;
-        
+
         IF done THEN
             LEAVE read_loop;
         END IF;
-        
+
         -- Give raise
         UPDATE employees
         SET salary = salary * (1 + raise_percent / 100)
         WHERE emp_id = v_emp_id;
     END LOOP;
-    
+
     -- Close cursor
     CLOSE emp_cursor;
 END$$
@@ -379,9 +392,9 @@ BEGIN
         SET result_msg = 'Error: Could not delete employee';
         ROLLBACK;
     END;
-    
+
     START TRANSACTION;
-    
+
     -- Check if employee exists
     IF NOT EXISTS (SELECT 1 FROM employees WHERE emp_id = employee_id) THEN
         SET result_msg = 'Error: Employee not found';
@@ -429,8 +442,6 @@ END$$
 DELIMITER ;
 ```
 
-
-
 ---
 
 ## 🔍 Things to Consider
@@ -440,12 +451,14 @@ DELIMITER ;
 ### Important Points
 
 **Performance Implications:**
+
 - ✓ Pre-compiled execution plans improve performance
 - ✓ Reduced network traffic (one call vs multiple queries)
 - ✓ Cached in memory after first execution
 - ✓ Can be slower than inline SQL for simple queries
 
 **Best Practices:**
+
 - ✓ Use descriptive names (e.g., `sp_get_employee_by_id`)
 - ✓ Always use DELIMITER when creating procedures
 - ✓ Include error handling with DECLARE HANDLER
@@ -453,6 +466,7 @@ DELIMITER ;
 - ✓ Use transactions for multi-statement operations
 
 **When to Use Stored Procedures:**
+
 - ✓ Complex business logic involving multiple tables
 - ✓ Batch operations (bulk updates/deletes)
 - ✓ Repeated operations called from multiple applications
@@ -460,6 +474,7 @@ DELIMITER ;
 - ✓ Audit logging and data validation
 
 **Alternatives to Consider:**
+
 - ✓ **Views**: For read-only complex queries
 - ✓ **Triggers**: For automatic actions on INSERT/UPDATE/DELETE
 - ✓ **Functions**: For computed values that return a single result
@@ -476,6 +491,7 @@ DELIMITER ;
 ### What to Avoid
 
 ❌ **Don't:** Forget to change DELIMITER
+
 ```sql
 -- ❌ This will fail
 CREATE PROCEDURE test()
@@ -485,6 +501,7 @@ END;  -- Semicolon conflicts with statement terminator
 ```
 
 ❌ **Don't:** Ignore error handling
+
 ```sql
 -- ❌ No error handling
 CREATE PROCEDURE delete_emp(IN emp_id INT)
@@ -495,6 +512,7 @@ END;
 ```
 
 ❌ **Don't:** Use dynamic SQL without sanitization
+
 ```sql
 -- ❌ SQL injection risk
 CREATE PROCEDURE search_employees(IN search_term VARCHAR(100))
@@ -507,6 +525,7 @@ END;
 ```
 
 ✅ **Do:** Always use DELIMITER
+
 ```sql
 DELIMITER $$
 CREATE PROCEDURE test()
@@ -517,6 +536,7 @@ DELIMITER ;
 ```
 
 ✅ **Do:** Include error handling
+
 ```sql
 DELIMITER $$
 CREATE PROCEDURE delete_emp(IN emp_id INT, OUT result VARCHAR(100))
@@ -526,7 +546,7 @@ BEGIN
         SET result = 'Error: Cannot delete employee';
         ROLLBACK;
     END;
-    
+
     START TRANSACTION;
     DELETE FROM employees WHERE emp_id = emp_id;
     SET result = 'Success';
@@ -536,6 +556,7 @@ DELIMITER ;
 ```
 
 ✅ **Do:** Use parameters safely
+
 ```sql
 DELIMITER $$
 CREATE PROCEDURE search_employees(IN search_term VARCHAR(100))
@@ -575,6 +596,7 @@ DELIMITER ;
 "A stored procedure is a pre-compiled set of SQL statements stored in the database that can be executed with a single CALL command. It's like a function in programming - you write it once and reuse it multiple times.
 
 **Key benefits include:**
+
 1. **Performance** - Pre-compiled execution plans and caching
 2. **Network Efficiency** - One call instead of multiple queries reduces round trips
 3. **Security** - Users can execute procedures without direct table access
@@ -582,6 +604,7 @@ DELIMITER ;
 5. **Reusability** - Write once, use everywhere
 
 **For example**, instead of writing 10 lines of SQL every time we need to give an employee a raise, update audit logs, and send notifications, we create a procedure:
+
 ```sql
 CALL give_employee_raise(emp_id, 10.0);  -- One line!
 ```
@@ -591,12 +614,14 @@ Stored procedures support parameters (IN, OUT, INOUT), variables, control flow (
 **Follow-up Questions to Expect:**
 
 **Q: What's the difference between stored procedures and functions?**
-*Answer:*
+_Answer:_
+
 - **Stored Procedure**: Can return multiple result sets, use OUT parameters, modify data (INSERT/UPDATE/DELETE)
 - **Function**: Returns a single value, can be used in SELECT statements, typically read-only
 
 **Q: How do you handle errors in stored procedures?**
-*Answer:*
+_Answer:_
+
 ```sql
 DECLARE EXIT HANDLER FOR SQLEXCEPTION
 BEGIN
@@ -607,13 +632,15 @@ END;
 ```
 
 **Q: Can stored procedures improve performance?**
-*Answer:* Yes, but it depends:
+_Answer:_ Yes, but it depends:
+
 - **Improved**: Pre-compiled, cached, reduced network traffic
 - **Not Always**: Simple queries may be slower due to procedure overhead
 - **Best For**: Complex multi-statement operations, batch processing
 
 **Q: When would you NOT use a stored procedure?**
-*Answer:*
+_Answer:_
+
 - Logic that changes frequently (easier to update in application)
 - Simple one-time queries (overhead not worth it)
 - When you need database portability (procedures vary by DBMS)
@@ -628,6 +655,7 @@ END;
 <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #F59E0B; padding: 20px; border-radius: 8px; margin: 20px 0;">
 
 ### Exercise 1: Create Employee Onboarding Procedure
+
 Create a procedure that adds a new employee, assigns them to a department, and creates an initial salary record.
 
 ```sql
@@ -653,23 +681,23 @@ BEGIN
         SET p_message = 'Error: Onboarding failed';
         ROLLBACK;
     END;
-    
+
     START TRANSACTION;
-    
+
     -- Insert employee
     INSERT INTO employees (emp_name, department, salary, hire_date)
     VALUES (p_name, p_dept, p_salary, CURDATE());
-    
+
     SET p_emp_id = LAST_INSERT_ID();
-    
+
     -- Create salary history
     INSERT INTO salary_history (emp_id, salary, effective_date)
     VALUES (p_emp_id, p_salary, CURDATE());
-    
+
     -- Send welcome notification (simulated)
     INSERT INTO notifications (emp_id, message, created_at)
     VALUES (p_emp_id, CONCAT('Welcome ', p_name, '!'), NOW());
-    
+
     SET p_message = 'Success: Employee onboarded';
     COMMIT;
 END$$
@@ -686,6 +714,7 @@ SELECT @new_id AS employee_id, @msg AS message;
 ---
 
 ### Exercise 2: Salary Statistics Procedure
+
 Create a procedure that calculates department salary statistics (count, avg, min, max).
 
 ```sql
@@ -706,12 +735,12 @@ CREATE PROCEDURE get_dept_salary_stats(
     OUT p_max_salary DECIMAL(10,2)
 )
 BEGIN
-    SELECT 
+    SELECT
         COUNT(*),
         ROUND(AVG(salary), 2),
         MIN(salary),
         MAX(salary)
-    INTO 
+    INTO
         p_emp_count,
         p_avg_salary,
         p_min_salary,
@@ -732,6 +761,7 @@ SELECT @count AS employees, @avg AS avg_salary, @min AS min_sal, @max AS max_sal
 ---
 
 ### Exercise 3: Bulk Salary Update with Validation
+
 Create a procedure that gives raises to all employees in a department, but only if they've been employed for at least 1 year.
 
 ```sql
@@ -753,35 +783,35 @@ BEGIN
     DECLARE done INT DEFAULT 0;
     DECLARE v_emp_id INT;
     DECLARE v_hire_date DATE;
-    
+
     DECLARE emp_cursor CURSOR FOR
-        SELECT emp_id, hire_date 
-        FROM employees 
+        SELECT emp_id, hire_date
+        FROM employees
         WHERE department = p_dept;
-    
+
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
-    
+
     SET p_updated_count = 0;
-    
+
     OPEN emp_cursor;
-    
+
     read_loop: LOOP
         FETCH emp_cursor INTO v_emp_id, v_hire_date;
-        
+
         IF done THEN
             LEAVE read_loop;
         END IF;
-        
+
         -- Check if employed for at least 1 year
         IF DATEDIFF(CURDATE(), v_hire_date) >= 365 THEN
             UPDATE employees
             SET salary = salary * (1 + p_raise_percent / 100)
             WHERE emp_id = v_emp_id;
-            
+
             SET p_updated_count = p_updated_count + 1;
         END IF;
     END LOOP;
-    
+
     CLOSE emp_cursor;
 END$$
 
@@ -809,5 +839,5 @@ SELECT @updated AS employees_updated;
 ---
 
 ## 🏷️ Tags
-`MySQL` `SQL` `Stored Procedures` `Database Programming` `Performance` `Code Reusability` `Interview Questions`
 
+`MySQL` `SQL` `Stored Procedures` `Database Programming` `Performance` `Code Reusability` `Interview Questions`

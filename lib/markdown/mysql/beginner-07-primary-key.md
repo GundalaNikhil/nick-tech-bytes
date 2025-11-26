@@ -390,7 +390,7 @@ CREATE TABLE enrollments (
 SHOW KEYS FROM students WHERE Key_name = 'PRIMARY';
 
 -- Or from INFORMATION_SCHEMA
-SELECT 
+SELECT
     COLUMN_NAME,
     CONSTRAINT_NAME,
     ORDINAL_POSITION
@@ -466,9 +466,11 @@ CREATE TABLE logs (
 ### How to Answer in an Interview
 
 **Good Answer:**
+
 > "A primary key is a column or set of columns that uniquely identifies each row in a table. It must be UNIQUE and NOT NULL, and each table can have only one primary key. MySQL automatically creates a clustered index on the primary key for fast data retrieval. Primary keys are essential for establishing relationships with other tables through foreign keys."
 
 **Follow-up Points:**
+
 - Mention AUTO_INCREMENT for automatic ID generation
 - Explain the difference between simple and composite primary keys
 - Discuss why you should always have a primary key
@@ -483,4 +485,3 @@ CREATE TABLE logs (
 - [Foreign Key in MySQL](/mysql-tutorials/beginner-08-foreign-key)
 - [Indexes and Types](/mysql-tutorials/beginner-20-indexes)
 - [Normalization](/mysql-tutorials/beginner-18-normalization)
-

@@ -5,10 +5,11 @@
 **Total Files Generated:** 48 MySQL tutorial markdown files
 
 - **Beginner Level:** 25 files
-- **Intermediate Level:** 20 files  
+- **Intermediate Level:** 20 files
 - **Advanced Level:** 10 files
 
 All files follow a consistent structure with:
+
 - Real-life analogies (ELI10 explanations)
 - Visual HTML representations
 - Step-by-step code examples
@@ -85,53 +86,64 @@ lib/markdown/mysql/
 Each tutorial follows this comprehensive format:
 
 ### 1. **Question & Objective** 🎯
+
 - Clear question statement
 - Learning objectives
 
 ### 2. **Simple Explanation (ELI10)** 📚
+
 - Real-world analogy
 - Simplified explanation a 10th grader can understand
 
 ### 3. **Visual Representation** 🎨
+
 - HTML-styled visual diagrams
 - Color-coded tables and cards
 - Interactive examples
 
 ### 4. **Key Concepts** 📋
+
 - Core understanding points
 - Important details to grasp
 
 ### 5. **Code Examples** 💻
+
 - Setup instructions
 - Multiple solution approaches
 - Step-by-step breakdowns
 - Expected outputs
 
 ### 6. **Things to Consider** 🔍
+
 - Performance implications
 - Best practices
 - When to use/avoid
 
 ### 7. **Common Mistakes** ⚠️
+
 - What NOT to do
 - Correct approaches
 - Edge cases
 
 ### 8. **Key Takeaways** ✅
+
 - Summary of main points
 - Quick reference bullets
 
 ### 9. **Interview Tips** 🎓
+
 - How to answer in interviews
 - Key points to mention
 - What to avoid saying
 - Follow-up questions to expect
 
 ### 10. **Practice Exercise** 🧪
+
 - Hands-on problems
 - Solutions (hidden in details tag)
 
 ### 11. **Related Topics** 📚
+
 - Links to related tutorials
 - Learning path suggestions
 
@@ -145,7 +157,6 @@ All tutorials use consistent HTML inline styles:
   - Beginner: Blue (`#3B82F6`)
   - Intermediate: Orange (`#F59E0B`)
   - Advanced: Red (`#EF4444`)
-  
 - **Visual Elements:**
   - Gradient backgrounds
   - Rounded corners
@@ -165,22 +176,23 @@ Edit `lib/topics/mysqlTutorials.ts`:
 export const mysqlTutorials = [
   // Beginner Level
   {
-    id: 'beginner-01',
-    title: 'What is MySQL and Why is it Popular?',
-    slug: 'beginner-01-what-is-mysql',
-    category: 'Fundamentals',
-    level: 'beginner',
-    readTime: '8 min',
-    description: 'Understand what MySQL is, its core purpose, and reasons behind its widespread adoption.',
+    id: "beginner-01",
+    title: "What is MySQL and Why is it Popular?",
+    slug: "beginner-01-what-is-mysql",
+    category: "Fundamentals",
+    level: "beginner",
+    readTime: "8 min",
+    description:
+      "Understand what MySQL is, its core purpose, and reasons behind its widespread adoption.",
   },
   {
-    id: 'beginner-03',
-    title: 'Different Tablespaces in MySQL',
-    slug: 'beginner-03-tablespaces',
-    category: 'Storage',
-    level: 'beginner',
-    readTime: '10 min',
-    description: 'Learn about MySQL tablespace types and their usage.',
+    id: "beginner-03",
+    title: "Different Tablespaces in MySQL",
+    slug: "beginner-03-tablespaces",
+    category: "Storage",
+    level: "beginner",
+    readTime: "10 min",
+    description: "Learn about MySQL tablespace types and their usage.",
   },
   // ... add all other tutorials
 ];
@@ -190,18 +202,18 @@ export const mysqlTutorials = [
 
 ```typescript
 export const categories = [
-  'Fundamentals',
-  'Storage',
-  'Constraints',
-  'Data Types',
-  'Queries',
-  'Joins',
-  'Indexes',
-  'Normalization',
-  'Functions',
-  'Performance',
-  'Replication',
-  'Security'
+  "Fundamentals",
+  "Storage",
+  "Constraints",
+  "Data Types",
+  "Queries",
+  "Joins",
+  "Indexes",
+  "Normalization",
+  "Functions",
+  "Performance",
+  "Replication",
+  "Security",
 ];
 ```
 
@@ -216,6 +228,7 @@ The existing `/app/mysql-tutorials/[slug]/page.tsx` should already handle render
 ### BEGINNER LEVEL (25 tutorials)
 
 #### Fundamentals (5)
+
 1. ✅ What is MySQL and Why is it Popular?
 2. ✅ Difference between SQL and MySQL
 3. ✅ Different Tablespaces in MySQL
@@ -223,30 +236,36 @@ The existing `/app/mysql-tutorials/[slug]/page.tsx` should already handle render
 5. ✅ ACID Properties in MySQL
 
 #### Constraints & Keys (3)
+
 6. ✅ What is a Primary Key?
 7. ✅ What is a Foreign Key?
 8. ✅ Primary Key vs Foreign Key
 
 #### Data Types (2)
+
 9. ✅ CHAR vs VARCHAR
 10. ✅ DELETE vs TRUNCATE
 11. ✅ DROP vs TRUNCATE
 
 #### Database Objects (3)
+
 12. ✅ Views in MySQL
 13. ✅ Stored Procedures
 14. ✅ Triggers
 
 #### Queries (2)
+
 15. ✅ WHERE vs HAVING Clause
 16. ✅ SQL Joins Explained (INNER, LEFT, RIGHT, FULL)
 17. ✅ Self Join
 
 #### Database Design (2)
+
 18. ✅ Normalization (1NF, 2NF, 3NF, BCNF)
 19. ✅ Denormalization
 
 #### Indexing (7)
+
 20. ✅ What is an Index? Types of Indexes
 21. ✅ Clustered vs Non-Clustered Index
 22. ✅ Composite Index
@@ -259,6 +278,7 @@ The existing `/app/mysql-tutorials/[slug]/page.tsx` should already handle render
 ### INTERMEDIATE LEVEL (20 tutorials)
 
 #### Query Problems (7)
+
 1. ✅ Find Duplicate Records
 2. ✅ Delete Duplicate Rows
 3. ✅ Second Highest Salary
@@ -268,6 +288,7 @@ The existing `/app/mysql-tutorials/[slug]/page.tsx` should already handle render
 7. ✅ Employees Earning More Than Manager
 
 #### Advanced Queries (5)
+
 8. ✅ Window Functions Explained
 9. ✅ Pivot Rows to Columns
 10. ✅ Common Table Expressions (CTE)
@@ -275,15 +296,18 @@ The existing `/app/mysql-tutorials/[slug]/page.tsx` should already handle render
 12. ✅ Handling NULL in Aggregates
 
 #### Functions (2)
+
 13. ✅ COALESCE and NULLIF
 14. ✅ Full-Text Search Index
 
 #### Data Types & Storage (3)
+
 15. ✅ DATETIME vs TIMESTAMP
 16. ✅ JSON Data in MySQL 8+
 17. ✅ Generated Columns
 
 #### Security & Performance (3)
+
 18. ✅ Data Encryption in MySQL
 19. ✅ Optimize Slow Queries
 20. ✅ Slow Query Log
@@ -293,6 +317,7 @@ The existing `/app/mysql-tutorials/[slug]/page.tsx` should already handle render
 ### ADVANCED LEVEL (10 tutorials)
 
 #### InnoDB Internals (5)
+
 1. ✅ InnoDB Buffer Pool
 2. ✅ Redo and Undo Logs
 3. ✅ InnoDB Crash Recovery
@@ -300,6 +325,7 @@ The existing `/app/mysql-tutorials/[slug]/page.tsx` should already handle render
 5. ✅ Binlog vs Redo Log
 
 #### High Availability & Scaling (5)
+
 6. ✅ MySQL Replication (Master-Slave, GTID)
 7. ✅ Group Replication
 8. ✅ MySQL Router
@@ -313,11 +339,13 @@ The existing `/app/mysql-tutorials/[slug]/page.tsx` should already handle render
 ### 1. Fill in Template Content
 
 The generated files have placeholder sections marked with:
+
 - `[Add your analogy here]`
 - `<!-- Add visual content here -->`
 - `[Add key takeaway]`
 
 You can either:
+
 - Manually complete each file
 - Use AI to fill in the content
 - Create a script to populate based on MySQL documentation
@@ -325,6 +353,7 @@ You can either:
 ### 2. Add More Code Examples
 
 Enhance files with:
+
 - More real-world examples
 - Production-level scenarios
 - Performance benchmarks
@@ -332,6 +361,7 @@ Enhance files with:
 ### 3. Create Live Coding Exercises
 
 For files in the "Live Coding" category, add:
+
 - Interactive SQL fiddle links
 - Schema creation scripts
 - Sample data generators
@@ -339,6 +369,7 @@ For files in the "Live Coding" category, add:
 ### 4. Add Diagrams
 
 Consider adding:
+
 - Architecture diagrams
 - Flow charts
 - ER diagrams
@@ -354,10 +385,10 @@ Edit the `levelColors` in the generation script:
 
 ```javascript
 const levelColors = {
-  beginner: { 
-    primary: '#3B82F6',  // Change to your color
-    secondary: '#60A5FA', 
-    gradient: 'rgba(59, 130, 246, 0.15), rgba(96, 165, 250, 0.15)' 
+  beginner: {
+    primary: "#3B82F6", // Change to your color
+    secondary: "#60A5FA",
+    gradient: "rgba(59, 130, 246, 0.15), rgba(96, 165, 250, 0.15)",
   },
   // ... other levels
 };
@@ -378,6 +409,7 @@ To add a new section to all tutorials, modify the template:
 ### Modify Structure
 
 Edit `generateFullTutorial()` function in the script to change:
+
 - Section order
 - HTML styling
 - Content format
@@ -405,16 +437,19 @@ Edit `generateFullTutorial()` function in the script to change:
 ## 💡 Tips for Content Completion
 
 1. **Use ChatGPT/Claude:**
+
    - Provide the template and question
    - Ask for real-life analogies
    - Request step-by-step code examples
 
 2. **MySQL Documentation:**
+
    - Reference official docs for accuracy
    - Include version-specific features
    - Add deprecation warnings
 
 3. **Real Interview Questions:**
+
    - Review LeetCode SQL problems
    - Check HackerRank challenges
    - Study company-specific patterns
@@ -429,6 +464,7 @@ Edit `generateFullTutorial()` function in the script to change:
 ## 📞 Support
 
 If you need help completing specific tutorials, I can:
+
 - Generate detailed content for any tutorial
 - Create custom examples
 - Add specific company interview patterns

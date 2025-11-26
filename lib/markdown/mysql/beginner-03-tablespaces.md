@@ -93,6 +93,7 @@ Each tablespace is a physical storage location where MySQL keeps your tables' da
 <div style="background: rgba(139, 92, 246, 0.1); padding: 16px; border-radius: 8px; margin: 10px 0;">
 
 **What it stores:**
+
 - InnoDB data dictionary
 - Double-write buffer
 - Change buffer
@@ -101,6 +102,7 @@ Each tablespace is a physical storage location where MySQL keeps your tables' da
 **File:** `ibdata1` (and `ibdata2`, `ibdata3` if configured)
 
 **Characteristics:**
+
 - ✓ Shared across all InnoDB tables
 - ✓ Never shrinks automatically
 - ✓ Critical for MySQL operation
@@ -112,11 +114,13 @@ Each tablespace is a physical storage location where MySQL keeps your tables' da
 <div style="background: rgba(34, 197, 94, 0.1); padding: 16px; border-radius: 8px; margin: 10px 0;">
 
 **What it stores:**
+
 - Data and indexes for a single InnoDB table
 
 **File:** `database_name/table_name.ibd`
 
 **Characteristics:**
+
 - ✓ **Default since MySQL 5.6**
 - ✓ Each table has its own file
 - ✓ Easier to manage disk space
@@ -124,6 +128,7 @@ Each tablespace is a physical storage location where MySQL keeps your tables' da
 - ✓ Easier backup and restore per table
 
 **Enable/Disable:**
+
 ```sql
 SET GLOBAL innodb_file_per_table = ON;  -- Enable (default)
 SET GLOBAL innodb_file_per_table = OFF; -- Disable
@@ -136,13 +141,16 @@ SET GLOBAL innodb_file_per_table = OFF; -- Disable
 <div style="background: rgba(251, 146, 60, 0.1); padding: 16px; border-radius: 8px; margin: 10px 0;">
 
 **What it stores:**
+
 - Multiple InnoDB tables in a custom shared tablespace
 
 **Use case:**
+
 - Group related tables together
 - Better control over data placement
 
 **Create and use:**
+
 ```sql
 -- Create a general tablespace
 CREATE TABLESPACE ts_data
@@ -163,20 +171,23 @@ CREATE TABLE users (
 <div style="background: rgba(236, 72, 153, 0.1); padding: 16px; border-radius: 8px; margin: 10px 0;">
 
 **What it stores:**
+
 - Undo logs for transaction rollback
 - Old versions of modified rows (for MVCC)
 
 **Files:** `undo_001`, `undo_002`
 
 **Characteristics:**
+
 - ✓ Supports transaction rollback
 - ✓ Enables consistent reads
 - ✓ Can be dynamically resized in MySQL 8.0+
 
 **Configuration:**
+
 ```sql
 -- View undo tablespaces
-SELECT * FROM INFORMATION_SCHEMA.INNODB_TABLESPACES 
+SELECT * FROM INFORMATION_SCHEMA.INNODB_TABLESPACES
 WHERE NAME LIKE 'undo%';
 ```
 
@@ -187,14 +198,17 @@ WHERE NAME LIKE 'undo%';
 <div style="background: rgba(245, 158, 11, 0.1); padding: 16px; border-radius: 8px; margin: 10px 0;">
 
 **What it stores:**
+
 - Temporary tables created during query execution
 - Internal temporary tables for sorting, grouping
 
 **Files:**
+
 - `ibtmp1` (session temporary tablespace)
 - `temp_*.ibt` (global temporary tablespace in MySQL 8.0+)
 
 **Characteristics:**
+
 - ✓ Automatically managed
 - ✓ Recreated on server restart
 - ✓ Used for complex queries requiring temporary storage
@@ -304,9 +318,9 @@ SHOW VARIABLES LIKE 'innodb_file_per_table';
 SELECT * FROM INFORMATION_SCHEMA.INNODB_TABLESPACES;
 
 -- Check tablespace for a specific table
-SELECT 
-    NAME, 
-    SPACE_TYPE, 
+SELECT
+    NAME,
+    SPACE_TYPE,
     FILE_SIZE/1024/1024 AS size_mb
 FROM INFORMATION_SCHEMA.INNODB_TABLESPACES
 WHERE NAME LIKE '%users%';
@@ -342,15 +356,15 @@ ALTER TABLE products TABLESPACE ecommerce_ts;
 
 ```sql
 -- Check system tablespace size
-SELECT 
-    FILE_NAME, 
+SELECT
+    FILE_NAME,
     TABLESPACE_NAME,
     FILE_SIZE/1024/1024 AS size_mb
 FROM INFORMATION_SCHEMA.FILES
 WHERE TABLESPACE_NAME = 'innodb_system';
 
 -- Check all table file sizes
-SELECT 
+SELECT
     TABLE_SCHEMA,
     TABLE_NAME,
     ROUND((DATA_LENGTH + INDEX_LENGTH)/1024/1024, 2) AS size_mb,
@@ -409,9 +423,11 @@ innodb_temp_tablespaces_dir = ./ibtmp/
 ### How to Answer in an Interview
 
 **Good Answer:**
+
 > "MySQL uses tablespaces to organize data storage physically. The main types are: System tablespace (ibdata1) for shared data, File-per-table tablespaces where each table gets its own .ibd file (default since MySQL 5.6), General tablespaces for grouping multiple tables, Undo tablespaces for transaction rollback data, and Temporary tablespaces for query processing. File-per-table is preferred as it allows better space management and easier backups."
 
 **Follow-up Points:**
+
 - Mention file-per-table is enabled by default
 - Explain the advantage of file-per-table for space reclamation
 - Know that system tablespace never shrinks
@@ -425,4 +441,3 @@ innodb_temp_tablespaces_dir = ./ibtmp/
 - [Storage Engines (MyISAM vs InnoDB)](/mysql-tutorials/03-storage-engines)
 - [ACID Properties](/mysql-tutorials/04-acid-properties)
 - [Primary Key vs Foreign Key](/mysql-tutorials/beginner-07-primary-key)
-

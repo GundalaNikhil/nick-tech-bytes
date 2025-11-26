@@ -130,6 +130,7 @@ SELECT * FROM users;
 ```
 
 **Output:**
+
 ```
 +----+-------------------+---------+
 | id | email             | name    |
@@ -149,6 +150,7 @@ SELECT * FROM users;
 ## 🎯 Solution 1: Find Duplicate Values Only
 
 ### Goal
+
 Show which email addresses appear more than once.
 
 ```sql
@@ -168,6 +170,7 @@ GROUP BY email;
 ```
 
 **Intermediate Result:**
+
 ```
 +-------------------+-------+
 | email             | count |
@@ -206,6 +209,7 @@ HAVING COUNT(*) > 1;
 ## 🎯 Solution 2: Get All Duplicate Rows
 
 ### Goal
+
 Show ALL rows that have duplicate emails (not just the email itself).
 
 ```sql
@@ -255,13 +259,14 @@ WHERE email IN ('bob@email.com', 'david@email.com');
 ## 🎯 Solution 3: Using JOIN (Alternative)
 
 ### Approach
+
 Self-join the table to find duplicates.
 
 ```sql
 SELECT DISTINCT u1.*
 FROM users u1
-JOIN users u2 
-    ON u1.email = u2.email 
+JOIN users u2
+    ON u1.email = u2.email
     AND u1.id != u2.id
 ORDER BY u1.email, u1.id;
 ```
@@ -294,10 +299,11 @@ This identifies rows that have a "twin" with the same email.
 ## 🎯 Solution 4: Find Duplicates with Details
 
 ### Goal
+
 Show duplicate emails with additional statistics.
 
 ```sql
-SELECT 
+SELECT
     email,
     COUNT(*) as duplicate_count,
     GROUP_CONCAT(id ORDER BY id) as duplicate_ids,
@@ -327,6 +333,7 @@ HAVING COUNT(*) > 1;
 ## 🎯 Solution 5: Composite Duplicates (Multiple Columns)
 
 ### Goal
+
 Find duplicates based on BOTH email AND name.
 
 ```sql
@@ -353,6 +360,7 @@ HAVING COUNT(*) > 1;
 ```
 
 **Output:**
+
 ```
 +-----------------+------+-------+
 | email           | name | count |
@@ -366,10 +374,11 @@ HAVING COUNT(*) > 1;
 ## 🎯 Solution 6: Using Window Functions (MySQL 8+)
 
 ### Approach
+
 Use ROW_NUMBER() to identify duplicates.
 
 ```sql
-SELECT 
+SELECT
     id,
     email,
     name,
@@ -378,6 +387,7 @@ FROM users;
 ```
 
 **Output:**
+
 ```
 +----+-----------------+---------+---------+
 | id | email           | name    | row_num |
@@ -396,7 +406,7 @@ FROM users;
 -- Get only duplicates (row_num > 1)
 SELECT *
 FROM (
-    SELECT 
+    SELECT
         id, email, name,
         ROW_NUMBER() OVER (PARTITION BY email ORDER BY id) as row_num
     FROM users
@@ -453,7 +463,6 @@ WHERE row_num > 1;
   </tbody>
 </table>
 
-
 ---
 
 ## ⚠️ Common Mistakes
@@ -463,30 +472,34 @@ WHERE row_num > 1;
 ### What to Avoid
 
 ❌ **Don't:** Use WHERE instead of HAVING for aggregated conditions
+
 ```sql
 -- WRONG!
-SELECT email, COUNT(*) 
-FROM users 
+SELECT email, COUNT(*)
+FROM users
 WHERE COUNT(*) > 1  -- Error: Can't use aggregate in WHERE
 GROUP BY email;
 ```
 
 ❌ **Don't:** Forget to specify which column(s) to check
+
 ```sql
 -- Ambiguous - duplicates based on what?
 SELECT * FROM users GROUP BY email;  -- Missing HAVING clause
 ```
 
 ✅ **Do:** Use HAVING for aggregate filtering
+
 ```sql
 -- CORRECT!
-SELECT email, COUNT(*) 
-FROM users 
-GROUP BY email 
+SELECT email, COUNT(*)
+FROM users
+GROUP BY email
 HAVING COUNT(*) > 1;
 ```
 
 ✅ **Do:** Be explicit about duplicate criteria
+
 ```sql
 -- Clear: Finding email duplicates
 SELECT email, COUNT(*) as occurrences
@@ -523,18 +536,21 @@ ORDER BY occurrences DESC;
 ### How to Answer in an Interview
 
 **Good Answer:**
-> "To find duplicate records, I'd use GROUP BY with HAVING COUNT(*) > 1. For example: `SELECT email, COUNT(*) FROM users GROUP BY email HAVING COUNT(*) > 1`. This groups rows by the column we're checking for duplicates and filters to show only groups with more than one occurrence. If I need to see all the duplicate rows themselves, not just the duplicate values, I'd use a subquery or JOIN."
+
+> "To find duplicate records, I'd use GROUP BY with HAVING COUNT(_) > 1. For example: `SELECT email, COUNT(_) FROM users GROUP BY email HAVING COUNT(\*) > 1`. This groups rows by the column we're checking for duplicates and filters to show only groups with more than one occurrence. If I need to see all the duplicate rows themselves, not just the duplicate values, I'd use a subquery or JOIN."
 
 **Points to Mention:**
+
 - GROUP BY groups the rows by the column(s) you specify
 - HAVING filters the grouped results (WHERE won't work for aggregates)
-- COUNT(*) counts rows in each group
+- COUNT(\*) counts rows in each group
 - Can extend to multiple columns for composite duplicates
 - Mention performance: add index on the grouped column(s)
 
 **What NOT to say:**
+
 - ❌ "I'd just look at the table" (not scalable)
-- ❌ "Use WHERE COUNT(*) > 1" (syntax error)
+- ❌ "Use WHERE COUNT(\*) > 1" (syntax error)
 - ❌ Not explaining GROUP BY vs HAVING
 
 **Follow-up Questions You Might Get:**
@@ -543,7 +559,7 @@ ORDER BY occurrences DESC;
    → Use window functions with DELETE, or keep minimum ID
 
 2. **"What if you need to find duplicates across multiple columns?"**
-   → GROUP BY column1, column2 HAVING COUNT(*) > 1
+   → GROUP BY column1, column2 HAVING COUNT(\*) > 1
 
 3. **"How would you optimize this for a large table?"**
    → Add indexes on grouped columns, consider partitioning
@@ -600,8 +616,8 @@ WHERE sku IN (
 ORDER BY sku;
 
 -- Exercise 4: Count how many times each duplicate appears
-SELECT 
-    email, 
+SELECT
+    email,
     COUNT(*) as occurrences,
     GROUP_CONCAT(id ORDER BY id) as all_ids
 FROM users
@@ -623,9 +639,10 @@ HAVING COUNT(*) > 3;
 ## 💡 Real-World Scenarios
 
 ### Scenario 1: Data Quality Check
+
 ```sql
 -- Find duplicate customer emails before migration
-SELECT 
+SELECT
     email,
     COUNT(*) as duplicate_count,
     MIN(created_at) as oldest_record,
@@ -637,9 +654,10 @@ ORDER BY duplicate_count DESC;
 ```
 
 ### Scenario 2: Fraud Detection
+
 ```sql
 -- Find multiple accounts from same IP within 24 hours
-SELECT 
+SELECT
     ip_address,
     DATE(created_at) as signup_date,
     COUNT(*) as account_count,
@@ -651,9 +669,10 @@ ORDER BY account_count DESC;
 ```
 
 ### Scenario 3: Inventory Check
+
 ```sql
 -- Find duplicate product entries (same name, brand, size)
-SELECT 
+SELECT
     product_name,
     brand,
     size,
@@ -679,5 +698,3 @@ HAVING COUNT(*) > 1;
 - [MySQL GROUP BY Documentation](https://dev.mysql.com/doc/refman/8.0/en/group-by-handling.html)
 - [MySQL Aggregate Functions](https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html)
 - [Window Functions vs GROUP BY](https://dev.mysql.com/doc/refman/8.0/en/window-functions-usage.html)
-
-

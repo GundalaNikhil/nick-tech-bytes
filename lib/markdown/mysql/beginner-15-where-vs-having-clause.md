@@ -15,11 +15,13 @@
 **Think of organizing a class field trip:**
 
 **WHERE** = **Pre-screening before forming groups** 🎒
+
 - Teacher says: "Only students with permission slips can go"
 - Filter happens BEFORE dividing into bus groups
 - Individual students are checked one by one
 
 **HAVING** = **Rules for the groups themselves** 🚌
+
 - Teacher says: "Only buses with at least 10 students can depart"
 - Filter happens AFTER forming bus groups
 - Entire groups are evaluated
@@ -27,18 +29,21 @@
 ### In SQL Terms:
 
 **WHERE Clause:**
+
 - Filters individual ROWS before grouping
 - Works on actual column values
 - Cannot use aggregate functions (COUNT, SUM, AVG)
 - Example: "Show employees WHERE salary > 50000"
 
 **HAVING Clause:**
+
 - Filters GROUPS after GROUP BY
 - Works on aggregated results
 - Can use aggregate functions
-- Example: "Show departments HAVING COUNT(*) > 5"
+- Example: "Show departments HAVING COUNT(\*) > 5"
 
 ### The Key Difference:
+
 ```sql
 -- WHERE filters rows → then GROUP BY → then SELECT
 -- GROUP BY → then HAVING filters groups → then SELECT
@@ -91,22 +96,26 @@
 ### Core Understanding
 
 **1. WHERE Clause**
+
 - Filters individual rows BEFORE grouping
 - Applied to each row in the table
 - Cannot use aggregate functions (SUM, AVG, COUNT, etc.)
 - More efficient (filters early in query execution)
 
 **2. HAVING Clause**
+
 - Filters groups AFTER GROUP BY operation
 - Applied to aggregated results
 - Can (and usually does) use aggregate functions
 - Used only with GROUP BY
 
 **3. When to Use Each**
+
 - **WHERE**: Filter based on column values (salary, department, date)
 - **HAVING**: Filter based on aggregated values (total sales, employee count, average score)
 
 **4. Can Use Both Together**
+
 ```sql
 SELECT department, COUNT(*) as emp_count
 FROM employees
@@ -148,6 +157,7 @@ WHERE salary > 50000;
 ```
 
 **Output:**
+
 ```
 +--------+----------+------------+----------+------------+
 | emp_id | emp_name | department | salary   | hire_date  |
@@ -158,6 +168,7 @@ WHERE salary > 50000;
 |      7 | Grace    | IT         | 85000.00 | 2017-05-19 |
 +--------+----------+------------+----------+------------+
 ```
+
 **Note:** WHERE filtered individual employees with salary > 50000
 
 ---
@@ -166,7 +177,7 @@ WHERE salary > 50000;
 
 ```sql
 -- HAVING filters groups based on aggregate functions
-SELECT 
+SELECT
     department,
     COUNT(*) as employee_count,
     AVG(salary) as avg_salary
@@ -176,6 +187,7 @@ HAVING COUNT(*) > 2;  -- Only departments with more than 2 employees
 ```
 
 **Output:**
+
 ```
 +------------+----------------+-------------+
 | department | employee_count | avg_salary  |
@@ -183,7 +195,9 @@ HAVING COUNT(*) > 2;  -- Only departments with more than 2 employees
 | IT         |              3 | 68333.33    |
 +------------+----------------+-------------+
 ```
-**Explanation:** 
+
+**Explanation:**
+
 - IT has 3 employees (passes HAVING filter)
 - HR has 2 employees (rejected by HAVING)
 - Finance has 2 employees (rejected by HAVING)
@@ -194,7 +208,7 @@ HAVING COUNT(*) > 2;  -- Only departments with more than 2 employees
 
 ```sql
 -- Combine WHERE (filter rows) and HAVING (filter groups)
-SELECT 
+SELECT
     department,
     COUNT(*) as high_earners,
     AVG(salary) as avg_high_salary
@@ -205,6 +219,7 @@ HAVING COUNT(*) >= 2;         -- ❷ Filter: Only departments with 2+ high earne
 ```
 
 **Step-by-step execution:**
+
 ```
 Step 1 (WHERE): Filter salary > 50000
 ├─ Alice (IT, 75000) ✅
@@ -227,6 +242,7 @@ Step 3 (HAVING): Filter groups with COUNT >= 2
 ```
 
 **Output:**
+
 ```
 +------------+--------------+------------------+
 | department | high_earners | avg_high_salary  |
@@ -276,6 +292,7 @@ GROUP BY department;
 ```
 
 **Why is WHERE better here?**
+
 - WHERE filters 7 rows down to 3 rows BEFORE grouping
 - HAVING would group ALL 7 rows first, then filter groups
 - WHERE reduces data processed in GROUP BY operation
@@ -303,7 +320,7 @@ INSERT INTO sales VALUES
 (7, 'Laptop', 'West', 1150, '2024-01-21');
 
 -- Find products with average sale > 500 AND sold in more than 2 regions
-SELECT 
+SELECT
     product,
     COUNT(DISTINCT region) as regions_sold,
     AVG(amount) as avg_sale_amount,
@@ -316,6 +333,7 @@ HAVING COUNT(DISTINCT region) > 2  -- ❷ Filter: Sold in 3+ regions
 ```
 
 **Output:**
+
 ```
 +---------+--------------+------------------+--------------+
 | product | regions_sold | avg_sale_amount  | total_sales  |
@@ -323,8 +341,6 @@ HAVING COUNT(DISTINCT region) > 2  -- ❷ Filter: Sold in 3+ regions
 | Laptop  |            4 | 1175.00          | 4700.00      |
 +---------+--------------+------------------+--------------+
 ```
-
-
 
 ---
 
@@ -335,23 +351,27 @@ HAVING COUNT(DISTINCT region) > 2  -- ❷ Filter: Sold in 3+ regions
 ### Important Points
 
 **Performance Implications:**
+
 - ✓ WHERE is more efficient (filters before grouping, reduces data processed)
 - ✓ Use WHERE for non-aggregated conditions whenever possible
 - ✓ HAVING processes all rows first, then filters groups
 - ✓ Combine both for optimal performance (WHERE filters rows, HAVING filters aggregated results)
 
 **Best Practices:**
+
 - ✓ Always use WHERE for row-level filtering (department, salary, date ranges)
 - ✓ Use HAVING only for aggregate conditions (COUNT, SUM, AVG, MAX, MIN)
 - ✓ Put as many filters in WHERE as possible before grouping
 - ✓ Use meaningful column aliases for readability
 
 **Common Use Cases:**
+
 - ✓ **WHERE**: Filter by date ranges, specific values, comparisons
 - ✓ **HAVING**: Filter by totals, averages, counts, min/max values
 - ✓ **Both**: Find departments with > 10 employees earning > 50k
 
 **SQL Execution Order (Remember This!):**
+
 ```
 FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
 ```
@@ -367,6 +387,7 @@ FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
 ### What to Avoid
 
 ❌ **Don't:** Use aggregate functions in WHERE clause
+
 ```sql
 -- ❌ ERROR: Cannot use COUNT in WHERE
 SELECT department, COUNT(*) as emp_count
@@ -376,6 +397,7 @@ GROUP BY department;
 ```
 
 ❌ **Don't:** Use HAVING for non-aggregated filtering
+
 ```sql
 -- ❌ INEFFICIENT: Should use WHERE
 SELECT department, COUNT(*) as emp_count
@@ -385,6 +407,7 @@ HAVING department = 'IT';  -- Bad performance!
 ```
 
 ❌ **Don't:** Forget GROUP BY when using HAVING
+
 ```sql
 -- ❌ ERROR: HAVING requires GROUP BY
 SELECT COUNT(*) FROM employees
@@ -392,6 +415,7 @@ HAVING COUNT(*) > 10;  -- Missing GROUP BY
 ```
 
 ✅ **Do:** Use WHERE for aggregate-free conditions
+
 ```sql
 -- ✅ CORRECT: Use WHERE for row filtering
 SELECT department, COUNT(*) as emp_count
@@ -401,6 +425,7 @@ GROUP BY department;
 ```
 
 ✅ **Do:** Use HAVING for aggregate conditions
+
 ```sql
 -- ✅ CORRECT: Use HAVING for group filtering
 SELECT department, COUNT(*) as emp_count
@@ -410,9 +435,10 @@ HAVING COUNT(*) > 5;  -- Filter aggregated results
 ```
 
 ✅ **Do:** Combine WHERE and HAVING effectively
+
 ```sql
 -- ✅ OPTIMAL: Filter rows early, then filter groups
-SELECT 
+SELECT
     department,
     AVG(salary) as avg_salary,
     COUNT(*) as emp_count
@@ -451,6 +477,7 @@ HAVING AVG(salary) > 60000;      -- Filter groups (aggregate condition)
 "WHERE and HAVING both filter data, but at different stages of query execution.
 
 **WHERE clause:**
+
 - Filters individual rows BEFORE grouping
 - Applied to raw table data
 - Cannot use aggregate functions like COUNT or SUM
@@ -458,6 +485,7 @@ HAVING AVG(salary) > 60000;      -- Filter groups (aggregate condition)
 - Example: `WHERE salary > 50000` filters employees before grouping
 
 **HAVING clause:**
+
 - Filters groups AFTER GROUP BY operation
 - Applied to aggregated results
 - Can use aggregate functions
@@ -465,6 +493,7 @@ HAVING AVG(salary) > 60000;      -- Filter groups (aggregate condition)
 - Example: `HAVING COUNT(*) > 10` filters departments with >10 employees
 
 **SQL execution order is crucial:**
+
 ```
 FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY
 ```
@@ -472,6 +501,7 @@ FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY
 For optimal performance, use WHERE to filter rows early, then use HAVING only for aggregate conditions.
 
 **Example combining both:**
+
 ```sql
 SELECT department, AVG(salary) as avg_sal
 FROM employees
@@ -483,16 +513,16 @@ HAVING AVG(salary) > 60000;   -- Filter groups (aggregate condition)
 **Follow-up Questions to Expect:**
 
 **Q: Can you use WHERE and HAVING in the same query?**
-*Answer:* Yes! Use WHERE to filter rows before grouping, then HAVING to filter aggregated results. This is actually a best practice for performance - filter as much data as possible with WHERE before grouping.
+_Answer:_ Yes! Use WHERE to filter rows before grouping, then HAVING to filter aggregated results. This is actually a best practice for performance - filter as much data as possible with WHERE before grouping.
 
 **Q: Why can't you use aggregate functions in WHERE?**
-*Answer:* WHERE is processed before GROUP BY in SQL execution order. Aggregate functions like COUNT, SUM, AVG require grouped data, which doesn't exist yet at the WHERE stage. That's why we use HAVING - it runs after GROUP BY when aggregated data is available.
+_Answer:_ WHERE is processed before GROUP BY in SQL execution order. Aggregate functions like COUNT, SUM, AVG require grouped data, which doesn't exist yet at the WHERE stage. That's why we use HAVING - it runs after GROUP BY when aggregated data is available.
 
 **Q: Which is better for performance?**
-*Answer:* WHERE is significantly better for performance when filtering non-aggregated data because it reduces the dataset before the expensive GROUP BY operation. Only use HAVING for conditions that genuinely require aggregate functions.
+_Answer:_ WHERE is significantly better for performance when filtering non-aggregated data because it reduces the dataset before the expensive GROUP BY operation. Only use HAVING for conditions that genuinely require aggregate functions.
 
 **Q: Can you use HAVING without GROUP BY?**
-*Answer:* Technically yes, but it's rare. Without GROUP BY, the entire table is treated as one group. Example: `SELECT COUNT(*) FROM employees HAVING COUNT(*) > 100` checks if total employee count exceeds 100.
+_Answer:_ Technically yes, but it's rare. Without GROUP BY, the entire table is treated as one group. Example: `SELECT COUNT(*) FROM employees HAVING COUNT(*) > 100` checks if total employee count exceeds 100.
 
 </div>
 
@@ -503,6 +533,7 @@ HAVING AVG(salary) > 60000;   -- Filter groups (aggregate condition)
 <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #F59E0B; padding: 20px; border-radius: 8px; margin: 20px 0;">
 
 ### Exercise 1: Sales Analysis
+
 Find products sold in more than 3 regions with total sales > $5000.
 
 ```sql
@@ -513,7 +544,7 @@ Find products sold in more than 3 regions with total sales > $5000.
 <summary>💡 Solution</summary>
 
 ```sql
-SELECT 
+SELECT
     product,
     COUNT(DISTINCT region) as regions,
     SUM(amount) as total_sales
@@ -528,6 +559,7 @@ HAVING COUNT(DISTINCT region) > 3    -- Aggregate condition
 ---
 
 ### Exercise 2: Employee Department Analysis
+
 Find departments where average salary > $55k, but only for employees hired after 2019.
 
 ```sql
@@ -538,7 +570,7 @@ Find departments where average salary > $55k, but only for employees hired after
 <summary>💡 Solution</summary>
 
 ```sql
-SELECT 
+SELECT
     department,
     COUNT(*) as emp_count,
     AVG(salary) as avg_salary
@@ -553,6 +585,7 @@ HAVING AVG(salary) > 55000;        -- Aggregate filter (use HAVING)
 ---
 
 ### Exercise 3: Mixed Conditions
+
 Find departments with more than 2 IT employees earning over $70k.
 
 ```sql
@@ -563,7 +596,7 @@ Find departments with more than 2 IT employees earning over $70k.
 <summary>💡 Solution</summary>
 
 ```sql
-SELECT 
+SELECT
     department,
     COUNT(*) as high_earners,
     AVG(salary) as avg_salary
@@ -591,5 +624,5 @@ HAVING COUNT(*) > 2;              -- Group filter (count)
 ---
 
 ## 🏷️ Tags
-`MySQL` `SQL` `WHERE` `HAVING` `GROUP BY` `Aggregate Functions` `Query Optimization` `Interview Questions`
 
+`MySQL` `SQL` `WHERE` `HAVING` `GROUP BY` `Aggregate Functions` `Query Optimization` `Interview Questions`

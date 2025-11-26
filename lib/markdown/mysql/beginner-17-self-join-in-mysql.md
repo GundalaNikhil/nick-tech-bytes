@@ -17,6 +17,7 @@ Think of this concept like a **company org chart**. Imagine you work at a compan
 When you want to find "who reports to whom," you're comparing people in the SAME directory. You're asking: "Match each employee with their manager" - but both pieces of information come from the same employee list!
 
 **Real Example:**
+
 - Alice is an employee (Employee ID: 101)
 - Alice's manager is Bob (Employee ID: 102)
 - Bob is ALSO in the employee list because he's an employee too!
@@ -82,21 +83,25 @@ To find Alice's manager's name, you need to look up Bob's details in the SAME em
 ### Core Understanding
 
 1. **Same Table, Different Aliases**
+
    - Self-join uses the same table twice with different aliases (e.g., `employees e1` and `employees e2`)
    - Aliases are mandatory to distinguish between the two instances
    - Each alias represents a different "role" or "perspective" of the data
 
 2. **Hierarchical Relationships**
+
    - Most commonly used for parent-child relationships within the same table
    - Examples: employee-manager, category-subcategory, friend-friend
    - One column references another column in the same table (foreign key to primary key)
 
 3. **Join Types Work the Same**
+
    - You can use INNER JOIN, LEFT JOIN, RIGHT JOIN, etc.
    - INNER JOIN: Only matches where relationship exists
    - LEFT JOIN: Includes all records from left table even without matches (e.g., employees without managers)
 
 4. **Performance Considerations**
+
    - Self-joins can be resource-intensive on large tables
    - Proper indexing on join columns is crucial
    - Consider using WITH clauses (CTEs) for complex hierarchies
@@ -135,7 +140,7 @@ INSERT INTO employees VALUES
 (106, 'Frank Miller', 103, 'Engineering');
 
 -- Self-join to find each employee with their manager's name
-SELECT 
+SELECT
     e.employee_id,
     e.name AS employee_name,
     e.department,
@@ -145,6 +150,7 @@ INNER JOIN employees m ON e.manager_id = m.employee_id;
 ```
 
 **Output:**
+
 ```
 employee_id | employee_name | department    | manager_name
 ─────────────────────────────────────────────────────────
@@ -162,7 +168,7 @@ employee_id | employee_name | department    | manager_name
 
 ```sql
 -- Show all employees, including those without managers
-SELECT 
+SELECT
     e.employee_id,
     e.name AS employee_name,
     COALESCE(m.name, 'No Manager') AS manager_name,
@@ -173,6 +179,7 @@ ORDER BY e.employee_id;
 ```
 
 **Output:**
+
 ```
 employee_id | employee_name | manager_name   | department
 ──────────────────────────────────────────────────────────
@@ -202,7 +209,7 @@ UPDATE employees SET email = 'eve@company.com' WHERE employee_id = 105;
 UPDATE employees SET email = 'frank@company.com' WHERE employee_id = 106;
 
 -- Get employee with manager's email
-SELECT 
+SELECT
     e.name AS employee_name,
     e.email AS employee_email,
     m.name AS manager_name,
@@ -212,6 +219,7 @@ INNER JOIN employees m ON e.manager_id = m.employee_id;
 ```
 
 **Output:**
+
 ```
 employee_name | employee_email      | manager_name | manager_email
 ──────────────────────────────────────────────────────────────────
@@ -227,7 +235,7 @@ Frank Miller  | frank@company.com   | Carol Davis  | carol@company.com
 
 ```sql
 -- Find how many direct reports each manager has
-SELECT 
+SELECT
     m.employee_id,
     m.name AS manager_name,
     COUNT(e.employee_id) AS direct_reports
@@ -239,6 +247,7 @@ ORDER BY direct_reports DESC;
 ```
 
 **Output:**
+
 ```
 employee_id | manager_name | direct_reports
 ──────────────────────────────────────────
@@ -254,19 +263,20 @@ employee_id | manager_name | direct_reports
 
 ```sql
 -- Find employees who share the same manager (peers/colleagues)
-SELECT 
+SELECT
     e1.name AS employee_1,
     e2.name AS employee_2,
     m.name AS common_manager,
     e1.department
 FROM employees e1
-INNER JOIN employees e2 
-    ON e1.manager_id = e2.manager_id 
+INNER JOIN employees e2
+    ON e1.manager_id = e2.manager_id
     AND e1.employee_id < e2.employee_id  -- Avoid duplicates and self-pairing
 INNER JOIN employees m ON e1.manager_id = m.employee_id;
 ```
 
 **Output:**
+
 ```
 employee_1    | employee_2   | common_manager | department
 ────────────────────────────────────────────────────────────
@@ -313,9 +323,9 @@ SELECT DISTINCT
     u2.username AS user_2,
     u3.username AS mutual_friend
 FROM friendships f1
-INNER JOIN friendships f2 
+INNER JOIN friendships f2
     ON f1.friend_id = f2.user_id
-INNER JOIN friendships f3 
+INNER JOIN friendships f3
     ON f2.friend_id = f3.user_id
 INNER JOIN users u1 ON f1.user_id = u1.user_id
 INNER JOIN users u2 ON f2.user_id = u2.user_id
@@ -324,6 +334,7 @@ WHERE f1.user_id = 1 AND f3.user_id = 1 AND f2.user_id != 1;
 ```
 
 **Output:**
+
 ```
 user_1     | user_2   | mutual_friend
 ──────────────────────────────────────
@@ -353,7 +364,7 @@ INSERT INTO categories VALUES
 (7, 'Feature Phones', 5);
 
 -- Show category with parent
-SELECT 
+SELECT
     c1.category_name AS category,
     c2.category_name AS parent_category,
     c3.category_name AS grandparent_category
@@ -363,6 +374,7 @@ LEFT JOIN categories c3 ON c2.parent_category_id = c3.category_id;
 ```
 
 **Output:**
+
 ```
 category        | parent_category | grandparent_category
 ────────────────────────────────────────────────────────
@@ -391,7 +403,7 @@ UPDATE employees SET salary = 90000 WHERE employee_id = 105;
 UPDATE employees SET salary = 100000 WHERE employee_id = 106; -- Frank earns more than Carol!
 
 -- Find employees earning more than their manager
-SELECT 
+SELECT
     e.name AS employee_name,
     e.salary AS employee_salary,
     m.name AS manager_name,
@@ -403,6 +415,7 @@ WHERE e.salary > m.salary;
 ```
 
 **Output:**
+
 ```
 employee_name | employee_salary | manager_name | manager_salary | salary_difference
 ──────────────────────────────────────────────────────────────────────────────────
@@ -410,8 +423,6 @@ Frank Miller  | 100000.00       | Carol Davis  | 95000.00       | 5000.00
 ```
 
 **Explanation:** This is a common interview question! It compares salaries between related rows in the same table.
-
-
 
 ---
 
@@ -430,11 +441,13 @@ Frank Miller  | 100000.00       | Carol Davis  | 95000.00       | 5000.00
 - ✓ **Avoid Circular References:** Ensure your data doesn't have circular hierarchies (A reports to B, B reports to A) which can cause infinite loops or incorrect results.
 
 - ✓ **Performance on Large Tables:** Self-joins can be slow on large tables. Consider:
+
   - Using appropriate indexes
   - Limiting results with WHERE clauses
   - Using recursive CTEs for deep hierarchies (MySQL 8.0+)
 
 - ✓ **Choose the Right Join Type:**
+
   - **INNER JOIN:** Only records with matches
   - **LEFT JOIN:** Include all from left, even without matches
   - **RIGHT JOIN:** Rarely used, but includes all from right
@@ -513,8 +526,8 @@ JOIN employees e2 ON e1.manager_id = e2.manager_id;
 -- CORRECT - Only unique pairs
 SELECT e1.name, e2.name
 FROM employees e1
-JOIN employees e2 
-    ON e1.manager_id = e2.manager_id 
+JOIN employees e2
+    ON e1.manager_id = e2.manager_id
     AND e1.employee_id < e2.employee_id;
 ```
 
@@ -558,7 +571,7 @@ JOIN employees m ON e.manager_id = m.employee_id;
 
 ```sql
 -- CLEAR
-SELECT 
+SELECT
     e.name AS employee_name,
     m.name AS manager_name
 FROM employees e
@@ -600,9 +613,11 @@ JOIN employees m ON e.manager_id = m.employee_id;
 ### How to Answer in an Interview
 
 **Good Answer:**
+
 > "A self-join is a technique where we join a table to itself by treating it as two separate logical tables using different aliases. It's commonly used to query hierarchical or relational data stored within a single table, such as employee-manager relationships, product categories, or social network connections. For example, to find each employee's manager name, we'd join the employees table to itself, matching each employee's manager_id to another employee's employee_id."
 
 **Points to Mention:**
+
 - Self-joins require aliases to distinguish between the two instances of the same table
 - They're particularly useful for hierarchical data (parent-child relationships)
 - You can use any join type (INNER, LEFT, RIGHT) depending on your requirements
@@ -610,6 +625,7 @@ JOIN employees m ON e.manager_id = m.employee_id;
 - Performance consideration: Index the join columns for better performance
 
 **What NOT to say:**
+
 - ❌ "Self-join creates a copy of the table" (No, it's the same physical table referenced twice)
 - ❌ "You can only use INNER JOIN for self-joins" (Any join type works)
 - ❌ "Self-join always returns duplicate data" (Only if not filtered properly)
@@ -622,13 +638,15 @@ JOIN employees m ON e.manager_id = m.employee_id;
 
 **Q2: How would you find employees who earn more than their managers using a self-join?**
 
-**A:** 
+**A:**
+
 ```sql
 SELECT e.name AS employee, e.salary, m.name AS manager, m.salary AS manager_salary
 FROM employees e
 INNER JOIN employees m ON e.manager_id = m.employee_id
 WHERE e.salary > m.salary;
 ```
+
 This joins employees to their managers and filters for cases where employee salary exceeds manager salary.
 
 **Q3: What's the performance impact of self-joins on large tables?**
@@ -638,14 +656,16 @@ This joins employees to their managers and filters for cases where employee sala
 **Q4: Can you find all employees at the same organizational level (peers) using self-join?**
 
 **A:** Yes, by joining employees who share the same manager:
+
 ```sql
 SELECT e1.name, e2.name, m.name AS common_manager
 FROM employees e1
-INNER JOIN employees e2 
-    ON e1.manager_id = e2.manager_id 
+INNER JOIN employees e2
+    ON e1.manager_id = e2.manager_id
     AND e1.employee_id < e2.employee_id
 INNER JOIN employees m ON e1.manager_id = m.employee_id;
 ```
+
 The condition `e1.employee_id < e2.employee_id` prevents duplicate pairs and self-pairing.
 
 **Q5: How is a self-join different from a recursive CTE?**
@@ -674,7 +694,7 @@ Given this data, find the complete chain of command (employee → manager → ma
 
 ```sql
 -- Solution: Three-level hierarchy
-SELECT 
+SELECT
     e.name AS employee,
     m1.name AS direct_manager,
     m2.name AS managers_manager
@@ -701,7 +721,7 @@ ORDER BY e.employee_id;
 Write a query to find all employees who don't manage anyone (no direct reports).
 
 ```sql
--- Hint: Think about which employees DON'T appear 
+-- Hint: Think about which employees DON'T appear
 -- as managers in the manager_id column
 ```
 
@@ -719,8 +739,8 @@ WHERE subordinates.manager_id IS NULL;
 SELECT employee_id, name
 FROM employees
 WHERE employee_id NOT IN (
-    SELECT DISTINCT manager_id 
-    FROM employees 
+    SELECT DISTINCT manager_id
+    FROM employees
     WHERE manager_id IS NOT NULL
 );
 
@@ -728,8 +748,8 @@ WHERE employee_id NOT IN (
 SELECT e.employee_id, e.name
 FROM employees e
 WHERE NOT EXISTS (
-    SELECT 1 
-    FROM employees sub 
+    SELECT 1
+    FROM employees sub
     WHERE sub.manager_id = e.employee_id
 );
 
@@ -762,7 +782,7 @@ Find all pairs of employees in the same department where one earns at least 20% 
 
 ```sql
 -- Solution:
-SELECT 
+SELECT
     e1.name AS higher_paid,
     e1.salary AS higher_salary,
     e2.name AS lower_paid,
@@ -770,8 +790,8 @@ SELECT
     e1.department,
     ROUND(((e1.salary - e2.salary) / e2.salary * 100), 2) AS salary_diff_percent
 FROM employees e1
-INNER JOIN employees e2 
-    ON e1.department = e2.department 
+INNER JOIN employees e2
+    ON e1.department = e2.department
     AND e1.employee_id < e2.employee_id  -- Prevent duplicates
 WHERE e1.salary >= e2.salary * 1.20
 ORDER BY e1.department, salary_diff_percent DESC;
@@ -803,4 +823,3 @@ ORDER BY e1.department, salary_diff_percent DESC;
 ## 🏷️ Tags
 
 `self-join` `hierarchical-data` `employee-manager` `sql-joins` `table-aliases` `recursive-queries` `performance-optimization` `interview-questions`
-

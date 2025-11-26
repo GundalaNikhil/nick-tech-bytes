@@ -21,6 +21,7 @@
 ### In Database Terms:
 
 **Trigger** = Automatic action that fires when data changes:
+
 - **BEFORE INSERT**: Check data before adding (like a security guard checking ID)
 - **AFTER INSERT**: Log who entered (like a visitor log book)
 - **BEFORE UPDATE**: Validate changes (like spell-check before sending email)
@@ -83,12 +84,14 @@ Every time someone updates an employee salary, a trigger automatically logs the 
 ### Core Understanding
 
 **1. What is a Trigger?**
+
 - Automatic SQL code that executes on INSERT, UPDATE, or DELETE
 - Cannot be called manually (unlike stored procedures)
 - Associated with a specific table
 - Fires automatically when the triggering event occurs
 
 **2. Trigger Types (6 combinations)**
+
 - **BEFORE INSERT**: Validate/modify data before inserting
 - **AFTER INSERT**: Log/notify after inserting
 - **BEFORE UPDATE**: Validate/modify data before updating
@@ -97,11 +100,13 @@ Every time someone updates an employee salary, a trigger automatically logs the 
 - **AFTER DELETE**: Clean up related data or log deletion
 
 **3. OLD and NEW Keywords**
+
 - **NEW**: Access new row values (INSERT, UPDATE)
 - **OLD**: Access old row values (UPDATE, DELETE)
 - Example: `NEW.salary` (new salary), `OLD.salary` (old salary)
 
 **4. Use Cases**
+
 - Audit logging (track all changes)
 - Data validation (enforce business rules)
 - Automatic calculations (update derived values)
@@ -150,6 +155,7 @@ SELECT * FROM salary_audit;
 ```
 
 **Output:**
+
 ```
 +----------+--------+------------+------------+-------------+------------------+---------------------+
 | audit_id | emp_id | old_salary | new_salary | change_type | changed_by       | change_date         |
@@ -175,13 +181,13 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Error: Salary cannot be decreased!';
     END IF;
-    
+
     -- Prevent salary increase > 50%
     IF NEW.salary > OLD.salary * 1.5 THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Error: Salary increase cannot exceed 50%!';
     END IF;
-    
+
     -- Automatically update last_modified timestamp
     SET NEW.last_modified = NOW();
 END$$
@@ -192,10 +198,10 @@ DELIMITER ;
 UPDATE employees SET salary = 80000 WHERE emp_id = 101;  -- 6.7% increase
 
 -- Test invalid update (❌ Fails)
-UPDATE employees SET salary = 50000 WHERE emp_id = 101;  
+UPDATE employees SET salary = 50000 WHERE emp_id = 101;
 -- Error: Salary cannot be decreased!
 
-UPDATE employees SET salary = 150000 WHERE emp_id = 101;  
+UPDATE employees SET salary = 150000 WHERE emp_id = 101;
 -- Error: Salary increase cannot exceed 50%!
 ```
 
@@ -214,10 +220,10 @@ BEGIN
     -- Only log if salary actually changed
     IF OLD.salary != NEW.salary THEN
         INSERT INTO salary_audit (
-            emp_id, 
-            old_salary, 
-            new_salary, 
-            change_type, 
+            emp_id,
+            old_salary,
+            new_salary,
+            change_type,
             changed_by
         )
         VALUES (
@@ -236,7 +242,7 @@ DELIMITER ;
 UPDATE employees SET salary = 82000 WHERE emp_id = 101;
 
 -- Check audit log
-SELECT 
+SELECT
     emp_id,
     old_salary,
     new_salary,
@@ -309,7 +315,7 @@ FOR EACH ROW
 BEGIN
     DECLARE dept_code VARCHAR(3);
     DECLARE emp_count INT;
-    
+
     -- Get department code
     SET dept_code = CASE NEW.department
         WHEN 'IT' THEN 'IT'
@@ -317,12 +323,12 @@ BEGIN
         WHEN 'Finance' THEN 'FIN'
         ELSE 'GEN'
     END;
-    
+
     -- Count existing employees in department
     SELECT COUNT(*) + 1 INTO emp_count
     FROM employees
     WHERE department = NEW.department;
-    
+
     -- Generate employee code (e.g., IT-001, HR-002)
     SET NEW.emp_code = CONCAT(dept_code, '-', LPAD(emp_count, 3, '0'));
 END$$
@@ -337,6 +343,7 @@ SELECT emp_id, emp_name, emp_code, department FROM employees;
 ```
 
 **Output:**
+
 ```
 +--------+-----------+----------+------------+
 | emp_id | emp_name  | emp_code | department |
@@ -397,7 +404,7 @@ SHOW CREATE TRIGGER after_employee_insert;
 DROP TRIGGER IF EXISTS after_employee_insert;
 
 -- Check trigger details in information_schema
-SELECT 
+SELECT
     TRIGGER_NAME,
     EVENT_MANIPULATION,
     EVENT_OBJECT_TABLE,
@@ -406,8 +413,6 @@ SELECT
 FROM information_schema.TRIGGERS
 WHERE TRIGGER_SCHEMA = 'your_database';
 ```
-
-
 
 ---
 
@@ -418,12 +423,14 @@ WHERE TRIGGER_SCHEMA = 'your_database';
 ### Important Points
 
 **Performance Implications:**
+
 - ✓ Triggers add overhead to INSERT/UPDATE/DELETE operations
 - ✓ Complex triggers can significantly slow down data modifications
 - ✓ Cascading triggers (trigger calling trigger) can cause performance issues
 - ✓ Use BEFORE triggers for validation, AFTER triggers for logging
 
 **Best Practices:**
+
 - ✓ Keep trigger logic simple and fast
 - ✓ Avoid complex calculations or external calls in triggers
 - ✓ Use naming convention: `[timing]_[table]_[event]` (e.g., `after_employees_insert`)
@@ -431,6 +438,7 @@ WHERE TRIGGER_SCHEMA = 'your_database';
 - ✓ Test trigger behavior thoroughly
 
 **When to Use Triggers:**
+
 - ✓ Audit logging (track all data changes)
 - ✓ Data validation (enforce business rules)
 - ✓ Automatic calculations (derived columns)
@@ -438,6 +446,7 @@ WHERE TRIGGER_SCHEMA = 'your_database';
 - ✓ Archive deleted data
 
 **Alternatives to Consider:**
+
 - ✓ **Application layer**: For complex business logic
 - ✓ **Stored procedures**: For manual execution control
 - ✓ **Check constraints**: For simple validation
@@ -454,6 +463,7 @@ WHERE TRIGGER_SCHEMA = 'your_database';
 ### What to Avoid
 
 ❌ **Don't:** Modify the same table in trigger (causes recursion)
+
 ```sql
 -- ❌ Infinite loop!
 CREATE TRIGGER bad_trigger
@@ -465,6 +475,7 @@ END;
 ```
 
 ❌ **Don't:** Use COMMIT/ROLLBACK in triggers
+
 ```sql
 -- ❌ Not allowed in triggers
 CREATE TRIGGER bad_commit
@@ -477,6 +488,7 @@ END;
 ```
 
 ❌ **Don't:** Create overly complex triggers
+
 ```sql
 -- ❌ Too complex, hard to debug
 CREATE TRIGGER complex_trigger
@@ -491,6 +503,7 @@ END;
 ```
 
 ✅ **Do:** Keep triggers focused and simple
+
 ```sql
 -- ✅ Simple, clear purpose
 CREATE TRIGGER log_salary_change
@@ -505,6 +518,7 @@ END;
 ```
 
 ✅ **Do:** Use SIGNAL for validation errors
+
 ```sql
 -- ✅ Clear error messages
 CREATE TRIGGER validate_salary
@@ -519,6 +533,7 @@ END;
 ```
 
 ✅ **Do:** Document trigger purpose
+
 ```sql
 -- ✅ Well-documented
 -- Purpose: Prevent salary decreases and log all changes
@@ -565,19 +580,22 @@ END;
 "A trigger is a database object that automatically executes SQL code in response to INSERT, UPDATE, or DELETE events on a table. Unlike stored procedures which are called manually, triggers fire automatically when the triggering event occurs.
 
 **Key characteristics:**
+
 1. **Timing**: BEFORE (for validation) or AFTER (for logging)
 2. **Events**: INSERT, UPDATE, or DELETE
-3. **Access to data**: 
+3. **Access to data**:
    - NEW keyword for new row values (INSERT, UPDATE)
    - OLD keyword for old row values (UPDATE, DELETE)
 
 **Common use cases:**
+
 - **Audit logging**: Track all salary changes automatically
 - **Data validation**: Prevent negative salaries or unauthorized changes
 - **Automatic calculations**: Update derived fields like `total_price`
 - **Archive deleted data**: Move deleted records to archive table
 
 **Example**: When an employee's salary is updated, an AFTER UPDATE trigger automatically logs the change to an audit table without any manual code:
+
 ```sql
 CREATE TRIGGER log_salary_changes
 AFTER UPDATE ON employees
@@ -590,6 +608,7 @@ END;
 ```
 
 **Important considerations:**
+
 - Triggers add performance overhead
 - Keep trigger logic simple
 - Cannot use COMMIT/ROLLBACK inside triggers
@@ -598,15 +617,17 @@ END;
 **Follow-up Questions to Expect:**
 
 **Q: What's the difference between BEFORE and AFTER triggers?**
-*Answer:*
+_Answer:_
+
 - **BEFORE**: Executes before the data change, can modify NEW values or prevent the operation using SIGNAL
 - **AFTER**: Executes after the data change, used for logging and notifications, cannot modify NEW values
 
 **Q: Can you call a trigger manually like a stored procedure?**
-*Answer:* No, triggers are automatic. They only fire when their associated event (INSERT/UPDATE/DELETE) occurs. You cannot CALL a trigger directly.
+_Answer:_ No, triggers are automatic. They only fire when their associated event (INSERT/UPDATE/DELETE) occurs. You cannot CALL a trigger directly.
 
 **Q: What are OLD and NEW in triggers?**
-*Answer:*
+_Answer:_
+
 - **NEW**: New row values (available in INSERT and UPDATE triggers)
 - **OLD**: Old row values (available in UPDATE and DELETE triggers)
 - **INSERT**: Only NEW available
@@ -614,10 +635,11 @@ END;
 - **DELETE**: Only OLD available
 
 **Q: What happens if you have multiple triggers on the same table?**
-*Answer:* MySQL executes triggers in alphabetical order by trigger name. For example, `a_validate_data` executes before `b_log_changes`. It's good practice to use prefixes to control execution order.
+_Answer:_ MySQL executes triggers in alphabetical order by trigger name. For example, `a_validate_data` executes before `b_log_changes`. It's good practice to use prefixes to control execution order.
 
 **Q: When should you NOT use triggers?**
-*Answer:*
+_Answer:_
+
 - Complex business logic (use stored procedures or application layer)
 - When you need explicit transaction control
 - When debugging is difficult (triggers are "invisible" to applications)
@@ -632,6 +654,7 @@ END;
 <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #F59E0B; padding: 20px; border-radius: 8px; margin: 20px 0;">
 
 ### Exercise 1: Email Change Notification
+
 Create a trigger that logs email changes and prevents empty emails.
 
 ```sql
@@ -663,7 +686,7 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Email cannot be empty';
     END IF;
-    
+
     -- Log email changes
     IF OLD.email != NEW.email THEN
         INSERT INTO email_change_log (emp_id, old_email, new_email)
@@ -679,6 +702,7 @@ DELIMITER ;
 ---
 
 ### Exercise 2: Inventory Stock Management
+
 Create triggers to prevent negative stock and log all inventory changes.
 
 ```sql
@@ -719,7 +743,7 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
     END IF;
-    
+
     SET NEW.last_updated = NOW();
 END$$
 
@@ -730,10 +754,10 @@ FOR EACH ROW
 BEGIN
     IF OLD.stock_quantity != NEW.stock_quantity THEN
         INSERT INTO inventory_log (
-            product_id, 
-            old_quantity, 
-            new_quantity, 
-            change_amount, 
+            product_id,
+            old_quantity,
+            new_quantity,
+            change_amount,
             action_type
         )
         VALUES (
@@ -754,6 +778,7 @@ DELIMITER ;
 ---
 
 ### Exercise 3: Auto-Calculate Age
+
 Create a trigger that automatically calculates and updates employee age based on birth_date.
 
 ```sql
@@ -765,7 +790,7 @@ Create a trigger that automatically calculates and updates employee age based on
 
 ```sql
 -- Add birth_date and age columns
-ALTER TABLE employees 
+ALTER TABLE employees
 ADD COLUMN birth_date DATE,
 ADD COLUMN age INT;
 
@@ -818,6 +843,7 @@ SELECT emp_name, birth_date, age FROM employees WHERE emp_name = 'John Doe';
 ---
 
 ## 🏷️ Tags
+
 `MySQL` `SQL` `Triggers` `Database Automation` `Audit Logging` `Data Validation` `Interview Questions`
 
 <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #EF4444; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -855,14 +881,17 @@ SELECT emp_name, birth_date, age FROM employees WHERE emp_name = 'John Doe';
 ### How to Answer in an Interview
 
 **Good Answer:**
+
 > "A trigger is a database object that automatically executes in response to INSERT, UPDATE, or DELETE events on a table."
 
 **Points to Mention:**
+
 - [Key point 1]
 - [Key point 2]
 - [Key point 3]
 
 **What NOT to say:**
+
 - ❌ [Common wrong answer]
 - ❌ [Incomplete answer]
 
@@ -904,4 +933,3 @@ Try solving this yourself:
 - MySQL Official Documentation
 - Performance Optimization Guide
 - Best Practices
-

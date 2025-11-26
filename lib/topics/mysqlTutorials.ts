@@ -1,4 +1,7 @@
-import { mysqlTutorialsCatalog, type MySQLTutorial as CatalogTutorial } from './mysqlTutorialsCatalog';
+import {
+  mysqlTutorialsCatalog,
+  type MySQLTutorial as CatalogTutorial,
+} from "./mysqlTutorialsCatalog";
 
 export interface MySQLTutorial {
   id: number;
@@ -17,9 +20,11 @@ export interface MySQLTutorial {
 }
 
 // Map catalog tutorials to the format expected by the page
-const mapCatalogToTutorial = (catalogTutorial: CatalogTutorial): MySQLTutorial => {
+const mapCatalogToTutorial = (
+  catalogTutorial: CatalogTutorial
+): MySQLTutorial => {
   return {
-    id: parseInt(catalogTutorial.id.replace(/\D/g, '')),
+    id: parseInt(catalogTutorial.id.replace(/\D/g, "")),
     title: catalogTutorial.title,
     slug: catalogTutorial.slug,
     description: catalogTutorial.description,
@@ -31,7 +36,8 @@ const mapCatalogToTutorial = (catalogTutorial: CatalogTutorial): MySQLTutorial =
 };
 
 // Export all tutorials from the catalog
-export const mysqlTutorials: MySQLTutorial[] = mysqlTutorialsCatalog.map(mapCatalogToTutorial);
+export const mysqlTutorials: MySQLTutorial[] =
+  mysqlTutorialsCatalog.map(mapCatalogToTutorial);
 
 // Legacy tutorials (kept for reference, but catalog is the source of truth)
 export const legacyMysqlTutorials: MySQLTutorial[] = [

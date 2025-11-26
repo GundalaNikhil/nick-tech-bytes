@@ -19,11 +19,13 @@
 **A View** is like a **menu item** - it's a pre-defined recipe that combines ingredients from storage. When you order "Caesar Salad," you don't need to know which containers hold lettuce, croutons, and dressing. The menu (view) simplifies your order.
 
 **Similarly in MySQL:**
+
 - **Tables** = Raw data storage (employees, salaries, departments)
 - **View** = Pre-built query that combines tables (e.g., "employee_summary" showing name, department, salary)
 - Users query the view without knowing the complex JOIN logic behind it
 
 ### Key Benefits:
+
 1. **Simplification** - Complex queries become simple SELECT statements
 2. **Security** - Show only certain columns (hide salary from non-managers)
 3. **Reusability** - Write the complex query once, use it everywhere
@@ -88,22 +90,26 @@
 ### Core Understanding
 
 **1. What is a View?**
+
 - A saved SQL query that acts like a table
 - Virtual table - doesn't store data (executes query on-demand)
 - Updated automatically when base tables change
 
 **2. Types of Views**
+
 - **Simple View**: Based on single table, updatable
 - **Complex View**: Joins, aggregates, subqueries - often read-only
 - **Materialized View**: Stores results physically (MySQL doesn't natively support, but can simulate)
 
 **3. Use Cases**
+
 - Simplify complex JOINs and queries
 - Hide sensitive columns (security layer)
 - Create different perspectives for different users
 - Maintain backward compatibility when changing schema
 
 **4. Limitations**
+
 - Cannot contain ORDER BY (unless with LIMIT)
 - Some views are not updatable (those with JOINs, GROUP BY, DISTINCT)
 - Performance overhead if not indexed properly
@@ -142,6 +148,7 @@ SELECT * FROM employee_directory;
 ```
 
 **Output:**
+
 ```
 +--------+----------------+------------+------------+
 | emp_id | emp_name       | department | hire_date  |
@@ -152,6 +159,7 @@ SELECT * FROM employee_directory;
 |      4 | Diana Prince   | Finance    | 2018-11-05 |
 +--------+----------------+------------+------------+
 ```
+
 **Note:** Salary is hidden! Perfect for general employees who shouldn't see salary data.
 
 ---
@@ -179,7 +187,7 @@ INSERT INTO departments VALUES
 
 -- Create complex view with JOIN
 CREATE VIEW employee_details AS
-SELECT 
+SELECT
     e.emp_id,
     e.emp_name,
     d.dept_name,
@@ -194,6 +202,7 @@ SELECT * FROM employee_details WHERE dept_name = 'IT';
 ```
 
 **Output:**
+
 ```
 +--------+---------------+-------------------------+----------+--------------+
 | emp_id | emp_name      | dept_name               | salary   | manager_name |
@@ -210,7 +219,7 @@ SELECT * FROM employee_details WHERE dept_name = 'IT';
 ```sql
 -- Create view showing department statistics
 CREATE VIEW department_stats AS
-SELECT 
+SELECT
     d.dept_name,
     COUNT(e.emp_id) AS employee_count,
     AVG(e.salary) AS avg_salary,
@@ -225,6 +234,7 @@ SELECT * FROM department_stats ORDER BY avg_salary DESC;
 ```
 
 **Output:**
+
 ```
 +-------------------------+----------------+-------------+------------+------------+
 | dept_name               | employee_count | avg_salary  | max_salary | min_salary |
@@ -267,13 +277,13 @@ SELECT emp_name, salary FROM employees WHERE emp_id = 1;
 SHOW CREATE VIEW employee_directory;
 
 -- List all views in database
-SELECT TABLE_NAME, TABLE_TYPE 
-FROM information_schema.TABLES 
+SELECT TABLE_NAME, TABLE_TYPE
+FROM information_schema.TABLES
 WHERE TABLE_TYPE = 'VIEW' AND TABLE_SCHEMA = 'your_database';
 
 -- Modify an existing view (OR REPLACE)
 CREATE OR REPLACE VIEW employee_directory AS
-SELECT emp_id, emp_name, department, hire_date, 
+SELECT emp_id, emp_name, department, hire_date,
        YEAR(CURDATE()) - YEAR(hire_date) AS years_employed
 FROM employees;
 
@@ -306,8 +316,6 @@ GRANT SELECT ON it_team_view TO 'it_manager'@'localhost';
 
 **Benefit:** Each manager only sees their department's data without accessing the full employees table!
 
-
-
 ---
 
 ## 🔍 Things to Consider
@@ -317,24 +325,28 @@ GRANT SELECT ON it_team_view TO 'it_manager'@'localhost';
 ### Important Points
 
 **Performance Implications:**
+
 - ✓ Views execute the underlying query every time (no caching)
 - ✓ Complex views with multiple JOINs can be slow
 - ✓ Consider indexed views or materialized views for better performance
 - ✓ Use EXPLAIN to analyze view query performance
 
 **Best Practices:**
+
 - ✓ Name views descriptively (e.g., `vw_employee_summary`)
 - ✓ Document view purpose and underlying logic
 - ✓ Limit view complexity (avoid views of views)
 - ✓ Use `CREATE OR REPLACE VIEW` for easy updates
 
 **When to Use Views:**
+
 - ✓ Simplifying frequently used complex queries
 - ✓ Creating security layers (column/row filtering)
 - ✓ Maintaining backward compatibility after schema changes
 - ✓ Providing different data perspectives for different users
 
 **Alternatives to Consider:**
+
 - ✓ Stored procedures for complex logic
 - ✓ Application-layer query builders
 - ✓ CTEs (Common Table Expressions) for one-time queries
@@ -351,13 +363,15 @@ GRANT SELECT ON it_team_view TO 'it_manager'@'localhost';
 ### What to Avoid
 
 ❌ **Don't:** Create views on top of views (nested views)
+
 ```sql
 -- Bad practice
 CREATE VIEW view1 AS SELECT ... FROM base_table;
 CREATE VIEW view2 AS SELECT ... FROM view1;  -- ❌ Hard to maintain
 ```
 
-❌ **Don't:** Use SELECT * in view definitions
+❌ **Don't:** Use SELECT \* in view definitions
+
 ```sql
 -- Risky approach
 CREATE VIEW employee_view AS
@@ -365,6 +379,7 @@ SELECT * FROM employees;  -- ❌ Breaks if table structure changes
 ```
 
 ❌ **Don't:** Assume all views are updatable
+
 ```sql
 -- This view is NOT updatable
 CREATE VIEW dept_summary AS
@@ -377,6 +392,7 @@ UPDATE dept_summary SET emp_count = 10 WHERE department = 'IT';
 ```
 
 ✅ **Do:** Explicitly list columns in views
+
 ```sql
 -- Better approach
 CREATE VIEW employee_view AS
@@ -385,6 +401,7 @@ FROM employees;
 ```
 
 ✅ **Do:** Check if a view is updatable
+
 ```sql
 SELECT TABLE_NAME, IS_UPDATABLE
 FROM information_schema.VIEWS
@@ -392,6 +409,7 @@ WHERE TABLE_SCHEMA = 'your_database';
 ```
 
 ✅ **Do:** Use WITH CHECK OPTION for data integrity
+
 ```sql
 CREATE VIEW active_employees AS
 SELECT * FROM employees WHERE status = 'active'
@@ -427,6 +445,7 @@ WITH CHECK OPTION;  -- ✅ Prevents inserting inactive employees through view
 "A view in MySQL is a virtual table created by storing a SQL query. Unlike physical tables, views don't store data themselves - they dynamically execute the underlying query whenever accessed.
 
 **Key benefits include:**
+
 1. **Simplification** - Hide complex JOINs behind a simple SELECT statement
 2. **Security** - Control which columns/rows users can see without direct table access
 3. **Abstraction** - Change underlying table structure without breaking application code
@@ -435,6 +454,7 @@ WITH CHECK OPTION;  -- ✅ Prevents inserting inactive employees through view
 For example, instead of every developer writing a complex JOIN between employees and departments, we create a view like `employee_details` that they can query directly.
 
 **Important considerations:**
+
 - Simple views (single table, no aggregates) are updatable
 - Complex views with JOINs or GROUP BY are typically read-only
 - Views execute the query each time, so performance depends on underlying table indexes"
@@ -442,20 +462,23 @@ For example, instead of every developer writing a complex JOIN between employees
 **Follow-up Questions to Expect:**
 
 **Q: Can you update data through a view?**
-*Answer:* Yes, but only for simple views. A view is updatable if it meets these criteria:
+_Answer:_ Yes, but only for simple views. A view is updatable if it meets these criteria:
+
 - Based on a single table (no JOINs)
 - No DISTINCT, GROUP BY, HAVING, or aggregate functions
 - No UNION or subqueries in SELECT list
 - All non-nullable columns must be included (for INSERT)
 
 **Q: What's the difference between a view and a table?**
-*Answer:* 
+_Answer:_
+
 - **Table:** Physical storage, contains actual data, occupies disk space
 - **View:** Virtual table, stores only the query definition, executes query on each access
 - Views are always up-to-date with base table changes, while tables store static data until modified
 
 **Q: How do you improve view performance?**
-*Answer:*
+_Answer:_
+
 1. Index the base table columns used in WHERE/JOIN clauses
 2. Simplify view logic (avoid nested views)
 3. Use materialized views (simulate in MySQL with triggers + tables)
@@ -470,6 +493,7 @@ For example, instead of every developer writing a complex JOIN between employees
 <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #F59E0B; padding: 20px; border-radius: 8px; margin: 20px 0;">
 
 ### Exercise 1: Create a Security View
+
 Create a view that shows employee data but hides salary information for non-managers.
 
 ```sql
@@ -500,6 +524,7 @@ GRANT SELECT ON employee_manager TO 'manager_role'@'%';
 ---
 
 ### Exercise 2: Complex View with Aggregation
+
 Create a view showing department-wise statistics: total employees, average salary, and highest paid employee.
 
 ```sql
@@ -511,13 +536,13 @@ Create a view showing department-wise statistics: total employees, average salar
 
 ```sql
 CREATE VIEW department_analytics AS
-SELECT 
+SELECT
     d.dept_name,
     COUNT(e.emp_id) AS total_employees,
     ROUND(AVG(e.salary), 2) AS avg_salary,
     MAX(e.salary) AS highest_salary,
-    (SELECT emp_name FROM employees 
-     WHERE dept_id = d.dept_id 
+    (SELECT emp_name FROM employees
+     WHERE dept_id = d.dept_id
      ORDER BY salary DESC LIMIT 1) AS top_earner
 FROM departments d
 LEFT JOIN employees e ON d.dept_id = e.dept_id
@@ -532,6 +557,7 @@ SELECT * FROM department_analytics ORDER BY avg_salary DESC;
 ---
 
 ### Exercise 3: Updatable View with CHECK OPTION
+
 Create a view for active IT employees and ensure only IT employees can be added through it.
 
 ```sql
@@ -575,5 +601,5 @@ VALUES ('HR Employee', 60000, CURDATE());
 ---
 
 ## 🏷️ Tags
-`MySQL` `SQL` `Views` `Virtual Tables` `Database Security` `Query Optimization` `Data Abstraction` `Interview Questions`
 
+`MySQL` `SQL` `Views` `Virtual Tables` `Database Security` `Query Optimization` `Data Abstraction` `Interview Questions`

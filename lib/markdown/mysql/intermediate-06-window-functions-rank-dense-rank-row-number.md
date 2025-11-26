@@ -15,6 +15,7 @@
 Imagine a **school race competition** 🏃‍♂️:
 
 **Race Results:**
+
 - Alice: 10.5 seconds (1st) 🥇
 - Bob: 11.0 seconds (2nd) 🥈
 - Charlie: 11.0 seconds (2nd - tied!) 🥈
@@ -24,9 +25,11 @@ Imagine a **school race competition** 🏃‍♂️:
 **How do we rank them?**
 
 1. **ROW_NUMBER()** - "Everyone gets a unique number, no ties allowed!"
+
    - Alice: 1, Bob: 2, Charlie: 3, David: 4, Eve: 5
 
 2. **RANK()** - "Tied students get the same rank, then skip numbers"
+
    - Alice: 1, Bob: 2, Charlie: 2, David: **4** (skips 3!), Eve: 5
 
 3. **DENSE_RANK()** - "Tied students get same rank, but DON'T skip numbers"
@@ -74,8 +77,6 @@ Imagine a **school race competition** 🏃‍♂️:
 
 SELECT 'Add your code here' AS example;
 ```
-
-
 
 ---
 
@@ -132,14 +133,17 @@ SELECT 'Add your code here' AS example;
 ### How to Answer in an Interview
 
 **Good Answer:**
+
 > "ROW_NUMBER gives unique sequential numbers. RANK skips numbers after ties. DENSE_RANK doesn't skip numbers."
 
 **Points to Mention:**
+
 - [Key point 1]
 - [Key point 2]
 - [Key point 3]
 
 **What NOT to say:**
+
 - ❌ [Common wrong answer]
 - ❌ [Incomplete answer]
 
@@ -181,4 +185,3 @@ Try solving this yourself:
 - MySQL Official Documentation
 - Performance Optimization Guide
 - Best Practices
-

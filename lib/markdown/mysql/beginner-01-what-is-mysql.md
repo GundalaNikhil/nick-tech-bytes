@@ -13,6 +13,7 @@
 ### Real-Life Analogy
 
 Imagine you have a **massive library** 📚 with millions of books. You need:
+
 - A way to **organize** all the books (by category, author, year)
 - A **system** to quickly find any book you want
 - **Rules** to ensure books don't get lost or mixed up
@@ -21,6 +22,7 @@ Imagine you have a **massive library** 📚 with millions of books. You need:
 **MySQL is like that library management system, but for data on computers!**
 
 Instead of books, it stores:
+
 - User information (names, emails, passwords)
 - Product details (prices, descriptions, stock)
 - Order history, reviews, messages, and more
@@ -70,14 +72,17 @@ Instead of books, it stores:
 ### What is MySQL?
 
 1. **Relational Database Management System (RDBMS)**
+
    - Stores data in organized tables (rows and columns)
    - Establishes relationships between different tables
 
 2. **Open Source**
+
    - Free to use and modify
    - Community-driven with regular updates
 
 3. **Uses SQL Language**
+
    - SQL = Structured Query Language
    - Standard language to interact with databases
 
@@ -237,7 +242,7 @@ CREATE TABLE students (
 );
 
 -- Insert data
-INSERT INTO students (name, age, grade) 
+INSERT INTO students (name, age, grade)
 VALUES ('Alice', 15, '10th');
 
 -- Retrieve data
@@ -245,6 +250,7 @@ SELECT * FROM students;
 ```
 
 **Output:**
+
 ```
 +----+-------+-----+-------+
 | id | name  | age | grade |
@@ -276,6 +282,7 @@ SELECT * FROM students;
 ### How to Answer in an Interview
 
 **Good Answer:**
+
 > "MySQL is an open-source relational database management system that uses SQL for data management. It's popular because it's free, highly performant, easy to learn, and has excellent community support. Major companies like Facebook, YouTube, and Netflix use it. It follows the client-server architecture and supports ACID properties, making it reliable for production environments."
 
 **What NOT to say:**
@@ -292,4 +299,3 @@ SELECT * FROM students;
 - [SQL vs MySQL - Understanding the Difference](/mysql-tutorials/02-sql-vs-mysql)
 - [Storage Engines (MyISAM vs InnoDB)](/mysql-tutorials/03-storage-engines)
 - [ACID Properties](/mysql-tutorials/04-acid-properties)
-

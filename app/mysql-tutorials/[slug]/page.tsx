@@ -568,9 +568,12 @@ export default async function MySQLTutorialPage({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {/* Previous Article */}
             {(() => {
-              const currentIndex = mysqlTutorials.findIndex((t) => t.slug === slug);
-              const previousTutorial = currentIndex > 0 ? mysqlTutorials[currentIndex - 1] : null;
-              
+              const currentIndex = mysqlTutorials.findIndex(
+                (t) => t.slug === slug
+              );
+              const previousTutorial =
+                currentIndex > 0 ? mysqlTutorials[currentIndex - 1] : null;
+
               return previousTutorial ? (
                 <Link
                   href={`/mysql-tutorials/${previousTutorial.slug}`}
@@ -580,7 +583,9 @@ export default async function MySQLTutorialPage({
                     <ArrowLeft className="h-4 w-4 text-orange-400" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Previous</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                      Previous
+                    </p>
                     <p className="text-sm font-semibold text-white truncate group-hover:text-orange-400 transition-colors">
                       {previousTutorial.title}
                     </p>
@@ -595,16 +600,23 @@ export default async function MySQLTutorialPage({
 
             {/* Next Article */}
             {(() => {
-              const currentIndex = mysqlTutorials.findIndex((t) => t.slug === slug);
-              const nextTutorial = currentIndex < mysqlTutorials.length - 1 ? mysqlTutorials[currentIndex + 1] : null;
-              
+              const currentIndex = mysqlTutorials.findIndex(
+                (t) => t.slug === slug
+              );
+              const nextTutorial =
+                currentIndex < mysqlTutorials.length - 1
+                  ? mysqlTutorials[currentIndex + 1]
+                  : null;
+
               return nextTutorial ? (
                 <Link
                   href={`/mysql-tutorials/${nextTutorial.slug}`}
                   className="group flex items-center gap-3 p-4 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 hover:border-orange-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/10"
                 >
                   <div className="flex-1 min-w-0 text-right">
-                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Next</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                      Next
+                    </p>
                     <p className="text-sm font-semibold text-white truncate group-hover:text-orange-400 transition-colors">
                       {nextTutorial.title}
                     </p>

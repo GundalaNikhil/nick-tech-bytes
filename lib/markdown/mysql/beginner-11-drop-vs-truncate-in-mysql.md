@@ -21,6 +21,7 @@
 **DELETE** (for comparison) is like **using an eraser to erase specific words** - slow, selective, but you can undo it if needed.
 
 ### In Database Terms:
+
 - **DROP TABLE** = Delete the table blueprint and all data
 - **TRUNCATE TABLE** = Keep the table blueprint, remove all data
 - **DELETE FROM** = Remove data row by row (can be selective)
@@ -77,20 +78,24 @@
 ### Core Understanding
 
 **1. DDL vs DML Commands**
+
 - DROP & TRUNCATE = DDL (Data Definition Language) - Cannot rollback
 - DELETE = DML (Data Manipulation Language) - Can rollback with transactions
 
 **2. When to Use Each**
+
 - **DROP**: Remove entire table permanently (testing cleanup, deprecated tables)
 - **TRUNCATE**: Quick reset of all data while keeping structure (clear test data)
 - **DELETE**: Remove specific rows or when you need rollback capability
 
 **3. Performance Differences**
+
 - DROP: Fastest (removes everything instantly)
 - TRUNCATE: Very fast (deallocates data pages)
 - DELETE: Slowest (logs each row deletion)
 
 **4. Foreign Key Constraints**
+
 - DROP: Fails if other tables reference it
 - TRUNCATE: Fails if referenced by foreign keys
 - DELETE: Can work with foreign keys if ON DELETE CASCADE is set
@@ -122,6 +127,7 @@ SELECT * FROM temp_employees;
 ```
 
 **Output:**
+
 ```
 +--------+----------+------------+
 | emp_id | emp_name | department |
@@ -173,6 +179,7 @@ SELECT * FROM temp_employees;
 ```
 
 **Output:**
+
 ```
 +--------+----------+------------+
 | emp_id | emp_name | department |
@@ -245,21 +252,25 @@ DELETE FROM departments WHERE dept_id = 1;
 ### Important Points
 
 **Performance Implications:**
+
 - ✓ TRUNCATE is 100-1000x faster than DELETE on large tables
 - ✓ DROP is instant regardless of table size
 - ✓ DELETE logs every row deletion (slow but safe)
 
 **Best Practices:**
+
 - ✓ Use DROP only when removing obsolete tables
 - ✓ Use TRUNCATE for quick cleanup in development/testing
 - ✓ Use DELETE in production when you need safety/rollback
 
 **When to Use Each:**
+
 - ✓ **DROP**: Removing deprecated features, cleaning up test databases
 - ✓ **TRUNCATE**: Resetting test data, clearing temporary tables
 - ✓ **DELETE**: Production data removal, conditional deletions
 
 **Disk Space:**
+
 - ✓ DROP immediately frees disk space
 - ✓ TRUNCATE immediately frees disk space
 - ✓ DELETE may require OPTIMIZE TABLE to reclaim space
@@ -275,6 +286,7 @@ DELETE FROM departments WHERE dept_id = 1;
 ### What to Avoid
 
 ❌ **Don't:** Use DROP when you only want to clear data
+
 ```sql
 -- Wrong approach
 DROP TABLE users;  -- ❌ Removes table structure too!
@@ -282,18 +294,21 @@ CREATE TABLE users (...);  -- Need to recreate
 ```
 
 ❌ **Don't:** Use DELETE for large tables when TRUNCATE would work
+
 ```sql
 -- Slow approach
 DELETE FROM logs;  -- ❌ Takes hours on 10 million rows
 ```
 
 ❌ **Don't:** Forget that TRUNCATE cannot be rolled back
+
 ```sql
 -- Dangerous in production
 TRUNCATE TABLE customer_orders;  -- ❌ No undo!
 ```
 
 ✅ **Do:** Choose the right command for your use case
+
 ```sql
 -- Correct approaches
 TRUNCATE TABLE logs;              -- ✅ Fast cleanup
@@ -302,9 +317,10 @@ DROP TABLE temp_2024_01_backup;   -- ✅ Remove obsolete table
 ```
 
 ✅ **Do:** Verify table dependencies before TRUNCATE/DROP
+
 ```sql
 -- Check foreign key references
-SELECT 
+SELECT
     TABLE_NAME, CONSTRAINT_NAME, REFERENCED_TABLE_NAME
 FROM information_schema.KEY_COLUMN_USAGE
 WHERE REFERENCED_TABLE_NAME = 'your_table';
@@ -347,14 +363,17 @@ WHERE REFERENCED_TABLE_NAME = 'your_table';
 I'd use DROP when removing obsolete tables, TRUNCATE for quick data cleanup in testing, and DELETE in production when I need rollback capability or conditional deletion."
 
 **Follow-up Questions to Expect:**
+
 - Can you rollback a TRUNCATE operation?
-  - *Answer:* No, TRUNCATE is DDL and auto-commits. However, in InnoDB with explicit transactions before TRUNCATE, some database systems allow rollback.
+
+  - _Answer:_ No, TRUNCATE is DDL and auto-commits. However, in InnoDB with explicit transactions before TRUNCATE, some database systems allow rollback.
 
 - How does TRUNCATE handle foreign key constraints?
-  - *Answer:* TRUNCATE fails if the table is referenced by foreign keys. You must disable constraints or use DELETE with CASCADE.
+
+  - _Answer:_ TRUNCATE fails if the table is referenced by foreign keys. You must disable constraints or use DELETE with CASCADE.
 
 - Which is faster on a 10 million row table: DELETE or TRUNCATE?
-  - *Answer:* TRUNCATE is dramatically faster (milliseconds vs minutes) because it deallocates entire data pages instead of logging each row deletion.
+  - _Answer:_ TRUNCATE is dramatically faster (milliseconds vs minutes) because it deallocates entire data pages instead of logging each row deletion.
 
 </div>
 
@@ -365,6 +384,7 @@ I'd use DROP when removing obsolete tables, TRUNCATE for quick data cleanup in t
 <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #F59E0B; padding: 20px; border-radius: 8px; margin: 20px 0;">
 
 ### Exercise 1: Command Comparison
+
 Create a table with 1000 rows, then compare the execution time of DELETE vs TRUNCATE.
 
 ```sql
@@ -427,6 +447,7 @@ DROP TABLE perf_test;
 ---
 
 ### Exercise 2: Foreign Key Handling
+
 Create parent-child tables with foreign keys and test DROP/TRUNCATE behavior.
 
 ```sql
@@ -481,6 +502,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 ---
 
 ### Exercise 3: Transaction Rollback Test
+
 Test which commands can be rolled back.
 
 ```sql
@@ -537,15 +559,19 @@ SHOW TABLES LIKE 'rollback_test';  -- ❌ Table gone (auto-committed)
 ---
 
 ## 🏷️ Tags
+
 `MySQL` `SQL` `DDL` `DML` `DROP` `TRUNCATE` `DELETE` `Database Management` `Performance` `Interview Questions`
+
 > "DROP removes the entire table structure and data permanently, while TRUNCATE only removes all data but keeps the table structure intact."
 
 **Points to Mention:**
+
 - [Key point 1]
 - [Key point 2]
 - [Key point 3]
 
 **What NOT to say:**
+
 - ❌ [Common wrong answer]
 - ❌ [Incomplete answer]
 
@@ -587,4 +613,3 @@ Try solving this yourself:
 - MySQL Official Documentation
 - Performance Optimization Guide
 - Best Practices
-
