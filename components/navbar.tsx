@@ -316,6 +316,29 @@ export default function Navbar({
                               </p>
                             </Link>
                           </motion.div>
+
+                          {/* MySQL Tutorials */}
+                          <motion.div
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.3 }}
+                          >
+                            <Link
+                              href="/mysql-tutorials"
+                              onClick={() => setIsDropdownOpen(false)}
+                              className="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-orange-400 transition-all duration-200 rounded-lg border border-transparent hover:border-orange-400/30 hover:bg-orange-500/10 group"
+                            >
+                              <div className="flex items-center gap-3 mb-1">
+                                <Code2 className="w-5 h-5 text-orange-400" />
+                                <span className="font-semibold">
+                                  MySQL Tutorials
+                                </span>
+                              </div>
+                              <p className="text-xs text-gray-400 ml-8">
+                                Master Database Design
+                              </p>
+                            </Link>
+                          </motion.div>
                         </div>
                       </div>
                     </div>
@@ -482,6 +505,24 @@ export default function Navbar({
               >
                 <BookOpen className="w-4 h-4" />
                 <span>Spring Boot</span>
+              </Link>
+
+              <Link
+                href="/docker-tutorials"
+                className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 px-4 py-3 rounded-xl text-sm font-semibold transition-all border border-cyan-500/30"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Code2 className="w-4 h-4" />
+                <span>Docker Tutorials</span>
+              </Link>
+
+              <Link
+                href="/mysql-tutorials"
+                className="flex items-center gap-2 text-orange-400 hover:text-orange-300 hover:bg-orange-500/10 px-4 py-3 rounded-xl text-sm font-semibold transition-all border border-orange-500/30"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Code2 className="w-4 h-4" />
+                <span>MySQL Tutorials</span>
               </Link>
 
               <Link
