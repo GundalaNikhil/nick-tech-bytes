@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavbarWrapper from "@/components/NavbarWrapper";
+import { AuthProvider } from "@/hooks/useAuth";
 
 export const metadata: Metadata = {
   title: "𝗡𝗜𝗖𝗞 𝗧𝗘𝗖𝗛 𝗕𝗬𝗧𝗘𝗦",
@@ -23,8 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="overflow-x-hidden">
       <body className="overflow-x-hidden">
-        <NavbarWrapper />
-        <div className="pt-20">{children}</div>
+        <AuthProvider>
+          <NavbarWrapper />
+          <div className="pt-20">{children}</div>
+        </AuthProvider>
       </body>
     </html>
   );

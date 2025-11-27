@@ -5,8 +5,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ChevronDown, Code2, Layers, BookOpen } from "lucide-react";
+import {
+  ChevronDown,
+  Code2,
+  Layers,
+  BookOpen,
+  LogOut,
+  User,
+} from "lucide-react";
 import Image from "next/image";
+import { useAuth } from "@/hooks/useAuth";
 
 type NavbarProps = {
   topicsList: TopicKey[];
@@ -22,6 +30,9 @@ export default function Navbar({
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const router = useRouter();
+
+  // Auth state
+  const { user, isAuthenticated, logout } = useAuth();
 
   // Scroll detection for navbar visibility
   useEffect(() => {
@@ -345,10 +356,12 @@ export default function Navbar({
             </motion.div>
 
             {/* CTA Button */}
-            <motion.a
+            <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              href="#"
+              onClick={() => {
+                router.push("/login");
+              }}
               className="relative ml-2 lg:ml-3 px-4 lg:px-6 py-2.5 rounded-xl text-xs lg:text-sm font-bold text-white overflow-hidden group"
             >
               <motion.div
@@ -381,7 +394,7 @@ export default function Navbar({
                 whileHover={{ scale: 1.5, opacity: 0 }}
                 transition={{ duration: 0.5 }}
               />
-            </motion.a>
+            </motion.button>
           </motion.div>
 
           {/* Mobile Menu Button */}
@@ -500,13 +513,16 @@ export default function Navbar({
                 About Us
               </Link>
 
-              <motion.a
+              <motion.button
                 whileTap={{ scale: 0.95 }}
-                href="#"
-                className="block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-3 rounded-xl text-sm font-bold text-center shadow-lg"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  router.push("/login");
+                }}
+                className="block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-3 rounded-xl text-sm font-bold text-center shadow-lg w-full"
               >
                 Sign In
-              </motion.a>
+              </motion.button>
             </motion.div>
           )}
         </AnimatePresence>
