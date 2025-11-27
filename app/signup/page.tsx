@@ -49,16 +49,29 @@ export default function SignUpPage() {
     // Validation
     const newErrors: Record<string, string> = {};
 
+    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    } else if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)
+    ) {
       newErrors.email = "Invalid email format";
     }
 
+    // Password validation
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (formData.password.length < 8) {
       newErrors.password = "Password must be at least 8 characters";
+    } else if (formData.password.length > 72) {
+      newErrors.password = "Password must not exceed 72 characters";
+    } else if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        formData.password
+      )
+    ) {
+      newErrors.password =
+        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -68,14 +81,10 @@ export default function SignUpPage() {
 
     try {
       setIsSubmitting(true);
-      // Generate username from email (part before @)
-      const username = formData.email.split("@")[0];
 
       await register({
-        username: username,
         email: formData.email,
         password: formData.password,
-        confirmPassword: formData.password,
       });
       router.push("/");
     } catch (err) {
@@ -349,7 +358,7 @@ export default function SignUpPage() {
                     </motion.p>
                   )}
                   <p className="text-xs text-gray-500">
-                    We&apos;ll use this as your username too
+                    We&apos;ll create a unique username for you
                   </p>
                 </div>
 
@@ -401,7 +410,101 @@ export default function SignUpPage() {
                       {errors.password}
                     </motion.p>
                   )}
-                  <p className="text-xs text-gray-500">Minimum 8 characters</p>
+
+                  {/* Password Strength Checklist */}
+                  {formData.password && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      className="mt-3 p-3 bg-black/20 border border-gray-700/30 rounded-lg space-y-2"
+                    >
+                      <p className="text-xs text-gray-400 font-medium mb-2">
+                        Password must contain:
+                      </p>
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2 text-xs">
+                          {formData.password.length >= 8 ? (
+                            <span className="text-green-400">✓</span>
+                          ) : (
+                            <span className="text-gray-500">○</span>
+                          )}
+                          <span
+                            className={
+                              formData.password.length >= 8
+                                ? "text-green-400"
+                                : "text-gray-500"
+                            }
+                          >
+                            At least 8 characters
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs">
+                          {/[A-Z]/.test(formData.password) ? (
+                            <span className="text-green-400">✓</span>
+                          ) : (
+                            <span className="text-gray-500">○</span>
+                          )}
+                          <span
+                            className={
+                              /[A-Z]/.test(formData.password)
+                                ? "text-green-400"
+                                : "text-gray-500"
+                            }
+                          >
+                            One uppercase letter
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs">
+                          {/[a-z]/.test(formData.password) ? (
+                            <span className="text-green-400">✓</span>
+                          ) : (
+                            <span className="text-gray-500">○</span>
+                          )}
+                          <span
+                            className={
+                              /[a-z]/.test(formData.password)
+                                ? "text-green-400"
+                                : "text-gray-500"
+                            }
+                          >
+                            One lowercase letter
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs">
+                          {/\d/.test(formData.password) ? (
+                            <span className="text-green-400">✓</span>
+                          ) : (
+                            <span className="text-gray-500">○</span>
+                          )}
+                          <span
+                            className={
+                              /\d/.test(formData.password)
+                                ? "text-green-400"
+                                : "text-gray-500"
+                            }
+                          >
+                            One number
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs">
+                          {/[@$!%*?&]/.test(formData.password) ? (
+                            <span className="text-green-400">✓</span>
+                          ) : (
+                            <span className="text-gray-500">○</span>
+                          )}
+                          <span
+                            className={
+                              /[@$!%*?&]/.test(formData.password)
+                                ? "text-green-400"
+                                : "text-gray-500"
+                            }
+                          >
+                            One special character (@$!%*?&)
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
 
                 {/* Submit Button */}
