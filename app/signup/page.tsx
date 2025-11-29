@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 import {
   Mail,
   Lock,
@@ -19,6 +20,18 @@ import {
   Target,
   TrendingUp,
 } from "lucide-react";
+
+// Quirky welcome messages
+const welcomeMessages = [
+  "🚀 Houston, we have a developer! Welcome aboard!",
+  "🎉 Achievement Unlocked: Tech Ninja Status!",
+  "⚡ Buckle up, buttercup! Your coding journey starts now!",
+  "🔥 Welcome to the byte side! We have cookies... and code!",
+  "🎯 You're in! Time to turn coffee into code!",
+  "✨ Welcome, future tech legend! Let's make magic happen!",
+  "🦾 Initiating awesome mode... Welcome to NickTechBytes!",
+  "🌟 Plot twist: You just leveled up your career game!",
+];
 
 export default function SignUpPage() {
   const { register, error: authError, clearError } = useAuth();
@@ -86,7 +99,19 @@ export default function SignUpPage() {
         email: formData.email,
         password: formData.password,
       });
-      router.push("/");
+
+      // Show quirky welcome message
+      const randomMessage =
+        welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
+      toast.success(randomMessage, {
+        duration: 5000,
+        icon: "🎉",
+      });
+
+      // Redirect after a short delay to show the toast
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
     } catch (err) {
       const apiError = err as ApiError;
       if (apiError.validationErrors) {
@@ -105,7 +130,7 @@ export default function SignUpPage() {
   const particles = Array.from({ length: 20 }, (_, i) => i);
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center">
+    <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center py-8 px-4">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
         {/* Grid Pattern */}
@@ -164,7 +189,7 @@ export default function SignUpPage() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-12 grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left Side - Branding & Benefits */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -289,18 +314,20 @@ export default function SignUpPage() {
         >
           <div className="bg-gray-900/50 border border-gray-800/50 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
             {/* Form Header */}
-            <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 border-b border-gray-800/50 px-8 py-8 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 border border-purple-500/30 mb-4">
-                <UserPlus className="w-8 h-8 text-purple-400" />
+            <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 border-b border-gray-800/50 px-4 sm:px-8 py-6 sm:py-8 text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 border border-purple-500/30 mb-3 sm:mb-4">
+                <UserPlus className="w-7 h-7 sm:w-8 sm:h-8 text-purple-400" />
               </div>
-              <h2 className="text-3xl font-bold text-white mb-2">
-                Create Account
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                Join the Tech Revolution! 🚀
               </h2>
-              <p className="text-gray-400">Start learning for free today</p>
+              <p className="text-sm sm:text-base text-gray-400">
+                Let&apos;s turn your dreams into deployments!
+              </p>
             </div>
 
             {/* Form Body */}
-            <div className="px-8 py-8">
+            <div className="px-4 sm:px-8 py-6 sm:py-8">
               {/* Error Alert */}
               <AnimatePresence>
                 {authError && (
@@ -544,7 +571,7 @@ export default function SignUpPage() {
                         exit={{ opacity: 0 }}
                         className="flex items-center justify-center gap-2"
                       >
-                        Create Account
+                        Start My Journey
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </motion.span>
                     )}

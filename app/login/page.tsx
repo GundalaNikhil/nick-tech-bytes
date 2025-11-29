@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 import {
   Mail,
   Lock,
@@ -19,6 +20,18 @@ import {
   Cpu,
   Code2,
 } from "lucide-react";
+
+// Quirky welcome back messages
+const welcomeBackMessages = [
+  "🎯 Lock and loaded! Welcome back, code warrior!",
+  "⚡ The legend returns! Time to ship some code!",
+  "🔥 Back in the game! Let's make something awesome!",
+  "🚀 Initiating genius mode... Welcome back!",
+  "💻 Your terminal missed you! Welcome back, dev!",
+  "🎨 The artist is back! Ready to paint with code?",
+  "🦸 Your code sanctuary awaits! Welcome back!",
+  "✨ Plot twist: You're back and ready to crush it!",
+];
 
 export default function LoginPage() {
   const { login, error: authError, clearError } = useAuth();
@@ -76,7 +89,21 @@ export default function LoginPage() {
         password: formData.password,
         rememberMe: formData.rememberMe,
       });
-      router.push("/");
+
+      // Show quirky welcome back message
+      const randomMessage =
+        welcomeBackMessages[
+          Math.floor(Math.random() * welcomeBackMessages.length)
+        ];
+      toast.success(randomMessage, {
+        duration: 5000,
+        icon: "👋",
+      });
+
+      // Redirect after a short delay to show the toast
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
     } catch (err) {
       const apiError = err as ApiError;
       if (apiError.validationErrors) {
@@ -95,7 +122,7 @@ export default function LoginPage() {
   const particles = Array.from({ length: 20 }, (_, i) => i);
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center">
+    <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center py-8 px-4">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
         {/* Grid Pattern */}
@@ -154,7 +181,7 @@ export default function LoginPage() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 py-12 grid lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left Side - Branding & Features */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -273,18 +300,20 @@ export default function LoginPage() {
         >
           <div className="bg-gray-900/50 border border-gray-800/50 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
             {/* Form Header */}
-            <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 border-b border-gray-800/50 px-8 py-8 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-purple-600/20 border border-cyan-500/30 mb-4">
-                <Lock className="w-8 h-8 text-cyan-400" />
+            <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 border-b border-gray-800/50 px-4 sm:px-8 py-6 sm:py-8 text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-purple-600/20 border border-cyan-500/30 mb-3 sm:mb-4">
+                <Lock className="w-7 h-7 sm:w-8 sm:h-8 text-cyan-400" />
               </div>
-              <h2 className="text-3xl font-bold text-white mb-2">Sign In</h2>
-              <p className="text-gray-400">
-                Enter your credentials to continue
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+                Welcome Back, Ninja! 🥷
+              </h2>
+              <p className="text-sm sm:text-base text-gray-400">
+                Ready to level up your tech game?
               </p>
             </div>
 
             {/* Form Body */}
-            <div className="px-8 py-8">
+            <div className="px-4 sm:px-8 py-6 sm:py-8">
               {/* Error Alert */}
               <AnimatePresence>
                 {authError && (
@@ -468,7 +497,7 @@ export default function LoginPage() {
                         exit={{ opacity: 0 }}
                         className="flex items-center justify-center gap-2"
                       >
-                        Sign In
+                        Let&apos;s Code! 💻
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </motion.span>
                     )}
