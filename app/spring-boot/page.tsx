@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowLeft,
   BookOpen,
@@ -13,6 +15,7 @@ import {
   Star,
 } from "lucide-react";
 import Link from "next/link";
+import { SpringBootTutorialCard } from "@/components/spring-boot/SpringBootTutorialCard";
 
 // Tutorial data structure
 interface Tutorial {
@@ -581,96 +584,8 @@ export default function SpringBootPage() {
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {categoryTutorials.map((tutorial) => {
-                    const difficultyEmoji =
-                      tutorial.difficulty === "beginner"
-                        ? "🌱"
-                        : tutorial.difficulty === "intermediate"
-                        ? "⚡"
-                        : "🔥";
-
-                    const difficultyColor =
-                      tutorial.difficulty === "beginner"
-                        ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30"
-                        : tutorial.difficulty === "intermediate"
-                        ? "text-yellow-400 bg-yellow-500/10 border-yellow-500/30"
-                        : "text-red-400 bg-red-500/10 border-red-500/30";
-
-                    const gradientOverlay =
-                      tutorial.difficulty === "beginner"
-                        ? "from-emerald-500/20 to-emerald-500/5"
-                        : tutorial.difficulty === "intermediate"
-                        ? "from-yellow-500/20 to-yellow-500/5"
-                        : "from-red-500/20 to-red-500/5";
-
                     return (
-                      <Link
-                        key={tutorial.id}
-                        href={`/spring-boot/${tutorial.slug}`}
-                        className="group relative flex flex-col rounded-lg border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-900/40 p-4 transition-all duration-300 hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10 backdrop-blur-sm hover:scale-[1.01]"
-                      >
-                        {/* Gradient overlay on hover */}
-                        <div
-                          className={`absolute inset-0 rounded-lg bg-gradient-to-br ${gradientOverlay} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
-                        />
-
-                        <div className="relative z-10 flex flex-col gap-3">
-                          {/* Header - Compact */}
-                          <div className="flex items-start justify-between gap-2">
-                            <div className="flex-1 min-w-0">
-                              <h3 className="text-base font-semibold text-white mb-1.5 line-clamp-2 group-hover:text-green-400 transition-colors leading-snug">
-                                {tutorial.title}
-                              </h3>
-                            </div>
-                            <span
-                              className={`shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium border ${difficultyColor}`}
-                            >
-                              <span className="text-xs">{difficultyEmoji}</span>
-                              <span className="capitalize">
-                                {tutorial.difficulty}
-                              </span>
-                            </span>
-                          </div>
-
-                          {/* Description - More compact */}
-                          <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed">
-                            {tutorial.description}
-                          </p>
-
-                          {/* Compact Meta Row */}
-                          <div className="flex items-center justify-between gap-3 text-[11px] text-gray-500 py-2 border-y border-gray-800/50">
-                            <div className="flex items-center gap-3">
-                              <div className="flex items-center gap-1">
-                                <Clock className="h-3 w-3 text-green-400" />
-                                <span className="text-gray-400">
-                                  {tutorial.estimatedTime}
-                                </span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
-                                <span className="text-gray-400 font-medium">
-                                  {tutorial.rating.toFixed(1)}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <span className="text-[10px] text-gray-500 px-1.5 py-0.5 bg-gray-800/30 rounded">
-                                #{tutorial.id}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Footer - Compact */}
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-1 text-[11px] text-gray-500">
-                              <Code2 className="h-3 w-3 text-green-400" />
-                              <span>~{tutorial.lines} lines</span>
-                            </div>
-                            <span className="text-[10px] text-gray-500 group-hover:text-green-400 transition-colors font-medium">
-                              Read →
-                            </span>
-                          </div>
-                        </div>
-                      </Link>
+                      <SpringBootTutorialCard key={tutorial.id} {...tutorial} />
                     );
                   })}
                 </div>

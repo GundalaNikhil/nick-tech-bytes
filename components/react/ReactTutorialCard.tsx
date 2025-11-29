@@ -1,6 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Clock, Code2, Star, TrendingUp } from "lucide-react";
+import { ArrowRight, Clock, Code2, Star, TrendingUp, BookOpen } from "lucide-react";
 import type { DifficultyLevel } from "@/lib/topics/reactTutorials";
+import { useAuth } from "@/hooks/useAuth";
+import { AuthModal } from "@/components/AuthModal";
+import { useRouter } from "next/navigation";
 
 interface ReactTutorialCardProps {
   title: string;
@@ -50,12 +56,29 @@ export function ReactTutorialCard({
   const difficultyInfo = difficultyConfig[difficulty];
   const displayCompanies = companies.slice(0, 3);
   const hasMoreCompanies = companies.length > 3;
+  const { isAuthenticated } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const router = useRouter();
+
+  const handleReadMore = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!isAuthenticated) {
+      setShowAuthModal(true);
+    } else {
+      router.push(`/react-tutorials/${slug}`);
+    }
+  };
 
   return (
-    <Link
-      href={`/react-tutorials/${slug}`}
-      className="group relative flex flex-col rounded-lg border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-900/40 p-4 transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 backdrop-blur-sm hover:scale-[1.01]"
-    >
+    <>
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        title="🚀 Unlock This Tutorial!"
+        message="Sign in to access this React tutorial and start building amazing components!"
+      />
+      <div className="group relative flex flex-col rounded-lg border border-gray-800 bg-gradient-to-br from-gray-900/80 to-gray-900/40 p-4 transition-all duration-300 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 backdrop-blur-sm hover:scale-[1.01]"
+      >
       {/* Gradient overlay on hover */}
       <div
         className={`absolute inset-0 rounded-lg bg-gradient-to-br ${difficultyInfo.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
@@ -137,7 +160,18 @@ export function ReactTutorialCard({
             </span>
           )}
         </div>
+
+        {/* Read More Button */}
+        <button
+          onClick={handleReadMore}
+          className="mt-2 w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-cyan-500/10 to-purple-600/10 hover:from-cyan-500/20 hover:to-purple-600/20 border border-cyan-500/30 hover:border-cyan-500/50 text-cyan-400 hover:text-cyan-300 rounded-lg transition-all text-sm font-semibold group/btn"
+        >
+          <BookOpen className="w-4 h-4" />
+          <span>Read Full Tutorial</span>
+          <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+        </button>
       </div>
-    </Link>
+      </div>
+    </>
   );
 }
