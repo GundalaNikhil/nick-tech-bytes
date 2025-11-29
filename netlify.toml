@@ -1,0 +1,65 @@
+# Netlify Configuration for NickTechBytes Frontend
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Directory to publish
+  publish = ".next"
+  
+  # Environment variables for build
+  [build.environment]
+    NODE_VERSION = "20"
+    NPM_VERSION = "10"
+
+# Production deployment configuration
+[context.production]
+  # Environment variables for production
+  [context.production.environment]
+    NEXT_PUBLIC_API_URL = "https://nicktechbytes-be-dev-production.up.railway.app/api/v1"
+    NEXT_PUBLIC_ENVIRONMENT = "production"
+    NODE_ENV = "production"
+
+# Branch deploys (non-production)
+[context.branch-deploy]
+  [context.branch-deploy.environment]
+    NEXT_PUBLIC_API_URL = "https://nicktechbytes-be-dev-production.up.railway.app/api/v1"
+    NEXT_PUBLIC_ENVIRONMENT = "development"
+    NODE_ENV = "production"
+
+# Deploy Preview configuration
+[context.deploy-preview]
+  [context.deploy-preview.environment]
+    NEXT_PUBLIC_API_URL = "https://nicktechbytes-be-dev-production.up.railway.app/api/v1"
+    NEXT_PUBLIC_ENVIRONMENT = "development"
+
+# Redirects and rewrites
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+  
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Environment variables that should be set in Netlify UI
+# (These are documented here but set in the Netlify dashboard)
+# 
+# Required variables to set in Netlify:
+# - NEXT_PUBLIC_SUPABASE_URL (if using Supabase client-side)
+# - NEXT_PUBLIC_SUPABASE_ANON_KEY (if using Supabase client-side)
+# - NEXT_PUBLIC_GA_MEASUREMENT_ID (optional - Google Analytics)
