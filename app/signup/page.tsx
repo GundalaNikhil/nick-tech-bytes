@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useAuth } from "@/hooks/useAuth";
-import { ApiError } from "@/lib/api-client";
+import { ApiError, apiClient } from "@/lib/api-client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
+import { useLoadingStore } from "@/lib/loading-store";
 import {
   Mail,
   Lock,
@@ -20,6 +21,9 @@ import {
   Rocket,
   Target,
   TrendingUp,
+  CheckCircle2,
+  XCircle,
+  Loader2,
 } from "lucide-react";
 
 // Quirky welcome messages
@@ -37,6 +41,7 @@ const welcomeMessages = [
 export default function SignUpPage() {
   const { register, error: authError, clearError } = useAuth();
   const router = useRouter();
+  const setLoading = useLoadingStore((state) => state.setLoading);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -47,6 +52,44 @@ export default function SignUpPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [usernameStatus, setUsernameStatus] = useState<
+    "idle" | "checking" | "available" | "taken"
+  >("idle");
+  const [usernameCheckTimeout, setUsernameCheckTimeout] =
+    useState<NodeJS.Timeout | null>(null);
+
+  const checkUsernameAvailability = useCallback(async (username: string) => {
+    if (!username || username.length < 3) {
+      setUsernameStatus("idle");
+      return;
+    }
+
+    if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
+      setUsernameStatus("idle");
+      return;
+    }
+
+    try {
+      setUsernameStatus("checking");
+      const isAvailable = await apiClient.checkUsernameAvailability(username);
+      setUsernameStatus(isAvailable ? "available" : "taken");
+
+      if (!isAvailable) {
+        setErrors((prev) => ({
+          ...prev,
+          username: "Username is already taken",
+        }));
+      } else {
+        setErrors((prev) => {
+          const { username: _, ...rest } = prev;
+          return rest;
+        });
+      }
+    } catch (error) {
+      console.error("Error checking username:", error);
+      setUsernameStatus("idle");
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -56,6 +99,20 @@ export default function SignUpPage() {
     }));
     clearError();
     setErrors((prev) => ({ ...prev, [name]: "" }));
+
+    // Check username availability with debounce
+    if (name === "username") {
+      setUsernameStatus("idle");
+      if (usernameCheckTimeout) {
+        clearTimeout(usernameCheckTimeout);
+      }
+
+      const timeout = setTimeout(() => {
+        checkUsernameAvailability(value);
+      }, 500);
+
+      setUsernameCheckTimeout(timeout);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -69,8 +126,13 @@ export default function SignUpPage() {
       newErrors.username = "Username is required";
     } else if (formData.username.length < 3) {
       newErrors.username = "Username must be at least 3 characters";
-    } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
-      newErrors.username = "Username can only contain letters, numbers, and underscores";
+    } else if (formData.username.length > 50) {
+      newErrors.username = "Username must not exceed 50 characters";
+    } else if (!/^[a-zA-Z0-9_-]+$/.test(formData.username)) {
+      newErrors.username =
+        "Username can only contain letters, numbers, underscores, and hyphens";
+    } else if (usernameStatus === "taken") {
+      newErrors.username = "Username is already taken";
     }
 
     // Email validation
@@ -105,6 +167,7 @@ export default function SignUpPage() {
 
     try {
       setIsSubmitting(true);
+      setLoading(true, "Creating your account...");
 
       await register({
         username: formData.username,
@@ -135,6 +198,7 @@ export default function SignUpPage() {
       }
     } finally {
       setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
@@ -393,13 +457,26 @@ export default function SignUpPage() {
                         value={formData.username}
                         onChange={handleChange}
                         placeholder="johndoe"
-                        className={`w-full pl-16 pr-4 py-3.5 bg-black/40 border ${
+                        className={`w-full pl-16 pr-12 py-3.5 bg-black/40 border ${
                           errors.username
                             ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20"
+                            : usernameStatus === "available"
+                            ? "border-green-500/50 focus:border-green-500 focus:ring-green-500/20"
                             : "border-gray-800 focus:border-purple-500 focus:shadow-lg focus:shadow-purple-500/10"
                         } rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 hover:border-gray-700 hover:bg-black/60`}
                         required
                       />
+                      <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                        {usernameStatus === "checking" && (
+                          <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
+                        )}
+                        {usernameStatus === "available" && (
+                          <CheckCircle2 className="w-5 h-5 text-green-400" />
+                        )}
+                        {usernameStatus === "taken" && (
+                          <XCircle className="w-5 h-5 text-red-400" />
+                        )}
+                      </div>
                     </div>
                   </div>
                   {errors.username && (
@@ -410,6 +487,16 @@ export default function SignUpPage() {
                     >
                       <span className="w-1 h-1 rounded-full bg-red-400" />
                       {errors.username}
+                    </motion.p>
+                  )}
+                  {usernameStatus === "available" && !errors.username && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-xs text-green-400 flex items-center gap-1.5 ml-1"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-green-400" />
+                      Username is available!
                     </motion.p>
                   )}
                 </div>
@@ -576,7 +663,10 @@ export default function SignUpPage() {
                               label: "One special character",
                             },
                           ].map((req, i) => (
-                            <div key={i} className="flex items-center gap-2 text-xs">
+                            <div
+                              key={i}
+                              className="flex items-center gap-2 text-xs"
+                            >
                               <div
                                 className={`w-4 h-4 rounded-full flex items-center justify-center border ${
                                   req.check
@@ -607,9 +697,11 @@ export default function SignUpPage() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  whileHover={{ 
+                  whileHover={{
                     scale: isSubmitting ? 1 : 1.02,
-                    boxShadow: isSubmitting ? "0 0 0 rgba(168, 85, 247, 0)" : "0 20px 40px rgba(168, 85, 247, 0.4)"
+                    boxShadow: isSubmitting
+                      ? "0 0 0 rgba(168, 85, 247, 0)"
+                      : "0 20px 40px rgba(168, 85, 247, 0.4)",
                   }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 relative overflow-hidden group mt-8"
@@ -646,7 +738,11 @@ export default function SignUpPage() {
                         git commit -m &quot;New Beginning&quot;
                         <motion.div
                           animate={{ x: [0, 4, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
                         >
                           <ArrowRight className="w-5 h-5" />
                         </motion.div>

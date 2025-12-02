@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import toast from "react-hot-toast";
+import { useLoadingStore } from "@/lib/loading-store";
 import {
   Mail,
   Lock,
@@ -36,6 +37,7 @@ const welcomeBackMessages = [
 export default function LoginPage() {
   const { login, error: authError, clearError } = useAuth();
   const router = useRouter();
+  const setLoading = useLoadingStore((state) => state.setLoading);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -68,10 +70,9 @@ export default function LoginPage() {
     const newErrors: Record<string, string> = {};
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
+      newErrors.email = "Email or username is required";
     }
+    // Allow both email and username - no strict email validation
 
     if (!formData.password) {
       newErrors.password = "Password is required";
@@ -84,6 +85,7 @@ export default function LoginPage() {
 
     try {
       setIsSubmitting(true);
+      setLoading(true, "Authenticating your awesomeness...");
       await login({
         emailOrUsername: formData.email,
         password: formData.password,
@@ -106,6 +108,14 @@ export default function LoginPage() {
       }, 1000);
     } catch (err) {
       const apiError = err as ApiError;
+      // Show generic error message instead of technical details
+      const errorMessage =
+        apiError.message || "Invalid email or password. Please try again.";
+      toast.error(errorMessage, {
+        duration: 4000,
+        icon: "❌",
+      });
+
       if (apiError.validationErrors) {
         const fieldErrors: Record<string, string> = {};
         apiError.validationErrors.forEach((error) => {
@@ -115,6 +125,7 @@ export default function LoginPage() {
       }
     } finally {
       setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
@@ -345,7 +356,7 @@ export default function LoginPage() {
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-300 ml-1"
                   >
-                    Email Address
+                    Email or Username
                   </label>
                   <div className="relative group">
                     {/* Glow effect on focus */}
@@ -361,12 +372,12 @@ export default function LoginPage() {
                         />
                       </div>
                       <input
-                        type="email"
+                        type="text"
                         id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="you@example.com"
+                        placeholder="you@example.com or username"
                         className={`w-full pl-16 pr-4 py-3.5 bg-black/40 border ${
                           errors.email
                             ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20"
@@ -511,9 +522,11 @@ export default function LoginPage() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  whileHover={{ 
+                  whileHover={{
                     scale: isSubmitting ? 1 : 1.02,
-                    boxShadow: isSubmitting ? "0 0 0 rgba(6, 182, 212, 0)" : "0 20px 40px rgba(6, 182, 212, 0.4)"
+                    boxShadow: isSubmitting
+                      ? "0 0 0 rgba(6, 182, 212, 0)"
+                      : "0 20px 40px rgba(6, 182, 212, 0.4)",
                   }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 relative overflow-hidden group mt-8"
@@ -550,7 +563,11 @@ export default function LoginPage() {
                         Sudo Login
                         <motion.div
                           animate={{ x: [0, 4, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
                         >
                           <ArrowRight className="w-5 h-5" />
                         </motion.div>

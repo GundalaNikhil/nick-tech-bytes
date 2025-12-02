@@ -589,6 +589,15 @@ export default function Navbar({
               </Link>
 
               <Link
+                href="/docker-tutorials"
+                className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 px-4 py-3 rounded-xl text-sm font-semibold transition-all border border-cyan-500/30"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Code2 className="w-4 h-4" />
+                <span>Docker Tutorials</span>
+              </Link>
+
+              <Link
                 href="/blog"
                 className="block text-gray-300 hover:text-white hover:bg-gray-800/50 px-4 py-3 rounded-xl text-sm font-semibold transition-all"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -634,25 +643,27 @@ export default function Navbar({
                   </div>
                 </>
               ) : (
-                <motion.button
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    router.push("/login");
-                  }}
-                  className="block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-3 rounded-xl text-sm font-bold text-center shadow-lg w-full"
-                >
-                  Sign In
-                </motion.button>
-              )}
+                <>
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      router.push("/login");
+                    }}
+                    className="block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-4 py-3 rounded-xl text-sm font-bold text-center shadow-lg w-full"
+                  >
+                    Sign In
+                  </motion.button>
 
-              <Link
-                href="/signup"
-                className="block text-center border-2 border-purple-500/50 text-purple-400 hover:bg-purple-500/10 px-4 py-3 rounded-xl text-sm font-bold transition-all"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Get Started Free
-              </Link>
+                  <Link
+                    href="/signup"
+                    className="block text-center border-2 border-purple-500/50 text-purple-400 hover:bg-purple-500/10 px-4 py-3 rounded-xl text-sm font-bold transition-all"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Get Started Free
+                  </Link>
+                </>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
