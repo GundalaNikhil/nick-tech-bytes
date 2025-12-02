@@ -116,8 +116,56 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html,
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Force light text colors for all markdown content */
+  .prose * {
+    color: rgb(243 244 246) !important; /* text-gray-100 */
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    color: rgb(255 255 255) !important; /* white */
+  }
+
+  .prose strong {
+    color: rgb(255 255 255) !important; /* white */
+  }
+
+  .prose code {
+    color: rgb(110 231 183) !important; /* emerald-300 for HLD */
+  }
+
+  .prose a {
+    color: rgb(52 211 153) !important; /* emerald-400 for HLD */
+  }
+
+  .prose ul,
+  .prose ol,
+  .prose li,
+  .prose p,
+  .prose td,
+  .prose th {
+    color: rgb(243 244 246) !important; /* text-gray-100 */
+  }
+
+  .prose blockquote {
+    color: rgb(243 244 246) !important; /* text-gray-100 */
+  }
+
+  .prose pre,
+  .prose pre * {
+    color: rgb(243 244 246) !important; /* text-gray-100 */
   }
 }
 

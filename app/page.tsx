@@ -1,15 +1,13 @@
 "use client";
 
-import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import ResourcesGrid from "@/components/ResourcesGrid";
 import AdditionalResources from "@/components/AdditionalResources";
 import Footer from "@/components/footer";
-import {
-  interviewQuestions,
-  interviewResources,
-  topicsList,
-} from "@/lib/interviewData";
+import { HomeSystemDesignBanner } from "@/components/system-design/HomeSystemDesignBanner";
+import { ReactTutorialsBanner } from "@/components/react/ReactTutorialsBanner";
+import { DockerTutorialsBanner } from "@/components/docker/DockerTutorialsBanner";
+import { interviewQuestions, topicsList } from "@/lib/interviewData";
 import { useRouter } from "next/navigation";
 
 export default function NickTechBytes() {
@@ -17,25 +15,13 @@ export default function NickTechBytes() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-      <style jsx>{`
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-slideDown {
-          animation: slideDown 0.3s ease-out;
-        }
-      `}</style>
-
-      <Navbar topicsList={topicsList} interviewResources={interviewResources} />
-
       <Hero onExploreMore={() => router.push("/explore")} />
+
+      <HomeSystemDesignBanner />
+
+      <ReactTutorialsBanner />
+
+      <DockerTutorialsBanner />
 
       <ResourcesGrid
         topicsList={topicsList}
