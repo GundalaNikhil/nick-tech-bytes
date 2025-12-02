@@ -3,6 +3,8 @@ import "./globals.css";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ToastProvider } from "@/components/ToastProvider";
+import NavigationLoader from "@/components/NavigationLoader";
+import ApiLoadingOverlay from "@/components/ApiLoadingOverlay";
 
 export const metadata: Metadata = {
   title: "𝗡𝗜𝗖𝗞 𝗧𝗘𝗖𝗛 𝗕𝗬𝗧𝗘𝗦",
@@ -27,6 +29,8 @@ export default function RootLayout({
       <body className="overflow-x-hidden">
         <AuthProvider>
           <ToastProvider />
+          <NavigationLoader />
+          <ApiLoadingOverlay />
           <NavbarWrapper />
           <div className="pt-20">{children}</div>
         </AuthProvider>

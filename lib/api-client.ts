@@ -11,6 +11,7 @@ export const API_ENDPOINTS = {
     ME: `${API_BASE_URL}/auth/me`,
     VALIDATE: `${API_BASE_URL}/auth/validate`,
     HEALTH: `${API_BASE_URL}/auth/health`,
+    CHECK_USERNAME: `${API_BASE_URL}/auth/check-username`,
     FORGOT_PASSWORD: `${API_BASE_URL}/auth/forgot-password`,
     RESET_PASSWORD: `${API_BASE_URL}/auth/reset-password`,
   },
@@ -263,13 +264,25 @@ class ApiClient {
         }
       }
 
-      const data = await response.json();
-
+      // Handle non-2xx responses
       if (!response.ok) {
+        let data;
+        try {
+          data = await response.json();
+        } catch (jsonError) {
+          // If response body is not valid JSON, create a generic error
+          throw {
+            status: response.status,
+            error: response.statusText || "Error",
+            message: "An error occurred. Please try again.",
+            path: url,
+            timestamp: new Date().toISOString(),
+          } as ApiError;
+        }
         throw data as ApiError;
       }
 
-      return data as T;
+      return (await response.json()) as T;
     } catch (error) {
       if (error instanceof Error && error.message === "Failed to fetch") {
         throw {
@@ -401,6 +414,24 @@ class ApiClient {
         body: JSON.stringify(data),
       }
     );
+  }
+
+  async checkUsernameAvailability(username: string): Promise<boolean> {
+    try {
+      await this.request<{ message: string }>(
+        `${API_ENDPOINTS.AUTH.CHECK_USERNAME}?username=${encodeURIComponent(
+          username
+        )}`,
+        { method: "GET" }
+      );
+      return true; // Username is available
+    } catch (error) {
+      const apiError = error as ApiError;
+      if (apiError.status === 409) {
+        return false; // Username is taken
+      }
+      throw error; // Other errors
+    }
   }
 }
 
