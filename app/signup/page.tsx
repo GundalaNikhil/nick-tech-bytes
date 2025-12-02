@@ -13,6 +13,7 @@ import {
   Lock,
   Eye,
   EyeOff,
+  User,
   UserPlus,
   ArrowRight,
   Cpu,
@@ -38,6 +39,7 @@ export default function SignUpPage() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -61,6 +63,15 @@ export default function SignUpPage() {
 
     // Validation
     const newErrors: Record<string, string> = {};
+
+    // Username validation
+    if (!formData.username.trim()) {
+      newErrors.username = "Username is required";
+    } else if (formData.username.length < 3) {
+      newErrors.username = "Username must be at least 3 characters";
+    } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
+      newErrors.username = "Username can only contain letters, numbers, and underscores";
+    }
 
     // Email validation
     if (!formData.email.trim()) {
@@ -96,6 +107,7 @@ export default function SignUpPage() {
       setIsSubmitting(true);
 
       await register({
+        username: formData.username,
         email: formData.email,
         password: formData.password,
       });
@@ -315,8 +327,14 @@ export default function SignUpPage() {
           <div className="bg-gray-900/50 border border-gray-800/50 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
             {/* Form Header */}
             <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 border-b border-gray-800/50 px-4 sm:px-8 py-6 sm:py-8 text-center">
-              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 border border-purple-500/30 mb-3 sm:mb-4">
-                <UserPlus className="w-7 h-7 sm:w-8 sm:h-8 text-purple-400" />
+              <div className="inline-flex items-center justify-center w-24 h-24 mb-4">
+                <Image
+                  src="/icons/signup-header-bitmoji.png?v=2"
+                  alt="Join Us"
+                  width={96}
+                  height={96}
+                  className="object-contain drop-shadow-2xl hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Join the Tech Revolution! 🚀
@@ -346,94 +364,180 @@ export default function SignUpPage() {
               </AnimatePresence>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Username */}
+                <div className="space-y-1.5">
+                  <label
+                    htmlFor="username"
+                    className="block text-sm font-medium text-gray-300 ml-1"
+                  >
+                    Username
+                  </label>
+                  <div className="relative group">
+                    {/* Glow effect on focus */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl opacity-0 group-focus-within:opacity-20 blur transition-opacity duration-500" />
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <Image
+                          src="/icons/user-bitmoji.png?v=2"
+                          alt="User"
+                          width={40}
+                          height={40}
+                          className="object-contain opacity-80 group-focus-within:opacity-100 group-focus-within:scale-110 transition-all duration-300"
+                        />
+                      </div>
+                      <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleChange}
+                        placeholder="johndoe"
+                        className={`w-full pl-16 pr-4 py-3.5 bg-black/40 border ${
+                          errors.username
+                            ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20"
+                            : "border-gray-800 focus:border-purple-500 focus:shadow-lg focus:shadow-purple-500/10"
+                        } rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 hover:border-gray-700 hover:bg-black/60`}
+                        required
+                      />
+                    </div>
+                  </div>
+                  {errors.username && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-xs text-red-400 flex items-center gap-1.5 ml-1"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-red-400" />
+                      {errors.username}
+                    </motion.p>
+                  )}
+                </div>
+
                 {/* Email */}
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-300"
+                    className="block text-sm font-medium text-gray-300 ml-1"
                   >
                     Email Address
                   </label>
                   <div className="relative group">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Mail className="h-5 w-5 text-gray-500 group-focus-within:text-purple-400 transition-colors" />
+                    {/* Glow effect on focus */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl opacity-0 group-focus-within:opacity-20 blur transition-opacity duration-500" />
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <Image
+                          src="/icons/mail-bitmoji.png?v=2"
+                          alt="Email"
+                          width={40}
+                          height={40}
+                          className="object-contain opacity-80 group-focus-within:opacity-100 group-focus-within:scale-110 transition-all duration-300"
+                        />
+                      </div>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="you@example.com"
+                        className={`w-full pl-16 pr-4 py-3.5 bg-black/40 border ${
+                          errors.email
+                            ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20"
+                            : "border-gray-800 focus:border-purple-500 focus:shadow-lg focus:shadow-purple-500/10"
+                        } rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 hover:border-gray-700 hover:bg-black/60`}
+                        required
+                      />
                     </div>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="you@example.com"
-                      className={`w-full pl-12 pr-4 py-3.5 bg-black/40 border ${
-                        errors.email
-                          ? "border-red-500/50"
-                          : "border-gray-700/50"
-                      } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all`}
-                      required
-                    />
                   </div>
                   {errors.email && (
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-xs text-red-400 flex items-center gap-1"
+                      className="text-xs text-red-400 flex items-center gap-1.5 ml-1"
                     >
-                      <span>⚠️</span>
+                      <span className="w-1 h-1 rounded-full bg-red-400" />
                       {errors.email}
                     </motion.p>
                   )}
-                  <p className="text-xs text-gray-500">
-                    We&apos;ll create a unique username for you
-                  </p>
                 </div>
 
                 {/* Password */}
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-300"
+                    className="block text-sm font-medium text-gray-300 ml-1"
                   >
                     Password
                   </label>
                   <div className="relative group">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-gray-500 group-focus-within:text-purple-400 transition-colors" />
+                    {/* Glow effect on focus */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl opacity-0 group-focus-within:opacity-20 blur transition-opacity duration-500" />
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <Image
+                          src="/icons/lock-bitmoji.png?v=2"
+                          alt="Password"
+                          width={40}
+                          height={40}
+                          className="object-contain opacity-80 group-focus-within:opacity-100 group-focus-within:scale-110 transition-all duration-300"
+                        />
+                      </div>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Create a strong password"
+                        className={`w-full pl-16 pr-12 py-3.5 bg-black/40 border ${
+                          errors.password
+                            ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20"
+                            : "border-gray-800 focus:border-purple-500 focus:shadow-lg focus:shadow-purple-500/10"
+                        } rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 hover:border-gray-700 hover:bg-black/60`}
+                        required
+                      />
+                      <motion.button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-purple-400 transition-colors p-1.5 rounded-lg hover:bg-purple-500/10"
+                      >
+                        <AnimatePresence mode="wait">
+                          {showPassword ? (
+                            <motion.div
+                              key="hide"
+                              initial={{ rotate: -90, opacity: 0 }}
+                              animate={{ rotate: 0, opacity: 1 }}
+                              exit={{ rotate: 90, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <EyeOff className="w-4 h-4" />
+                            </motion.div>
+                          ) : (
+                            <motion.div
+                              key="show"
+                              initial={{ rotate: -90, opacity: 0 }}
+                              animate={{ rotate: 0, opacity: 1 }}
+                              exit={{ rotate: 90, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <Eye className="w-4 h-4" />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.button>
                     </div>
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      placeholder="Create a strong password"
-                      className={`w-full pl-12 pr-12 py-3.5 bg-black/40 border ${
-                        errors.password
-                          ? "border-red-500/50"
-                          : "border-gray-700/50"
-                      } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all`}
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-purple-400 transition-colors"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="w-5 h-5" />
-                      ) : (
-                        <Eye className="w-5 h-5" />
-                      )}
-                    </button>
                   </div>
                   {errors.password && (
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-xs text-red-400 flex items-center gap-1"
+                      className="text-xs text-red-400 flex items-center gap-1.5 ml-1"
                     >
-                      <span>⚠️</span>
+                      <span className="w-1 h-1 rounded-full bg-red-400" />
                       {errors.password}
                     </motion.p>
                   )}
@@ -443,91 +547,56 @@ export default function SignUpPage() {
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="mt-3 p-3 bg-black/20 border border-gray-700/30 rounded-lg space-y-2"
+                      className="pt-2"
                     >
-                      <p className="text-xs text-gray-400 font-medium mb-2">
-                        Password must contain:
-                      </p>
-                      <div className="space-y-1.5">
-                        <div className="flex items-center gap-2 text-xs">
-                          {formData.password.length >= 8 ? (
-                            <span className="text-green-400">✓</span>
-                          ) : (
-                            <span className="text-gray-500">○</span>
-                          )}
-                          <span
-                            className={
-                              formData.password.length >= 8
-                                ? "text-green-400"
-                                : "text-gray-500"
-                            }
-                          >
-                            At least 8 characters
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs">
-                          {/[A-Z]/.test(formData.password) ? (
-                            <span className="text-green-400">✓</span>
-                          ) : (
-                            <span className="text-gray-500">○</span>
-                          )}
-                          <span
-                            className={
-                              /[A-Z]/.test(formData.password)
-                                ? "text-green-400"
-                                : "text-gray-500"
-                            }
-                          >
-                            One uppercase letter
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs">
-                          {/[a-z]/.test(formData.password) ? (
-                            <span className="text-green-400">✓</span>
-                          ) : (
-                            <span className="text-gray-500">○</span>
-                          )}
-                          <span
-                            className={
-                              /[a-z]/.test(formData.password)
-                                ? "text-green-400"
-                                : "text-gray-500"
-                            }
-                          >
-                            One lowercase letter
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs">
-                          {/\d/.test(formData.password) ? (
-                            <span className="text-green-400">✓</span>
-                          ) : (
-                            <span className="text-gray-500">○</span>
-                          )}
-                          <span
-                            className={
-                              /\d/.test(formData.password)
-                                ? "text-green-400"
-                                : "text-gray-500"
-                            }
-                          >
-                            One number
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs">
-                          {/[@$!%*?&]/.test(formData.password) ? (
-                            <span className="text-green-400">✓</span>
-                          ) : (
-                            <span className="text-gray-500">○</span>
-                          )}
-                          <span
-                            className={
-                              /[@$!%*?&]/.test(formData.password)
-                                ? "text-green-400"
-                                : "text-gray-500"
-                            }
-                          >
-                            One special character (@$!%*?&)
-                          </span>
+                      <div className="p-3 bg-white/5 border border-white/5 rounded-lg space-y-2">
+                        <p className="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-2">
+                          Password Requirements
+                        </p>
+                        <div className="space-y-1.5">
+                          {[
+                            {
+                              check: formData.password.length >= 8,
+                              label: "At least 8 characters",
+                            },
+                            {
+                              check: /[A-Z]/.test(formData.password),
+                              label: "One uppercase letter",
+                            },
+                            {
+                              check: /[a-z]/.test(formData.password),
+                              label: "One lowercase letter",
+                            },
+                            {
+                              check: /\d/.test(formData.password),
+                              label: "One number",
+                            },
+                            {
+                              check: /[@$!%*?&]/.test(formData.password),
+                              label: "One special character",
+                            },
+                          ].map((req, i) => (
+                            <div key={i} className="flex items-center gap-2 text-xs">
+                              <div
+                                className={`w-4 h-4 rounded-full flex items-center justify-center border ${
+                                  req.check
+                                    ? "bg-green-500/20 border-green-500/50 text-green-400"
+                                    : "bg-gray-800 border-gray-700 text-transparent"
+                                } transition-all duration-300`}
+                              >
+                                <span className="text-[10px]">✓</span>
+                              </div>
+                              <span
+                                className={
+                                  req.check
+                                    ? "text-gray-300 transition-colors"
+                                    : "text-gray-500 transition-colors"
+                                }
+                              >
+                                {req.label}
+                              </span>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </motion.div>
@@ -538,17 +607,20 @@ export default function SignUpPage() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileHover={{ 
+                    scale: isSubmitting ? 1 : 1.02,
+                    boxShadow: isSubmitting ? "0 0 0 rgba(168, 85, 247, 0)" : "0 20px 40px rgba(168, 85, 247, 0.4)"
+                  }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                  className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-purple-500/25 relative overflow-hidden group mt-8"
+                  className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 relative overflow-hidden group mt-8"
                 >
                   <AnimatePresence mode="wait">
                     {isSubmitting ? (
                       <motion.span
                         key="loading"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
                         className="flex items-center justify-center gap-2"
                       >
                         <motion.div
@@ -561,25 +633,30 @@ export default function SignUpPage() {
                         >
                           <Cpu className="w-5 h-5" />
                         </motion.div>
-                        Creating your account...
+                        Compiling your profile...
                       </motion.span>
                     ) : (
                       <motion.span
                         key="submit"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
                         className="flex items-center justify-center gap-2"
                       >
-                        Start My Journey
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        git commit -m &quot;New Beginning&quot;
+                        <motion.div
+                          animate={{ x: [0, 4, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <ArrowRight className="w-5 h-5" />
+                        </motion.div>
                       </motion.span>
                     )}
                   </AnimatePresence>
 
                   {/* Shimmer Effect */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                     animate={{
                       x: ["-100%", "100%"],
                     }}
@@ -595,12 +672,12 @@ export default function SignUpPage() {
               {/* Switch to Sign In */}
               <div className="mt-8 text-center">
                 <p className="text-sm text-gray-400">
-                  Already have an account?{" "}
+                  Already a Wizard?{" "}
                   <Link
                     href="/login"
                     className="text-purple-400 hover:text-purple-300 font-semibold transition-colors inline-flex items-center gap-1 group"
                   >
-                    Sign In
+                    Log In
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </p>

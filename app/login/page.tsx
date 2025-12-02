@@ -301,8 +301,14 @@ export default function LoginPage() {
           <div className="bg-gray-900/50 border border-gray-800/50 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
             {/* Form Header */}
             <div className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 border-b border-gray-800/50 px-4 sm:px-8 py-6 sm:py-8 text-center">
-              <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-purple-600/20 border border-cyan-500/30 mb-3 sm:mb-4">
-                <Lock className="w-7 h-7 sm:w-8 sm:h-8 text-cyan-400" />
+              <div className="inline-flex items-center justify-center w-24 h-24 mb-4">
+                <Image
+                  src="/icons/user-bitmoji.png?v=2"
+                  alt="Welcome Back"
+                  width={96}
+                  height={96}
+                  className="object-contain drop-shadow-2xl hover:scale-110 transition-transform duration-300"
+                />
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Welcome Back, Ninja! 🥷
@@ -332,91 +338,131 @@ export default function LoginPage() {
               </AnimatePresence>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Email */}
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-300"
+                    className="block text-sm font-medium text-gray-300 ml-1"
                   >
                     Email Address
                   </label>
                   <div className="relative group">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Mail className="h-5 w-5 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
+                    {/* Glow effect on focus */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl opacity-0 group-focus-within:opacity-20 blur transition-opacity duration-500" />
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <Image
+                          src="/icons/mail-bitmoji.png?v=2"
+                          alt="Email"
+                          width={40}
+                          height={40}
+                          className="object-contain opacity-80 group-focus-within:opacity-100 group-focus-within:scale-110 transition-all duration-300"
+                        />
+                      </div>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="you@example.com"
+                        className={`w-full pl-16 pr-4 py-3.5 bg-black/40 border ${
+                          errors.email
+                            ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20"
+                            : "border-gray-800 focus:border-cyan-500 focus:shadow-lg focus:shadow-cyan-500/10"
+                        } rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 hover:border-gray-700 hover:bg-black/60`}
+                        required
+                      />
                     </div>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="you@example.com"
-                      className={`w-full pl-12 pr-4 py-3.5 bg-black/40 border ${
-                        errors.email
-                          ? "border-red-500/50"
-                          : "border-gray-700/50"
-                      } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all`}
-                      required
-                    />
                   </div>
                   {errors.email && (
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-xs text-red-400 flex items-center gap-1"
+                      className="text-xs text-red-400 flex items-center gap-1.5 ml-1"
                     >
-                      <span>⚠️</span>
+                      <span className="w-1 h-1 rounded-full bg-red-400" />
                       {errors.email}
                     </motion.p>
                   )}
                 </div>
 
                 {/* Password */}
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-300"
+                    className="block text-sm font-medium text-gray-300 ml-1"
                   >
                     Password
                   </label>
                   <div className="relative group">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-gray-500 group-focus-within:text-cyan-400 transition-colors" />
+                    {/* Glow effect on focus */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl opacity-0 group-focus-within:opacity-20 blur transition-opacity duration-500" />
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <Image
+                          src="/icons/lock-bitmoji.png?v=2"
+                          alt="Password"
+                          width={40}
+                          height={40}
+                          className="object-contain opacity-80 group-focus-within:opacity-100 group-focus-within:scale-110 transition-all duration-300"
+                        />
+                      </div>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Enter your password"
+                        className={`w-full pl-16 pr-12 py-3.5 bg-black/40 border ${
+                          errors.password
+                            ? "border-red-500/50 focus:border-red-500 focus:ring-red-500/20"
+                            : "border-gray-800 focus:border-cyan-500 focus:shadow-lg focus:shadow-cyan-500/10"
+                        } rounded-xl text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all duration-300 hover:border-gray-700 hover:bg-black/60`}
+                        required
+                      />
+                      <motion.button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition-colors p-1.5 rounded-lg hover:bg-cyan-500/10"
+                      >
+                        <AnimatePresence mode="wait">
+                          {showPassword ? (
+                            <motion.div
+                              key="hide"
+                              initial={{ rotate: -90, opacity: 0 }}
+                              animate={{ rotate: 0, opacity: 1 }}
+                              exit={{ rotate: 90, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <EyeOff className="w-4 h-4" />
+                            </motion.div>
+                          ) : (
+                            <motion.div
+                              key="show"
+                              initial={{ rotate: -90, opacity: 0 }}
+                              animate={{ rotate: 0, opacity: 1 }}
+                              exit={{ rotate: 90, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <Eye className="w-4 h-4" />
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </motion.button>
                     </div>
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      placeholder="Enter your password"
-                      className={`w-full pl-12 pr-12 py-3.5 bg-black/40 border ${
-                        errors.password
-                          ? "border-red-500/50"
-                          : "border-gray-700/50"
-                      } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20 transition-all`}
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition-colors"
-                    >
-                      {showPassword ? (
-                        <EyeOff className="w-5 h-5" />
-                      ) : (
-                        <Eye className="w-5 h-5" />
-                      )}
-                    </button>
                   </div>
                   {errors.password && (
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-xs text-red-400 flex items-center gap-1"
+                      className="text-xs text-red-400 flex items-center gap-1.5 ml-1"
                     >
-                      <span>⚠️</span>
+                      <span className="w-1 h-1 rounded-full bg-red-400" />
                       {errors.password}
                     </motion.p>
                   )}
@@ -426,13 +472,14 @@ export default function LoginPage() {
                 <div className="flex items-center justify-between pt-2">
                   {/* Custom Toggle Switch */}
                   <div className="flex items-center gap-3">
-                    <button
+                    <motion.button
                       type="button"
                       onClick={toggleRememberMe}
+                      whileTap={{ scale: 0.95 }}
                       className={`relative w-12 h-6 rounded-full transition-all duration-300 ${
                         formData.rememberMe
-                          ? "bg-gradient-to-r from-cyan-500 to-blue-600"
-                          : "bg-gray-700"
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30"
+                          : "bg-gray-700 hover:bg-gray-600"
                       }`}
                     >
                       <motion.div
@@ -444,11 +491,11 @@ export default function LoginPage() {
                           stiffness: 500,
                           damping: 30,
                         }}
-                        className={`absolute top-1 w-4 h-4 rounded-full ${
+                        className={`absolute top-1 w-4 h-4 rounded-full shadow-md ${
                           formData.rememberMe ? "bg-white" : "bg-gray-400"
                         }`}
                       />
-                    </button>
+                    </motion.button>
                     <span className="text-sm text-gray-400">Remember me</span>
                   </div>
 
@@ -464,17 +511,20 @@ export default function LoginPage() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileHover={{ 
+                    scale: isSubmitting ? 1 : 1.02,
+                    boxShadow: isSubmitting ? "0 0 0 rgba(6, 182, 212, 0)" : "0 20px 40px rgba(6, 182, 212, 0.4)"
+                  }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-cyan-500/25 relative overflow-hidden group mt-8"
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 disabled:from-gray-700 disabled:to-gray-700 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 relative overflow-hidden group mt-8"
                 >
                   <AnimatePresence mode="wait">
                     {isSubmitting ? (
                       <motion.span
                         key="loading"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
                         className="flex items-center justify-center gap-2"
                       >
                         <motion.div
@@ -487,25 +537,30 @@ export default function LoginPage() {
                         >
                           <Cpu className="w-5 h-5" />
                         </motion.div>
-                        Signing you in...
+                        Decrypting credentials...
                       </motion.span>
                     ) : (
                       <motion.span
                         key="submit"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
                         className="flex items-center justify-center gap-2"
                       >
-                        Let&apos;s Code! 💻
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        Sudo Login
+                        <motion.div
+                          animate={{ x: [0, 4, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <ArrowRight className="w-5 h-5" />
+                        </motion.div>
                       </motion.span>
                     )}
                   </AnimatePresence>
 
                   {/* Shimmer Effect */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                     animate={{
                       x: ["-100%", "100%"],
                     }}
@@ -521,12 +576,12 @@ export default function LoginPage() {
               {/* Switch to Sign Up */}
               <div className="mt-8 text-center">
                 <p className="text-sm text-gray-400">
-                  Don&apos;t have an account?{" "}
+                  New Player?{" "}
                   <Link
                     href="/signup"
                     className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors inline-flex items-center gap-1 group"
                   >
-                    Sign Up Now
+                    Press Start
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </p>
