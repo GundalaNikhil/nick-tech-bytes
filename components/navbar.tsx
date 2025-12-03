@@ -13,6 +13,7 @@ import {
   LogOut,
   User,
   UserCircle2,
+  Users,
 } from "lucide-react";
 import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
@@ -375,6 +376,16 @@ export default function Navbar({
               </Link>
             </motion.div>
 
+            {/* Mock Interviews Link */}
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href="/mock-interviews"
+                className="nav-link px-3 lg:px-5 py-2.5 rounded-xl text-xs lg:text-sm font-semibold bg-gradient-to-r from-emerald-500/10 to-teal-600/10 hover:from-emerald-500/20 hover:to-teal-600/20 border border-emerald-500/30 text-emerald-400 hover:text-emerald-300 transition-all duration-300 whitespace-nowrap"
+              >
+                Mock Interviews
+              </Link>
+            </motion.div>
+
             {/* About Link */}
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
               <Link
@@ -603,6 +614,15 @@ export default function Navbar({
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Blog
+              </Link>
+
+              <Link
+                href="/mock-interviews"
+                className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 px-4 py-3 rounded-xl text-sm font-semibold transition-all border border-emerald-500/30"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Users className="w-4 h-4" />
+                <span>Mock Interviews</span>
               </Link>
 
               <Link
