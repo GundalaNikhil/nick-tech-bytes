@@ -557,10 +557,8 @@ class ApiClient {
     );
   }
 
-  async deleteMockInterview(
-    id: number
-  ): Promise<{ message: string; success: boolean }> {
-    return this.request<{ message: string; success: boolean }>(
+  async deleteMockInterview(id: number): Promise<{ message: string }> {
+    return this.request<{ message: string }>(
       API_ENDPOINTS.MOCK_INTERVIEWS.DELETE(id),
       {
         method: "DELETE",
