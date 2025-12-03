@@ -15,25 +15,25 @@
     # Ensure all dependencies are installed
     NPM_FLAGS = "--legacy-peer-deps"
 
-# Production deployment configuration
+# Production deployment configuration (Netlify builds from develop branch = dev environment)
 [context.production]
-  # Environment variables for production
+  # Environment variables for production build (but pointing to DEV Railway service)
   [context.production.environment]
-    NEXT_PUBLIC_API_URL = "https://nicktechbytes-be-dev-production.up.railway.app/api/v1"
-    NEXT_PUBLIC_ENVIRONMENT = "production"
+    NEXT_PUBLIC_API_URL = "https://nicktechbytes-be-dev-development.up.railway.app/api/v1"
+    NEXT_PUBLIC_ENVIRONMENT = "development"
     NODE_ENV = "production"
 
 # Branch deploys (non-production)
 [context.branch-deploy]
   [context.branch-deploy.environment]
-    NEXT_PUBLIC_API_URL = "https://nicktechbytes-be-dev-production.up.railway.app/api/v1"
+    NEXT_PUBLIC_API_URL = "https://nicktechbytes-be-dev-development.up.railway.app/api/v1"
     NEXT_PUBLIC_ENVIRONMENT = "development"
     NODE_ENV = "production"
 
 # Deploy Preview configuration
 [context.deploy-preview]
   [context.deploy-preview.environment]
-    NEXT_PUBLIC_API_URL = "https://nicktechbytes-be-dev-production.up.railway.app/api/v1"
+    NEXT_PUBLIC_API_URL = "https://nicktechbytes-be-dev-development.up.railway.app/api/v1"
     NEXT_PUBLIC_ENVIRONMENT = "development"
 
 # Redirects and rewrites

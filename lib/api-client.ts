@@ -15,6 +15,16 @@ export const API_ENDPOINTS = {
     FORGOT_PASSWORD: `${API_BASE_URL}/auth/forgot-password`,
     RESET_PASSWORD: `${API_BASE_URL}/auth/reset-password`,
   },
+  MOCK_INTERVIEWS: {
+    BASE: `${API_BASE_URL}/mock-interviews`,
+    CREATE: `${API_BASE_URL}/mock-interviews`,
+    LIST: `${API_BASE_URL}/mock-interviews`,
+    PAGINATED: `${API_BASE_URL}/mock-interviews/paginated`,
+    COUNT: `${API_BASE_URL}/mock-interviews/count`,
+    BY_ID: (id: number) => `${API_BASE_URL}/mock-interviews/${id}`,
+    DELETE: (id: number) => `${API_BASE_URL}/mock-interviews/${id}`,
+    ADMIN_ALL: `${API_BASE_URL}/mock-interviews/admin/all`,
+  },
 } as const;
 
 export interface ApiError {
@@ -79,6 +89,77 @@ export interface TokenValidationResponse {
   role?: string;
   userId?: number;
   message: string;
+}
+
+export interface MockInterviewRequest {
+  name: string;
+  email: string;
+  phone: string;
+  currentRole: string;
+  targetRole: string;
+  experience: string;
+  preferredDate: string;
+  preferredTime: string;
+  technicalFocus: string[];
+  additionalNotes?: string;
+}
+
+export interface MockInterviewResponse {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  currentRole: string;
+  targetRole: string;
+  experience: string;
+  preferredDate: string;
+  preferredTime: string;
+  technicalFocus: string[];
+  additionalNotes?: string;
+  status:
+    | "PENDING"
+    | "SCHEDULED"
+    | "CONFIRMED"
+    | "IN_PROGRESS"
+    | "COMPLETED"
+    | "CANCELLED"
+    | "NO_SHOW";
+  scheduledAt?: string;
+  assignedInterviewer?: string;
+  feedback?: string;
+  rating?: number;
+  createdAt: string;
+  updatedAt: string;
+  completedAt?: string;
+}
+
+export interface MockInterviewPage {
+  content: MockInterviewResponse[];
+  pageable: {
+    pageNumber: number;
+    pageSize: number;
+    sort: {
+      sorted: boolean;
+      unsorted: boolean;
+      empty: boolean;
+    };
+    offset: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: {
+    sorted: boolean;
+    unsorted: boolean;
+    empty: boolean;
+  };
+  numberOfElements: number;
+  first: boolean;
+  empty: boolean;
 }
 
 // Token Storage Manager
@@ -430,8 +511,63 @@ class ApiClient {
       if (apiError.status === 409) {
         return false; // Username is taken
       }
-      throw error; // Other errors
+      throw error;
     }
+  }
+
+  // Mock Interviews API methods
+  async createMockInterview(
+    data: MockInterviewRequest
+  ): Promise<MockInterviewResponse> {
+    return this.request<MockInterviewResponse>(
+      API_ENDPOINTS.MOCK_INTERVIEWS.CREATE,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+  }
+
+  async getMockInterviews(): Promise<MockInterviewResponse[]> {
+    return this.request<MockInterviewResponse[]>(
+      API_ENDPOINTS.MOCK_INTERVIEWS.LIST
+    );
+  }
+
+  async getMockInterviewsPaginated(
+    page: number = 0,
+    size: number = 10,
+    sortBy: string = "createdAt",
+    sortDir: string = "DESC"
+  ): Promise<MockInterviewPage> {
+    const params = new URLSearchParams({
+      page: page.toString(),
+      size: size.toString(),
+      sortBy,
+      sortDir,
+    });
+    return this.request<MockInterviewPage>(
+      `${API_ENDPOINTS.MOCK_INTERVIEWS.PAGINATED}?${params}`
+    );
+  }
+
+  async getMockInterviewById(id: number): Promise<MockInterviewResponse> {
+    return this.request<MockInterviewResponse>(
+      API_ENDPOINTS.MOCK_INTERVIEWS.BY_ID(id)
+    );
+  }
+
+  async deleteMockInterview(id: number): Promise<{ message: string }> {
+    return this.request<{ message: string }>(
+      API_ENDPOINTS.MOCK_INTERVIEWS.DELETE(id),
+      {
+        method: "DELETE",
+      }
+    );
+  }
+
+  async getMockInterviewCount(): Promise<number> {
+    return this.request<number>(API_ENDPOINTS.MOCK_INTERVIEWS.COUNT);
   }
 }
 
