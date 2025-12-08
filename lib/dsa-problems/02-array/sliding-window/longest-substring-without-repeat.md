@@ -20,6 +20,9 @@ Find the length of the longest substring without repeating characters. Use slidi
 **Your Task:** 
 Return the length of the longest substring without repeating characters.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Sliding Window Classic, Character Frequency/Position Tracking, String Optimization, Interview Must-Know, O(n), Interview
+
 ---
 
 ## Examples

@@ -21,6 +21,9 @@ Return a list of integers representing the size of these parts.
 **Your Task:** 
 Return list of sizes.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Medium, Two Pointers, Hash Map, O(N), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Design an algorithm that collects daily price quotes for some stock and returns 
 **Your Task:** 
 Implement `StockSpanner` class.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Monotonic Stack, Online Algorithm, Amortized Analysis, Interview Classic, O(1), Interview
+
 ---
 
 ## Examples

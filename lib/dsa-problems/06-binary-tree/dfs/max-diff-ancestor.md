@@ -20,6 +20,9 @@ Given the `root` of a binary tree, find the maximum value `v` for which there ex
 **Your Task:** 
 Return the max difference.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Dfs, Dfs / Recursion, Tracking Min/Max In Path, Tree Traversal, Optimization, O(N), Interview
+
 ---
 
 ## Examples

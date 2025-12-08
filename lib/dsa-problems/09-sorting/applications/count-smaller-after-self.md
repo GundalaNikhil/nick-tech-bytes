@@ -20,6 +20,9 @@ Given an integer array, for each element find the count of smaller numbers to it
 **Your Task:** 
 Return array of counts for each element.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Applications, Merge Sort With Counting, Binary Indexed Tree, Inversion Counting Variant, Advanced Sorting, O(n log n), Interview
+
 ---
 
 ## Examples

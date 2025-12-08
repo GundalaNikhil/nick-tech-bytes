@@ -20,6 +20,9 @@ Given a string of digits 2-9, return all possible letter combinations that the n
 **Your Task:** 
 Return all possible letter combinations.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Combination, Backtracking Classic, Cartesian Product, Phone/Text Systems, Recursive Enumeration, O(4^n × n), Interview
+
 ---
 
 ## Examples

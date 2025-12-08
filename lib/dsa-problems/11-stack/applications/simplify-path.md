@@ -20,6 +20,9 @@ Given an absolute Unix-style file path, simplify it. Handle ".", "..", multiple 
 **Your Task:** 
 Return the simplified canonical path.
 
+**Difficulty:** Medium
+**Tags:** Stack, Applications, Stack Application, String Parsing, File System Operations, Security, O(n), Interview
+
 ---
 
 ## Examples

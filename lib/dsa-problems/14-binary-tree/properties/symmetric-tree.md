@@ -20,6 +20,9 @@ Check if a binary tree is a mirror of itself (symmetric around its center).
 **Your Task:** 
 Return true if the tree is symmetric.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Properties, Tree Comparison, Recursive Thinking, Mirror/Reflection Problems, Algorithm Symmetry, O(n), Interview
+
 ---
 
 ## Examples

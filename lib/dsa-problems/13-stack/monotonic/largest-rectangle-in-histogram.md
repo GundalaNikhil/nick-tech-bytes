@@ -20,6 +20,9 @@ Given an array of integers `heights` representing the histogram's bar height whe
 **Your Task:** 
 Return max area.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Monotonic Stack, Divide And Conquer, Segment Tree, Optimization, O(N), Interview
+
 ---
 
 ## Examples

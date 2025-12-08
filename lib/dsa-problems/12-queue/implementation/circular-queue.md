@@ -20,6 +20,9 @@ Implement a circular queue with fixed size supporting enqueue, dequeue, front, r
 **Your Task:** 
 Implement MyCircularQueue class with all operations.
 
+**Difficulty:** Medium
+**Tags:** Queue, Implementation, Circular Buffer Implementation, Ring Buffer Pattern, Memory Efficient Queues, Producer-Consumer Systems, O(1), Interview
+
 ---
 
 ## Examples

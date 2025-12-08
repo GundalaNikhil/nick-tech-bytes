@@ -20,6 +20,9 @@ Given a string `s`, consider all duplicated substrings: (contiguous) substrings 
 **Your Task:** 
 Return the longest duplicate substring.
 
+**Difficulty:** Hard
+**Tags:** String, Advanced, Binary Search On Length, Rolling Hash, Suffix Array / Suffix Tree, Hard String, O(n log n), Interview
+
 ---
 
 ## Examples

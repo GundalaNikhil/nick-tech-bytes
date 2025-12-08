@@ -20,6 +20,9 @@ Rotate an n×n matrix by 90 degrees clockwise in-place. Do not allocate another 
 **Your Task:** 
 Rotate the matrix 90 degrees clockwise in-place.
 
+**Difficulty:** Medium
+**Tags:** Array, Matrix, Matrix Manipulation, In-Place Operations, Computer Graphics, Image Processing, O(n²), Interview
+
 ---
 
 ## Examples

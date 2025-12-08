@@ -25,6 +25,9 @@ Implement the `Trie` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Easy
+**Tags:** Tries, Basics, Trie Data Structure, Prefix Counting, Dynamic Updates, O(L), Interview
+
 ---
 
 ## Examples

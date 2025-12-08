@@ -20,6 +20,9 @@ Given an integer array `nums`, you have to return a new counts array. The counts
 **Your Task:** 
 Return counts array.
 
+**Difficulty:** Medium
+**Tags:** Range Queries, Binary Indexed Tree, Merge Sort, Segment Tree, Rank Finding, O(N log N), Interview
+
 ---
 
 ## Examples

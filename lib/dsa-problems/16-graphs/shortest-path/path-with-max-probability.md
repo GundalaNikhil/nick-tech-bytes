@@ -20,6 +20,9 @@ You are given an undirected weighted graph of `n` nodes (0-indexed), represented
 **Your Task:** 
 Return maximum probability.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, Modified Dijkstra, Product Of Probabilities, Shortest Path Variant, Graph Optimization, O(E log V), Interview
+
 ---
 
 ## Examples

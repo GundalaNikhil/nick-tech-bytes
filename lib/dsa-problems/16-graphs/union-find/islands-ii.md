@@ -20,6 +20,9 @@ Given an m×n grid (initially all water), process a sequence of land additions. 
 **Your Task:** 
 Return array of island counts after each land addition.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Union-Find Application, Dynamic Connectivity, Online, Efficient Island Merging, O(k × α(mn), Interview
+
 ---
 
 ## Examples

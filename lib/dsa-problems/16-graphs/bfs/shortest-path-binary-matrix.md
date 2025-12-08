@@ -21,6 +21,9 @@ Given an `n x n` binary matrix `grid`, return the length of the shortest clear p
 **Your Task:** 
 Return path length.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, 8-Directional Movement, Grid Traversal, O(N^2), Interview
+
 ---
 
 ## Examples

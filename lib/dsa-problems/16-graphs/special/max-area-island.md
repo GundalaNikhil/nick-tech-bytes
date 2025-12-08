@@ -20,6 +20,9 @@ Given a binary grid, find the area (cell count) of the largest island. Cells are
 **Your Task:** 
 Return the maximum area of an island.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Special, Dfs On Grid, Flood Fill, Connected Components, Geographic Analysis, O(m × n), Interview
+
 ---
 
 ## Examples

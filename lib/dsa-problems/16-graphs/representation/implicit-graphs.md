@@ -20,6 +20,9 @@ An implicit graph is one where vertices and edges aren't explicitly stored. Inst
 **Your Task:** 
 Given a state-space problem (like word ladder, puzzle, or game state), implement neighbor generation and search without explicit graph construction.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Representation, Essential For State-Space Search Problems, Saves Memory For Exponentially Large Graphs, Used In Game Ai, Puzzle Solvers, And Planning Algorithms, Bfs/Dfs Work Without Storing The Entire Graph, O(V + E), Interview
+
 ---
 
 ## Examples

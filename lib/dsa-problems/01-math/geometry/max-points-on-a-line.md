@@ -20,6 +20,9 @@ Given an array of `points` where `points[i] = [xi, yi]`, return the maximum numb
 **Your Task:** 
 Return max collinear points.
 
+**Difficulty:** Medium
+**Tags:** Math, Geometry, Geometry / Math, Gcd For Slope Calculation, Hashmap Optimization, Hard Interview, O(n²), Interview
+
 ---
 
 ## Examples

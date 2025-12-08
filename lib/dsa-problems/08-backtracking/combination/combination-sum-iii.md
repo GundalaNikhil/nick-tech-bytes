@@ -20,6 +20,9 @@ Find all combinations of k numbers from 1-9 that sum to target n. Each number us
 **Your Task:** 
 Return all valid combinations.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Combination, Backtracking With Constraints, Fixed-Size Combinations, Number Selection Problems, Clean Problem Structure, O(9!/(k!(9-k), Interview
+
 ---
 
 ## Examples

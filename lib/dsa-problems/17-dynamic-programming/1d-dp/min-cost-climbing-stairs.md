@@ -20,6 +20,9 @@ Given an array of costs, you can climb either 1 or 2 steps at a time. Find the m
 **Your Task:** 
 Return the minimum cost to reach the top.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Basic 1D Dp, Extension Of Climbing Stairs, Real Optimization Problems, Greedy Doesn'T Work Here, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Find the minimum sum of a falling path through an n×n matrix. Starting from any
 **Your Task:** 
 Return the minimum sum of any falling path.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 2D Dp, 2D Dp Classic, Grid Optimization, Path Finding, Multiple Start Points, O(n²), Interview
+
 ---
 
 ## Examples

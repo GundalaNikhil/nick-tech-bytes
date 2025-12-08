@@ -20,6 +20,9 @@ You must implement a solution with a linear runtime complexity and use only cons
 **Your Task:** 
 Return the single number.
 
+**Difficulty:** Hard
+**Tags:** Bit Manipulation, Advanced, Karnaugh Maps, Generalization Of Xor Trick, O(N), Interview
+
 ---
 
 ## Examples

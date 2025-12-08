@@ -20,6 +20,9 @@ There are `n` servers numbered from `0` to `n - 1` connected by undirected serve
 **Your Task:** 
 Return list of critical edges.
 
+**Difficulty:** Hard
+**Tags:** Graphs, Advanced, Tarjan'S Algorithm / Dfs, Bridges In Graph, Low-Link Values, Hard Graph Theory, O(V + E), Interview
+
 ---
 
 ## Examples

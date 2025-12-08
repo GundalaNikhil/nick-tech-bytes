@@ -20,6 +20,9 @@ Given strings s and t, count the number of distinct subsequences of s that equal
 **Your Task:** 
 Return the number of distinct subsequences.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Dp Count, Subsequence Variants, Text Analysis, Pattern Counting, O(s × t), Interview
+
 ---
 
 ## Examples

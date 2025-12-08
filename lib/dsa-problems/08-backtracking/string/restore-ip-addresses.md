@@ -20,6 +20,9 @@ Given a string of only digits, return all possible valid IP addresses by inserti
 **Your Task:** 
 Return all valid IP addresses.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, String, Backtracking With Constraints, Network Programming, String Parsing, Validation Logic, O(1), Interview
+
 ---
 
 ## Examples

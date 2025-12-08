@@ -20,6 +20,9 @@ Given an array of positive integers and target sum, find the minimal length of a
 **Your Task:** 
 Return the minimum subarray length.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Sliding Window Classic, Two-Pointer, Sum Optimization, Subarray Problems, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given an array of strings `words` (without duplicates), return all the concatena
 **Your Task:** 
 Return list of concatenated words.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Dp / Dfs With Memoization, Trie Optimization, String Composition, Hard Interview, O(N * L^2), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given an array, return a new array where each element is the product of all elem
 **Your Task:** 
 Return an array where answer[i] equals the product of all elements except nums[i].
 
+**Difficulty:** Medium
+**Tags:** Array, Prefix Suffix, Teaches Prefix/Suffix Product, Tests Handling Of Edge Cases, Division-Free Solution Is Clever, Common In Financial Calculations, O(n), Interview
+
 ---
 
 ## Examples

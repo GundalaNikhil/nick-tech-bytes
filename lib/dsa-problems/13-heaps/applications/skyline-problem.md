@@ -20,6 +20,9 @@ A city's skyline is the outer contour of the silhouette formed by all the buildi
 **Your Task:** 
 Return the list of key points representing the skyline.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Applications, Sweep Line, Heap / Segment Tree / Treemap, Geometric Processing, Hard Interview, O(n log n), Interview
+
 ---
 
 ## Examples

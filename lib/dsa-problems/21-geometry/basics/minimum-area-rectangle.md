@@ -20,6 +20,9 @@ Return the minimum area of a rectangle formed from these points, with sides para
 **Your Task:** 
 Return minimum area.
 
+**Difficulty:** Easy
+**Tags:** Geometry, Basics, Hash Set / Hash Map, Diagonal Property, O(N^2), Interview
+
 ---
 
 ## Examples

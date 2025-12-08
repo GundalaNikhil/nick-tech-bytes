@@ -20,6 +20,9 @@ Given an array of integers (positive and negative), find the contiguous subarray
 **Your Task:** 
 Find the contiguous subarray with the maximum sum and return that sum.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Other, Financial Analysis, Image Processing, Signal Processing, Foundation For Many Optimization Problems, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a string, rearrange it so that no two adjacent characters are the same. Re
 **Your Task:** 
 Return a valid rearrangement or "" if impossible.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Applications, Greedy + Priority Queue, Character Frequency, Task Scheduling Variant, Feasibility Checking, O(n log 26), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Let the function `countUniqueChars(s)` be the number of unique characters in s. 
 **Your Task:** 
 Return the sum of unique characters for all substrings.
 
+**Difficulty:** Hard
+**Tags:** String, Advanced, Contribution Technique, Array Of Indices, Hard String, O(N), Interview
+
 ---
 
 ## Examples

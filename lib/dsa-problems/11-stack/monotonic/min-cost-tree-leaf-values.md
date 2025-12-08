@@ -23,6 +23,9 @@ The value of each non-leaf node is equal to the product of the largest leaf valu
 **Your Task:** 
 Return minimum cost.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Monotonic Stack, Interval Dp, Greedy Strategy, Optimization, O(N), Interview
+
 ---
 
 ## Examples

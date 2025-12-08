@@ -20,6 +20,9 @@ Given an `n x n` `grid` containing only values `0` (water) and `1` (land), find 
 **Your Task:** 
 Return max distance.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Multi-Source Bfs, Breadth-First Search, Grid Traversal, Optimization, O(N^2), Interview
+
 ---
 
 ## Examples

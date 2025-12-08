@@ -20,6 +20,9 @@ Delete a node with given key from BST. Handle three cases: no children (just rem
 **Your Task:** 
 Delete the node and return the root.
 
+**Difficulty:** Medium
+**Tags:** Bst, Operations, Complete Bst Operations, Three-Case Handling, Inorder Successor Concept, Database Deletion, O(h), Interview
+
 ---
 
 ## Examples

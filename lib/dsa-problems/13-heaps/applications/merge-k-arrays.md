@@ -20,6 +20,9 @@ Given k sorted arrays, merge them into one sorted array efficiently using a min-
 **Your Task:** 
 Return the merged sorted array.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Applications, Heap Application, Multi-Way Merge, External Sorting, Distributed Systems, O(n log k), Interview
+
 ---
 
 ## Examples

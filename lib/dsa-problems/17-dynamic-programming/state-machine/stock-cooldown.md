@@ -20,6 +20,9 @@ Find maximum profit with unlimited transactions but a 1-day cooldown after selli
 **Your Task:** 
 Return the maximum profit with cooldown.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, State Machine, State Machine Dp, Finance Algorithms, State Transitions, Advanced Stock Problems, O(n), Interview
+
 ---
 
 ## Examples

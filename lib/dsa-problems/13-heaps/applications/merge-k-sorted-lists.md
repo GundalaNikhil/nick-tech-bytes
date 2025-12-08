@@ -20,6 +20,9 @@ Given an array of K sorted linked lists, merge them into one sorted list. Use a 
 **Your Task:** 
 Merge K sorted lists into one sorted list.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Applications, External Sorting, Log Merging, Heap Priority Queue Usage, Divide And Conquer, O(n log k), Interview
+
 ---
 
 ## Examples

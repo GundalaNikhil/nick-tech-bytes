@@ -20,6 +20,9 @@ Find the maximum profit you can achieve. You may complete at most two transactio
 **Your Task:** 
 Return maximum profit with at most 2 transactions.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, State Machine, State Machine Dp, Bidirectional Dp, Generalization To K Transactions, Hard Interview, O(n), Interview
+
 ---
 
 ## Examples

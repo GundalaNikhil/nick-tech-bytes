@@ -20,6 +20,9 @@ Given a binary array `nums` and an integer `k`, return the maximum number of con
 **Your Task:** 
 Return max length.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Zero Counting, Longest Subarray, Optimization, O(N), Interview
+
 ---
 
 ## Examples

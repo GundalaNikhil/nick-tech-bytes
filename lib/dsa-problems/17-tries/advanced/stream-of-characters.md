@@ -24,6 +24,9 @@ Implement the `StreamChecker` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Hard
+**Tags:** Tries, Advanced, Trie, Aho-Corasick Algorithm, Suffix Matching, Real-Time Processing, O(L), Interview
+
 ---
 
 ## Examples

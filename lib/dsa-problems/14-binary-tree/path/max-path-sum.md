@@ -20,6 +20,9 @@ Find the maximum sum of any path in a binary tree. A path is any sequence of con
 **Your Task:** 
 Return the maximum path sum.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Path, Tree Dp Classic, Non-Linear Path Problems, Handling Negative Values, Hard Interview, O(n), Interview
+
 ---
 
 ## Examples

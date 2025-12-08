@@ -20,6 +20,9 @@ Given a graph that started as a tree, one edge was added creating exactly one cy
 **Your Task:** 
 Return the redundant edge that appears last in input.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Union-Find Cycle Detection, Tree Validation, Network Redundancy, Last Edge Creating Cycle, O(n × α(n), Interview
+
 ---
 
 ## Examples

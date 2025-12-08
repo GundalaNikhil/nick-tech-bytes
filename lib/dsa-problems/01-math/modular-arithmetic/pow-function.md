@@ -20,6 +20,9 @@ Compute x raised to the power n (x^n). Handle negative exponents and optimize fo
 **Your Task:** 
 Compute x^n efficiently.
 
+**Difficulty:** Medium
+**Tags:** Math, Modular Arithmetic, Binary Exponentiation, Negative Power Handling, Divide And Conquer, Numerical Computing, O(log n), Interview
+
 ---
 
 ## Examples

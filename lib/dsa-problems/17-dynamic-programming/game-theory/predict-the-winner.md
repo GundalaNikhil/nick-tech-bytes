@@ -21,6 +21,9 @@ Return `true` if Player 1 can win the game. If the scores of both players are eq
 **Your Task:** 
 Return boolean.
 
+**Difficulty:** Hard
+**Tags:** Dynamic Programming, Game Theory, Minimax, Zero-Sum Game, O(N^2), Interview
+
 ---
 
 ## Examples

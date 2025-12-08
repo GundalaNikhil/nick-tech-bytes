@@ -24,6 +24,9 @@ Design a search autocomplete system for a search engine. Users may input a sente
 **Your Task:** 
 Implement `AutocompleteSystem` class.
 
+**Difficulty:** Hard
+**Tags:** Trie, Advanced, Trie With Metadata, Priority Queue / Sorting, System Design, String Processing, O(L), Interview
+
 ---
 
 ## Examples

@@ -24,6 +24,9 @@ Design a simplified Twitter with:
 **Your Task:** 
 Implement the Twitter class.
 
+**Difficulty:** Hard
+**Tags:** System Design, System Design Fundamentals, Merge K Sorted Lists Application, Friend/Follow Relationships, Timeline Generation, O(n log k), Interview
+
 ---
 
 ## Examples

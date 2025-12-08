@@ -20,6 +20,9 @@ Given an array nums, you can perform operations: pick any `nums[i]`, earn `nums[
 **Your Task:** 
 Return maximum points.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Reduction To House Robber, Frequency Bucket Sort, Dp Pattern Recognition, Optimization, O(n + max(nums), Interview
+
 ---
 
 ## Examples

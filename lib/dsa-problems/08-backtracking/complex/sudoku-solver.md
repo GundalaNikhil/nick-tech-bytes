@@ -20,6 +20,9 @@ Solve a 9×9 Sudoku puzzle by filling every empty cell with digits 1-9 such that
 **Your Task:** 
 Fill the board with valid numbers in-place.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Complex, Backtracking Classic, Constraint Satisfaction, Game Ai, Logical Reasoning, O(9^(empty cells), Interview
+
 ---
 
 ## Examples

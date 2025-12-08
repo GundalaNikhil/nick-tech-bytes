@@ -20,6 +20,9 @@ Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]
 **Your Task:** 
 Return the list of unique triplets summing to zero.
 
+**Difficulty:** Medium
+**Tags:** Array, Two Pointer, Two-Pointer Technique Extension, Sorting + Two Sum, Handling Duplicates, Classic Interview, O(n²), Interview
+
 ---
 
 ## Examples

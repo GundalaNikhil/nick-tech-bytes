@@ -20,6 +20,9 @@ You are given the `root` of a binary tree. We install cameras on the tree nodes 
 **Your Task:** 
 Return minimum cameras.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Dfs, Greedy On Tree, State Tracking, Tree Dp, Optimization, O(N), Interview
+
 ---
 
 ## Examples

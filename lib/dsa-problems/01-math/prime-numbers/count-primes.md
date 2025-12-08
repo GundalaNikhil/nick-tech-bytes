@@ -20,6 +20,9 @@ Count the number of prime numbers less than a non-negative number n. Use the Sie
 **Your Task:** 
 Return the count of primes less than n.
 
+**Difficulty:** Medium
+**Tags:** Math, Prime Numbers, Sieve Of Eratosthenes, Prime Counting Function, Cryptography Applications, Number Theory, O(n log log n), Interview
+
 ---
 
 ## Examples

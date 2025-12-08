@@ -20,6 +20,9 @@ Design a stack that supports push, pop, top, and retrieving the minimum element 
 **Your Task:** 
 Implement the MinStack class.
 
+**Difficulty:** Medium
+**Tags:** Stack, Implementation, Stack Design, Auxiliary Data Structure, O Operations, Interview Classic, O(1), Interview
+
 ---
 
 ## Examples

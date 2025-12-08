@@ -20,6 +20,9 @@ Given n gas stations in a circle with gas[i] and cost[i] to reach next station, 
 **Your Task:** 
 Find the starting station index, or -1 if impossible.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Interval, Circular Array, Greedy Thinking, Transportation/Logistics, Single Valid Answer Property, O(n), Interview
+
 ---
 
 ## Examples

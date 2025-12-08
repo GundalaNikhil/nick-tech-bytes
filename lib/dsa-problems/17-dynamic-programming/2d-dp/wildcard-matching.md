@@ -22,6 +22,9 @@ The matching should cover the entire input string (not partial).
 **Your Task:** 
 Return boolean match.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 2D Dp, Greedy With Backtracking, String Matching, O(M * N), Interview
+
 ---
 
 ## Examples

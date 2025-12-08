@@ -20,6 +20,9 @@ Given an array of integers and K, find the number of contiguous subarrays whose 
 **Your Task:** 
 Return the count of subarrays divisible by K.
 
+**Difficulty:** Medium
+**Tags:** Array, Prefix Suffix, Prefix Sum + Modular Arithmetic, Counting Subarrays Pattern, Financial Batch Processing, Modular Remainder Grouping, O(n), Interview
+
 ---
 
 ## Examples

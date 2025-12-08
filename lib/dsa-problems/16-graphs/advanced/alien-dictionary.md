@@ -20,6 +20,9 @@ Given a list of words sorted lexicographically by the rules of an alien language
 **Your Task:** 
 Return character order, or "" if invalid.
 
+**Difficulty:** Hard
+**Tags:** Graphs, Advanced, Graph Construction From Constraints, Topological Sorting, Constraint Satisfaction, Linguistic Analysis, O(C), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a string, find the longest contiguous substring that is a palindrome (read
 **Your Task:** 
 Return the longest palindromic substring in the given string.
 
+**Difficulty:** Hard
+**Tags:** String, Advanced, Text Analysis And Processing, Bioinformatics, Word Games, Teaches Expand-Around-Center, O(n²), Interview
+
 ---
 
 ## Examples

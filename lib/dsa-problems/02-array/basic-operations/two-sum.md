@@ -20,6 +20,9 @@ Given an array of integers and a target sum, find two numbers that add up to the
 **Your Task:** 
 Return indices of the two numbers such that they add up to the target.
 
+**Difficulty:** Medium
+**Tags:** Array, Basic Operations, Most Popular Interview Question, Introduces Hash Map Optimization, Foundation For N-Sum Problems, Real-World Shopping/Matching Applications, O(n), Interview
+
 ---
 
 ## Examples

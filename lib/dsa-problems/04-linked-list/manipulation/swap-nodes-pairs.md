@@ -20,6 +20,9 @@ Given a linked list, swap every two adjacent nodes and return the modified list.
 **Your Task:** 
 Swap adjacent pairs and return the head.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Manipulation, Pointer Manipulation, Recursion Or Iteration, In-Place Modification, Foundation For K-Group Reversal, O(n), Interview
+
 ---
 
 ## Examples

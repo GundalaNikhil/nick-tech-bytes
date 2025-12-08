@@ -20,6 +20,9 @@ Given n cities connected by flights with prices, find the cheapest price from so
 **Your Task:** 
 Return the cheapest price with at most K stops.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, Modified Dijkstra/Bellman-Ford, Constraint On Path Length, Travel Planning, State Space Bfs, O(V × E), Interview
+
 ---
 
 ## Examples

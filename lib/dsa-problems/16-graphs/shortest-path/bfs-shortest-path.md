@@ -20,6 +20,9 @@ In an unweighted graph, BFS guarantees the shortest path because it explores ver
 **Your Task:** 
 Given an unweighted graph, find the shortest path distance between two vertices using BFS.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, Simpler Than Dijkstra'S For Unweighted Graphs, Natural Solution For "Minimum Steps" Problems, Social Network Distance Problems, O(V + E), Interview
+
 ---
 
 ## Examples

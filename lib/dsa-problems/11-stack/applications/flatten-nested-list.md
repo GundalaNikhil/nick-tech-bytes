@@ -20,6 +20,9 @@ Implement an iterator to flatten a nested list structure. Each element is either
 **Your Task:** 
 Implement NestedIterator with next() and hasNext().
 
+**Difficulty:** Medium
+**Tags:** Stack, Applications, Iterator Pattern, Stack-Based Flattening, Lazy Evaluation, Nested Structure Traversal, O(1), Interview
+
 ---
 
 ## Examples

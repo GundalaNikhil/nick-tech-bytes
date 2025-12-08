@@ -24,6 +24,9 @@ A Trie is a tree-like data structure where each node represents a character. Pat
 **Your Task:** 
 Implement a Trie with insert, search, and startsWith methods.
 
+**Difficulty:** Medium
+**Tags:** Trie, Basic, Autocomplete Systems, Spell Checkers, Ip Routing, Word Games, O(m), Interview
+
 ---
 
 ## Examples

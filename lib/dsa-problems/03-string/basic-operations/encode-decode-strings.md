@@ -20,6 +20,9 @@ Design algorithm to encode list of strings to single string, and decode back to 
 **Your Task:** 
 Implement encode(List<String>) → String and decode(String) → List<String>.
 
+**Difficulty:** Medium
+**Tags:** String, Basic Operations, Serialization, Escaping/Encoding, Length-Prefixing, Protocol Design, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ In the video game Fallout 4, the quest "Road to Freedom" requires players to rea
 **Your Task:** 
 Return minimum steps.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Dp On Strings, Circular Distance, State Space Search, Optimization, O(K * R), Interview
+
 ---
 
 ## Examples

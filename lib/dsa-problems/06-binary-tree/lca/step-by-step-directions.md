@@ -20,6 +20,9 @@ Given the `root` of a binary tree with `n` nodes. Each node is uniquely assigned
 **Your Task:** 
 Return the direction string.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Lca, Lowest Common Ancestor, Path Finding, String Manipulation, Tree Traversal, O(N), Interview
+
 ---
 
 ## Examples

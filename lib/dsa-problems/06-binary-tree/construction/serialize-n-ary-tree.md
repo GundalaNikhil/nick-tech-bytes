@@ -20,6 +20,9 @@ Serialization is the process of converting a data structure or object into a seq
 **Your Task:** 
 Implement `Codec` class.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Construction, Tree Traversal, String Parsing, Recursion, System Design Concept, O(N), Interview
+
 ---
 
 ## Examples

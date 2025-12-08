@@ -20,6 +20,9 @@ Start from (0,0) go to (n-1,n-1) and back. Can only move right/down, then left/u
 **Your Task:** 
 Return maximum cherries collected in the round trip.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Grid Dp, 3D Dp / Two Simultaneous Paths, Grid Optimization, Dual Traversal Problems, Hard Dp Classic, O(n³), Interview
+
 ---
 
 ## Examples

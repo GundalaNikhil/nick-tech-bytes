@@ -20,6 +20,9 @@ Given a singly linked list, check if the values form a palindrome.
 **Your Task:** 
 Return true if the linked list is a palindrome.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Manipulation, Linked List + String Problem Combo, Fast/Slow Pointer + Reversal, O Space Challenge, Dna/Pattern Analysis, O(n), Interview
+
 ---
 
 ## Examples

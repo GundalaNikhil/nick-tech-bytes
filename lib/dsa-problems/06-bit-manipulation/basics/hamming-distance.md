@@ -20,6 +20,9 @@ The Hamming distance between two integers is the number of positions at which th
 **Your Task:** 
 Return the Hamming distance between two integers.
 
+**Difficulty:** Easy
+**Tags:** Bit Manipulation, Basics, Error Detection/Correction, Dna Comparison, Bit Manipulation Basics, Xor Application, O(1), Interview
+
 ---
 
 ## Examples

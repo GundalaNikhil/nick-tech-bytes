@@ -20,6 +20,9 @@ Given dimensions of matrices, find the minimum number of scalar multiplications 
 **Your Task:** 
 Find the minimum cost to multiply all matrices.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Interval Dp, Classic Interval Dp, Optimization Problems, Graphics/Ml Applications, Parenthesization Decisions, O(n³), Interview
+
 ---
 
 ## Examples

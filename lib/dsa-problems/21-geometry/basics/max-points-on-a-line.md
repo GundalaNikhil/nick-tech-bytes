@@ -20,6 +20,9 @@ Given an array of `points` where `points[i] = [xi, yi]` represents a point on th
 **Your Task:** 
 Return max points.
 
+**Difficulty:** Easy
+**Tags:** Geometry, Basics, Hash Map, Gcd For Precision, Handling Vertical Lines And Duplicates, O(N^2), Interview
+
 ---
 
 ## Examples

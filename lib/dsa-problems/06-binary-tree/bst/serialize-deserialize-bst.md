@@ -20,6 +20,9 @@ Serialization is converting a data structure or object into a sequence of bits s
 **Your Task:** 
 Implement `Codec` class.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Bst, Preorder Traversal, Tree Construction From Traversal, Bst Properties, System Design Concept, O(N), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a binary matrix filled with 0's and 1's, find the largest rectangle contai
 **Your Task:** 
 Return the area of the largest rectangle.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Dp Or Stack-Based Solution, Extension Of Largest Rectangle In Histogram, 2D Grid Optimization, Hard Interview, O(rows * cols), Interview
+
 ---
 
 ## Examples

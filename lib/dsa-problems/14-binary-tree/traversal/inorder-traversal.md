@@ -20,6 +20,9 @@ Visit nodes in the order: Left subtree → Root → Right subtree. For BSTs, thi
 **Your Task:** 
 Return the inorder traversal of a binary tree's nodes' values.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Traversal, Produces Sorted Output For Bst, Foundation For Tree Algorithms, Expression Tree Evaluation, Used In Many Tree Manipulations, O(n), Interview
+
 ---
 
 ## Examples

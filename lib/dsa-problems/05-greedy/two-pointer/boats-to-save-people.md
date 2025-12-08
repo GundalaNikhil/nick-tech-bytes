@@ -20,6 +20,9 @@ You are given an array `people` where `people[i]` is the weight of the `ith` per
 **Your Task:** 
 Return minimum boats.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Two Pointer, Greedy Strategy, Sorting + Two Pointers, Bin Packing Variant, Optimization, O(N log N), Interview
+
 ---
 
 ## Examples

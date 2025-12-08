@@ -20,6 +20,9 @@ Given a binary matrix, find the distance of each cell to the nearest 0. Distance
 **Your Task:** 
 Return the distance matrix.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Multi-Source Bfs, Distance Matrix, Nearest Facility Problems, Hospital/Evacuation Planning, O(m × n), Interview
+
 ---
 
 ## Examples

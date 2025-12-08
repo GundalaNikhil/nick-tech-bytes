@@ -29,6 +29,9 @@ Implement the `MyCircularDeque` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Easy
+**Tags:** Design, Basics, Array Implementation Of Deque, Modulo Arithmetic, Circular Buffer, O(1), Interview
+
 ---
 
 ## Examples

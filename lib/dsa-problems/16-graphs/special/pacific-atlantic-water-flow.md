@@ -20,6 +20,9 @@ Given an m×n matrix of heights, find all grid coordinates from which water can 
 **Your Task:** 
 Return all cells from which water can flow to both oceans.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Special, Multi-Source Bfs/Dfs, River/Watershed Analysis, Environmental Modeling, Two-Direction Reachability, O(m × n), Interview
+
 ---
 
 ## Examples

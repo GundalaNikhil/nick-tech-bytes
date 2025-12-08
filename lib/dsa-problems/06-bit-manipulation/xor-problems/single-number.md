@@ -20,6 +20,9 @@ Given an array where every element appears twice except one, find that single el
 **Your Task:** 
 Find the element that appears only once.
 
+**Difficulty:** Medium
+**Tags:** Bit Manipulation, Xor Problems, Bit Manipulation Fundamentals, O Space Solution, Xor Properties In Action, Foundation For Harder Variants, O(n), Interview
+
 ---
 
 ## Examples

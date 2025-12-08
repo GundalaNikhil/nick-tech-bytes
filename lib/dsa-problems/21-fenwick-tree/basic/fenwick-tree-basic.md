@@ -23,6 +23,9 @@ Both in O(log n) with simpler implementation than segment tree.
 **Your Task:** 
 Implement update(i, delta) and prefixSum(i) efficiently.
 
+**Difficulty:** Medium
+**Tags:** Fenwick Tree, Basic, Simpler Than Segment Tree, Inversion Count Problems, Competitive Programming, Range Sum With Point Updates, O(log n), Interview
+
 ---
 
 ## Examples

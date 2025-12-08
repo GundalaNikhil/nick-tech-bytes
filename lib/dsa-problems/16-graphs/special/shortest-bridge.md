@@ -20,6 +20,9 @@ Given a binary matrix with exactly two islands (groups of 1s), find the minimum 
 **Your Task:** 
 Return the minimum bridge length (0s to flip).
 
+**Difficulty:** Medium
+**Tags:** Graphs, Special, Multi-Source Bfs, Dfs + Bfs Combination, Island Problems, Graph Expansion, O(n²), Interview
+
 ---
 
 ## Examples

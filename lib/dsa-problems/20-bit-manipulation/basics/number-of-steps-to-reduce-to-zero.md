@@ -20,6 +20,9 @@ In one step, if the current number is even, you have to divide it by 2, otherwis
 **Your Task:** 
 Return number of steps.
 
+**Difficulty:** Easy
+**Tags:** Bit Manipulation, Basics, Simulation, Simple Logic, O(log N), Interview
+
 ---
 
 ## Examples

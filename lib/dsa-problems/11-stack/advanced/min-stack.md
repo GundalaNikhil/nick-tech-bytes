@@ -20,6 +20,9 @@ Design a stack that supports push, pop, top, and getMin operations, all in O(1) 
 **Your Task:** 
 Implement a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
+**Difficulty:** Hard
+**Tags:** Stack, Advanced, Data Structure Design Skills, O Constraint Forces Clever Thinking, Real-World Monitoring Systems, Teaches Auxiliary Data Structures, O(1), Interview
+
 ---
 
 ## Examples

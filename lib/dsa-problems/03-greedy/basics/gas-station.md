@@ -21,6 +21,9 @@ Given two integer arrays `gas` and `cost`, return the starting gas station's ind
 **Your Task:** 
 Return starting index.
 
+**Difficulty:** Easy
+**Tags:** Greedy, Basics, Prefix Sum, Circular Array Logic, O(N), Interview
+
 ---
 
 ## Examples

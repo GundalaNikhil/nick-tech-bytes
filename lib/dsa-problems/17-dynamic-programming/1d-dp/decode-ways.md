@@ -20,6 +20,9 @@ Given a string of digits, count the number of ways to decode it into letters (A=
 **Your Task:** 
 Return the number of ways to decode the message.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, 1D Dp With Branching, Edge Case Handling, Real Encoding/Decoding Problems, Similar To Climbing Stairs Pattern, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ You are given an integer array `nums`. In one move, you can pick an index `i` wh
 **Your Task:** 
 Return minimum moves.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Sorting, Greedy Strategy, Counting Sort, Optimization, O(N log N), Interview
+
 ---
 
 ## Examples

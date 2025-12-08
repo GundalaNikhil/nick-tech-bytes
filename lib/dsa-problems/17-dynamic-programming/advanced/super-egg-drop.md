@@ -22,6 +22,9 @@ Return the minimum number of moves that you need to determine with certainty wha
 **Your Task:** 
 Return min moves.
 
+**Difficulty:** Hard
+**Tags:** Dynamic Programming, Advanced, Binary Search Optimization, Mathematical Insight, O(K log N), Interview
+
 ---
 
 ## Examples

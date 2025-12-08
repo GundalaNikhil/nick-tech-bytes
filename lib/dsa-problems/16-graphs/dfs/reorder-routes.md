@@ -22,6 +22,9 @@ Your task consists of reorienting some roads such that each city can visit the c
 **Your Task:** 
 Return count of reordered edges.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Dfs / Bfs, Tree Traversal, Directed Vs Undirected Graph, "Virtual" Edges, O(N), Interview
+
 ---
 
 ## Examples

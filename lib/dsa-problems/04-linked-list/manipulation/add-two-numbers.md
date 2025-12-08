@@ -20,6 +20,9 @@ Given two numbers represented as reversed linked lists (ones digit first), add t
 **Your Task:** 
 Add two numbers represented as linked lists.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Manipulation, Arbitrary Precision Arithmetic, Linked List Manipulation, Carry Handling, Real Banking/Scientific Applications, O(max(n, m), Interview
+
 ---
 
 ## Examples

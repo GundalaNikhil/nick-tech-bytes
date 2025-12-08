@@ -20,6 +20,9 @@ Given an array of integers, find the maximum XOR of any two numbers in the array
 **Your Task:** 
 Return the maximum XOR of two numbers.
 
+**Difficulty:** Hard
+**Tags:** Trie, Advanced, Trie Application, Bit-By-Bit Optimization, Network Addressing, Cryptographic Analysis, O(n × 32), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given n balloons with coin values, burst them one by one. For each burst, get co
 **Your Task:** 
 Return the maximum coins obtainable.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Interval Dp, Interval Dp Classic, "Which To Do Last" Thinking, Matrix Chain Multiplication Variant, Hard Dp, O(n³), Interview
+
 ---
 
 ## Examples

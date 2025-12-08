@@ -23,6 +23,9 @@ Given an integer `n`, return the number of possible attendance records of length
 **Your Task:** 
 Return count of valid records.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Dp With State, Matrix Exponentiation, Combinatorics, Hard Counting, O(N), Interview
+
 ---
 
 ## Examples

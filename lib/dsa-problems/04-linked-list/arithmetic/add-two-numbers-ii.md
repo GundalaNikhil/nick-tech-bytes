@@ -20,6 +20,9 @@ Given two non-empty linked lists representing non-negative integers (most signif
 **Your Task:** 
 Return the sum as a linked list (most significant first).
 
+**Difficulty:** Medium
+**Tags:** Linked List, Arithmetic, Linked List Manipulation, Stack Usage For Reverse Access, Arbitrary Precision Arithmetic, Follow-Up To Add Two Numbers I, O(n + m), Interview
+
 ---
 
 ## Examples

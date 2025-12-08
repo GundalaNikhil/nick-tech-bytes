@@ -23,6 +23,9 @@ The matching should cover the entire input string (not partial).
 **Your Task:** 
 Return boolean match.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 2D Dp, Recursion With Memoization, String Parsing, Classic Hard, O(M * N), Interview
+
 ---
 
 ## Examples

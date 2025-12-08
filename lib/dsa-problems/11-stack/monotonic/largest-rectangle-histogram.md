@@ -20,6 +20,9 @@ Given an array of heights where each element represents the height of a bar with
 **Your Task:** 
 Return the area of the largest rectangle.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Monotonic Stack Mastery, Maximal Rectangle Foundation, Real Architectural Applications, Interview Hard, O(n), Interview
+
 ---
 
 ## Examples

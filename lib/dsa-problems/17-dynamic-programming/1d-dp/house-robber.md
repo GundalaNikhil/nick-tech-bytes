@@ -20,6 +20,9 @@ Given an array where each element represents the money in that house, find the m
 **Your Task:** 
 Find the maximum amount of money you can rob without alerting the police.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Classic "Include/Exclude" Pattern, Builds On Climbing Stairs Logic, Foundation For Many Dp Problems, Teaches State Transitions, O(n), Interview
+
 ---
 
 ## Examples

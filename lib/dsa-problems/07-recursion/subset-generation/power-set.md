@@ -20,6 +20,9 @@ Generate all possible subsets (including empty set) of a given set. For n elemen
 **Your Task:** 
 Return all possible subsets (power set).
 
+**Difficulty:** Medium
+**Tags:** Recursion, Subset Generation, Subset Enumeration, Backtracking Template, Combinatorial Problems, Bit Manipulation, O(n × 2^n), Interview
+
 ---
 
 ## Examples

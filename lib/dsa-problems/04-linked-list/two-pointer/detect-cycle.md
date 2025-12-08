@@ -20,6 +20,9 @@ Determine if a linked list has a cycle - where some node's next pointer points b
 **Your Task:** 
 Return true if the linked list has a cycle, false otherwise.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Two Pointer, Prevents Infinite Loops, Memory Leak Detection, Floyd'S Cycle Detection, Used In Graph Cycle Detection Too, O(n), Interview
+
 ---
 
 ## Examples

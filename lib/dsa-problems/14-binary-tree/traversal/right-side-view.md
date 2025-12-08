@@ -20,6 +20,9 @@ Return the values of the nodes you can see from the right side of the tree - the
 **Your Task:** 
 Return the right side view as a list.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Traversal, Level Order Traversal Variant, Tree Perspective Problems, Bfs Application, Last-At-Each-Level Pattern, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Move all 0s to the end of the array while maintaining the relative order of non-
 **Your Task:** 
 Move all zeros to the end in-place.
 
+**Difficulty:** Medium
+**Tags:** Array, Two Pointer, Two-Pointer, In-Place Array Manipulation, Order Preservation, Interview Warmup, O(n), Interview
+
 ---
 
 ## Examples

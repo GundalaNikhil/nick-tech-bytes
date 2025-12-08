@@ -20,6 +20,9 @@ Given a linked list, reverse every k consecutive nodes. If remaining nodes < k, 
 **Your Task:** 
 Reverse nodes in groups of K.
 
+**Difficulty:** Hard
+**Tags:** Linked List, Advanced, Advanced Linked List Manipulation, K-Size Batching, Recursive And Iterative Approaches, Hard Interview, O(n), Interview
+
 ---
 
 ## Examples

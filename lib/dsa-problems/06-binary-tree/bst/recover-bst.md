@@ -20,6 +20,9 @@ You are given the `root` of a binary search tree (BST), where the values of exac
 **Your Task:** 
 Recover the tree in-place.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Bst, Morris Traversal, Inorder Traversal Properties, Tree Manipulation, Pointer Manipulation, O(N), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a string of '(' and ')', find the length of the longest substring with val
 **Your Task:** 
 Return the length of the longest valid substring.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Dp On Strings, Stack-Based, Compiler/Parser Logic, Challenging Edge Cases, O(n), Interview
+
 ---
 
 ## Examples

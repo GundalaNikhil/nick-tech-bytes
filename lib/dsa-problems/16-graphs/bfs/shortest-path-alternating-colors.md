@@ -20,6 +20,9 @@ You are given an integer `n`, the number of nodes in a directed graph where the 
 **Your Task:** 
 Return array of shortest paths.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Bfs With State ``, Multi-Layer Graph, Shortest Path, Interview Classic, O(V + E), Interview
+
 ---
 
 ## Examples

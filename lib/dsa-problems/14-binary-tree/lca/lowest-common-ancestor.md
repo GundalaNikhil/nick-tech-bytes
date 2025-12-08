@@ -20,6 +20,9 @@ The LCA of two nodes p and q is the deepest node that has both p and q as descen
 **Your Task:** 
 Find the lowest common ancestor of two given nodes in a binary tree.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Lca, Genealogy And Family Trees, Organizational Hierarchies, Network Routing, Compiler Design, O(n), Interview
+
 ---
 
 ## Examples

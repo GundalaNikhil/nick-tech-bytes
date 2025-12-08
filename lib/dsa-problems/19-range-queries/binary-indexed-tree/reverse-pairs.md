@@ -23,6 +23,9 @@ A reverse pair is a pair `(i, j)` where:
 **Your Task:** 
 Return count of reverse pairs.
 
+**Difficulty:** Medium
+**Tags:** Range Queries, Binary Indexed Tree, Merge Sort, Segment Tree, Divide And Conquer, O(N log N), Interview
+
 ---
 
 ## Examples

@@ -24,6 +24,9 @@ Both operations must be O(1).
 **Your Task:** 
 Implement LRU Cache with O(1) get and put operations.
 
+**Difficulty:** Hard
+**Tags:** System Design, Cache, Database Caching, Web Browser History, Operating System Page Replacement, Cdn Content Caching, O(1), Interview
+
 ---
 
 ## Examples

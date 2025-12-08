@@ -19,6 +19,9 @@ Given a string `s` and an integer `k`, return the length of the longest substrin
 **Your Task:** 
 Return max length.
 
+**Difficulty:** Hard
+**Tags:** Sliding Window, Hard, Hash Map, Generalization Of "Fruit Into Baskets", O(N), Interview
+
 ---
 
 ## Examples

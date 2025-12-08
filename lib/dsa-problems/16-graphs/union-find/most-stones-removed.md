@@ -20,6 +20,9 @@ On a 2D plane, we place `n` stones at some integer coordinate points. Each coord
 **Your Task:** 
 Return max stones removed.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Union-Find, Graph Modeling, Connected Components, Optimization, O(N), Interview
+
 ---
 
 ## Examples

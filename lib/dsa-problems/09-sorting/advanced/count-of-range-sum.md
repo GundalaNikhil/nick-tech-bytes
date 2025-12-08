@@ -20,6 +20,9 @@ Given an integer array `nums` and two integers `lower` and `upper`, return the n
 **Your Task:** 
 Return the count of valid range sums.
 
+**Difficulty:** Hard
+**Tags:** Sorting, Advanced, Merge Sort, Binary Indexed Tree With Discretization, Segment Tree, Hard Array, O(n log n), Interview
+
 ---
 
 ## Examples

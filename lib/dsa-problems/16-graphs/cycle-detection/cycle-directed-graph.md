@@ -20,6 +20,9 @@ In a directed graph, a cycle exists if you can follow directed edges and return 
 **Your Task:** 
 Given a directed graph, determine if it contains a cycle.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Cycle Detection, Dependency Resolution, Deadlock Detection In Os, Compiler Dependency Analysis, Course Prerequisite Validation, O(V + E), Interview
+
 ---
 
 ## Examples

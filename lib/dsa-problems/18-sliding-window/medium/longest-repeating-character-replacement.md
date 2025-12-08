@@ -20,6 +20,9 @@ Return the length of the longest substring containing the same letter you can ge
 **Your Task:** 
 Return max length.
 
+**Difficulty:** Medium
+**Tags:** Sliding Window, Medium, Two Pointers, Optimization, O(N), Interview
+
 ---
 
 ## Examples

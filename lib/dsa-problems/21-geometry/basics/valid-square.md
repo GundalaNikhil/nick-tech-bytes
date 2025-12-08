@@ -21,6 +21,9 @@ A valid square has four equal sides with positive length and four equal angles (
 **Your Task:** 
 Return boolean.
 
+**Difficulty:** Easy
+**Tags:** Geometry, Basics, Sorting / Set, Property Verification, O(1), Interview
+
 ---
 
 ## Examples

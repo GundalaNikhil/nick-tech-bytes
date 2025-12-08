@@ -20,6 +20,9 @@ Find the longest contiguous substring that reads the same forwards and backwards
 **Your Task:** 
 Return the longest palindromic substring.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Palindrome Dp, String Pattern Matching, Expand Around Center, Manacher'S Algorithm, Bioinformatics Applications, O(n²), Interview
+
 ---
 
 ## Examples

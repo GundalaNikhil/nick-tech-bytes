@@ -20,6 +20,9 @@ Given two integers dividend and divisor, divide them without using multiplicatio
 **Your Task:** 
 Return the quotient.
 
+**Difficulty:** Medium
+**Tags:** Math, Arithmetic, Binary Search On Answer, Bit Manipulation, Exponential Search, Hardware Implementation, O(log²(dividend), Interview
+
 ---
 
 ## Examples

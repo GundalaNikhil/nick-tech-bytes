@@ -23,6 +23,9 @@ Given a list of tickets [from, to], reconstruct the itinerary in order. The itin
 **Your Task:** 
 Return the itinerary as a list of airports.
 
+**Difficulty:** Hard
+**Tags:** Graphs, Advanced, Eulerian Path, Graph Traversal With Constraints, Greedy + Dfs Combo, Real Travel Planning, O(E log E), Interview
+
 ---
 
 ## Examples

@@ -22,6 +22,9 @@ Given two integers `maxChoosableInteger` and `desiredTotal`, return `true` if th
 **Your Task:** 
 Return boolean.
 
+**Difficulty:** Hard
+**Tags:** Dynamic Programming, Game Theory, Minimax With Memoization, Bitmask Dp, O(2^N * N), Interview
+
 ---
 
 ## Examples

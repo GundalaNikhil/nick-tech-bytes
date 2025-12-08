@@ -20,6 +20,9 @@ Given an array of n+1 integers where each is in [1, n], exactly one number appea
 **Your Task:** 
 Return the duplicate number.
 
+**Difficulty:** Medium
+**Tags:** Array, Basic Operations, Floyd'S Cycle Detection, Linked List Cycle In Array Form, Space Constraint Challenge, Pigeonhole Principle, O(n), Interview
+
 ---
 
 ## Examples

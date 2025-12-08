@@ -20,6 +20,9 @@ Given an array of asteroids where positive = right, negative = left, simulate co
 **Your Task:** 
 Return the state of asteroids after all collisions.
 
+**Difficulty:** Medium
+**Tags:** Stack, Applications, Stack Collision Simulation, Sign-Based Direction, Game Physics, Common Pattern, O(n), Interview
+
 ---
 
 ## Examples

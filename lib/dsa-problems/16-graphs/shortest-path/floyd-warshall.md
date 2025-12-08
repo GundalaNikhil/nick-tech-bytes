@@ -20,6 +20,9 @@ Floyd-Warshall finds shortest paths between all pairs of vertices in a weighted 
 **Your Task:** 
 Given a weighted graph, compute the shortest distance between every pair of vertices.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, All-Pairs Shortest Paths In One Pass, Works With Negative Edges, Simple Implementation, Transitive Closure Of Graphs, O(V³), Interview
+
 ---
 
 ## Examples

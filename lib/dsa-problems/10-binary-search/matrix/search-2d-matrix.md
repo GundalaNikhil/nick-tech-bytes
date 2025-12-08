@@ -20,6 +20,9 @@ Given an m×n matrix where each row is sorted and first integer of row > last of
 **Your Task:** 
 Return true if target exists in matrix.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Matrix, Binary Search On 2D, Matrix As 1D Array, Efficient Lookups, Two-Stage Search, O(log(m × n), Interview
+
 ---
 
 ## Examples

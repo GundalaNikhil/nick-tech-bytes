@@ -25,6 +25,9 @@ The functions `get` and `put` must each run in `O(1)` average time complexity.
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Medium
+**Tags:** Design, Cache, Doubly Linked List + Hash Map, Advanced Data Structure Design, Cache Eviction Policies, O(1), Interview
+
 ---
 
 ## Examples

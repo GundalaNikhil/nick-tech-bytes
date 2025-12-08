@@ -20,6 +20,9 @@ Note that `n! = n * (n - 1) * (n - 2) * ... * 3 * 2 * 1`.
 **Your Task:** 
 Return count of zeroes.
 
+**Difficulty:** Medium
+**Tags:** Math, Number Theory, Prime Factorization, Logarithmic Time Complexity, O(log N), Interview
+
 ---
 
 ## Examples

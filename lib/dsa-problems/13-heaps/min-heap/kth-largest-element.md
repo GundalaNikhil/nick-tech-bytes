@@ -20,6 +20,9 @@ Find the Kth largest element in an unsorted array. This can be done with sorting
 **Your Task:** 
 Return the Kth largest element.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Min Heap, Order Statistics, Top-K Problems Foundation, Quickselect, Heap-Based Solutions, O(n), Interview
+
 ---
 
 ## Examples

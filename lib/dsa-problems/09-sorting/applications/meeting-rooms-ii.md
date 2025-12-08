@@ -20,6 +20,9 @@ Given an array of meeting time intervals, find the minimum number of conference 
 **Your Task:** 
 Return the minimum number of rooms needed.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Applications, Resource Allocation, Interval Scheduling, Min-Heap For Tracking End Times, Real-World Calendar Applications, O(n log n), Interview
+
 ---
 
 ## Examples

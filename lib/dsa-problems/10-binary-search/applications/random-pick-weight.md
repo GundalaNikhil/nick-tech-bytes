@@ -20,6 +20,9 @@ Given an array of positive weights, randomly pick an index where probability of 
 **Your Task:** 
 Implement pickIndex() that returns a weighted random index.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Applications, Weighted Random Sampling, Prefix Sum + Binary Search, Ad Systems/Lotteries, Load Balancing, O(log n), Interview
+
 ---
 
 ## Examples

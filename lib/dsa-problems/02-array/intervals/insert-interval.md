@@ -21,6 +21,9 @@ Return `intervals` after the insertion.
 **Your Task:** 
 Return list of intervals.
 
+**Difficulty:** Medium
+**Tags:** Array, Intervals, Array / Interval Manipulation, Sorting, Merge Logic, O(N), Interview
+
 ---
 
 ## Examples

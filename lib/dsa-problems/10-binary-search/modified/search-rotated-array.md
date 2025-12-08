@@ -20,6 +20,9 @@ Given a sorted array that was rotated at some pivot, find a target value in O(lo
 **Your Task:** 
 Search for target in a rotated sorted array. Return its index or -1.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Modified, Modified Binary Search, Real-World Circular Data Structures, Tests Understanding Of Sorted Invariants, Common In Log Analysis, O(log n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given the `root` of a binary tree, the value of a target node `target`, and an i
 **Your Task:** 
 Return list of node values.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Graph Conversion, Bfs From Target, Parent Pointers, Tree Traversal, O(N), Interview
+
 ---
 
 ## Examples

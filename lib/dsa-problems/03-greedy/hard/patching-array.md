@@ -20,6 +20,9 @@ Return the minimum number of patches required.
 **Your Task:** 
 Return min patches.
 
+**Difficulty:** Hard
+**Tags:** Greedy, Hard, Mathematical Logic, Constructive, O(M + log N), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given an array of strings, find the longest string that is a prefix of ALL strin
 **Your Task:** 
 Return the longest common prefix string.
 
+**Difficulty:** Medium
+**Tags:** String, Basic Operations, Trie Applications, Autocomplete Systems, Dna Sequence Analysis, Database Indexing, O(S), Interview
+
 ---
 
 ## Examples

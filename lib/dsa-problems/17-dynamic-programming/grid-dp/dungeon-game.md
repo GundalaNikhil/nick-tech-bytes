@@ -20,6 +20,9 @@ Given a grid where cells contain negative numbers (damage) or positive numbers (
 **Your Task:** 
 Return the minimum initial health.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Grid Dp, 2D Dp, Reverse Thinking, Grid Pathfinding, Hard Interview, O(m × n), Interview
+
 ---
 
 ## Examples

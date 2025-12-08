@@ -22,6 +22,9 @@ Given two words (start and end) and a dictionary, find the shortest transformati
 **Your Task:** 
 Find the length of the shortest transformation sequence from startWord to endWord.
 
+**Difficulty:** Hard
+**Tags:** Graphs, Advanced, Word Games And Puzzles, Spell Checker Suggestions, Dna Sequence Alignment, Network Packet Routing, O(M² × N), Interview
+
 ---
 
 ## Examples

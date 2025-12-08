@@ -20,6 +20,9 @@ You are given two strings `order` and `s`. All the characters of `order` are uni
 **Your Task:** 
 Return the sorted string.
 
+**Difficulty:** Medium
+**Tags:** String, Sorting, Custom Comparator / Sorting, Frequency Counting, String Manipulation, Interview Classic, O(N + M), Interview
+
 ---
 
 ## Examples

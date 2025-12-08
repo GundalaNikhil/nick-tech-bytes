@@ -22,6 +22,9 @@ Return the minimum cost to make all points connected. All points are connected i
 **Your Task:** 
 Return minimum cost.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Mst, Minimum Spanning Tree, Prim'S, Kruskal'S, Dense Graph, O(N^2), Interview
+
 ---
 
 ## Examples

@@ -23,6 +23,9 @@ If there are multiple solutions, return any of them.
 **Your Task:** 
 Return the subset list.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lis, Dp, Sorting, Path Reconstruction, Number Theory, O(N^2), Interview
+
 ---
 
 ## Examples

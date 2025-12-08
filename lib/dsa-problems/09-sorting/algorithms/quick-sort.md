@@ -23,6 +23,9 @@ A divide-and-conquer algorithm that:
 **Your Task:** 
 Sort an array using quick sort.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Algorithms, Average O, Often Faster Than Merge Sort, In-Place Sorting, Cache-Friendly, Standard Library Default In Many Languages, O(n log n), Interview
+
 ---
 
 ## Examples

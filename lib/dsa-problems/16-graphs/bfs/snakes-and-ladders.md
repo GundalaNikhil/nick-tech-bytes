@@ -24,6 +24,9 @@ Return the least number of moves required to reach the square `n^2`. If it is no
 **Your Task:** 
 Return minimum moves.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Coordinate Mapping, Game Simulation, Interview Classic, O(N^2), Interview
+
 ---
 
 ## Examples

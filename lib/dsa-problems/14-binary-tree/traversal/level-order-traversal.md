@@ -20,6 +20,9 @@ Visit all nodes of a tree level by level, from left to right. Uses BFS with a qu
 **Your Task:** 
 Return the level order traversal of a binary tree.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Traversal, Bfs On Trees, Queue Data Structure Usage, Serialization/Deserialization, Foundation For Zigzag, Right View, Etc., O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Rearrange string so that same characters are at least distance k apart. Return a
 **Your Task:** 
 Return a valid rearrangement or "" if impossible.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Applications, Greedy + Heap, Task Scheduling Variant, Feasibility With Distance Constraint, Resource Allocation, O(n log 26), Interview
+
 ---
 
 ## Examples

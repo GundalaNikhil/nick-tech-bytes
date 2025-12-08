@@ -20,6 +20,9 @@ Bellman-Ford computes shortest paths from a single source in a weighted graph, e
 **Your Task:** 
 Given a weighted graph (possibly with negative edges), find shortest distances from source and detect if a negative cycle exists.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, Works With Negative Edge Weights, Detects Negative Cycles, Used In Routing Protocols, Currency Exchange Rate Optimization, O(V × E), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given an array of integers `arr` of even length `n` and an integer `k`. We want 
 **Your Task:** 
 Return true if possible.
 
+**Difficulty:** Medium
+**Tags:** Math, Number Theory, Math / Modulo Arithmetic, Frequency Array / Hashmap, Remainder Properties, Array Processing, O(N), Interview
+
 ---
 
 ## Examples

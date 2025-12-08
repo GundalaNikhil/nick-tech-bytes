@@ -20,6 +20,9 @@ Check if a string is a palindrome, considering only alphanumeric characters and 
 **Your Task:** 
 Return true if the string is a valid palindrome.
 
+**Difficulty:** Medium
+**Tags:** String, Palindrome, String Cleaning/Normalization, Two-Pointer, Character Classification, Interview Classic, O(n), Interview
+
 ---
 
 ## Examples

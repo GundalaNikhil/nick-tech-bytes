@@ -20,6 +20,9 @@ Given a grid with rooms (INF), walls (-1), and gates (0), fill each room with di
 **Your Task:** 
 Fill each room with distance to nearest gate.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Multi-Source Bfs, Distance Propagation, Evacuation Planning, In-Place Modification, O(m × n), Interview
+
 ---
 
 ## Examples

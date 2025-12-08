@@ -20,6 +20,9 @@ In this problem, a rooted tree is a directed graph such that, there is exactly o
 **Your Task:** 
 Return the edge to remove.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Union-Find, Directed Graph Properties, Case Analysis, Hard Graph, O(N), Interview
+
 ---
 
 ## Examples

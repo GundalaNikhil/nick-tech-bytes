@@ -27,6 +27,9 @@ Given `n` and `k`, return the `k-th` permutation sequence.
 **Your Task:** 
 Return string permutation.
 
+**Difficulty:** Medium
+**Tags:** Math, Combinatorics, Constructive, O(N^2), Interview
+
 ---
 
 ## Examples

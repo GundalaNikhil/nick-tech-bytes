@@ -20,6 +20,9 @@ Given daily temperatures, return how many days you have to wait until a warmer t
 **Your Task:** 
 Return array of days to wait for warmer temperature.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Monotonic Stack Classic, Next Greater Element Variant, Weather/Time Series Analysis, Stack Optimization, O(n), Interview
+
 ---
 
 ## Examples

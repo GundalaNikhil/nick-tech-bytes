@@ -20,6 +20,9 @@ Rotate an array to the right by K steps. Elements that fall off the end appear a
 **Your Task:** 
 Rotate the array to the right by K steps in-place.
 
+**Difficulty:** Medium
+**Tags:** Array, Basic Operations, In-Place Manipulation, Teaches Reversal Trick, Cyclic Replacement, Memory-Efficient Algorithms, O(n), Interview
+
 ---
 
 ## Examples

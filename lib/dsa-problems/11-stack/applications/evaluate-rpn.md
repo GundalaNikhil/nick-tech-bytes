@@ -20,6 +20,9 @@ Evaluate an arithmetic expression in Reverse Polish Notation. Operands come befo
 **Your Task:** 
 Return the result of the RPN expression.
 
+**Difficulty:** Medium
+**Tags:** Stack, Applications, Stack Application, Expression Evaluation, Compiler Internals, Calculator Implementations, O(n), Interview
+
 ---
 
 ## Examples

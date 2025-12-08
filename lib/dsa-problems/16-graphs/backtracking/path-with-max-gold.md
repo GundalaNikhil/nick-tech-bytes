@@ -25,6 +25,9 @@ In a gold mine grid of size `m x n`, each cell in this mine has an integer repre
 **Your Task:** 
 Return max gold.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Backtracking, Backtracking / Dfs, Grid Traversal, Path Finding, Optimization, O(k * 3^k), Interview
+
 ---
 
 ## Examples

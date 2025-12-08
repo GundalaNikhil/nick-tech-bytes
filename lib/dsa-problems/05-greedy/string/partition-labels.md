@@ -21,6 +21,9 @@ You are given a string `s`. We want to partition the string into as many parts a
 **Your Task:** 
 Return list of partition sizes.
 
+**Difficulty:** Medium
+**Tags:** Greedy, String, Greedy Strategy, Interval Merging, Last Occurrence Tracking, String Processing, O(N), Interview
+
 ---
 
 ## Examples

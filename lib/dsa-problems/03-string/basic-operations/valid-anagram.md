@@ -20,6 +20,9 @@ Two strings are anagrams if they contain the exact same characters with the exac
 **Your Task:** 
 Return true if the two strings are anagrams of each other.
 
+**Difficulty:** Medium
+**Tags:** String, Basic Operations, Word Games, Cryptography, Database Duplicate Detection, Character Frequency Counting, O(n), Interview
+
 ---
 
 ## Examples

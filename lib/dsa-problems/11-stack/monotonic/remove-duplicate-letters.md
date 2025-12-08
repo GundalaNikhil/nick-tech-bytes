@@ -20,6 +20,9 @@ Given a string s, remove duplicate letters so that every letter appears once and
 **Your Task:** 
 Return the lexicographically smallest string with unique characters.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Monotonic Stack, Greedy Choice With Future Knowledge, Character Frequency Tracking, Hard Stack, O(n), Interview
+
 ---
 
 ## Examples

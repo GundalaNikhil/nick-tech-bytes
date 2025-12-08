@@ -20,6 +20,9 @@ Given two linked lists, determine if they intersect and return the intersection 
 **Your Task:** 
 Return the intersection node or null.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Two Pointer, Two-Pointer, Length Difference Handling, Shared Memory Detection, Graph Intersection, O(n + m), Interview
+
 ---
 
 ## Examples

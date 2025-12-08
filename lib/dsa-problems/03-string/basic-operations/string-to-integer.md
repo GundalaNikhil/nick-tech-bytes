@@ -24,6 +24,9 @@ Implement atoi to convert a string to a 32-bit signed integer. Handle:
 **Your Task:** 
 Convert string to 32-bit signed integer.
 
+**Difficulty:** Medium
+**Tags:** String, Basic Operations, Input Parsing, Edge Case Handling, Overflow Detection, Real-World Input Validation, O(n), Interview
+
 ---
 
 ## Examples

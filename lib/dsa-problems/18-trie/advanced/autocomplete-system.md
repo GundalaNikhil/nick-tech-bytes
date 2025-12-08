@@ -23,6 +23,9 @@ Design a search autocomplete system that:
 **Your Task:** 
 Implement AutocompleteSystem with input method returning top 3 suggestions.
 
+**Difficulty:** Hard
+**Tags:** Trie, Advanced, Real-World System Design, Trie + Priority Queue Combo, Search Engines, Input Method Editors, O(p + q log q), Interview
+
 ---
 
 ## Examples

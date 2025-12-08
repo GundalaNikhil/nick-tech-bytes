@@ -20,6 +20,9 @@ Given pairs of integers (width, height), find the maximum number of envelopes yo
 **Your Task:** 
 Return the maximum number of envelopes.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lis, Sorting + Lis, 2D Sorting Trick, Binary Search Optimization, Hard Dp, O(n log n), Interview
+
 ---
 
 ## Examples

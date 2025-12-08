@@ -20,6 +20,9 @@ Given initial capital and k project opportunities (each with capital requirement
 **Your Task:** 
 Return the maximum capital after completing k projects.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Applications, Greedy + Heap, Capital Accumulation, Investment Algorithms, Project Selection, O(n log n), Interview
+
 ---
 
 ## Examples

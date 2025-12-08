@@ -20,6 +20,9 @@ A program was supposed to print an array of integers. The program forgot to prin
 **Your Task:** 
 Return count of arrays.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Dp On Strings, Partitioning, Modulo Arithmetic, Optimization, O(N * log K), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given an integer array `arr`, return the length of a maximum size turbulent suba
 **Your Task:** 
 Return max length.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lis, Sliding Window / Dp, State Tracking, Sequence Analysis, Optimization, O(N), Interview
+
 ---
 
 ## Examples

@@ -22,6 +22,9 @@ Design a map that allows you to:
 **Your Task:** 
 Implement `MapSum` class.
 
+**Difficulty:** Medium
+**Tags:** Trie, Basic, Trie With Value Aggregation, Prefix Search, Data Structure Design, Real-Time Analytics, O(K), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a string s, count the number of distinct, non-empty subsequences of s. Sin
 **Your Task:** 
 Return count of distinct subsequences.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Dp With Duplicate Handling, Combinatorics, Last Occurrence Tracking, Hard Counting, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Design a data structure supporting addNum(int num) and findMedian() returning th
 **Your Task:** 
 Implement MedianFinder with addNum() and findMedian().
 
+**Difficulty:** Medium
+**Tags:** Heaps, Applications, Two-Heap, Online Median, Balanced Data Structure, Streaming Algorithms, O(log n), Interview
+
 ---
 
 ## Examples

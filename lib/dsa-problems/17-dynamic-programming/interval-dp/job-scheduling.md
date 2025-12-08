@@ -20,6 +20,9 @@ We have `n` jobs, where every job is scheduled to be done from `startTime[i]` to
 **Your Task:** 
 Return maximum profit.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Interval Dp, Dp + Binary Search, Weighted Interval Scheduling, Sorting By End Time, Optimization, O(n log n), Interview
+
 ---
 
 ## Examples

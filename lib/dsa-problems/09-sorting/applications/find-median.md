@@ -22,6 +22,9 @@ Given an array, find the median value. For sorted array of n elements:
 **Your Task:** 
 Find the median of the given array.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Applications, Statistical Analysis, Foundation For Streaming Median, Quickselect, More Robust Than Mean, O(n log n), Interview
+
 ---
 
 ## Examples

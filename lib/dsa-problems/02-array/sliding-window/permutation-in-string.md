@@ -20,6 +20,9 @@ Given s1 and s2, check if s2 contains any permutation of s1. This means s1's cha
 **Your Task:** 
 Return true if s2 contains a permutation of s1.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Sliding Window + Frequency, Anagram Detection In Stream, Dna/Protein Matching, Pattern Detection, O(n), Interview
+
 ---
 
 ## Examples

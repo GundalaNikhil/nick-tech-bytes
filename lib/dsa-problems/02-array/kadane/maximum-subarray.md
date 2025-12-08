@@ -20,6 +20,9 @@ Find the contiguous subarray with the largest sum. Kadane's algorithm solves thi
 **Your Task:** 
 Return the maximum subarray sum.
 
+**Difficulty:** Medium
+**Tags:** Array, Kadane, Kadane'S, Foundation For Many Dp Problems, Financial Analysis, Interview Classic, O(n), Interview
+
 ---
 
 ## Examples

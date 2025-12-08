@@ -20,6 +20,9 @@ Given an array, find the K elements that appear most frequently. Use a heap for 
 **Your Task:** 
 Return the k most frequent elements. Answer may be in any order.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Max Heap, Trending/Popular Items, Log Analysis, Recommendation Systems, Heap/Priority Queue Mastery, O(n log k), Interview
+
 ---
 
 ## Examples

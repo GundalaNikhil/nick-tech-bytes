@@ -20,6 +20,9 @@ Design a data structure that supports adding integers and finding the median of 
 **Your Task:** 
 Implement MedianFinder class with addNum() and findMedian() methods.
 
+**Difficulty:** Hard
+**Tags:** Heaps, Advanced, Real-Time Analytics, Streaming Data Processing, Anomaly Detection, Two-Heap Technique Mastery, O(log n), Interview
+
 ---
 
 ## Examples

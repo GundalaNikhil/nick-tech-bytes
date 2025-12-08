@@ -23,6 +23,9 @@ Both operations in O(log n).
 **Your Task:** 
 Implement update(i, val) and sumRange(l, r) efficiently.
 
+**Difficulty:** Medium
+**Tags:** Segment Tree, Basic, Real-Time Analytics, Competitive Programming, Database Range Queries, Time Series Processing, O(log n), Interview
+
 ---
 
 ## Examples

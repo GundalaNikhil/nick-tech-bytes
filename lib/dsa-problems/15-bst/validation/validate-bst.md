@@ -20,6 +20,9 @@ Check if a binary tree satisfies BST property: for every node, all values in lef
 **Your Task:** 
 Return true if the tree is a valid BST.
 
+**Difficulty:** Medium
+**Tags:** Bst, Validation, Data Structure Verification, Range-Based Validation, Common Interview Question, Tests Understanding Of Bst Property, O(n), Interview
+
 ---
 
 ## Examples

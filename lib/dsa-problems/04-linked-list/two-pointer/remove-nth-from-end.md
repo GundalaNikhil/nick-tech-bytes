@@ -20,6 +20,9 @@ Given a linked list, remove the Nth node from the end and return the head. Do th
 **Your Task:** 
 Remove the Nth node from the end in one pass.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Two Pointer, Two-Pointer, Fast/Slow Pointer Spacing, One-Pass Solution, Common Interview Question, O(n), Interview
+
 ---
 
 ## Examples

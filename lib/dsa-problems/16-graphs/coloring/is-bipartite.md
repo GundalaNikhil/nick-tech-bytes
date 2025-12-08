@@ -20,6 +20,9 @@ A graph is bipartite if nodes can be divided into two disjoint sets such that ev
 **Your Task:** 
 Return true if the graph is bipartite.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Coloring, Graph Coloring, Bfs/Dfs With States, Matching Problems, Two-Party Systems, O(V + E), Interview
+
 ---
 
 ## Examples

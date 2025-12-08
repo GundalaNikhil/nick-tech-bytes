@@ -20,6 +20,9 @@ Given a sorted array and target, find the starting and ending position of the ta
 **Your Task:** 
 Return [first, last] position of target.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Standard, Binary Search Variants, Finding Range Bounds, Database Range Queries, Efficient Counting, O(log n), Interview
+
 ---
 
 ## Examples

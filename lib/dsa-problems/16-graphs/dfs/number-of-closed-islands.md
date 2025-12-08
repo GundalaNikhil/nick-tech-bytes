@@ -20,6 +20,9 @@ Given a 2D `grid` consists of `0`s (land) and `1`s (water). An island is a maxim
 **Your Task:** 
 Return count of closed islands.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Dfs / Bfs, Flood Fill, Boundary Check, Grid Processing, O(M * N), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Alice and Bob take turns picking stones from either end of pile array. Alice goe
 **Your Task:** 
 Return true if Alice wins with optimal play.
 
+**Difficulty:** Hard
+**Tags:** Dynamic Programming, Game Theory, Game Theory Dp, Minimax Concept, Two-Player Optimal Play, Classic Interview Pattern, O(n²), Interview
+
 ---
 
 ## Examples

@@ -21,6 +21,9 @@ Topological sorting arranges the vertices of a Directed Acyclic Graph (DAG) in a
 **Your Task:** 
 Given a DAG, return a valid topological ordering of vertices.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Traversal, Task Scheduling With Dependencies, Build Systems, Course Scheduling, Package Dependency Resolution, Data Processing Pipelines, O(V + E), Interview
+
 ---
 
 ## Examples

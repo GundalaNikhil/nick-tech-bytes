@@ -20,6 +20,9 @@ Implement a first-in-first-out (FIFO) queue using only two stacks. The queue sho
 **Your Task:** 
 Implement a queue using two stacks.
 
+**Difficulty:** Medium
+**Tags:** Queue, Implementation, Data Structure Design, Amortized Analysis, Stack Vs Queue Understanding, Common Interview Question, O(1), Interview
+
 ---
 
 ## Examples

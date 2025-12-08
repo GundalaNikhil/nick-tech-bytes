@@ -22,6 +22,9 @@ Implement regex matching with support for '.' and '*'.
 **Your Task:** 
 Return true if the string matches the pattern.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Complex 2D Dp, State Transitions, String Parsing, Hard Interview, O(m × n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a network of n nodes with directed edges and travel times, find the time i
 **Your Task:** 
 Calculate the minimum time for a signal from node k to reach all nodes.
 
+**Difficulty:** Hard
+**Tags:** Graphs, Advanced, Network Latency Analysis, Broadcast Propagation Time, Cdn Cache Invalidation, Distributed Systems Synchronization, O((V + E), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a triangle array, return the minimum path sum from top to bottom. For each
 **Your Task:** 
 Return the minimum path sum.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Grid Dp, 2D Dp, Path Minimization, In-Place Optimization, Classic Dp Pattern, O(n²), Interview
+
 ---
 
 ## Examples

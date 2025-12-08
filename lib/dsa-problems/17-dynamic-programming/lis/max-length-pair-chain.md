@@ -20,6 +20,9 @@ You are given an array of `n` pairs `pairs` where `pairs[i] = [left, right]` and
 **Your Task:** 
 Return the max chain length.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lis, Greedy Interval Scheduling, Dp, Sorting By End Time, Optimization, O(n log n), Interview
+
 ---
 
 ## Examples

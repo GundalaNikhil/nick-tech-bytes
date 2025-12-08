@@ -20,6 +20,9 @@ Count the number of contiguous subarrays whose sum equals K. Use prefix sum + ha
 **Your Task:** 
 Return the count of subarrays with sum K.
 
+**Difficulty:** Medium
+**Tags:** Hashing, Applications, Prefix Sum, Hash Map Optimization, Handles Negative Numbers, Foundation For Similar Problems, O(n), Interview
+
 ---
 
 ## Examples

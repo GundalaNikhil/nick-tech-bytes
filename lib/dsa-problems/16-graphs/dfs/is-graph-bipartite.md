@@ -24,6 +24,9 @@ Return `true` if and only if it is bipartite.
 **Your Task:** 
 Return boolean.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Graph Theory Fundamental, 2-Coloring, Odd Cycle Detection, O(N + E), Interview
+
 ---
 
 ## Examples

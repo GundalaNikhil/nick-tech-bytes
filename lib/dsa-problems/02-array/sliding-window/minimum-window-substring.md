@@ -20,6 +20,9 @@ Given strings s and t, find the minimum window in s that contains all characters
 **Your Task:** 
 Return the minimum window substring.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Sliding Window Classic, Character Frequency Matching, Search Engine Snippets, Substring Optimization, O(s + t), Interview
+
 ---
 
 ## Examples

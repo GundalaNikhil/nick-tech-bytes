@@ -20,6 +20,9 @@ Given an m×n matrix, return all elements in spiral order: right → down → le
 **Your Task:** 
 Return all elements of the matrix in spiral order.
 
+**Difficulty:** Medium
+**Tags:** Array, Matrix, Matrix Traversal Patterns, Boundary Manipulation, Image Processing, 2D Array Mastery, O(m × n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a reference to a node in a connected undirected graph, create and return a
 **Your Task:** 
 Create a deep copy of an undirected graph given a reference to one of its nodes.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Special, Deep Copy Mechanisms In Software, Undo/Redo Functionality, Creating Sandbox Environments, Version Control Systems, O(V + E), Interview
+
 ---
 
 ## Examples

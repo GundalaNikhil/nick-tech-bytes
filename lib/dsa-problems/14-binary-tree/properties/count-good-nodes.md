@@ -20,6 +20,9 @@ A node X is "good" if in the path from root to X, no node has a value greater th
 **Your Task:** 
 Return the number of good nodes in the tree.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Properties, Dfs With Max Tracking, Path Problems, Tree Traversal With State, Prefix Maximum Concept, O(n), Interview
+
 ---
 
 ## Examples

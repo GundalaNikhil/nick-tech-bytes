@@ -20,6 +20,9 @@ Place N queens on an N×N chessboard such that no two queens attack each other. 
 **Your Task:** 
 Return all distinct solutions to the n-queens puzzle.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Complex, Classic Backtracking, Constraint Satisfaction Problems, Ai And Game Solving, Tests Pruning And Optimization, O(n!), Interview
+
 ---
 
 ## Examples

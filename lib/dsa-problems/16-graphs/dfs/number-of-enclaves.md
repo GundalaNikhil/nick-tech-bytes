@@ -20,6 +20,9 @@ You are given an `m x n` binary matrix `grid`, where `0` represents a sea cell a
 **Your Task:** 
 Return count of enclave cells.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Dfs / Bfs, Flood Fill From Boundary, Grid Processing, Inverse Thinking, O(M * N), Interview
+
 ---
 
 ## Examples

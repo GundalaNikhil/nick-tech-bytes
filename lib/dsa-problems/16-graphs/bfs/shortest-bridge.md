@@ -20,6 +20,9 @@ You are given an `n x n` binary matrix `grid` where `1` represents land and `0` 
 **Your Task:** 
 Return minimum flips.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Dfs + Bfs, Multi-Source Bfs, Component Identification, Grid Processing, O(N^2), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ The diameter is the length of the longest path between any two nodes in a tree. 
 **Your Task:** 
 Return the diameter of the binary tree (number of edges).
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Properties, Network Analysis, Tree Properties, Path Calculations, Recursive Thinking, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ You have an undirected, connected graph of `n` nodes labeled from `0` to `n - 1`
 **Your Task:** 
 Return minimum path length.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Bfs With Bitmask State, State Space Search ``, Shortest Path In Unweighted Graph, Hard Graph, O(N * 2^N), Interview
+
 ---
 
 ## Examples

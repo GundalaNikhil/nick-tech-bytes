@@ -21,6 +21,9 @@ You may return the answer in any order. The answer is guaranteed to be unique (e
 **Your Task:** 
 Return list of K points.
 
+**Difficulty:** Easy
+**Tags:** Geometry, Basics, Heap / Priority Queue, Quickselect, Sorting, O(N log K), Interview
+
 ---
 
 ## Examples

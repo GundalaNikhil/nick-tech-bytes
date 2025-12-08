@@ -20,6 +20,9 @@ Finding all paths means discovering every possible way to travel from a source v
 **Your Task:** 
 Given a directed acyclic graph (DAG) and two vertices, find all paths from source to destination.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Traversal, Route Planning With Multiple Options, Finding Alternative Solutions, Exploring All Possibilities In Games, Network Flow Analysis, O(2^V × V), Interview
+
 ---
 
 ## Examples

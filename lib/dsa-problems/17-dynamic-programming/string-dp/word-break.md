@@ -20,6 +20,9 @@ Given a string s and a dictionary of words, determine if s can be segmented into
 **Your Task:** 
 Return true if the string can be segmented into dictionary words.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Natural Language Processing, Dp On Strings, Dictionary-Based Problems, Search Engine Optimization, O(n² × m), Interview
+
 ---
 
 ## Examples

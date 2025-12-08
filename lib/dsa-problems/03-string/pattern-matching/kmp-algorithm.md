@@ -20,6 +20,9 @@ Knuth-Morris-Pratt algorithm finds all occurrences of a pattern in a text in O(n
 **Your Task:** 
 Find all starting indices where pattern occurs in text.
 
+**Difficulty:** Medium
+**Tags:** String, Pattern Matching, Optimal String Matching, Failure Function Concept, Text Search Engines, Bioinformatics, O(n + m), Interview
+
 ---
 
 ## Examples

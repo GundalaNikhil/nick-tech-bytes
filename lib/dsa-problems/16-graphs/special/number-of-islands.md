@@ -20,6 +20,9 @@ Given a 2D grid of 1s (land) and 0s (water), count the number of islands. An isl
 **Your Task:** 
 Count the number of islands in a binary 2D grid.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Special, Geographic Information Systems, Image Processing, Medical Imaging, Game Development, O(m × n), Interview
+
 ---
 
 ## Examples

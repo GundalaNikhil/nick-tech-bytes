@@ -20,6 +20,9 @@ You are given a string `s` of lowercase English letters and an integer array `sh
 **Your Task:** 
 Return the final string.
 
+**Difficulty:** Medium
+**Tags:** String, Basic Operations, Prefix/Suffix Sums, Modular Arithmetic, String Manipulation, Optimization, O(N), Interview
+
 ---
 
 ## Examples

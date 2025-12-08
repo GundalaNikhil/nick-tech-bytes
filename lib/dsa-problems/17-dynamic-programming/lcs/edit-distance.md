@@ -21,6 +21,9 @@ The minimum number of operations (insert, delete, replace) required to convert o
 **Your Task:** 
 Find the minimum number of operations to convert word1 to word2.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lcs, Spell Checkers And Auto-Correct, Dna Sequence Alignment, Plagiarism Detection, Fuzzy String Matching, Search Engines, O(m × n), Interview
+
 ---
 
 ## Examples

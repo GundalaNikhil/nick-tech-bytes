@@ -20,6 +20,9 @@ A binary tree is height-balanced if the depth of two subtrees of every node neve
 **Your Task:** 
 Return true if the tree is height-balanced.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Properties, Tree Balance Check, Foundation For Avl/Red-Black, Query Optimization, Bottom-Up Vs Top-Down, O(n), Interview
+
 ---
 
 ## Examples

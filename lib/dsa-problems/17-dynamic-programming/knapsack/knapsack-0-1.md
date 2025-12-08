@@ -26,6 +26,9 @@ Given n items with weights and values, and a capacity W, select items to maximiz
 **Your Task:** 
 Find the maximum value that can be put in a knapsack of given capacity.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, Classic Optimization, Foundation For Subset Sum Problems, Resource Allocation Decisions, Budget Optimization, O(n × W), Interview
+
 ---
 
 ## Examples

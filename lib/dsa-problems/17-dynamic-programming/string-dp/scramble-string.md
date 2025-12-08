@@ -20,6 +20,9 @@ A string can be represented as a binary tree and scrambled by swapping children 
 **Your Task:** 
 Return true if s2 is a scrambled s1.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Complex Recursion + Memo, Tree-Based String Operations, 3D Dp, Hard Interview, O(n⁴), Interview
+
 ---
 
 ## Examples

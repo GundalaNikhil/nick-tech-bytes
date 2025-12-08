@@ -20,6 +20,9 @@ Reorder array so that nums[0] < nums[1] > nums[2] < nums[3]... (strict inequalit
 **Your Task:** 
 Reorder array to wiggle pattern.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Algorithms, Median + Partitioning, Virtual Indexing, In-Place Rearrangement, Dutch Flag Variant, O(n), Interview
+
 ---
 
 ## Examples

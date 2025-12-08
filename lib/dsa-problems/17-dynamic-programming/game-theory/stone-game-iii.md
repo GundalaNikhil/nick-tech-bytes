@@ -20,6 +20,9 @@ Alice and Bob continue their games with piles of stones. There are several stone
 **Your Task:** 
 Return winner string.
 
+**Difficulty:** Hard
+**Tags:** Dynamic Programming, Game Theory, Minimax / Dp, Suffix Sums Optimization, State Evaluation, O(N), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a string `s` of '(' , ')' and lowercase English characters. Your task is t
 **Your Task:** 
 Return the valid string.
 
+**Difficulty:** Medium
+**Tags:** Stack, Basic, Stack / Two Pass, String Manipulation, Balance Tracking, Interview Classic, O(N), Interview
+
 ---
 
 ## Examples

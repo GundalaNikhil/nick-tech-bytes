@@ -21,6 +21,9 @@ The testcases will be generated such that the answer is unique.
 **Your Task:** 
 Return shortest substring.
 
+**Difficulty:** Hard
+**Tags:** Sliding Window, Hard, Two Pointers, Hash Map / Frequency Array, String Manipulation, O(M + N), Interview
+
 ---
 
 ## Examples

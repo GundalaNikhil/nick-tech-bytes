@@ -20,6 +20,9 @@ Given a sorted list of non-overlapping intervals, insert a new interval and merg
 **Your Task:** 
 Insert the new interval and merge overlaps.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Applications, Interval Manipulation, Merge Logic, Calendar Applications, Sorted Insert + Merge, O(n), Interview
+
 ---
 
 ## Examples

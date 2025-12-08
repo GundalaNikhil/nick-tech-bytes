@@ -22,6 +22,9 @@ Given an integer array `nums`, return the number of reverse pairs in the array. 
 **Your Task:** 
 Return the count of reverse pairs.
 
+**Difficulty:** Hard
+**Tags:** Sorting, Advanced, Merge Sort Modification, Binary Indexed Tree, Inversion Counting Variant, Hard Sorting, O(n log n), Interview
+
 ---
 
 ## Examples

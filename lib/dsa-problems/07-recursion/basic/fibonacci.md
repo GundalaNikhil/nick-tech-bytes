@@ -20,6 +20,9 @@ Each number is the sum of the two preceding ones: F(n) = F(n-1) + F(n-2), with F
 **Your Task:** 
 Calculate the Nth Fibonacci number.
 
+**Difficulty:** Medium
+**Tags:** Recursion, Basic, Foundation Of Recursion, Introduces Memoization, Shows Time Complexity Explosion, Gateway To Dp, O(n), Interview
+
 ---
 
 ## Examples

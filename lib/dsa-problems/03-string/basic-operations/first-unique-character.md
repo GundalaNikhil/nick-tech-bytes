@@ -20,6 +20,9 @@ Find the first non-repeating character in a string and return its index. Return 
 **Your Task:** 
 Return the index of the first unique character.
 
+**Difficulty:** Medium
+**Tags:** String, Basic Operations, Hash Map Frequency, String Scanning, Interview Warmup, Two-Pass, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Find the contiguous subarray with largest product. Negative numbers can flip min
 **Your Task:** 
 Return the maximum product of any contiguous subarray.
 
+**Difficulty:** Medium
+**Tags:** Array, Kadane, Kadane Variant With Products, Track Both Min And Max, Handle Negatives And Zeros, Sign Flipping Insight, O(n), Interview
+
 ---
 
 ## Examples

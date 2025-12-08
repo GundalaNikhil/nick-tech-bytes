@@ -22,6 +22,9 @@ The output is a list of "key points" `[x, y]` in sorted order of their x-coordin
 **Your Task:** 
 Return list of key points.
 
+**Difficulty:** Medium
+**Tags:** Range Queries, Segment Tree, Divide And Conquer, Sweep Line, Heap / Priority Queue, O(N log N), Interview
+
 ---
 
 ## Examples

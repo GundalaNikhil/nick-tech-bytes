@@ -20,6 +20,9 @@ Given a positive integer n, break it into sum of at least two positive integers 
 **Your Task:** 
 Return the maximum product obtainable.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Dp Optimization, Greedy Insight, Math Analysis, Product Maximization, O(n), Interview
+
 ---
 
 ## Examples

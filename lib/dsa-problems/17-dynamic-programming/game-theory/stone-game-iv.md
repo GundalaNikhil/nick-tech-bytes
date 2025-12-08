@@ -20,6 +20,9 @@ Alice and Bob take turns playing a game, with Alice starting first. Initially, t
 **Your Task:** 
 Return true if Alice wins.
 
+**Difficulty:** Hard
+**Tags:** Dynamic Programming, Game Theory, Dp / Game Theory, Boolean State, Optimization, Math, O(N * sqrt(N), Interview
+
 ---
 
 ## Examples

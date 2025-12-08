@@ -20,6 +20,9 @@ Given an m×n integer matrix, find the length of the longest increasing path. Mo
 **Your Task:** 
 Return the length of the longest increasing path.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Grid Dp, Dfs With Memoization, Matrix Traversal, Topological Sort On Grid, Classic Interview, O(m × n), Interview
+
 ---
 
 ## Examples

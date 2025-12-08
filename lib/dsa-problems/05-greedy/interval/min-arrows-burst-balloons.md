@@ -20,6 +20,9 @@ There are some spherical balloons taped onto a flat wall that represents the XY-
 **Your Task:** 
 Return minimum arrows.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Interval, Greedy Strategy, Interval Scheduling, Sorting, Optimization, O(N log N), Interview
+
 ---
 
 ## Examples

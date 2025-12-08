@@ -20,6 +20,9 @@ Given an integer array `nums` and an integer `k`, return true if it is possible 
 **Your Task:** 
 Return true if partition is possible.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Partition, Backtracking With Pruning, Np-Complete Problem, Bitmask Dp Optimization, State Space Search, O(k * 2^n), Interview
+
 ---
 
 ## Examples

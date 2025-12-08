@@ -20,6 +20,9 @@ You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots:
 **Your Task:** 
 Return minimum turns.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, State Space Search, String Manipulation, Optimization, O(10^4), Interview
+
 ---
 
 ## Examples

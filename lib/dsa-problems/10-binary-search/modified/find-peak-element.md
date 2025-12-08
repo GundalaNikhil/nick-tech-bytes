@@ -20,6 +20,9 @@ A peak element is greater than its neighbors. Given an array, find any peak elem
 **Your Task:** 
 Return the index of any peak element.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Modified, Binary Search On Answer Concept, Local Vs Global Maximum, Gradient Descent Intuition, Multiple Valid Answers, O(log n), Interview
+
 ---
 
 ## Examples

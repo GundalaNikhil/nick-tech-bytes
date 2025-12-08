@@ -21,6 +21,9 @@ A concatenated word is defined as a string that is comprised entirely of at leas
 **Your Task:** 
 Return list of concatenated words.
 
+**Difficulty:** Hard
+**Tags:** Tries, Advanced, Trie + Dfs/Memoization, Dynamic Programming, Word Break Problem Variation, String Processing, O(N * L^2), Interview
+
 ---
 
 ## Examples

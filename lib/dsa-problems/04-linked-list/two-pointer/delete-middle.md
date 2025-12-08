@@ -20,6 +20,9 @@ Delete the middle node of a linked list. For even lengths, delete the second mid
 **Your Task:** 
 Return the head after deleting the middle node.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Two Pointer, Fast/Slow Pointer, Single-Pass Solution, Linked List Manipulation, Edge Case Handling, O(n), Interview
+
 ---
 
 ## Examples

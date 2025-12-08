@@ -20,6 +20,9 @@ Generate all combinations of n pairs of well-formed parentheses. Only valid comb
 **Your Task:** 
 Return all valid parentheses strings with n pairs.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, String, Classic Backtracking, Catalan Numbers, Expression Parsing, Valid Sequence Generation, O(4^n / √n), Interview
+
 ---
 
 ## Examples

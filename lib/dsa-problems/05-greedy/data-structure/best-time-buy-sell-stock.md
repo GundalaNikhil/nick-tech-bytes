@@ -20,6 +20,9 @@ Given an array where prices[i] is the stock price on day i, find the maximum pro
 **Your Task:** 
 Find the maximum profit from one transaction.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Data Structure, Classic Greedy, Track Minimum So Far, Foundation For Multi-Transaction Variants, Real-World Trading Applications, O(n), Interview
+
 ---
 
 ## Examples

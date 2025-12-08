@@ -20,6 +20,9 @@ You are given an integer `num`. You can swap two digits at most once to get the 
 **Your Task:** 
 Return the max number.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Math, Greedy Strategy, Math / String Manipulation, Last Occurrence Tracking, Optimization, O(N), Interview
+
 ---
 
 ## Examples

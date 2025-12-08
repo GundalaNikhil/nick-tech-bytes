@@ -21,6 +21,9 @@ Given the grid `grid` represented as a string array, return the number of region
 **Your Task:** 
 Return number of regions.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Union-Find, Grid Upscaling, Graph Connectivity, Spatial Reasoning, O(N^2), Interview
+
 ---
 
 ## Examples

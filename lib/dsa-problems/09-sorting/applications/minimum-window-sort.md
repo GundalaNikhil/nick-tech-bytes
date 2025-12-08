@@ -20,6 +20,9 @@ Find the length of the shortest subarray that, if sorted, would make the entire 
 **Your Task:** 
 Return the length of the shortest such subarray.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Applications, Array Boundary Detection, Sorting Optimization, Partial Sort Problems, Database Operations, O(n), Interview
+
 ---
 
 ## Examples

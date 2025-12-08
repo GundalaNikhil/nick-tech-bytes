@@ -23,6 +23,9 @@ Given a particular `n`, return the minimum amount of money you need to guarantee
 **Your Task:** 
 Return min cost.
 
+**Difficulty:** Hard
+**Tags:** Dynamic Programming, Game Theory, Minimax, O(N^3), Interview
+
 ---
 
 ## Examples

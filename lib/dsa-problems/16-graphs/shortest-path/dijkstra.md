@@ -20,6 +20,9 @@ Dijkstra's algorithm finds the shortest path from a source vertex to all other v
 **Your Task:** 
 Given a weighted graph with non-negative edges, find the shortest distances from a source vertex to all other vertices.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, Gps Navigation Systems, Network Routing Protocols, Finding Shortest Paths In Games, Logistics And Delivery Optimization, O((V + E), Interview
+
 ---
 
 ## Examples

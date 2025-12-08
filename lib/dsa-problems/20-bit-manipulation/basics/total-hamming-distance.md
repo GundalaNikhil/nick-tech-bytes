@@ -20,6 +20,9 @@ Given an integer array `nums`, return the sum of Hamming distances between all t
 **Your Task:** 
 Return total distance.
 
+**Difficulty:** Easy
+**Tags:** Bit Manipulation, Basics, Counting, Optimization, O(N), Interview
+
 ---
 
 ## Examples

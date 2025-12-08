@@ -20,6 +20,9 @@ Given equations like a/b = 2, b/c = 3, and queries like a/c, find the values. Us
 **Your Task:** 
 Return query answers, or -1 if unknown.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Weighted, Weighted Graph Traversal, Union-Find Variant, Unit Conversion, Scientific Computing, O(q × (V + E), Interview
+
 ---
 
 ## Examples

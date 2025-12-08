@@ -20,6 +20,9 @@ Given a string of characters, find the length of the longest palindrome that can
 **Your Task:** 
 Return the length of the longest palindrome.
 
+**Difficulty:** Medium
+**Tags:** String, Palindrome, Character Frequency, Odd/Even Counting, String Building, Interview Warmup, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ There are `n` computers numbered from `0` to `n - 1` connected by ethernet cable
 **Your Task:** 
 Return minimum operations.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Union-Find, Graph Connectivity, Mst Concept, Redundant Edge Counting, O(V + E), Interview
+
 ---
 
 ## Examples

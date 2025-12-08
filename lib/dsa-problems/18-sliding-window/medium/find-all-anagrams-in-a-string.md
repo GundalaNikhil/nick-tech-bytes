@@ -20,6 +20,9 @@ An Anagram is a word or phrase formed by rearranging the letters of a different 
 **Your Task:** 
 Return list of indices.
 
+**Difficulty:** Medium
+**Tags:** Sliding Window, Medium, Hash Map / Frequency Array, String Matching, O(N), Interview
+
 ---
 
 ## Examples

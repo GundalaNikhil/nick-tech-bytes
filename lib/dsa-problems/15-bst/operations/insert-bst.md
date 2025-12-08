@@ -20,6 +20,9 @@ Insert a value into a BST while maintaining the BST property. Return the root of
 **Your Task:** 
 Insert the value and return the root.
 
+**Difficulty:** Medium
+**Tags:** Bst, Operations, Bst Fundamental Operation, Maintaining Sorted Structure, O Insertion Average, Database Indexing, O(h), Interview
+
 ---
 
 ## Examples

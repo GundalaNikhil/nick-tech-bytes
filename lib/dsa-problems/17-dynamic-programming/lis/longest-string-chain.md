@@ -20,6 +20,9 @@ You are given an array of `words` where each word consists of lowercase English 
 **Your Task:** 
 Return max length.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lis, Dp, Hashmap, String Manipulation, Sorting By Length, O(N * L^2), Interview
+
 ---
 
 ## Examples

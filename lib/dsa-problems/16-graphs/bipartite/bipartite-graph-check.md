@@ -20,6 +20,9 @@ A bipartite graph can be divided into two disjoint sets U and V such that every 
 **Your Task:** 
 Given an undirected graph, determine if it's bipartite.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bipartite, Matching Problems, Two-Party Systems Modeling, Graph Coloring With 2 Colors, Detecting Odd-Length Cycles, O(V + E), Interview
+
 ---
 
 ## Examples

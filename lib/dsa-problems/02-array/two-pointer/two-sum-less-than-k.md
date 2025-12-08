@@ -20,6 +20,9 @@ Given an array and target K, find the maximum sum of two elements that is less t
 **Your Task:** 
 Return the maximum sum less than K.
 
+**Difficulty:** Medium
+**Tags:** Array, Two Pointer, Two-Pointer Variant, Constraint Optimization, Shopping/Budget Apps, Closest To Target Problems, O(n log n), Interview
+
 ---
 
 ## Examples

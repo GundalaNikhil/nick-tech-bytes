@@ -20,6 +20,9 @@ Balloons are at horizontal ranges [start, end]. An arrow at x bursts all balloon
 **Your Task:** 
 Return minimum number of arrows.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Interval, Greedy Intervals, Overlap Counting, Activity Scheduling Variant, Range Coverage, O(n log n), Interview
+
 ---
 
 ## Examples

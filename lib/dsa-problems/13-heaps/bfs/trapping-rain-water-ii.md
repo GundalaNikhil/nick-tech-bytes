@@ -20,6 +20,9 @@ Given an `m x n` integer matrix `heightMap` representing the height of each unit
 **Your Task:** 
 Return the total volume of water trapped.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Bfs, Priority Queue + Bfs, 3D Extension Of 2D, Boundary Processing, Hard Interview, O(mn log(mn), Interview
+
 ---
 
 ## Examples

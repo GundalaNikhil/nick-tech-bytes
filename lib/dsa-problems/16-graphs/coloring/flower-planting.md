@@ -20,6 +20,9 @@ You have `n` gardens, labeled from `1` to `n`. On the `(x, y)` path between gard
 **Your Task:** 
 Return flower type array.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Coloring, Greedy Graph Coloring, Adjacency List, Constraint Satisfaction, Easy/Medium Graph, O(V + E), Interview
+
 ---
 
 ## Examples

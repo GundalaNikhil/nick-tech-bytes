@@ -20,6 +20,9 @@ Given an array `nums` of integers, return the length of the longest arithmetic s
 **Your Task:** 
 Return the max length.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lis, Dp With Hashmap, 2D Dp State, Sequence Analysis, Hard Dp, O(n²), Interview
+
 ---
 
 ## Examples

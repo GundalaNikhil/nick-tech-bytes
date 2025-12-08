@@ -22,6 +22,9 @@ Given a 2D matrix `matrix`, handle multiple queries of the following types:
 **Your Task:** 
 Implement `NumMatrix` class with `update` and `sumRegion`.
 
+**Difficulty:** Hard
+**Tags:** Segment Tree, Advanced, 2D Binary Indexed Tree, 2D Segment Tree, Dynamic 2D Range Queries, Hard Data Structure, O(log m * log n), Interview
+
 ---
 
 ## Examples

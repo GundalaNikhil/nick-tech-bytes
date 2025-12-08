@@ -20,6 +20,9 @@ An ancient algorithm to find all primes up to N by iteratively marking multiples
 **Your Task:** 
 Find all prime numbers less than or equal to N.
 
+**Difficulty:** Medium
+**Tags:** Math, Primes Sieve, Most Efficient Way To Find All Primes In Range, Foundation For Many Number Theory Problems, Cryptographic Applications, Segmented Sieve For Very Large Ranges, O(n log log n), Interview
+
 ---
 
 ## Examples

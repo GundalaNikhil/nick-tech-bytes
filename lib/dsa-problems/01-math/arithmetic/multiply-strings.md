@@ -20,6 +20,9 @@ Given two numbers as strings, multiply them without using BigInteger/BigDecimal 
 **Your Task:** 
 Return the product as a string.
 
+**Difficulty:** Medium
+**Tags:** Math, Arithmetic, Arbitrary Precision, Digit-By-Digit Multiplication, Financial Systems, Scientific Computing, O(m × n), Interview
+
 ---
 
 ## Examples

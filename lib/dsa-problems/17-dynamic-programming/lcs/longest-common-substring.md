@@ -20,6 +20,9 @@ Given two integer arrays, find the maximum length of a subarray that appears in 
 **Your Task:** 
 Return the maximum length of repeated subarray.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lcs, Lcs Variant, Plagiarism Detection, Audio/Video Matching, 2D Dp Pattern, O(n × m), Interview
+
 ---
 
 ## Examples

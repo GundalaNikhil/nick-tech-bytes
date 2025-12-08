@@ -20,6 +20,9 @@ Like Unique Paths, but some cells have obstacles. Find the number of unique path
 **Your Task:** 
 Return the number of unique paths avoiding obstacles.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 2D Dp, Dp With Constraints, Path Planning With Blocks, Real-World Navigation, Obstacle Handling, O(m × n), Interview
+
 ---
 
 ## Examples

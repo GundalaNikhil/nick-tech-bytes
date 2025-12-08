@@ -20,6 +20,9 @@ Given an array of distinct integers `nums` and a target integer `target`, return
 **Your Task:** 
 Return the number of combinations.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, Unbounded Knapsack Variant, Dp Counting, Order Matters, Recursion With Memoization, O(target * n), Interview
+
 ---
 
 ## Examples

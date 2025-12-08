@@ -20,6 +20,9 @@ Find the length of the longest substring that contains at most k distinct charac
 **Your Task:** 
 Return the maximum substring length.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Sliding Window With Frequency, Variable-Size Window, Character Counting, Optimization Problems, O(n), Interview
+
 ---
 
 ## Examples

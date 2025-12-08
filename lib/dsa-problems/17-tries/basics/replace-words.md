@@ -21,6 +21,9 @@ Return the sentence after the replacement.
 **Your Task:** 
 Return modified sentence.
 
+**Difficulty:** Easy
+**Tags:** Tries, Basics, Trie, String Tokenization, Efficient Lookup, O(N * L + S), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Create a deep copy of a linked list where each node has a next pointer and a ran
 **Your Task:** 
 Return the head of the deep-copied list.
 
+**Difficulty:** Hard
+**Tags:** Linked List, Advanced, Deep Copy Techniques, Two-Pass, Hash Map Usage, O Space Interweaving, O(n), Interview
+
 ---
 
 ## Examples

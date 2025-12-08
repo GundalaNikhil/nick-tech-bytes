@@ -20,6 +20,9 @@ Given piles of bananas and h hours, find minimum eating speed k (bananas/hour) t
 **Your Task:** 
 Return the minimum integer eating speed.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Applications, Binary Search On Answer, Minimize Maximum Problems, Resource Allocation, Interview Favorite, O(n log m), Interview
+
 ---
 
 ## Examples

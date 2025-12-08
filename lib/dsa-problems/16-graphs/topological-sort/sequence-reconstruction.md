@@ -20,6 +20,9 @@ You are given an integer array `nums` of length `n` where `nums` is a permutatio
 **Your Task:** 
 Return true if unique reconstruction.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Topological Sort, Topological Sort Uniqueness, Graph Construction, Constraint Satisfaction, Array Processing, O(V + E), Interview
+
 ---
 
 ## Examples

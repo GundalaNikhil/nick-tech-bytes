@@ -20,6 +20,9 @@ The chess knight has a unique movement, it may move two squares vertically and o
 **Your Task:** 
 Return the count of distinct numbers.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Grid Dp, Graph Dp / Matrix Exponentiation, State Transitions, Modulo Arithmetic, Path Counting, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given tasks (letters) and cooldown n, find minimum intervals to complete all tas
 **Your Task:** 
 Return minimum intervals to complete all tasks.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Data Structure, Greedy Scheduling, Priority Queue Usage, Cpu Scheduling, Resource Optimization, O(n × m), Interview
+
 ---
 
 ## Examples

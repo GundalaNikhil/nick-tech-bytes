@@ -24,6 +24,9 @@ Given the integer array `fruits`, return the maximum number of fruits you can pi
 **Your Task:** 
 Return max fruits.
 
+**Difficulty:** Medium
+**Tags:** Sliding Window, Medium, Longest Substring With At Most K Distinct Characters, Hash Map, O(N), Interview
+
 ---
 
 ## Examples

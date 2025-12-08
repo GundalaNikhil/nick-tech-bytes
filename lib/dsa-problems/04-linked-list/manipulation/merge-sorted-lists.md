@@ -20,6 +20,9 @@ Given two sorted linked lists, merge them into one sorted list by splicing toget
 **Your Task:** 
 Merge two sorted linked lists and return the head of the new sorted list.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Manipulation, Foundation For Merge Sort, Common In Database Operations, File Merging In Os, Building Block For "Merge K Sorted Lists", O(n + m), Interview
+
 ---
 
 ## Examples

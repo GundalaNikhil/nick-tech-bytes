@@ -20,6 +20,9 @@ Given a sorted array that's been rotated at some pivot, find the minimum element
 **Your Task:** 
 Find the minimum element.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Modified, Modified Binary Search, Pivot Finding, Prerequisite For Search In Rotated Array, Circular Data Structures, O(log n), Interview
+
 ---
 
 ## Examples

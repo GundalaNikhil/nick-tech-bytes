@@ -20,6 +20,9 @@ Given an array, find all unique triplets (a, b, c) such that a + b + c = 0. This
 **Your Task:** 
 Return all unique triplets that sum to zero.
 
+**Difficulty:** Medium
+**Tags:** Array, Two Pointer, Extends Two Sum Concept, Two-Pointer After Sorting, Handling Duplicates, Foundation For 4Sum, Ksum, O(n²), Interview
+
 ---
 
 ## Examples

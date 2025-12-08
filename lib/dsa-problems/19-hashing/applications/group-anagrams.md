@@ -20,6 +20,9 @@ Given an array of strings, group anagrams together. Anagrams are strings that co
 **Your Task:** 
 Group all anagrams together and return the groups.
 
+**Difficulty:** Medium
+**Tags:** Hashing, Applications, Word Games, Search Engines, Document Analysis, Hash Map + Sorting Combo, O(n × k log k), Interview
+
 ---
 
 ## Examples

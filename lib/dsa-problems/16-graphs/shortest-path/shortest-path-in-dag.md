@@ -20,6 +20,9 @@ In a Directed Acyclic Graph, you can find shortest paths in O(V + E) time using 
 **Your Task:** 
 Given a weighted DAG, find the shortest distances from source to all vertices.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, Faster Than Dijkstra'S For Dags, Works With Negative Edge Weights, Critical Path Analysis In Project Management, Sequence Alignment In Bioinformatics, O(V + E), Interview
+
 ---
 
 ## Examples

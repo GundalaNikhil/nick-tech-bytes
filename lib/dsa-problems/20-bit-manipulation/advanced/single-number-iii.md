@@ -20,6 +20,9 @@ You must write an algorithm that runs in linear runtime complexity and uses only
 **Your Task:** 
 Return array of two numbers.
 
+**Difficulty:** Hard
+**Tags:** Bit Manipulation, Advanced, Lowbit / Rightmost Set Bit, Partitioning, O(N), Interview
+
 ---
 
 ## Examples

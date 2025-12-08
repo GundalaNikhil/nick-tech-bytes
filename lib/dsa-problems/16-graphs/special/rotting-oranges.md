@@ -20,6 +20,9 @@ Given a grid where 0=empty, 1=fresh, 2=rotten, each minute rotten oranges rot ad
 **Your Task:** 
 Return minimum minutes, or -1 if some stay fresh.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Special, Multi-Source Bfs, Simulation Problems, Infection/Spread Modeling, Time-Based Grid Problems, O(m × n), Interview
+
 ---
 
 ## Examples

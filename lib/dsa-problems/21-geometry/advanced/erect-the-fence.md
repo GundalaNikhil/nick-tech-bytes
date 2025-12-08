@@ -20,6 +20,9 @@ Return the coordinates of trees that are exactly located on the fence perimeter.
 **Your Task:** 
 Return list of boundary points.
 
+**Difficulty:** Hard
+**Tags:** Geometry, Advanced, Computational Geometry, Convex Hull Algorithms, Cross Product, O(N log N), Interview
+
 ---
 
 ## Examples

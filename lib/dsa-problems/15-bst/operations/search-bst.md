@@ -20,6 +20,9 @@ Given the root of a BST and a value, find the node with that value. Return the s
 **Your Task:** 
 Return the subtree rooted at the node with the given value.
 
+**Difficulty:** Medium
+**Tags:** Bst, Operations, Bst Fundamental Operation, O Average Lookup, Foundation For Bst Operations, Database Indexing, O(h), Interview
+
 ---
 
 ## Examples

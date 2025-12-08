@@ -20,6 +20,9 @@ Given a string containing only '(', ')', and '*', determine if the string is val
 **Your Task:** 
 Return true if the string is valid.
 
+**Difficulty:** Medium
+**Tags:** Greedy, String, Greedy Approach, Two-Stack, Dynamic Programming, Handling Wildcards, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ An edge list is the simplest graph representation - just a list of all edges, wh
 **Your Task:** 
 Store a graph using edge list representation and perform basic operations like adding edges and checking edge existence.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Representation, Simplest Representation To Implement, Great For Algorithms That Iterate Over All Edges, Minimal Preprocessing Needed, Perfect For Input/Output Operations, O(E), Interview
+
 ---
 
 ## Examples

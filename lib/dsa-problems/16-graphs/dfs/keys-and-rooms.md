@@ -21,6 +21,9 @@ Given an array `rooms` where `rooms[i]` is the set of keys that you can obtain i
 **Your Task:** 
 Return boolean.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Graph Traversal, Connected Components, Reachability, O(N + E), Interview
+
 ---
 
 ## Examples

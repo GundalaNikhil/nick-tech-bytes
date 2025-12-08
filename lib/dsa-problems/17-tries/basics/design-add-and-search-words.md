@@ -23,6 +23,9 @@ Implement the `WordDictionary` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Easy
+**Tags:** Tries, Basics, Trie With Dfs, Wildcard Matching, Recursion, O(M), Interview
+
 ---
 
 ## Examples

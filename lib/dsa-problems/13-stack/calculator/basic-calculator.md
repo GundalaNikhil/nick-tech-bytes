@@ -22,6 +22,9 @@ The expression string may contain open `(` and closing parentheses `)`, the plus
 **Your Task:** 
 Return integer result.
 
+**Difficulty:** Medium
+**Tags:** Stack, Calculator, String Parsing, Operator Precedence, Recursion, O(N), Interview
+
 ---
 
 ## Examples

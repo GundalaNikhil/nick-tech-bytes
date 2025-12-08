@@ -23,6 +23,9 @@ Generate the first n rows where:
 **Your Task:** 
 Generate the first numRows of Pascal's Triangle.
 
+**Difficulty:** Medium
+**Tags:** Math, Combinatorics, Binomial Theorem Coefficients, Probability Calculations, Pattern Visualization, O(n²), Interview
+
 ---
 
 ## Examples

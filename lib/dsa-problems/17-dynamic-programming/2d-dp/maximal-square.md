@@ -20,6 +20,9 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest square contai
 **Your Task:** 
 Return the area of the largest square of 1s.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 2D Dp, 2D Dp Classic, Image Processing, Area Optimization, Matrix Patterns, O(m × n), Interview
+
 ---
 
 ## Examples

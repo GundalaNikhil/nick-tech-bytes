@@ -20,6 +20,9 @@ You are given an integer array `prices` and an integer `k`. Find the maximum pro
 **Your Task:** 
 Return maximum profit with at most k transactions.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, State Machine, Dp Optimization, Generalization Of Stock Iii, Handling Large K, Hard Interview, O(nk), Interview
+
 ---
 
 ## Examples

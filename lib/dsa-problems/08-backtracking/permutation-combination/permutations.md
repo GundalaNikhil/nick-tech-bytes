@@ -20,6 +20,9 @@ Given an array of distinct elements, return all possible permutations (arrangeme
 **Your Task:** 
 Return all possible permutations of the array.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Permutation Combination, Classic Backtracking, Arrangement And Scheduling Problems, Password/Code Generation, Foundation For Combinations, O(n × n!), Interview
+
 ---
 
 ## Examples

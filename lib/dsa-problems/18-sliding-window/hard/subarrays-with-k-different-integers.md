@@ -20,6 +20,9 @@ A good subarray is a subarray where the number of different integers in that sub
 **Your Task:** 
 Return count of subarrays.
 
+**Difficulty:** Hard
+**Tags:** Sliding Window, Hard, Two Pointers, "At Most K" - "At Most K-1" Trick, O(N), Interview
+
 ---
 
 ## Examples

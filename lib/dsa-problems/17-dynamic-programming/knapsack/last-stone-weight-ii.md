@@ -23,6 +23,9 @@ At the end of the game, there is at most one stone left. Return the smallest pos
 **Your Task:** 
 Return the smallest possible weight of the last stone.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, Reduction To Partition Equal Subset Sum, Knapsack Variation, Subset Sum Minimization, Mathematical Transformation, O(n * sum), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ The maximum depth (or height) of a binary tree is the number of nodes along the 
 **Your Task:** 
 Return the maximum depth of a binary tree.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Properties, Determines Tree Balance, Affects Algorithm Complexity, Used In Tree Balancing, Organizational Hierarchy Analysis, O(n), Interview
+
 ---
 
 ## Examples

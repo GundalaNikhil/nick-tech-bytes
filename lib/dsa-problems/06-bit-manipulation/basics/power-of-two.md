@@ -20,6 +20,9 @@ Check if a given integer is a power of 2. Use bit manipulation: a power of 2 has
 **Your Task:** 
 Return true if n is a power of 2.
 
+**Difficulty:** Easy
+**Tags:** Bit Manipulation, Basics, Memory Alignment, Gpu Texture Sizes, Bit Manipulation Trick, Computer Architecture, O(1), Interview
+
 ---
 
 ## Examples

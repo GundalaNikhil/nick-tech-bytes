@@ -26,6 +26,9 @@ Implement the `NumArray` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Medium
+**Tags:** Range Queries, Segment Tree, Binary Indexed Tree, Square Root Decomposition, O Updates And Queries, O(log N), Interview
+
 ---
 
 ## Examples

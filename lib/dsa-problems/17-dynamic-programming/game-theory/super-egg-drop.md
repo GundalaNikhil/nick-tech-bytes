@@ -20,6 +20,9 @@ You are given k eggs and an n-floor building. Determine the minimum number of mo
 **Your Task:** 
 Return minimum moves.
 
+**Difficulty:** Hard
+**Tags:** Dynamic Programming, Game Theory, Dp With Binary Search, Minimax Optimization, Mathematical Insight, Hard Interview, O(k log n), Interview
+
 ---
 
 ## Examples

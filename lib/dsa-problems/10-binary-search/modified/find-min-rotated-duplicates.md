@@ -20,6 +20,9 @@ Like Find Minimum I, but array may contain duplicates. Find the minimum element.
 **Your Task:** 
 Return the minimum element.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Modified, Binary Search With Duplicates, Handling Ambiguous Cases, Robust Search, Edge Case Mastery, O(log n), Interview
+
 ---
 
 ## Examples

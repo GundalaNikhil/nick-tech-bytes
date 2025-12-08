@@ -20,6 +20,9 @@ Given an array of integers `arr`, find the sum of `min(b)`, where `b` ranges ove
 **Your Task:** 
 Return the sum modulo 10^9 + 7.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Monotonic Stack, Contribution, Previous/Next Less Element, O(N), Interview
+
 ---
 
 ## Examples

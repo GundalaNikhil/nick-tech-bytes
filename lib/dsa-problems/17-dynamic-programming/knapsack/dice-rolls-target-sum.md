@@ -20,6 +20,9 @@ You have `n` dice and each die has `k` faces numbered from `1` to `k`. Given thr
 **Your Task:** 
 Return the count of ways.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, Dp, Combinatorics, Modulo Arithmetic, State Transitions, O(n * target * k), Interview
+
 ---
 
 ## Examples

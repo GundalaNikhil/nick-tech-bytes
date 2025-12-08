@@ -23,6 +23,9 @@ Given two integers `startValue` and `target`, return the minimum number of opera
 **Your Task:** 
 Return minimum operations.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Math, Greedy Strategy, Math Logic, Tree Search Pruning, Optimization, O(log Target), Interview
+
 ---
 
 ## Examples

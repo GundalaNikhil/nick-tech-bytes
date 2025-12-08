@@ -20,6 +20,9 @@ You are given an array of people, `people`, which are the attributes of some peo
 **Your Task:** 
 Return the reconstructed queue.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Sorting, Greedy Sorting Strategy, Insertion Logic, Constructive, Sorting By Multiple Criteria, O(n²), Interview
+
 ---
 
 ## Examples

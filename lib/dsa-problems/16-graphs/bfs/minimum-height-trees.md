@@ -20,6 +20,9 @@ A tree is an undirected graph in which any two vertices are connected by exactly
 **Your Task:** 
 Return list of root labels.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Topological Sort, Bfs From Leaves, Graph Centrality, Tree Diameter, O(N), Interview
+
 ---
 
 ## Examples

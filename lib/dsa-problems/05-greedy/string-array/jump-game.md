@@ -20,6 +20,9 @@ Given an array where nums[i] represents the maximum jump length from position i,
 **Your Task:** 
 Return true if you can reach the last index.
 
+**Difficulty:** Medium
+**Tags:** Greedy, String Array, Greedy Decision Making, Reachability Problems, Game Development Logic, Foundation For Jump Game Ii, O(n), Interview
+
 ---
 
 ## Examples

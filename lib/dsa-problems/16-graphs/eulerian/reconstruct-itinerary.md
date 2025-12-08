@@ -20,6 +20,9 @@ Given a list of airline tickets where `tickets[i] = [from, to]`, reconstruct the
 **Your Task:** 
 Return the itinerary list.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Eulerian, Eulerian Path, Dfs / Graph Traversal, Handling Cycles And Dead Ends, Lexicographical Sorting, O(E log E), Interview
+
 ---
 
 ## Examples

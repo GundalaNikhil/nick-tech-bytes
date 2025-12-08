@@ -20,6 +20,9 @@ Given two integers representing the numerator and denominator of a fraction, ret
 **Your Task:** 
 Return the decimal string.
 
+**Difficulty:** Medium
+**Tags:** Math, Number Theory, Math / Number Theory, Hashmap For Cycle Detection, String Manipulation, Edge Cases, O(denominator), Interview
+
 ---
 
 ## Examples

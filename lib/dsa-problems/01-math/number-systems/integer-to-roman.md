@@ -20,6 +20,9 @@ Convert an integer to its Roman numeral representation. Use greedy approach with
 **Your Task:** 
 Return the Roman numeral string.
 
+**Difficulty:** Hard
+**Tags:** Math, Number Systems, Greedy Algorithms, Number Representation, Cultural Applications, String Building, O(1), Interview
+
 ---
 
 ## Examples

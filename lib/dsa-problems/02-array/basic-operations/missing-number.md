@@ -20,6 +20,9 @@ Given an array of n distinct numbers in [0, n], find the one number missing from
 **Your Task:** 
 Find the missing number.
 
+**Difficulty:** Medium
+**Tags:** Array, Basic Operations, Xor, Math Formula, Bit Manipulation, Space-Efficient Solution, O(n), Interview
+
 ---
 
 ## Examples

@@ -23,6 +23,9 @@ Return the minimum number of candies you need to have to distribute the candies 
 **Your Task:** 
 Return minimum total candies.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Array, Greedy Approach, Array Traversal, Optimization, Classic Interview, O(n), Interview
+
 ---
 
 ## Examples

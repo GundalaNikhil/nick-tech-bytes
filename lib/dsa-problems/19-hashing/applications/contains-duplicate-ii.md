@@ -20,6 +20,9 @@ Given an array, find if there are two distinct indices i and j such that nums[i]
 **Your Task:** 
 Return true if such a pair exists.
 
+**Difficulty:** Medium
+**Tags:** Hashing, Applications, Sliding Window + Hash Map, Window Constraint, Security Applications, Proximity Checks, O(n), Interview
+
 ---
 
 ## Examples

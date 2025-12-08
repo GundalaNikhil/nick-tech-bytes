@@ -20,6 +20,9 @@ Given an array with elements 0, 1, and 2, sort it in-place so all 0s come first,
 **Your Task:** 
 Sort the array in-place.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Algorithms, Dutch National Flag, Three-Way Partitioning, In-Place Sorting, Quicksort Foundation, O(n), Interview
+
 ---
 
 ## Examples

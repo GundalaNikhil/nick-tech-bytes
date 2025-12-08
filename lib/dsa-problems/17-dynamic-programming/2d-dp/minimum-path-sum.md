@@ -20,6 +20,9 @@ Given a m×n grid filled with non-negative numbers, find a path from top-left to
 **Your Task:** 
 Return the minimum path sum.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 2D Dp, Classic 2D Dp, Grid Traversal, Path Optimization, Delivery/Routing Applications, O(m × n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given an m×n grid, count the number of unique paths from top-left (0,0) to bott
 **Your Task:** 
 Return the number of unique paths to reach the destination.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 2D Dp, Classic 2D Dp Introduction, Combinatorics Connection, Foundation For Path-Based Problems, Space Optimization Techniques, O(m × n), Interview
+
 ---
 
 ## Examples

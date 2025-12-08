@@ -20,6 +20,9 @@ Given a sorted array, find if a target exists in O(log n) time by repeatedly div
 **Your Task:** 
 Search for target in a sorted array and return its index, or -1 if not present.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Basic, Foundation For Logarithmic Algorithms, Used Everywhere: Databases, Search Engines, Git Bisect, Base For Many Advanced Problems, Teaches Divide And Conquer, O(log n), Interview
+
 ---
 
 ## Examples

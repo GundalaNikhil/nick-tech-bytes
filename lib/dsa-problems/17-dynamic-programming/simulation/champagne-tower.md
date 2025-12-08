@@ -20,6 +20,9 @@ We stack glasses in a pyramid, where the first row has 1 glass, the second row h
 **Your Task:** 
 Return the amount of champagne in the target glass (0 to 1).
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Simulation, Simulation With Dp, Flow Distribution, Pascal'S Triangle Variant, State Tracking, O(R²), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Prim's algorithm builds a minimum spanning tree by starting from an arbitrary ve
 **Your Task:** 
 Given a weighted undirected graph, find the minimum spanning tree using Prim's algorithm.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Mst, Network Expansion From A Central Point, Better Than Kruskal'S For Dense Graphs, Natural Fit For "Grow From Source" Problems, Efficient With Priority Queue, O((V + E), Interview
+
 ---
 
 ## Examples

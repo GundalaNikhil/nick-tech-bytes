@@ -20,6 +20,9 @@ A cycle exists if you can start at a vertex, travel along edges, and return to t
 **Your Task:** 
 Given an undirected graph, determine if it contains a cycle.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Cycle Detection, Network Loop Detection, Deadlock Detection, Validating Tree Structures, Detecting Redundant Connections, O(V + E), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Design a data structure supporting addWord(word) and search(word). Search can co
 **Your Task:** 
 Implement WordDictionary with addWord and search.
 
+**Difficulty:** Hard
+**Tags:** Trie, Advanced, Trie With Wildcards, Pattern Matching, Dfs In Trie, Dictionary Applications, O(m), Interview
+
 ---
 
 ## Examples

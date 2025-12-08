@@ -20,6 +20,9 @@ Design an algorithm to convert a binary tree to a string and back, such that the
 **Your Task:** 
 Implement serialize and deserialize functions.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Construction, Data Persistence, Network Transmission, Database Storage, Tree Reconstruction, O(n), Interview
+
 ---
 
 ## Examples

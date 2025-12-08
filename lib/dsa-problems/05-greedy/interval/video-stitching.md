@@ -20,6 +20,9 @@ You are given a series of video clips from a sporting event that lasted `time` s
 **Your Task:** 
 Return minimum clips.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Interval, Greedy Interval Coverage, Jump Game Variant, Dp, Optimization, O(N log N), Interview
+
 ---
 
 ## Examples

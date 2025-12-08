@@ -20,6 +20,9 @@ You are given a string `s` and an integer `k`, a `k` duplicate removal consists 
 **Your Task:** 
 Return the final string.
 
+**Difficulty:** Medium
+**Tags:** Stack, Basic, Stack With Count, String Manipulation, Recursion Simulation, Optimization, O(N), Interview
+
 ---
 
 ## Examples

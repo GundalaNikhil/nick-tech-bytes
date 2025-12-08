@@ -21,6 +21,9 @@ A string `s` is called good if there are no two different characters in `s` that
 **Your Task:** 
 Return minimum deletions.
 
+**Difficulty:** Medium
+**Tags:** Greedy, String, Greedy Strategy, Sorting / Hashset, Frequency Counting, Optimization, O(N), Interview
+
 ---
 
 ## Examples

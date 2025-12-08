@@ -20,6 +20,9 @@ Given a 2D grid of characters and a list of words, find all words that exist in 
 **Your Task:** 
 Return all words from the list found in the grid.
 
+**Difficulty:** Hard
+**Tags:** Trie, Advanced, Trie + Backtracking Combo, Word Game Algorithms, Efficient Multi-Word Search, Dfs On Grid With Trie, O(m × n × 4^L), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a reference to a node in a connected undirected graph, return a deep copy 
 **Your Task:** 
 Return the clone of the graph.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Deep Copy Techniques, Graph Traversal, Hash Map For Old→New Mapping, Memory Management, O(V + E), Interview
+
 ---
 
 ## Examples

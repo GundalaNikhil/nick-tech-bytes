@@ -22,6 +22,9 @@ Given an integer array `nums`, handle multiple queries of the following types:
 **Your Task:** 
 Implement the `NumArray` class with `update` and `sumRange` methods.
 
+**Difficulty:** Medium
+**Tags:** Segment Tree, Basic, Segment Tree / Binary Indexed Tree, O Update And Query, Dynamic Range Queries, Fundamental Data Structure, O(log n), Interview
+
 ---
 
 ## Examples

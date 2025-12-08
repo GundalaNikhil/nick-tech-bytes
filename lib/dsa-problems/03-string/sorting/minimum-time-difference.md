@@ -20,6 +20,9 @@ Given a list of 24-hour clock time points in "HH:MM" format, return the minimum 
 **Your Task:** 
 Return minimum difference.
 
+**Difficulty:** Medium
+**Tags:** String, Sorting, String Parsing, Circular Time, Optimization, O(N log N), Interview
+
 ---
 
 ## Examples

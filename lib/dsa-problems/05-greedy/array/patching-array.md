@@ -20,6 +20,9 @@ Given a sorted integer array `nums` and an integer `n`, add/patch elements to th
 **Your Task:** 
 Return minimum patches.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Array, Greedy Strategy, Mathematical Insight, Constructive, Optimization, O(m + log n), Interview
+
 ---
 
 ## Examples

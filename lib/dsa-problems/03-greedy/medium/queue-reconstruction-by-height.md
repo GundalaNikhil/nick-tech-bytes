@@ -20,6 +20,9 @@ Reconstruct and return the queue that is represented by the input array `people`
 **Your Task:** 
 Return reconstructed queue.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Medium, Sorting, Insertion Logic, O(N^2), Interview
+
 ---
 
 ## Examples

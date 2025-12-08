@@ -20,6 +20,9 @@ Given a binary tree `root`, return the maximum sum of all keys of any sub-tree w
 **Your Task:** 
 Return max sum.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Bst, Post-Order Traversal, Bst Validation, Bottom-Up Dp, Tree Properties, O(N), Interview
+
 ---
 
 ## Examples

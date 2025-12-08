@@ -24,6 +24,9 @@ The score rule is:
 **Your Task:** 
 Return the score.
 
+**Difficulty:** Medium
+**Tags:** Stack, Basic, Stack Application, Recursion / Divide And Conquer, Depth Tracking, Parsing Logic, O(n), Interview
+
 ---
 
 ## Examples

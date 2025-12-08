@@ -20,6 +20,9 @@ There are `n` houses in a village. We want to supply water to all the houses by 
 **Your Task:** 
 Return minimum cost.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Mst, Minimum Spanning Tree, Prim'S Or Kruskal'S, Graph Modeling, Optimization, O(E log E), Interview
+
 ---
 
 ## Examples

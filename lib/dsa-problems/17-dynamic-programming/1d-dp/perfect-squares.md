@@ -20,6 +20,9 @@ Given integer n, return the minimum number of perfect square numbers that sum to
 **Your Task:** 
 Return the minimum number of perfect squares.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Dp On Numbers, Coin Change Variant, Mathematical Optimization, Lagrange'S Four-Square Theorem, O(n × √n), Interview
+
 ---
 
 ## Examples

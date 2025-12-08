@@ -20,6 +20,9 @@ Find the lowest common ancestor of two nodes in a BST. Unlike general binary tre
 **Your Task:** 
 Return the LCA node of nodes p and q.
 
+**Difficulty:** Medium
+**Tags:** Bst, Lca, Bst Property Usage, Simpler Than General Tree Lca, Version Control Systems, Range Queries, O(h), Interview
+
 ---
 
 ## Examples

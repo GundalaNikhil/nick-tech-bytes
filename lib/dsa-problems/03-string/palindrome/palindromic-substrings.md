@@ -20,6 +20,9 @@ Count how many palindromic substrings exist in a string. Substrings with differe
 **Your Task:** 
 Return the count of palindromic substrings.
 
+**Difficulty:** Medium
+**Tags:** String, Palindrome, Expand Around Center, Dp, Dna Analysis, String Pattern Counting, O(n²), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Convert a non-negative integer `num` to its English words representation.
 **Your Task:** 
 Return string representation.
 
+**Difficulty:** Easy
+**Tags:** Math, Basics, String Manipulation, Recursion / Iteration, Handling Edge Cases, Real-World Application, O(N), Interview
+
 ---
 
 ## Examples

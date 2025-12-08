@@ -20,6 +20,9 @@ On an `n x n` chessboard, a knight starts at the cell `(row, column)` and attemp
 **Your Task:** 
 Return probability.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Grid Dp, Dp With Probability, 3D Dp State ``, Simulation, Optimization, O(K * N^2), Interview
+
 ---
 
 ## Examples

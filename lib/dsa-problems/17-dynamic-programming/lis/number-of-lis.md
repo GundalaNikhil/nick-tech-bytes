@@ -20,6 +20,9 @@ Given an integer array `nums`, return the number of longest increasing subsequen
 **Your Task:** 
 Return the count of LIS.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lis, Lis Extension, Counting With Dp, Double Dp Array, Combinatorics, O(n²), Interview
+
 ---
 
 ## Examples

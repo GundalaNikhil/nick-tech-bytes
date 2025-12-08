@@ -20,6 +20,9 @@ You are given two integer arrays `nums1` and `nums2` both of the same length. Th
 **Your Task:** 
 Return the optimized permutation.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Array, Greedy Strategy, Sorting + Two Pointers, Treemap Application, Optimization, O(n log n), Interview
+
 ---
 
 ## Examples

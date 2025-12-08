@@ -20,6 +20,9 @@ In English, we have a concept called root, which can be followed by some other w
 **Your Task:** 
 Return the modified sentence.
 
+**Difficulty:** Medium
+**Tags:** Trie, Basic, Trie Application, Prefix Matching, String Processing, Tokenization, O(N * L), Interview
+
 ---
 
 ## Examples

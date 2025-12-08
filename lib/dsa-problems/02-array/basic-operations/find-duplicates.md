@@ -20,6 +20,9 @@ Given an array of n integers where 1 ≤ nums[i] ≤ n, some elements appear twi
 **Your Task:** 
 Return all duplicates.
 
+**Difficulty:** Medium
+**Tags:** Array, Basic Operations, Index-As-Hash, In-Place Modification, Space-Optimized Algorithms, Clever Array Manipulation, O(n), Interview
+
 ---
 
 ## Examples

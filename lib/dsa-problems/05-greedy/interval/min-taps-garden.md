@@ -20,6 +20,9 @@ There is a one-dimensional garden on the x-axis. The garden starts at the point 
 **Your Task:** 
 Return minimum taps.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Interval, Greedy Interval Coverage, Jump Game Variant, Dynamic Programming, Optimization, O(N), Interview
+
 ---
 
 ## Examples

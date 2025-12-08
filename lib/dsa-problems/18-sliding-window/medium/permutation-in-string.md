@@ -20,6 +20,9 @@ In other words, return `true` if one of `s1`'s permutations is the substring of 
 **Your Task:** 
 Return boolean.
 
+**Difficulty:** Medium
+**Tags:** Sliding Window, Medium, Hash Map / Frequency Array, Anagram Check, O(N), Interview
+
 ---
 
 ## Examples

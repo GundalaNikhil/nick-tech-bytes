@@ -20,6 +20,9 @@ Given a non-negative integer as a string, remove k digits to make the smallest p
 **Your Task:** 
 Return the smallest number after removing k digits.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Monotonic Stack, Greedy Removal, Number Manipulation, String Optimization, O(n), Interview
+
 ---
 
 ## Examples

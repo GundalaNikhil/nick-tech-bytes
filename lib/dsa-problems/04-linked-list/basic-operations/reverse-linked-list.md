@@ -20,6 +20,9 @@ Given the head of a singly linked list, reverse the list and return the new head
 **Your Task:** 
 Reverse a singly linked list.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Basic Operations, Fundamental Linked List Operation, Tests Pointer Manipulation Skills, Used In Many Other Problems, Both Iterative And Recursive Approaches Exist, O(n), Interview
+
 ---
 
 ## Examples

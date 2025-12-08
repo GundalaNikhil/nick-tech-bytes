@@ -20,6 +20,9 @@ Given an array of integers `nums` and an integer `limit`, return the size of the
 **Your Task:** 
 Return max length.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Monotonic Deque, Treemap / Multiset, Optimization, O(N), Interview
+
 ---
 
 ## Examples

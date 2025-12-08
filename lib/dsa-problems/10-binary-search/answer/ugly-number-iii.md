@@ -20,6 +20,9 @@ An ugly number is a positive integer that is divisible by `a`, `b`, or `c`. Give
 **Your Task:** 
 Return the nth ugly number.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Answer, Binary Search On Answer, Number Theory, Optimization, Math-Heavy, O(log(range), Interview
+
 ---
 
 ## Examples

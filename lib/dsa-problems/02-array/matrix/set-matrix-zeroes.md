@@ -20,6 +20,9 @@ If an element is 0, set its entire row and column to 0. Do this in-place with O(
 **Your Task:** 
 Set entire row and column to 0 for every 0 in the matrix, in-place.
 
+**Difficulty:** Medium
+**Tags:** Array, Matrix, In-Place Matrix Manipulation, Clever Use Of Matrix Itself As Storage, Space Optimization Techniques, Common Interview, O(m × n), Interview
+
 ---
 
 ## Examples

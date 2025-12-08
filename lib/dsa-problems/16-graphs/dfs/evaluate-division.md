@@ -22,6 +22,9 @@ Return the answers to all queries. If a single answer cannot be determined, retu
 **Your Task:** 
 Return array of answers.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Graph Construction, Bfs / Dfs / Union-Find, Path Finding With Product Weights, Transitive Property, O(M * N), Interview
+
 ---
 
 ## Examples

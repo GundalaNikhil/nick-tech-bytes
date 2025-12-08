@@ -20,6 +20,9 @@ Given a network of n nodes and signal travel times, find how long it takes for a
 **Your Task:** 
 Return the minimum time for all nodes to receive the signal.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, Dijkstra'S, Shortest Path From Single Source, Network Analysis, Maximum Of Minimums, O((V+E), Interview
+
 ---
 
 ## Examples

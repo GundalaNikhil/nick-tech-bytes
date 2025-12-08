@@ -20,6 +20,9 @@ Given an elevation map where each bar has width 1, compute how much water can be
 **Your Task:** 
 Calculate the total units of water trapped.
 
+**Difficulty:** Medium
+**Tags:** Array, Two Pointer, Combines Prefix/Suffix Max Concepts, Multiple Solution Approaches, Tests Visualization And Problem Decomposition, Real-World Drainage/Flooding Analysis, O(n), Interview
+
 ---
 
 ## Examples

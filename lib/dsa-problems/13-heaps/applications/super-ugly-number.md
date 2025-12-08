@@ -20,6 +20,9 @@ A super ugly number is a positive integer whose prime factors are in the array `
 **Your Task:** 
 Return the nth super ugly number.
 
+**Difficulty:** Medium
+**Tags:** Heaps, Applications, Min-Heap, Dp With Multiple Pointers, Number Theory, Optimization, O(n log k), Interview
+
 ---
 
 ## Examples

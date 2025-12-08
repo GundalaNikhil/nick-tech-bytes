@@ -20,6 +20,9 @@ Given a string and dictionary, return all possible sentences by adding spaces su
 **Your Task:** 
 Return all possible valid sentences.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Backtracking With Memoization, Dp + Recursion, Natural Language Processing, All Solutions Enumeration, Exponential (With Pruning), Interview
+
 ---
 
 ## Examples

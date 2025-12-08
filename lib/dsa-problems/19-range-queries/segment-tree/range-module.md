@@ -24,6 +24,9 @@ Implement the `RangeModule` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Medium
+**Tags:** Range Queries, Segment Tree, Treemap / Sortedmap, Interval Management, O(log N), Interview
+
 ---
 
 ## Examples

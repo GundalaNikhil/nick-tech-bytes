@@ -22,6 +22,9 @@ Return an array containing all the safe nodes of the graph. The answer should be
 **Your Task:** 
 Return sorted list of safe nodes.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Cycle Detection In Directed Graph, Topological Sort, Dfs With 3 States, Deadlock Detection, O(N + E), Interview
+
 ---
 
 ## Examples

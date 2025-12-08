@@ -20,6 +20,9 @@ Given the total number of courses and a list of prerequisite pairs, determine if
 **Your Task:** 
 Determine if it's possible to complete all courses given the prerequisite constraints.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Special, Academic Course Planning, Task Scheduling Systems, Dependency Resolution, Build System Validation, O(V + E), Interview
+
 ---
 
 ## Examples

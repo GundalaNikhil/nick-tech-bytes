@@ -20,6 +20,9 @@ Given an array of binary strings `strs` and two integers `m` and `n`. Return the
 **Your Task:** 
 Return the size of the largest subset.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, 2D Knapsack, Subset Selection, Dp Optimization, Resource Allocation, O(L * m * n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Design an algorithm that accepts a stream of characters and checks if a suffix o
 **Your Task:** 
 Implement `StreamChecker` class.
 
+**Difficulty:** Hard
+**Tags:** Trie, Advanced, Streaming Data, Suffix Matching, Real-Time Processing, O(M), Interview
+
 ---
 
 ## Examples

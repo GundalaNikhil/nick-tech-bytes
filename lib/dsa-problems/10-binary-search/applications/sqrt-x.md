@@ -20,6 +20,9 @@ Compute and return the square root of x rounded down to the nearest integer. Don
 **Your Task:** 
 Return floor(sqrt(x)).
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Applications, Binary Search On Answer, Newton'S, Bit Manipulation, Babylonian, O(log x), Interview
+
 ---
 
 ## Examples

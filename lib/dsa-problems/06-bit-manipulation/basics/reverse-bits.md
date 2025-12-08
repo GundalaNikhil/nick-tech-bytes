@@ -20,6 +20,9 @@ Given a 32-bit unsigned integer, reverse all its bits. The bit at position 0 goe
 **Your Task:** 
 Reverse the bits of a 32-bit unsigned integer.
 
+**Difficulty:** Easy
+**Tags:** Bit Manipulation, Basics, Endianness Conversion, Cryptographic Operations, Signal Processing, Hardware Interfacing, O(1), Interview
+
 ---
 
 ## Examples

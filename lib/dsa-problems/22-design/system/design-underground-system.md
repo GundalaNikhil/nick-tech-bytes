@@ -28,6 +28,9 @@ Implement the `UndergroundSystem` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Hard
+**Tags:** Design, System, Hash Map, Data Aggregation, System Design, O(1), Interview
+
 ---
 
 ## Examples

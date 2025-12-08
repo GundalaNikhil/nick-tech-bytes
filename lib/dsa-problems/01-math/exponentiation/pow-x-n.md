@@ -20,6 +20,9 @@ Implement pow(x, n) which calculates x raised to the power n. Must handle negati
 **Your Task:** 
 Return x^n.
 
+**Difficulty:** Medium
+**Tags:** Math, Exponentiation, Binary Exponentiation, Divide And Conquer, Handling Edge Cases, Fundamental, O(log n), Interview
+
 ---
 
 ## Examples

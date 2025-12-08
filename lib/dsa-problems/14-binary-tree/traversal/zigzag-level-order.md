@@ -20,6 +20,9 @@ Return level order traversal but alternate direction: first level left→right, 
 **Your Task:** 
 Return zigzag level order traversal.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Traversal, Bfs With Direction Toggle, Visual Display Patterns, Level-Aware Traversal, Queue Manipulation, O(n), Interview
+
 ---
 
 ## Examples

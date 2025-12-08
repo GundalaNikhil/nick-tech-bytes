@@ -20,6 +20,9 @@ Given an array of strings `queries` and a string `pattern`, return a boolean arr
 **Your Task:** 
 Return boolean array.
 
+**Difficulty:** Medium
+**Tags:** Trie, Basic, Trie / Two Pointers, String Matching, Pattern Validation, Interview Classic, O(N * L), Interview
+
 ---
 
 ## Examples

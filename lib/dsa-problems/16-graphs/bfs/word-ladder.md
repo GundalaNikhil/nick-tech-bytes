@@ -20,6 +20,9 @@ Given begin word, end word, and dictionary, find the shortest transformation seq
 **Your Task:** 
 Return the length of shortest transformation, or 0 if impossible.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Bfs On Implicit Graph, Word Transformation, Spell Checkers, Shortest Path In Word Space, O(n × m × 26), Interview
+
 ---
 
 ## Examples

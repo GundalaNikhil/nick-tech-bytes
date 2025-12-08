@@ -20,6 +20,9 @@ Given strings s1, s2, and s3, check if s3 is formed by interleaving s1 and s2 wh
 **Your Task:** 
 Return true if s3 is a valid interleaving.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, 2D Dp On Strings, Two-Pointer With Backtracking, Stream Interleaving, Merge Verification, O(m × n), Interview
+
 ---
 
 ## Examples

@@ -19,6 +19,9 @@ An adjacency list represents a graph as an array of lists. The index represents 
 **Your Task:** 
 Given a list of edges, construct an adjacency list representation of the graph.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Representation, Space-Efficient For Sparse Graphs: O, Iterating Over Neighbors Is O, Most Real-World Graphs Are Sparse, O(V + E), Interview
+
 ---
 
 ## Examples

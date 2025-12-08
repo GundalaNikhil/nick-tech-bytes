@@ -21,6 +21,9 @@ There are `n` cities numbered from `0` to `n-1`. Given the array `edges` where `
 **Your Task:** 
 Return the city index.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, Floyd-Warshall Algorithm, Dijkstra From Every Node, Graph Centrality, Network Analysis, O(n³), Interview
+
 ---
 
 ## Examples

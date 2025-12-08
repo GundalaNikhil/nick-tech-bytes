@@ -25,6 +25,9 @@ Notice that there could be some signs on the cells of the grid that point outsid
 **Your Task:** 
 Return minimum cost.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, 0-1 Bfs / Dijkstra, Shortest Path On Weighted Graph, Grid Traversal, Optimization, O(m * n), Interview
+
 ---
 
 ## Examples

@@ -22,6 +22,9 @@ Implement the `ParkingSystem` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Hard
+**Tags:** Design, Basics, Object Oriented Design, State Management, Simple Logic, O(1), Interview
+
 ---
 
 ## Examples

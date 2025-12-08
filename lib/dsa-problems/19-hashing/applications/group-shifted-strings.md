@@ -20,6 +20,9 @@ Group strings that belong to the same shifting sequence. A shifting sequence is 
 **Your Task:** 
 Return groups of shifted strings.
 
+**Difficulty:** Medium
+**Tags:** Hashing, Applications, Hashing With Normalization, Pattern Recognition, Cipher Systems, Grouping Problems, O(n × m), Interview
+
 ---
 
 ## Examples

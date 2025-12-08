@@ -20,6 +20,9 @@ Visit nodes in order: left → right → root. Useful for deletions, postfix exp
 **Your Task:** 
 Return the postorder traversal of a binary tree.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Traversal, Dependency Ordering, Expression Evaluation, Memory Deallocation, Bottom-Up Computation, O(n), Interview
+
 ---
 
 ## Examples

@@ -23,6 +23,9 @@ Move N disks from source peg to destination peg using an auxiliary peg. Rules:
 **Your Task:** 
 Print the sequence of moves to solve Tower of Hanoi for N disks.
 
+**Difficulty:** Medium
+**Tags:** Recursion, Mathematical, Classic Recursion, Shows Power Of Recursive Thinking, Minimum Moves = 2^N - 1, Used In Backup Rotation Schemes, O(2^n), Interview
+
 ---
 
 ## Examples

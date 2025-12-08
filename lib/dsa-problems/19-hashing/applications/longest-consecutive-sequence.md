@@ -20,6 +20,9 @@ Given an unsorted array, find the length of the longest sequence of consecutive 
 **Your Task:** 
 Return the length of the longest consecutive sequence.
 
+**Difficulty:** Medium
+**Tags:** Hashing, Applications, Hash Set, Sequence Finding, Clever Optimization, O(n), Interview
+
 ---
 
 ## Examples

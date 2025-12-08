@@ -20,6 +20,9 @@ Swap the left and right children of every node in the tree, creating its mirror 
 **Your Task:** 
 Return the inverted binary tree.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Modification, Fundamental Tree Manipulation, Recursion Practice, Famous Homebrew Author Tweet, Interview Classic, O(n), Interview
+
 ---
 
 ## Examples

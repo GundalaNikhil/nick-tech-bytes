@@ -24,6 +24,9 @@ Return the length of the shortest reference string `s` possible of any valid enc
 **Your Task:** 
 Return minimum length.
 
+**Difficulty:** Medium
+**Tags:** Trie, Basic, Hashset, String Manipulation, Optimization, O(N * L), Interview
+
 ---
 
 ## Examples

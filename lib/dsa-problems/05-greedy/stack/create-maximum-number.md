@@ -20,6 +20,9 @@ Given two arrays of length m and n with digits 0-9 representing two numbers. Cre
 **Your Task:** 
 Return the maximum number as an array of digits.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Stack, Greedy + Stack, Merge Logic, Subproblem Decomposition, Hard Greedy, O(k * (m + n), Interview
+
 ---
 
 ## Examples

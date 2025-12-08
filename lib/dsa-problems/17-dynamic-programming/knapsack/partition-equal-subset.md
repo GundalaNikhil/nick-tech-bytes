@@ -20,6 +20,9 @@ Given a non-empty array of positive integers, determine if it can be partitioned
 **Your Task:** 
 Return true if equal partition is possible.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, 0/1 Knapsack Variant, Subset Sum, Fair Division Problems, Dp On Sums, O(n × sum/2), Interview
+
 ---
 
 ## Examples

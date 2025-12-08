@@ -23,6 +23,9 @@ Given an array of `words`, return the length of the shortest reference string `s
 **Your Task:** 
 Return length of encoding.
 
+**Difficulty:** Easy
+**Tags:** Tries, Basics, Trie, Suffix Tree, String Compression, O(N * L), Interview
+
 ---
 
 ## Examples

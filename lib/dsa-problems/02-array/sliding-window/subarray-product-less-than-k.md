@@ -20,6 +20,9 @@ Given an array of integers `nums` and an integer `k`, return the number of conti
 **Your Task:** 
 Return the count of subarrays.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Two Pointers, Counting Subarrays, Optimization, O(N), Interview
+
 ---
 
 ## Examples

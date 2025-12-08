@@ -20,6 +20,9 @@ Given an m×n board with 'X' and 'O', capture all regions of 'O' that are comple
 **Your Task:** 
 Capture all surrounded 'O' regions by replacing them with 'X'.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Special, Bfs/Dfs On Grid, Border-Connected Components, Game Logic, Flood Fill Variant, O(m × n), Interview
+
 ---
 
 ## Examples

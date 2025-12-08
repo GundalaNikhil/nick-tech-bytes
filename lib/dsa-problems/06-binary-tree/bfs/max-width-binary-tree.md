@@ -20,6 +20,9 @@ Given the `root` of a binary tree, return the maximum width of the given tree. T
 **Your Task:** 
 Return max width.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Bfs, Bfs / Dfs, Indexing Nodes, Handling Large Numbers, Tree Properties, O(N), Interview
+
 ---
 
 ## Examples

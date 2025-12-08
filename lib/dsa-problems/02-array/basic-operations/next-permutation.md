@@ -20,6 +20,9 @@ Find the next lexicographically greater permutation of an array. If at largest, 
 **Your Task:** 
 Modify the array to its next permutation in-place.
 
+**Difficulty:** Medium
+**Tags:** Array, Basic Operations, Permutation Algorithms, In-Place Array Manipulation, Password/Key Rotation, Stl Next_Permutation, O(n), Interview
+
 ---
 
 ## Examples

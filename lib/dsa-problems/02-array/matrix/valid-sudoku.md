@@ -20,6 +20,9 @@ Determine if a 9×9 Sudoku board is valid. Only filled cells need validation - n
 **Your Task:** 
 Return true if the board is valid.
 
+**Difficulty:** Medium
+**Tags:** Array, Matrix, 2D Array Traversal, Hash Set Usage, Game Validation, Constraint Checking, O(1), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Design a data structure that is initialized with a list of different words. Prov
 **Your Task:** 
 Implement `MagicDictionary` with `buildDict` and `search`.
 
+**Difficulty:** Medium
+**Tags:** Trie, Basic, Trie / Hashmap, Fuzzy Matching, String Manipulation, Search Optimization, O(N * L), Interview
+
 ---
 
 ## Examples

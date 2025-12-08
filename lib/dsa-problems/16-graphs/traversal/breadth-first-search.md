@@ -21,6 +21,9 @@ Breadth First Search is a graph traversal algorithm that explores all vertices a
 **Your Task:** 
 Implement BFS traversal for a graph and find the shortest path between two nodes.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Traversal, Finds Shortest Path In Unweighted Graphs, Level-Order Traversal Of Trees, Finding Nearest/Closest Elements, Social Network Degree Connections, Web Crawling, O(V + E), Interview
+
 ---
 
 ## Examples

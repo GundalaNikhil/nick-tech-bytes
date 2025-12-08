@@ -20,6 +20,9 @@ Find the kth largest element in an unsorted array. Use quickselect for average O
 **Your Task:** 
 Return the kth largest element.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Algorithms, Quickselect, Partial Sorting, Order Statistics, Interview Classic, O(n), Interview
+
 ---
 
 ## Examples

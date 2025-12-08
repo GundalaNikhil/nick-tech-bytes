@@ -20,6 +20,9 @@ The houses form a binary tree. You cannot rob two directly-linked houses (parent
 **Your Task:** 
 Return maximum amount without alerting police.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Tree Dp, Post-Order Traversal, Include/Exclude Pattern, Extension Of Linear Robber, O(n), Interview
+
 ---
 
 ## Examples

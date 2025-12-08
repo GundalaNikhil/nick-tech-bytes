@@ -20,6 +20,9 @@ Given an array of distinct candidates and a target, find all unique combinations
 **Your Task:** 
 Return all unique combinations that sum to target.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Permutation Combination, Backtracking With Reuse, Combination Enumeration, All-Solutions Pattern, Foundation For Constrained Variants, O(n^(T/M), Interview
+
 ---
 
 ## Examples

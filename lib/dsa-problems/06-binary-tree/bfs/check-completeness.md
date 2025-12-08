@@ -20,6 +20,9 @@ Given the `root` of a binary tree, determine if it is a complete binary tree. In
 **Your Task:** 
 Return true if complete.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Bfs, Tree Properties, Null Node Handling, Interview Classic, O(N), Interview
+
 ---
 
 ## Examples

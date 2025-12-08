@@ -20,6 +20,9 @@ A query word matches a given pattern if we can insert lowercase letters into the
 **Your Task:** 
 Return boolean array.
 
+**Difficulty:** Easy
+**Tags:** Tries, Basics, Trie / Two Pointers, String Matching, Pattern Validation, O(N * L), Interview
+
 ---
 
 ## Examples

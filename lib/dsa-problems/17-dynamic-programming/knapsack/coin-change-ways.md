@@ -20,6 +20,9 @@ Given coin denominations and a target amount, find the number of combinations to
 **Your Task:** 
 Return the number of combinations to make the amount.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, Unbounded Knapsack, Counting Vs Optimization Dp, Currency/Payment Systems, Combination Vs Permutation, O(n × amount), Interview
+
 ---
 
 ## Examples

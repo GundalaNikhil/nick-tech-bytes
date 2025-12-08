@@ -21,6 +21,9 @@ Return the least number of units of times that the CPU will take to finish all t
 **Your Task:** 
 Return min time.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Medium, Priority Queue / Sorting, Math, O(N), Interview
+
 ---
 
 ## Examples

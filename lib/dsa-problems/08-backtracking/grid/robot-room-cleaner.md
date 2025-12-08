@@ -20,6 +20,9 @@ Design an algorithm for a robot to clean all cells in an unknown room. The robot
 **Your Task:** 
 Clean all reachable cells in the room.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Grid, Dfs With Backtracking, Unknown Environment Exploration, Robotics Algorithms, State Tracking, O(4^(n-m), Interview
+
 ---
 
 ## Examples

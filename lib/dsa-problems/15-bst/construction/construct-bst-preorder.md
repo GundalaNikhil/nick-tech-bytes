@@ -20,6 +20,9 @@ Given an array of integers representing the preorder traversal of a BST, constru
 **Your Task:** 
 Return the root of the constructed BST.
 
+**Difficulty:** Medium
+**Tags:** Bst, Construction, Bst Construction, Preorder Traversal Properties, O Bound Tracking, Tree Serialization, O(n), Interview
+
 ---
 
 ## Examples

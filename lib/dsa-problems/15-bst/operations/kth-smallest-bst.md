@@ -20,6 +20,9 @@ Find the Kth smallest element in a BST. Since inorder traversal of BST gives sor
 **Your Task:** 
 Return the Kth smallest value in the BST.
 
+**Difficulty:** Medium
+**Tags:** Bst, Operations, Bst + Inorder Property, Kth Order Statistics, Can Be Optimized With Augmented Bst, Real-World Ranking Queries, O(H + k), Interview
+
 ---
 
 ## Examples

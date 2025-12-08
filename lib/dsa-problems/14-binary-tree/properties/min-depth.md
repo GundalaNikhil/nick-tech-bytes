@@ -20,6 +20,9 @@ The minimum depth is the number of nodes along the shortest path from root to th
 **Your Task:** 
 Return the minimum depth of the tree.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Properties, Bfs Often Better Here, Leaf Node Definition, Shortest Path Variant, Common Edge Case Pitfall, O(n), Interview
+
 ---
 
 ## Examples

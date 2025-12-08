@@ -20,6 +20,9 @@ Given a string, find the length of the longest subsequence that reads the same f
 **Your Task:** 
 Find the length of the longest palindromic subsequence.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Palindrome Dp, Bioinformatics, Text Processing, Data Compression, Cryptography, O(n²), Interview
+
 ---
 
 ## Examples

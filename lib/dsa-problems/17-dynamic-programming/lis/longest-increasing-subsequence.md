@@ -20,6 +20,9 @@ Given an array, find the length of the longest subsequence where elements are in
 **Your Task:** 
 Find the length of the longest strictly increasing subsequence.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lis, Stock Market Analysis, Patience Sorting, Data Compression, Foundation For Many Dp Problems, O(n²), Interview
+
 ---
 
 ## Examples

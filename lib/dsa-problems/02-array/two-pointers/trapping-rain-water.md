@@ -20,6 +20,9 @@ Given `n` non-negative integers representing an elevation map where the width of
 **Your Task:** 
 Return total water volume.
 
+**Difficulty:** Medium
+**Tags:** Array, Two Pointers, Dynamic Programming, Monotonic Stack, Classic Interview, O(N), Interview
+
 ---
 
 ## Examples

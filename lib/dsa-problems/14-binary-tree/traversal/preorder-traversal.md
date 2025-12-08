@@ -20,6 +20,9 @@ Visit nodes in order: root → left → right. Useful for copying trees, prefix 
 **Your Task:** 
 Return the preorder traversal of a binary tree.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Traversal, Tree Traversal Fundamental, Expression Parsing, Tree Copying, Serialization Order, O(n), Interview
+
 ---
 
 ## Examples

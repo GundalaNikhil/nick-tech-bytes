@@ -20,6 +20,9 @@ Given a binary tree and a target sum, determine if the tree has a root-to-leaf p
 **Your Task:** 
 Return true if such a path exists.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Path, Tree Traversal, Path Tracking, Dfs Application, Foundation For Path Problems, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given preorder and inorder traversal of a tree, construct the binary tree. The f
 **Your Task:** 
 Build and return the binary tree.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Construction, Tree Reconstruction, Understanding Traversal Properties, Serialization/Deserialization, Divide And Conquer, O(n), Interview
+
 ---
 
 ## Examples

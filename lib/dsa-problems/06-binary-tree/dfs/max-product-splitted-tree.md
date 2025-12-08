@@ -20,6 +20,9 @@ Given the `root` of a binary tree, split the binary tree into two subtrees by re
 **Your Task:** 
 Return max product.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Dfs, Post-Order Traversal, Subtree Sum Calculation, Optimization, Tree Properties, O(N), Interview
+
 ---
 
 ## Examples

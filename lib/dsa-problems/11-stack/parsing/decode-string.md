@@ -20,6 +20,9 @@ Given an encoded string, return its decoded string. The encoding rule is: `k[enc
 **Your Task:** 
 Return the decoded string.
 
+**Difficulty:** Medium
+**Tags:** Stack, Parsing, Recursion, String Parsing, State Management, O(output_length), Interview
+
 ---
 
 ## Examples

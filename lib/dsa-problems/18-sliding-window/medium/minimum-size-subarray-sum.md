@@ -19,6 +19,9 @@ Given an array of positive integers `nums` and a positive integer `target`, retu
 **Your Task:** 
 Return min length.
 
+**Difficulty:** Medium
+**Tags:** Sliding Window, Medium, Two Pointers, Prefix Sum + Binary Search, O(N), Interview
+
 ---
 
 ## Examples

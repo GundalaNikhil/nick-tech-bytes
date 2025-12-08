@@ -20,6 +20,9 @@ There is an `m x n` grid with a ball. The ball is initially at the position `[st
 **Your Task:** 
 Return count of paths.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Grid Dp, Dp On Grid, 3D Dp State ``, Recursion With Memoization, Modulo Arithmetic, O(K * M * N), Interview
+
 ---
 
 ## Examples

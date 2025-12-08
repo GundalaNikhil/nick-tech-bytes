@@ -20,6 +20,9 @@ A prime number is greater than 1 and has no positive divisors other than 1 and i
 **Your Task:** 
 Return true if the given number is prime, false otherwise.
 
+**Difficulty:** Medium
+**Tags:** Math, Primes Sieve, Cryptography, Number Theory Problems, Foundation For Sieve, Competitive Programming, O(√n), Interview
+
 ---
 
 ## Examples

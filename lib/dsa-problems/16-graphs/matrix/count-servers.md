@@ -20,6 +20,9 @@ You are given a map of a server center, represented as a `m * n` integer matrix 
 **Your Task:** 
 Return count of communicating servers.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Matrix, Matrix Traversal, Precomputation, Optimization, Array Processing, O(M * N), Interview
+
 ---
 
 ## Examples

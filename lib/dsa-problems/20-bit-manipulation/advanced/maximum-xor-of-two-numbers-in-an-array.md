@@ -19,6 +19,9 @@ Given an integer array `nums`, return the maximum result of `nums[i] XOR nums[j]
 **Your Task:** 
 Return max XOR value.
 
+**Difficulty:** Hard
+**Tags:** Bit Manipulation, Advanced, Trie, Greedy Strategy, O(N), Interview
+
 ---
 
 ## Examples

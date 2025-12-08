@@ -25,6 +25,9 @@ Implement the `Twitter` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Hard
+**Tags:** Design, System, System Design, Hash Map + Linked List / Heap, Merge K Sorted Lists Logic, O(1), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a string `s`, return `true` if the `s` can be palindrome after deleting at
 **Your Task:** 
 Return true if valid.
 
+**Difficulty:** Medium
+**Tags:** String, Palindrome, Two Pointers, Greedy Choice, String Processing, Interview Classic, O(N), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Flatten a binary tree into a "linked list" in-place. The list should use the sam
 **Your Task:** 
 Flatten the tree to a right-skewed linked list (in-place).
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Modification, Tree Manipulation, Morris Traversal Variant, In-Place Transformation, Ui Linearization, O(n), Interview
+
 ---
 
 ## Examples

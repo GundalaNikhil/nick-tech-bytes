@@ -20,6 +20,9 @@ Given an array and a target, assign + or - to each integer to make them sum to t
 **Your Task:** 
 Count the number of ways to assign +/- to reach target.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, Subset Sum Variant, Dp Count Problems, 0/1 Knapsack Pattern, Expression Building, O(n × sum), Interview
+
 ---
 
 ## Examples

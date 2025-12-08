@@ -20,6 +20,9 @@ Find maximum profit with unlimited transactions, but each transaction has a fee.
 **Your Task:** 
 Return the maximum profit after fees.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, State Machine, State Machine Dp, Fee Consideration In Trading, Practical Finance, Dp Optimization, O(n), Interview
+
 ---
 
 ## Examples

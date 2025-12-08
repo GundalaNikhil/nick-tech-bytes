@@ -25,6 +25,9 @@ Return the longest ZigZag path contained in that tree.
 **Your Task:** 
 Return max length.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Dfs, Dfs / Recursion, State Tracking, Path Finding, Tree Traversal, O(N), Interview
+
 ---
 
 ## Examples

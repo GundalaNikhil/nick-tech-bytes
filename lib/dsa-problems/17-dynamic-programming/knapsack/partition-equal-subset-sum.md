@@ -20,6 +20,9 @@ Given an array, determine if it can be partitioned into two subsets with equal s
 **Your Task:** 
 Return true if the array can be partitioned into two equal-sum subsets.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, Subset Sum Variant, 0/1 Knapsack Application, Bitset Optimization, Fair Division Problems, O(n × sum/2), Interview
+
 ---
 
 ## Examples

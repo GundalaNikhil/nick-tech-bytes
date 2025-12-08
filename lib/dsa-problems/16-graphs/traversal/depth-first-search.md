@@ -21,6 +21,9 @@ Depth First Search is a graph traversal algorithm that explores as far as possib
 **Your Task:** 
 Implement DFS traversal for a graph, both recursively and iteratively.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Traversal, Detects Cycles In Graphs, Finds Connected Components, Topological Sorting, Solving Mazes And Puzzles, Generating Paths In Games, O(V + E), Interview
+
 ---
 
 ## Examples

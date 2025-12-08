@@ -21,6 +21,9 @@ Given the integer `n` and an array `dislikes` where `dislikes[i] = [a, b]` indic
 **Your Task:** 
 Return boolean.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Bipartite Graph Check, Graph Coloring, Dfs / Bfs, Conflict Resolution, O(N + E), Interview
+
 ---
 
 ## Examples

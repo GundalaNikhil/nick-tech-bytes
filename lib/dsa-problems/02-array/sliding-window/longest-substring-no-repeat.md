@@ -20,6 +20,9 @@ Given a string, find the length of the longest substring without any repeating c
 **Your Task:** 
 Return the length of the longest substring without repeating characters.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Core Sliding Window, Used In Text Processing, Streaming Data Analysis, Pattern Recognition, O(n), Interview
+
 ---
 
 ## Examples

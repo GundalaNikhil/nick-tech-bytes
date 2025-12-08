@@ -20,6 +20,9 @@ Reorder a linked list: L0→L1→L2→...→Ln becomes L0→Ln→L1→Ln-1→L2�
 **Your Task:** 
 Reorder the list in-place.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Manipulation, Linked List Manipulation, Find Middle + Reverse + Merge, In-Place Reorganization, Combines Multiple Techniques, O(n), Interview
+
 ---
 
 ## Examples

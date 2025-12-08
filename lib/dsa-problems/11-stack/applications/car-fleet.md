@@ -20,6 +20,9 @@ Given n cars at different positions going to a target, cars can catch up but not
 **Your Task:** 
 Return the number of car fleets that will arrive.
 
+**Difficulty:** Medium
+**Tags:** Stack, Applications, Stack-Based Simulation, Time Calculation, Physics Meets Cs, Common Interview, O(n log n), Interview
+
 ---
 
 ## Examples

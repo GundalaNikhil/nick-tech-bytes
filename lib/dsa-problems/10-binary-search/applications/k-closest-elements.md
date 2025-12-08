@@ -20,6 +20,9 @@ Given a sorted array and target x, find the k closest elements to x. Return them
 **Your Task:** 
 Return the k closest elements in sorted order.
 
+**Difficulty:** Medium
+**Tags:** Binary Search, Applications, Binary Search + Two-Pointer, Finding Ranges, Recommendation Systems, Sliding Window On Sorted Data, O(log n + k), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ This is the classic introduction to dynamic programming. The number of ways to r
 **Your Task:** 
 Given n steps, return the number of distinct ways to climb to the top.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Foundation For Understanding Dp, Teaches Overlapping Subproblems, Fibonacci Relationship, Memoization Vs Tabulation, O(n), Interview
+
 ---
 
 ## Examples

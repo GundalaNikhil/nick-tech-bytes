@@ -22,6 +22,9 @@ Return the minimum number of swaps so that every couple is sitting side by side.
 **Your Task:** 
 Return minimum swaps.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Cyclic Permutations, Union-Find / Greedy, Graph Decomposition, Hard Problem, O(N), Interview
+
 ---
 
 ## Examples

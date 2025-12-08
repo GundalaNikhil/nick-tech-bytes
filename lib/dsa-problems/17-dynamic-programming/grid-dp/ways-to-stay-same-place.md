@@ -20,6 +20,9 @@ You have a pointer at index `0` in an array of size `arrLen`. At each step, you 
 **Your Task:** 
 Return count of ways.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Grid Dp, Dp On Grid, Space Optimization, Boundary Conditions, Combinatorics, O(steps^2), Interview
+
 ---
 
 ## Examples

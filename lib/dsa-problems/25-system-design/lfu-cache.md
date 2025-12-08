@@ -20,6 +20,9 @@ Design a Least Frequently Used (LFU) cache with O(1) get and put operations. Tra
 **Your Task:** 
 Implement get(key) and put(key, value) with O(1) complexity.
 
+**Difficulty:** Hard
+**Tags:** System Design, Advanced Caching Strategy, Frequency Tracking, System Design Interview, Cdn/Cache Internals, O(1), Interview
+
 ---
 
 ## Examples

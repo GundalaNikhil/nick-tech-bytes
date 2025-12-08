@@ -18,6 +18,9 @@ Given an array of intervals `intervals` where `intervals[i] = [starti, endi]`, r
 **Your Task:** 
 Return count of removed intervals.
 
+**Difficulty:** Medium
+**Tags:** Array, Intervals, Greedy, Sorting, O(N log N), Interview
+
 ---
 
 ## Examples

@@ -22,6 +22,9 @@ Return a list of lists of the suggested products after each character of `search
 **Your Task:** 
 Return list of suggestions.
 
+**Difficulty:** Hard
+**Tags:** Tries, Basics, Trie With Buffer/Cache, Sorting / Priority Queue, Binary Search, String Manipulation, O(N log N + M * L), Interview
+
 ---
 
 ## Examples

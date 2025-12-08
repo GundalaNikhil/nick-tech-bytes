@@ -21,6 +21,9 @@ Return the lexicographically smallest string that `s` can be changed to after us
 **Your Task:** 
 Return smallest string.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Union-Find, Sorting Within Components, Graph Theory, O(N log N), Interview
+
 ---
 
 ## Examples

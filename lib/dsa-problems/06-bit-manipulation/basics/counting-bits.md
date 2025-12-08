@@ -20,6 +20,9 @@ For each number from 0 to n, count the number of 1s in its binary representation
 **Your Task:** 
 Return an array where ans[i] is the number of 1s in binary representation of i.
 
+**Difficulty:** Easy
+**Tags:** Bit Manipulation, Basics, Dynamic Programming On Bits, Population Count, Hardware-Level Operations, O(n), Interview
+
 ---
 
 ## Examples

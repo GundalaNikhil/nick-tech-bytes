@@ -23,6 +23,9 @@ Implement the `BrowserHistory` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Easy
+**Tags:** Design, Basics, Doubly Linked List / Two Stacks / Dynamic Array, System Design Basics, O(1), Interview
+
 ---
 
 ## Examples

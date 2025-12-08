@@ -20,6 +20,9 @@ Given two integer arrays, `preorder` and `postorder` where `preorder` is the pre
 **Your Task:** 
 Return the root node.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Construction, Tree Construction, Recursion, Array Indexing, Understanding Traversal Properties, O(N), Interview
+
 ---
 
 ## Examples

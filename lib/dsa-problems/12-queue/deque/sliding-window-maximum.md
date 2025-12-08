@@ -20,6 +20,9 @@ Given an array and window size K, return the maximum value in each sliding windo
 **Your Task:** 
 Return the max in each sliding window of size K.
 
+**Difficulty:** Medium
+**Tags:** Queue, Deque, Monotonic Deque, Real-Time Analytics, Signal Processing, Time Series Analysis, O(n), Interview
+
 ---
 
 ## Examples

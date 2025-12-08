@@ -20,6 +20,9 @@ Given an array of `digits` which is sorted in non-decreasing order. You can writ
 **Your Task:** 
 Return the count.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Digit Dp, Combinatorics, Counting With Constraints, Hard Interview, O(log N), Interview
+
 ---
 
 ## Examples

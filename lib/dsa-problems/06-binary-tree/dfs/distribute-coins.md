@@ -20,6 +20,9 @@ You are given the `root` of a binary tree with `n` nodes where each node in the 
 **Your Task:** 
 Return minimum moves.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Dfs, Post-Order Traversal, Flow Balance, Greedy, Tree Dp, O(N), Interview
+
 ---
 
 ## Examples

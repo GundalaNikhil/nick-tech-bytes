@@ -20,6 +20,9 @@ Given an array `days` of travel dates and `costs` for 1-day, 7-day, and 30-day p
 **Your Task:** 
 Return minimum cost.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Dp Optimization, Calendar-Based Dp, Cost Minimization, Practical Scheduling, O(max_day), Interview
+
 ---
 
 ## Examples

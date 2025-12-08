@@ -20,6 +20,9 @@ Evaluate the value of an arithmetic expression in Reverse Polish Notation. Valid
 **Your Task:** 
 Return the integer result.
 
+**Difficulty:** Medium
+**Tags:** Stack, Parsing, Stack Application, Expression Evaluation, Interview Classic, O(N), Interview
+
 ---
 
 ## Examples

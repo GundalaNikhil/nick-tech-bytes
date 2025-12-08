@@ -19,6 +19,9 @@ Given an array of `intervals` where `intervals[i] = [starti, endi]`, merge all o
 **Your Task:** 
 Return list of merged intervals.
 
+**Difficulty:** Medium
+**Tags:** Array, Intervals, Sorting, Interval Logic, Greedy, O(N log N), Interview
+
 ---
 
 ## Examples

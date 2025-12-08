@@ -24,6 +24,9 @@ Return `true` if it is possible to construct the `target` array from `arr`, othe
 **Your Task:** 
 Return true if possible.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Math, Max-Heap, Working Backwards, Modulo Arithmetic, Math Logic, O(N log N), Interview
+
 ---
 
 ## Examples

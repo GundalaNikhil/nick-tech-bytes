@@ -20,6 +20,9 @@ Find the longest substring that reads the same forwards and backwards.
 **Your Task:** 
 Return the longest palindromic substring.
 
+**Difficulty:** Medium
+**Tags:** String, Palindrome, Classic Dp/Expand Around Center, Dna/Rna Analysis, String Algorithms, Interview Must-Know, O(n²), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ A string is called a happy prefix if is a non-empty prefix which is also a suffi
 **Your Task:** 
 Return the prefix string.
 
+**Difficulty:** Medium
+**Tags:** String, Kmp, Kmp Algorithm, Rolling Hash, String Matching, Optimization, O(N), Interview
+
 ---
 
 ## Examples

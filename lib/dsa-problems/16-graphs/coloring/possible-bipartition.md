@@ -20,6 +20,9 @@ Given n people and dislikes list, check if they can be split into two groups suc
 **Your Task:** 
 Return true if bipartition is possible.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Coloring, Graph Bipartiteness, Conflict Resolution, Team Allocation, Bfs/Dfs Coloring, O(V + E), Interview
+
 ---
 
 ## Examples

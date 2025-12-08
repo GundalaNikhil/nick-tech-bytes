@@ -20,6 +20,9 @@ Given n vertical lines where the ith line has height height[i], find two lines t
 **Your Task:** 
 Find the maximum water a container can store (area between two lines).
 
+**Difficulty:** Medium
+**Tags:** Array, Two Pointer, Classic Two-Pointer, Greedy Observation Skills, Real-World Optimization, Teaches Thinking About Area = Width × Height, O(n), Interview
+
 ---
 
 ## Examples

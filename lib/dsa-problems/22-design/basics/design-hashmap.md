@@ -24,6 +24,9 @@ Implement the `MyHashMap` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Easy
+**Tags:** Design, Basics, Hash Table Implementation, Collision Resolution, Array + Linked List, O(1), Interview
+
 ---
 
 ## Examples

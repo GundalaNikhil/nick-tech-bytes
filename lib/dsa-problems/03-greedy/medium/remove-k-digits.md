@@ -19,6 +19,9 @@ Given string `num` representing a non-negative integer `num`, and an integer `k`
 **Your Task:** 
 Return smallest string.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Medium, Monotonic Stack, String Manipulation, O(N), Interview
+
 ---
 
 ## Examples

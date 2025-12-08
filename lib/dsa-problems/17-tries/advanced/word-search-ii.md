@@ -21,6 +21,9 @@ Each word must be constructed from letters of sequentially adjacent cells, where
 **Your Task:** 
 Return list of found words.
 
+**Difficulty:** Hard
+**Tags:** Tries, Advanced, Trie + Dfs, Pruning, Grid Traversal, Optimization, O(M * N * 4^L), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ You are given an undirected graph (the "original graph") with `n` nodes labeled 
 **Your Task:** 
 Return count of reachable nodes.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Shortest Path, Dijkstra'S, Graph Transformation, Edge Processing, Hard Graph, O(E log V), Interview
+
 ---
 
 ## Examples

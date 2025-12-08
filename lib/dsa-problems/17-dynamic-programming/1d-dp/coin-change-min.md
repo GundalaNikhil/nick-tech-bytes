@@ -20,6 +20,9 @@ Given coin denominations and a target amount, find the minimum number of coins n
 **Your Task:** 
 Find the fewest number of coins needed to make up the given amount.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Classic Unbounded Knapsack Variant, Foundation For Optimization Problems, Real-World Currency/Change Making, Tests Dp Optimization Skills, O(amount × coins), Interview
+
 ---
 
 ## Examples

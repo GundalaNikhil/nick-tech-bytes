@@ -20,6 +20,9 @@ Given the array `houses` where `houses[i]` is the location of the `ith` house al
 **Your Task:** 
 Return minimum total distance.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Interval Dp, Median Property, Precomputation Of Costs, Optimization, O(N^3), Interview
+
 ---
 
 ## Examples

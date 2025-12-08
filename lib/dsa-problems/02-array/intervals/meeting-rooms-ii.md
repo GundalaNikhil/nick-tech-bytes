@@ -19,6 +19,9 @@ Given an array of meeting time intervals `intervals` where `intervals[i] = [star
 **Your Task:** 
 Return min rooms.
 
+**Difficulty:** Medium
+**Tags:** Array, Intervals, Heap / Priority Queue, Sorting, Sweep Line, O(N log N), Interview
+
 ---
 
 ## Examples

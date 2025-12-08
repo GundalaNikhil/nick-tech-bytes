@@ -20,6 +20,9 @@ There are several cards arranged in a row, and each card has an associated numbe
 **Your Task:** 
 Return max score.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Prefix/Suffix Sums, Circular Array Concept, Optimization, O(k), Interview
+
 ---
 
 ## Examples

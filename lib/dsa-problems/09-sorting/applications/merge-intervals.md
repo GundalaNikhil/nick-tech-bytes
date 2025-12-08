@@ -20,6 +20,9 @@ Given a collection of intervals, merge all overlapping intervals and return the 
 **Your Task:** 
 Merge all overlapping intervals.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Applications, Calendar Applications, Resource Scheduling, Video Editing Timelines, Network Packet Coalescing, O(n log n), Interview
+
 ---
 
 ## Examples

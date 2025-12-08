@@ -20,6 +20,9 @@ Given an array and a number K, find the maximum sum of any contiguous subarray o
 **Your Task:** 
 Find the maximum sum of any contiguous subarray of size K.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Core Sliding Window, Time Series Analysis, Moving Average Calculations, Teaches Window Expansion/Contraction, O(n), Interview
+
 ---
 
 ## Examples

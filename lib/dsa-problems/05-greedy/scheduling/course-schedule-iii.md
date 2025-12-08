@@ -20,6 +20,9 @@ There are `n` different online courses numbered from `1` to `n`. You are given a
 **Your Task:** 
 Return max courses.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Scheduling, Greedy Strategy, Max-Heap, Scheduling Optimization, Interview Classic, O(N log N), Interview
+
 ---
 
 ## Examples

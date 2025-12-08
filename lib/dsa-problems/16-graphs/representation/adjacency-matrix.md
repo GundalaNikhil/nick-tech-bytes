@@ -21,6 +21,9 @@ An adjacency matrix is a 2D array of size N×N where N is the number of vertices
 **Your Task:** 
 Given a list of edges, construct an adjacency matrix representation of the graph.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Representation, O Time To Check If An Edge Exists, Simple To Implement And Understand, Perfect For Dense Graphs Where Most Vertices Are Connected, O(V²), Interview
+
 ---
 
 ## Examples

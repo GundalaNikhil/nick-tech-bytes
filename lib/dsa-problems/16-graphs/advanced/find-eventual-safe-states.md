@@ -20,6 +20,9 @@ There is a directed graph of `n` nodes with each node labeled from `0` to `n - 1
 **Your Task:** 
 Return list of safe nodes.
 
+**Difficulty:** Hard
+**Tags:** Graphs, Advanced, Cycle Detection, Topological Sort, Graph Coloring, State Analysis, O(V + E), Interview
+
 ---
 
 ## Examples

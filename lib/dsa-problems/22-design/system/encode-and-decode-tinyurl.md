@@ -21,6 +21,9 @@ Design the `encode` and `decode` methods for the TinyURL service. There is no re
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Hard
+**Tags:** Design, System, System Design, Hashing / Random Generation, Bi-Directional Mapping, O(1), Interview
+
 ---
 
 ## Examples

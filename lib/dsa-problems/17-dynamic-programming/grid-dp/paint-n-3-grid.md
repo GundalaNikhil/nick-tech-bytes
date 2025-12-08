@@ -20,6 +20,9 @@ You have a `grid` of size `n x 3` and you want to paint each cell of the grid wi
 **Your Task:** 
 Return count of ways.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Grid Dp, Dp With State Compression, Pattern Recognition, Matrix Exponentiation, Combinatorics, O(N), Interview
+
 ---
 
 ## Examples

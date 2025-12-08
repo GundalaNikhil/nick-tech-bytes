@@ -23,6 +23,9 @@ Union-Find (Disjoint Set Union/DSU) is a data structure that tracks a set of ele
 **Your Task:** 
 Implement the Union-Find data structure with path compression and union by rank optimizations.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Kruskal'S Mst, Detecting Cycles In Undirected Graphs, Network Connectivity, Image Processing, O(α(n), Interview
+
 ---
 
 ## Examples

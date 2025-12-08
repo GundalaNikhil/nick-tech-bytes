@@ -20,6 +20,9 @@ Given accounts where each account has a name and list of emails, merge accounts 
 **Your Task:** 
 Return merged accounts (name + sorted emails).
 
+**Difficulty:** Medium
+**Tags:** Graphs, Union Find, Union-Find Application, Graph Connectivity, Deduplication, Social Network Analysis, O(n × k × α(n), Interview
+
 ---
 
 ## Examples

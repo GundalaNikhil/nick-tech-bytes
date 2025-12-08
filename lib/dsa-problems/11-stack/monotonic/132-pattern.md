@@ -20,6 +20,9 @@ Given an array of `n` integers `nums`, a 132 pattern is a subsequence of three i
 **Your Task:** 
 Return true if pattern exists.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Monotonic Stack, Finding Patterns In Sequence, Optimization From O, Hard Interview, O(n), Interview
+
 ---
 
 ## Examples

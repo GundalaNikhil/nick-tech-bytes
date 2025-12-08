@@ -20,6 +20,9 @@ For a binary tree `T`, we can define a flip operation as follows: choose any nod
 **Your Task:** 
 Return true if equivalent.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Recursion, Tree Isomorphism, Canonical Representation, Interview Classic, O(min(N1, N2), Interview
+
 ---
 
 ## Examples

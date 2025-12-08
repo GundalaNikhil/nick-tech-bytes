@@ -20,6 +20,9 @@ You are given two `m x n` binary matrices `grid1` and `grid2` containing only `0
 **Your Task:** 
 Return count of sub-islands.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Dfs, Dfs / Bfs, Flood Fill, Component Verification, Grid Processing, O(M * N), Interview
+
 ---
 
 ## Examples

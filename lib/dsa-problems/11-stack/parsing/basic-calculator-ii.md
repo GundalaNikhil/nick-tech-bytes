@@ -20,6 +20,9 @@ Given a string `s` which represents an expression, evaluate this expression and 
 **Your Task:** 
 Return the calculated integer value.
 
+**Difficulty:** Medium
+**Tags:** Stack, Parsing, Stack For Operator Precedence, String Parsing, Arithmetic Evaluation, Interview Classic, O(n), Interview
+
 ---
 
 ## Examples

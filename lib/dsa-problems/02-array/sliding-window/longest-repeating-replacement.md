@@ -20,6 +20,9 @@ Given string s and integer k, find the longest substring where you can replace a
 **Your Task:** 
 Return the length of the longest such substring.
 
+**Difficulty:** Medium
+**Tags:** Array, Sliding Window, Sliding Window + Frequency, Window Validity Condition, Dna Sequence Analysis, Text Processing, O(n), Interview
+
 ---
 
 ## Examples

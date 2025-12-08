@@ -20,6 +20,9 @@ Given a wooden stick of length `n` units. The stick is labelled from `0` to `n`.
 **Your Task:** 
 Return minimum cost.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Interval Dp, Matrix Chain Multiplication Variant, Optimization, Recursion With Memoization, O(M^3), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Given a set of distinct elements, generate all possible subsets (the power set).
 **Your Task:** 
 Return all possible subsets (the power set). The solution set must not contain duplicates.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Subset, Foundation For Backtracking, Combinatorial Problems, Feature Selection In Ml, Configuration Generation, O(n × 2^n), Interview
+
 ---
 
 ## Examples

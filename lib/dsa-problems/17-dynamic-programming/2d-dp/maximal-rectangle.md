@@ -19,6 +19,9 @@ Given a `rows x cols` binary matrix filled with `0`'s and `1`'s, find the larges
 **Your Task:** 
 Return max area.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 2D Dp, Stack, Matrix Traversal, O(N * M), Interview
+
 ---
 
 ## Examples

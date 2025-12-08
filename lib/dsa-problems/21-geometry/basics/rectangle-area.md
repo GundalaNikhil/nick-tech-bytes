@@ -21,6 +21,9 @@ The second rectangle is defined by its bottom-left corner `(bx1, by1)` and its t
 **Your Task:** 
 Return total area.
 
+**Difficulty:** Easy
+**Tags:** Geometry, Basics, Math, Bounding Box Logic, O(1), Interview
+
 ---
 
 ## Examples

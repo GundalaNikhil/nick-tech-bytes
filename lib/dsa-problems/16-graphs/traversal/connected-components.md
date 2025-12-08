@@ -20,6 +20,9 @@ A connected component is a maximal subgraph where every vertex is reachable from
 **Your Task:** 
 Find the number of connected components in an undirected graph and identify which nodes belong to each component.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Traversal, Analyzing Social Network Clusters, Image Processing, Network Reliability Analysis, Identifying Independent Systems, O(V + E), Interview
+
 ---
 
 ## Examples

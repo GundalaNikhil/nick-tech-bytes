@@ -20,6 +20,9 @@ An ugly number is a positive integer whose only prime factors are 2, 3, and 5. F
 **Your Task:** 
 Return the nth ugly number.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, 1D Dp, Multi-Pointer Dp, Number Generation, Hamming Numbers, Merge K Sorted Lists Variant, O(n), Interview
+
 ---
 
 ## Examples

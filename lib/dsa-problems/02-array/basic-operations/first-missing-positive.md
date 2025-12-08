@@ -20,6 +20,9 @@ Given an unsorted array, find the smallest positive integer that is missing. Mus
 **Your Task:** 
 Return the smallest missing positive integer.
 
+**Difficulty:** Medium
+**Tags:** Array, Basic Operations, Index-As-Hash, Cyclic Sort Pattern, Space Constraint Challenge, Very Common Interview Question, O(n), Interview
+
 ---
 
 ## Examples

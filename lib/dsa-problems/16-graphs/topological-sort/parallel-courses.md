@@ -20,6 +20,9 @@ You are given an integer `n`, which indicates that there are `n` courses labeled
 **Your Task:** 
 Return minimum semesters.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Topological Sort, Longest Path In Dag, Cycle Detection, Level-Order Traversal, O(V + E), Interview
+
 ---
 
 ## Examples

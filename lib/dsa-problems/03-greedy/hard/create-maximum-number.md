@@ -22,6 +22,9 @@ Return an array of the `k` digits.
 **Your Task:** 
 Return max number array.
 
+**Difficulty:** Hard
+**Tags:** Greedy, Hard, Monotonic Stack, Merge Logic, O(K * (M+N), Interview
+
 ---
 
 ## Examples

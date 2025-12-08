@@ -20,6 +20,9 @@ Return the max sliding window.
 **Your Task:** 
 Return array of max values.
 
+**Difficulty:** Hard
+**Tags:** Sliding Window, Hard, Monotonic Queue, Optimization, O(N), Interview
+
 ---
 
 ## Examples

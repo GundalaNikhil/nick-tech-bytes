@@ -20,6 +20,9 @@ Implement a LIFO stack using only FIFO queue operations: enqueue and dequeue. Su
 **Your Task:** 
 Implement all stack operations using only queue methods.
 
+**Difficulty:** Medium
+**Tags:** Stack, Implementation, Data Structure Adaptation, Understanding Lifo Vs Fifo, System Constraints, Interview Classic, O(n), Interview
+
 ---
 
 ## Examples

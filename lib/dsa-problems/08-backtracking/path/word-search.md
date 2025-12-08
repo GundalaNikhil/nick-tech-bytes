@@ -20,6 +20,9 @@ Given an m×n grid of characters and a word, determine if the word exists in the
 **Your Task:** 
 Return true if the word can be found in the grid.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, Path, Classic Backtracking On Grid, Dfs With Visited Tracking, Board Game Logic, Pattern Matching, O(m × n × 4^L), Interview
+
 ---
 
 ## Examples

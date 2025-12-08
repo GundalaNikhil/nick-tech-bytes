@@ -20,6 +20,9 @@ Kruskal's algorithm builds a minimum spanning tree by repeatedly adding the smal
 **Your Task:** 
 Given a weighted undirected graph, find the minimum spanning tree using Kruskal's algorithm.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Mst, Network Design, Clustering, Approximation For Traveling Salesman, Image Segmentation, O(E log E), Interview
+
 ---
 
 ## Examples

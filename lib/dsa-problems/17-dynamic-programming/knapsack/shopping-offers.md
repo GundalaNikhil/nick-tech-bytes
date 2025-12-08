@@ -20,6 +20,9 @@ In a store, there are some items to sell. Each item has a price. However, there 
 **Your Task:** 
 Return the minimum cost.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Knapsack, Dp With Memoization, State Representation, Knapsack Variation, Optimization, O(m * n * prod(needs), Interview
+
 ---
 
 ## Examples

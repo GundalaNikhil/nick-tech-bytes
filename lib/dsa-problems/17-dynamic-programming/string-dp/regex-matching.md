@@ -22,6 +22,9 @@ Given string s and pattern p, implement wildcard matching where:
 **Your Task:** 
 Return true if the pattern matches the entire string.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, String Dp, Text Processing, Search Engines, Dp On Strings, Compiler Design, O(s × p), Interview
+
 ---
 
 ## Examples

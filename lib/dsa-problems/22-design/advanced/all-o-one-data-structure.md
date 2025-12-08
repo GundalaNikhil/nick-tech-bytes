@@ -26,6 +26,9 @@ Note that each function must run in `O(1)` average time complexity.
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Hard
+**Tags:** Design, Advanced, Doubly Linked List + Hash Map, Advanced Design, Optimization, O(1), Interview
+
 ---
 
 ## Examples

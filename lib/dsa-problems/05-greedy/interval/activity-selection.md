@@ -20,6 +20,9 @@ Given intervals, find the maximum number of non-overlapping intervals you can se
 **Your Task:** 
 Return the maximum number of non-overlapping intervals.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Interval, Classic Greedy, Interval Scheduling, Resource Allocation, Proof Of Greedy Correctness, O(n log n), Interview
+
 ---
 
 ## Examples

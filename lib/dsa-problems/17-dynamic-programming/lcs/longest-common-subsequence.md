@@ -21,6 +21,9 @@ Given two strings, find the length of their longest subsequence that is common t
 **Your Task:** 
 Find the length of the longest common subsequence of two strings.
 
+**Difficulty:** Medium
+**Tags:** Dynamic Programming, Lcs, Version Control, Dna Sequence Alignment, Spell Checking, Plagiarism Detection, File Comparison, O(m × n), Interview
+
 ---
 
 ## Examples

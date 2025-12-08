@@ -20,6 +20,9 @@ Given a string, partition it such that every substring is a palindrome. Return a
 **Your Task:** 
 Return all palindrome partitions.
 
+**Difficulty:** Medium
+**Tags:** Backtracking, String, Backtracking Classic, Palindrome Checking, String Partitioning, All-Solutions Enumeration, O(n × 2^n), Interview
+
 ---
 
 ## Examples

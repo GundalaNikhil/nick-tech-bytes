@@ -23,6 +23,9 @@ Return the largest possible score you can achieve after playing any number of to
 **Your Task:** 
 Return max score.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Two Pointer, Greedy Strategy, Sorting + Two Pointers, Resource Management, Optimization, O(N log N), Interview
+
 ---
 
 ## Examples

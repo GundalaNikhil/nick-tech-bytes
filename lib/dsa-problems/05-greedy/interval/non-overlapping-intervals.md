@@ -20,6 +20,9 @@ Given intervals, find the minimum number of intervals to remove to make the rest
 **Your Task:** 
 Return minimum number of intervals to remove.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Interval, Greedy Interval Scheduling, Activity Selection Variant, Meeting Room Optimization, Maximum Compatible Set, O(n log n), Interview
+
 ---
 
 ## Examples

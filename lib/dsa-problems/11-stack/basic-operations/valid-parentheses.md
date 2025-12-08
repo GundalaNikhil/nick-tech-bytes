@@ -20,6 +20,9 @@ Given a string containing just '(', ')', '{', '}', '[', ']', determine if the in
 **Your Task:** 
 Return true if the input string has valid parentheses matching.
 
+**Difficulty:** Medium
+**Tags:** Stack, Basic Operations, Code Compilers And Interpreters, Json/Xml Validation, Mathematical Expression Parsing, Html/Jsx Tag Matching, O(n), Interview
+
 ---
 
 ## Examples

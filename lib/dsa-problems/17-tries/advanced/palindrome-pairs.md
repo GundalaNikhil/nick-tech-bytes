@@ -20,6 +20,9 @@ Given a list of unique words, return all the pairs of the distinct indices `(i, 
 **Your Task:** 
 Return list of pairs.
 
+**Difficulty:** Hard
+**Tags:** Tries, Advanced, Trie, String Manipulation, Palindrome Check, Hard, O(N * L^2), Interview
+
 ---
 
 ## Examples

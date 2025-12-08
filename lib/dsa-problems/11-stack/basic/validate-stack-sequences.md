@@ -20,6 +20,9 @@ Given two integer arrays `pushed` and `popped` each with distinct values, return
 **Your Task:** 
 Return true if valid.
 
+**Difficulty:** Medium
+**Tags:** Stack, Basic, Stack Simulation, Greedy Strategy, Array Processing, Interview Classic, O(N), Interview
+
 ---
 
 ## Examples

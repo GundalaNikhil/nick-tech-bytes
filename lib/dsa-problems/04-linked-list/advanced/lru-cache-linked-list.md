@@ -20,6 +20,9 @@ A cache that evicts the Least Recently Used item when at capacity. Uses doubly l
 **Your Task:** 
 Implement get and put with O(1) time complexity.
 
+**Difficulty:** Hard
+**Tags:** Linked List, Advanced, Real Caching Systems, Doubly Linked List Operations, Hash Map + Linked List Combo, System Design Interviews, O(1), Interview
+
 ---
 
 ## Examples

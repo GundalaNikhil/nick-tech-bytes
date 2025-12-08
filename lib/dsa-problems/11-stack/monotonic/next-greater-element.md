@@ -20,6 +20,9 @@ For each element in an array, find the first element that is greater than it app
 **Your Task:** 
 Find the next greater element for each element in the array.
 
+**Difficulty:** Medium
+**Tags:** Stack, Monotonic, Stock Span Problems, Temperature Predictions, Monotonic Stack, Foundation For Histogram Problems, O(n), Interview
+
 ---
 
 ## Examples

@@ -20,6 +20,9 @@ Find all critical connections (bridges) in a network. An edge is critical if rem
 **Your Task:** 
 Return all critical connections.
 
+**Difficulty:** Hard
+**Tags:** Graphs, Advanced, Network Reliability, Infrastructure Planning, Tarjan'S, Bridge Detection, O(V + E), Interview
+
 ---
 
 ## Examples

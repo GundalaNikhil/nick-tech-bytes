@@ -20,6 +20,9 @@ Compute (base^exp) % mod efficiently without overflow using the property: (a*b) 
 **Your Task:** 
 Compute (base^exp) % mod efficiently.
 
+**Difficulty:** Medium
+**Tags:** Math, Modular Arithmetic, Cryptography, Competitive Programming, Large Number Computation, Fermat'S Little Theorem, O(log exp), Interview
+
 ---
 
 ## Examples

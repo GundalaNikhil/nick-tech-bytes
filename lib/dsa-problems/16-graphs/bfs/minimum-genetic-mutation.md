@@ -20,6 +20,9 @@ A gene string is represented by 8 characters (A, C, G, T). Given a start gene, e
 **Your Task:** 
 Return the minimum number of mutations, or -1 if impossible.
 
+**Difficulty:** Medium
+**Tags:** Graphs, Bfs, Bfs On String Graph, Similar To Word Ladder, Bioinformatics, Mutation Analysis, O(bank × 8 × 4), Interview
+
 ---
 
 ## Examples

@@ -22,6 +22,9 @@ The expression string contains integers, operator `+`, `-`, `*`, `/`, and empty 
 **Your Task:** 
 Return integer result.
 
+**Difficulty:** Medium
+**Tags:** Stack, Calculator, Operator Precedence, String Parsing, O(N), Interview
+
 ---
 
 ## Examples

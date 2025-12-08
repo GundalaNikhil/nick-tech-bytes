@@ -20,6 +20,9 @@ Given an array where nums[i] is the max jump length from position i, find the mi
 **Your Task:** 
 Return the minimum number of jumps.
 
+**Difficulty:** Medium
+**Tags:** Greedy, Jump, Greedy Optimization, Bfs-Like Level Thinking, Jump Game Variant, Interview Staple, O(n), Interview
+
 ---
 
 ## Examples

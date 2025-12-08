@@ -20,6 +20,9 @@ You are given the `root` of a binary tree where each node has a value in the ran
 **Your Task:** 
 Return the smallest string.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Dfs, Dfs / Recursion, String Building, Lexicographical Comparison, Tree Traversal, O(N), Interview
+
 ---
 
 ## Examples

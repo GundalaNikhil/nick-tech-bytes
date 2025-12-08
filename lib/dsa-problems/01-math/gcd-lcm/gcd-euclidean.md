@@ -20,6 +20,9 @@ The largest number that divides both given numbers without leaving a remainder. 
 **Your Task:** 
 Find the GCD of two numbers using Euclidean algorithm.
 
+**Difficulty:** Medium
+**Tags:** Math, Gcd Lcm, Simplifying Fractions, Finding Lcm, Modular Arithmetic, Extended Euclidean, O(log(min(a, b), Interview
+
 ---
 
 ## Examples

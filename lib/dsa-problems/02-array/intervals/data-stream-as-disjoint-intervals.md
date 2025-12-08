@@ -23,6 +23,9 @@ Implement the `SummaryRanges` class:
 **Your Task:** 
 Implement the class.
 
+**Difficulty:** Medium
+**Tags:** Array, Intervals, Treemap / Sortedset, Interval Merging, Binary Search Tree, O(log N), Interview
+
 ---
 
 ## Examples

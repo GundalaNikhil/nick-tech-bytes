@@ -20,6 +20,9 @@ Rearrange a linked list so all nodes at odd indices come before nodes at even in
 **Your Task:** 
 Rearrange nodes with O(1) space and O(n) time.
 
+**Difficulty:** Medium
+**Tags:** Linked List, Manipulation, Linked List Manipulation, Two-Pointer, In-Place Rearrangement, Order Preservation, O(n), Interview
+
 ---
 
 ## Examples

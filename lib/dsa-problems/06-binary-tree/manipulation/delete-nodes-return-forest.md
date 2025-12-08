@@ -20,6 +20,9 @@ Given the `root` of a binary tree, each node in the tree has a distinct value. A
 **Your Task:** 
 Return list of root nodes.
 
+**Difficulty:** Medium
+**Tags:** Binary Tree, Manipulation, Post-Order Traversal, Tree Modification, Recursion, Forest Management, O(N), Interview
+
 ---
 
 ## Examples

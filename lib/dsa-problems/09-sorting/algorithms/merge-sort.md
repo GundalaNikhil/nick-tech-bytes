@@ -23,6 +23,9 @@ A divide-and-conquer sorting algorithm that:
 **Your Task:** 
 Sort an array using merge sort.
 
+**Difficulty:** Medium
+**Tags:** Sorting, Algorithms, Guaranteed O Time, Stable Sort, Used In External Sorting, Foundation For Many Algorithms, O(n log n), Interview
+
 ---
 
 ## Examples

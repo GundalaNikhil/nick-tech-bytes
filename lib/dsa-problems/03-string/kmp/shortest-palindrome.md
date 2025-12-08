@@ -20,6 +20,9 @@ You are given a string s. You can convert s to a palindrome by adding characters
 **Your Task:** 
 Return the shortest palindrome.
 
+**Difficulty:** Medium
+**Tags:** String, Kmp, Kmp Algorithm, String Matching, Palindrome Properties, Hard String, O(n), Interview
+
 ---
 
 ## Examples

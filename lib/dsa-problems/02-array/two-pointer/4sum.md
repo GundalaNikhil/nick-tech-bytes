@@ -23,6 +23,9 @@ Given an array nums of n integers, return an array of all the unique quadruplets
 **Your Task:** 
 Return unique quadruplets summing to target.
 
+**Difficulty:** Medium
+**Tags:** Array, Two Pointer, Generalization Of K-Sum, Recursion Or Nested Loops, Handling Duplicates, Sorting + Two Pointers, O(n³), Interview
+
 ---
 
 ## Examples
