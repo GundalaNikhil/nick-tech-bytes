@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavbarWrapper from "@/components/NavbarWrapper";
+import MainContent from "@/components/MainContent";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ToastProvider } from "@/components/ToastProvider";
 import NavigationLoader from "@/components/NavigationLoader";
 import ApiLoadingOverlay from "@/components/ApiLoadingOverlay";
+import { Inter, JetBrains_Mono } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "𝗡𝗜𝗖𝗞 𝗧𝗘𝗖𝗛 𝗕𝗬𝗧𝗘𝗦",
@@ -25,14 +39,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="overflow-x-hidden">
-      <body className="overflow-x-hidden">
+    <html
+      lang="en"
+      className={`overflow-x-hidden ${inter.variable} ${jetbrainsMono.variable}`}
+    >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body className={`overflow-x-hidden bg-gray-900 ${inter.className}`}>
         <AuthProvider>
           <ToastProvider />
           <NavigationLoader />
           <ApiLoadingOverlay />
           <NavbarWrapper />
-          <div className="pt-20">{children}</div>
+          <MainContent>{children}</MainContent>
         </AuthProvider>
       </body>
     </html>
